@@ -33,7 +33,7 @@ explained. For a reference on exported functions, see section
 \section{The configuration files}
 \label{sec:conffiles}
 
-Ion2, to which document applies, stores its stock configuration files in
+Ion3, to which document applies, stores its stock configuration files in
 \file{/usr/local/etc/ion/} unless you, OS package maintainer or whoever 
 installed the package has modified the variables
 \code{PREFIX}\index{PREFIX@\code{PREFIX}} or
@@ -537,7 +537,7 @@ name of a key as listed in the X header file \file{keysymdef.h}%
 \index{keysymdef.h@\file{keysymdef.h}}
 Most of the key names are quite intuitive while some are not. For example,
 the \key{Enter} key on the main part of the keyboard has the less common
-name \key{Return} while the one one the numpad is called \key{KP\_Enter}.
+name \key{Return} while the one the numpad is called \key{KP\_Enter}.
 
 The \var{keyspec} string may optionally have multiple ''modifier'' names
 followed by a plus sign (\code{+}) as a prefix. X defines the following
@@ -720,6 +720,7 @@ windows, for example.
 Ion currently knows the following winprops:
 
 \index{switchto@\var{switchto}!winprop}
+\index{jumpto@\var{jumpto}!winprop}
 \index{transient-mode@\var{transient_mode}!winprop}
 \index{target@\var{target}!winprop}
 \index{transparent@\var{transparent}!winprop}
@@ -733,7 +734,12 @@ Ion currently knows the following winprops:
     Property & Type & Description\\\hline
     \var{switchto} &
     	boolean &
-    	Should the window be switched to when it is created. \\
+        Should a newly mapped client window be switched to within
+        its frame. \\
+    \var{jumpto} &
+    	boolean &
+        Should a newly created client window always be made
+        active, even if the allocated frame isn't. \\
     \var{transient_mode} &
   	string &
     	"normal": No change in behaviour. "current": The window
