@@ -128,11 +128,11 @@ Style name & Description \\
 \label{sec:defaultde}
 
 Drawing engine style files are usually named
-\file{look-foo.lua} where \file{foo} is the name of the
+\file{look\_foo.lua} where \file{foo} is the name of the
 style. The file that Ion loads on startup or when
-\fnref{gr_read_config} is called, however, is \file{draw.lua}
+\fnref{gr.read_config} is called, however, is \file{look.lua}
 and should usually be symlinked to or a copy of of some
-\file{look-foo.lua}.
+\file{look\_foo.lua}.
 
 \subsection{The structure of the configuration files}
 
@@ -141,18 +141,18 @@ engine, possibly loading the module as well. This is done
 with the following chunk of code.
 
 \begin{verbatim}
-if not gr_select_engine("de") then 
+if not gr.select_engine("de") then 
     return 
 end
 \end{verbatim}
 
-The \fnref{gr_select_engine} function sees if the engine
+The \fnref{gr.select_engine} function sees if the engine
 given as argument is registered (the default drawing engine is
 simply called ''de''). If the engine could not be found, it
 tries to load a module of the same name. If the engine still
-is not registered, \fnref{gr_select_engine} returns \code{false}
+is not registered, \fnref{gr.select_engine} returns \code{false}
 and in this case we also exit the style setup script.
-If the engine was found, \fnref{gr_select_engine} sees that
+If the engine was found, \fnref{gr.select_engine} sees that
 further requests for brushes are forwarded to that engine
 and returns \code{true}.
 
@@ -163,27 +163,27 @@ those specified by the new configuration. That can be done by
 calling
 
 \begin{verbatim}
-de_reset()
+de.reset()
 \end{verbatim}
 
-After this the new styles can be defined with \fnref{de_define_style}
+After this the new styles can be defined with \fnref{de.defstyle}
 as explained in the next subsection. Finally, after the styles have
 been defined we must ask objects on the screen to look up new brushes
 to reflect the changes in configuration. This is done with
 
 \begin{verbatim}
-gr_refresh()
+gr.refresh()
 \end{verbatim}
 
 \subsection{Defining the styles}
 
 Styles for the default drawing engine are defined with the
-function \fnref{de_define_style}. It has two arguments the first being
+function \fnref{de.defstyle}. It has two arguments the first being
 a style specification as explained in previous sections and the second
 a table whose fields describe the style:
 
 \begin{verbatim}
-de_define_style("some-style", {
+de.defstyle("some-style", {
     attribute = value,
     ...
 })
@@ -302,14 +302,14 @@ by, respectively, drawing a right angle shape at the top right corner
 of a tab and by shading the tab with a stipple pattern. Also for
 menus the substyles \code{*-*-submenu} are handled as a special case.
 
-Substyles are defined with the function \fnref{de_substyle} within the
+Substyles are defined with the function \fnref{de.substyle} within the
 table defining the main style. The parameters to this function are 
-similar to those of \fnref{de_define_style}.
+similar to those of \fnref{de.defstyle}.
 
 \begin{verbatim}
-de_define_style("some-style", {
+de.defstyle("some-style", {
    ...
-   de_substyle("some-substyle", {
+   de.substyle("some-substyle", {
       ...
    }),
    ...
@@ -319,12 +319,12 @@ de_define_style("some-style", {
 
 \subsection{An example}
 
-The following shortened segment from \file{look-cleanviolet.lua}
+The following shortened segment from \file{look\_cleanviolet.lua}
 should help to clarify the matters discussed in the previous
 subsection.
 
 \begin{verbatim}
-de_define_style("*", {
+de.defstyle("*", {
     -- Gray background
     highlight_colour = "#eeeeee",
     shadow_colour = "#eeeeee",
@@ -341,10 +341,10 @@ de_define_style("*", {
     text_align = "center",
 })
 
-de_define_style("tab-frame", {
+de.defstyle("tab-frame", {
     based_on = "*",
     
-    de_substyle("active-selected", {
+    de.substyle("active-selected", {
         -- Violet tab
         highlight_colour = "#aaaacc",
         shadow_colour = "#aaaacc",
