@@ -51,8 +51,8 @@ gets to handle the action.
 
 Unlike in Ion2, in Ion3 binding handlers are not normally passed as as
 ''anonymous functions'', although this is still possible. The preferred
-method now is to pass thecode of the handler as a string. Two special 
-variables are avilable in this code. These are
+method now is to pass the code of the handler as a string. Two special 
+variables are available in this code. These are
 
 \begin{tabularx}{\linewidth}{lX}
     \tabhead{Variable & Description}
@@ -69,7 +69,7 @@ variables are avilable in this code. These are
 \end{tabularx}
 
 For example, supposing '\code{_}' is a \type{WFrame}, the following
-handler should move the active window right, if possible:
+handler should move the active window to the right, if possible:
 
 \begin{verbatim}
 "_:inc_index(_sub)"
@@ -78,8 +78,9 @@ handler should move the active window right, if possible:
 \subsection{Guards}
 
 To suppress error messages, each binding handler may also be accompanied
-by a ''guard'' that blocks the handler from being called when the guard 
-condition is not met. Currently the following guards are supported:
+by a ''guard'' expression that blocks the handler from being called when
+the guard condition is not met. Currently the following guard expressions
+are supported:
 
 \begin{tabularx}{\linewidth}{lX}
     \tabhead{Guard & Description}
