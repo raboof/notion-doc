@@ -3,18 +3,23 @@
 
 TOPDIR=../ion
 
-LUA=lua
+include $(TOPDIR)/system-inc.mk
 
 L2H=latex2html -show_section_numbers -short_index -local_icons -noaddress \
     -up_url http://iki.fi/tuomov/ion/ -up_title "Ion homepage" -nofootnode\
     -style greyviolet.css
 
+MKFNTEX=$(LUA) $(TOPDIR)/mkexports.lua
+
+# Function documentation to build
+######################################
+
+DOCS=ionconf ionnotes
+
 FNTEXES=ioncore-fns.tex mod_ionws-fns.tex mod_floatws-fns.tex \
 	mod_query-fns.tex querylib-fns.tex ioncorelib-fns.tex \
 	de-fns.tex mod_menu-fns.tex menulib-fns.tex mod_dock-fns.tex \
 	mod_sp-fns.tex
-
-MKFNTEX=$(LUA) $(TOPDIR)/mkexports.lua
 
 # Generic rules
 ######################################
@@ -30,6 +35,21 @@ nothing:
 
 %.dvi: %.tex
 	latex $<
+
+# Install
+######################################
+
+install:
+	$(INSTALLDIR) $(DOCDIR); \
+	for d in $(DOCS); do \
+	    for e in ps pdf dvi; do \
+	      test -f $$d.$$e && $(INSTALL) -m $(DATA_MODE) $$d.$$e $(DOCDIR); \
+            done; \
+	    $(INSTALLDIR) $(DOCDIR)/$$d; \
+            for i in $$d/*; do \
+                $(INSTALL) -m $(DATA_MODE) $$i $(DOCDIR)/$$i; \
+	    done; \
+        done
 
 # ionconf rules
 ######################################
@@ -79,8 +99,10 @@ clean:
 	rm -f $(FNTEXES) fnlist.tex
 	rm -f *.aux *.toc *.log
 	rm -f *.idx *.ild *.ilg *.ind
+        
+realclean: clean
 	rm -f *.ps *.pdf *.dvi
-	rm -rf ionconf ionnotes
+	rm -rf $(DOCS)
 
 
 # Function reference rules
