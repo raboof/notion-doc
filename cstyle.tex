@@ -1,0 +1,118 @@
+\section{C coding style}
+
+If you want to submit patches to Ion, you MUST follow my coding 
+style, even if you think it is the root of all evil. We don't want
+the code to be an incomprehensible mess of styles and I have better
+things to do than fix other people's style to match mine. The style
+should be obvious by studying the source, but here are items.
+
+\subsection{Whitespace}
+
+\begin{itemize}
+  \item Indentations of 4 with \emph{tab size=4}. I know many people
+    think this is evil and tab size should be 8. Too bad.
+    
+  \item No extra spaces between operators, delimiters etc. except
+    \begin{itemize}
+      \item around logical and, or (\code{&&}, \code{||})
+      \item around the conditional \code{a ? b : c}
+      \item after commas and semicolons
+    \end{itemize}  
+    In my opinion this helps pointing out arithmetic or other
+    expressions within logical expressions or parameter lists.
+    
+  \item Opening brace at the end of the line, except in function
+    bodies, when it is at the beginning of the line following
+    the definition.
+
+  \item All kinds of labels are outtended to the level of the higher
+    level block. For example:
+
+\begin{verbatim}    
+void foo()
+{
+again:
+    switch(asdf){
+    case 1:
+        ...
+        break;
+    default:
+        ...
+        break;
+    }
+}
+\end{verbatim}
+\end{itemize}
+
+\subsection{Braces}
+
+\begin{itemize}
+\item Never put the body of a control statement on the same line
+    with the statement (e.g. \verb!if(foo){ bar() }!).
+
+For example, the block
+\begin{verbatim}    
+void foo(int a, int b)
+{
+    if(a==b && c+d==e){
+        ...
+    }
+}
+\end{verbatim}
+
+has correct style while the block
+
+\begin{verbatim}   
+void foo(int a,int b) {
+    if (a == b && c + d == e) {
+        ...
+    }
+}
+\end{verbatim}
+
+does not.
+
+  \item The \code{else} keyword follows immediately after the closing brace of
+    previous \code{if}, if any. (This might change so I don't care if you put
+    it on the next line.)
+    
+  \item I have used the convention that control statement bodies containing
+    a single statement do not need braces around the block if, in case of
+    the \code{if} all the blocks in  \code{if ...  else if ... else}
+    contain just one statement. If you want to, just use braces in every 
+    case.
+\end{itemize}
+
+\subsection{Names}
+
+\begin{itemize}
+  \item Function and variable names only have lower case letters. Type
+    names are in mixed case while constants and macros (\code{#define}s)
+    are in upper case letters.
+\end{itemize}
+
+\subsection{Miscellaneous}
+
+\begin{itemize}
+  \item In the definition of a pointer variable, the asterisk is attached
+    to the variable name: \code{char *s;}. (One could claim this an 
+    exception to the second rule.)
+    
+  \item You might optionally want to use Jed's foldings to group blocks
+    of related code in a file to keep it organized:
+
+\begin{verbatim}    
+/*{{{ Many related functions */
+	
+void code()
+{
+    ...	
+}
+
+...
+
+/*}}}*/
+\end{verbatim}
+\end{itemize}
+
+I think that's mostly it. Study the source when in doubt.
