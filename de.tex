@@ -8,9 +8,63 @@ for the default drawing engine.
 
 \section{Drawing engines, style specifications and substyles}
 \label{sec:engines}
+\index{style}\index{drawing engine}
+
+Ion's drawing routines are abstracted into so-called drawing engine
+modules that can, again depending on the system, be dynamically
+loaded as needed. The drawing engine modules provide ''brushes''
+that objects can use to draw some high-level primitives such
+as borders and text boxes (in addition to simple text and rectangle
+drawing) on their windows and configure e.g. the shape and 
+background of the window. While the drawing engines therefore
+do not directly implement looks for each possible object (that
+would hardly be maintainable), different brush styles can be
+used to give a distinctive look to different objects and engines
+could interpret some styles as special cases. Style specifications 
+are strings of the form
+
+\begin{verbatim}
+element1-element2-...-elementn
+\end{verbatim}
+
+An example of such a style specification is \code{frame-tab};
+see the table in subsection \ref{sec:styles} for more styles.
+
+When an object asks for a brush of certain style, the selected
+drawing engine will attempt to find the closest match to this
+specification. The styles/brushes defined by the drawing engines 
+may have asterixes (\verb!*!) as some of the elements indicating
+a match to anything. Exact matches are preferred to asterisk
+matches and longer matches to shorter. For example, let a brush
+for style \code{foo-bar-baz} be queried, then the following
+brushes are in order of precedence:
+
+\begin{verbatim}
+foo-bar-baz
+foo-*-baz
+foo-bar
+*
+foo-baz   -- Doesn't match, not selected!
+\end{verbatim}
+
+Some of the drawing primitives also extra attributes to be
+specified also in the form
+\begin{verbatim}
+attr1-attr2-...-attrn
+\end{verbatim}
+These extra attributes are called \emph{substyles}\index{substyle}
+and allow, for example, the state of the object to be indicated 
+by  different colour sets while keeping the interface at an 
+abstract level and the drawing engine completely ignorant 
+of the semantics -- only the writer of the drawing engine
+configuration file has to know them. However the drawing 
+engine can again interpret known substyles as special cases
+and the default engine indeed does so with frame tab 
+tag and drag states.)
 
 
 \subsection{Known styles and substyles}
+\label{sec:styles}
 
 \begin{tabularx}{\linewidth}{lX}
 \hline
@@ -46,7 +100,14 @@ Style name & Description \\
 \section{Defining styles for the default drawing engine}
 \label{sec:defaultde}
 
-\subsection{Loading the drawing engine}
+Drawing engine style files are usually named
+\file{look-foo.lua} where \file{foo} is the name of the
+style. The file that Ion loads on startup or when
+\fnref{gr_read_config} is called, however, is \file{draw.lua}
+and should usually be symlinked to or a copy of of some
+\file{look-foo.lua}.
+
+\subsection{The structure of the configuration files}
 
 The first thing to do in a stylefile is to choose the drawing
 engine, possibly loading the module as well. This is done
@@ -68,29 +129,63 @@ If the engine was found, \fnref{gr_select_engine} sees that
 further requests for brushes are forwarded to that engine
 and returns \code{true}.
 
+Before defining new styles it may be a good idea to clear old
+styles from memory so if the old configuration defines more
+specific styles than the new, the old styles don't override 
+those specified by the new configuration. That can be done by
+calling
+
+\begin{verbatim}
+de_reset()
+\end{verbatim}
+
+After this the new styles can be defined with \fnref{de_define_style}
+as explained in the next subsection. Finally, after the styles have
+been defined we must ask objects on the screen to look up new brushes
+to reflect the changes in configuration. This is done with
+
+\begin{verbatim}
+gr_refresh()
+\end{verbatim}
 
 \subsection{Defining the styles}
 
 Styles for the default drawing engine are defined with the
 function \fnref{de_define_style}. It has two arguments the first being
 a style specification as explained in previous sections and the second
-a table whose fields describe the style. The known fields are described
-in tables below and the different border elements discussed there are 
-explained by the following sketch:
+a table whose fields describe the style:
 
 \begin{verbatim}
+de_define_style("some-style", {
+    attribute = value,
+    ...
+})
+\end{verbatim}
+
+The supported attributes are described in tables below. The different
+border elements and styles referred to there are explained in Figure
+\ref{fig:borders}.
+
+\begin{figure}
+\begin{htmlonly}
+\docode % Kludge to make latex2html interpret contents instead of
+	% creating an image.
+\end{htmlonly}    
+\begin{verbatim}
 Elevated:        Inlaid:         Ridge:            Groove:        
-  hhhhhhhhhhhs     sssssssssssh	    hhhhhhhhhhhs     sssssssssssh
-  h..........s     s..........h	    h..........s     s..........h
-  h.        .s     s.        .h	    h.sssssssh.s     s.hhhhhhhs.h
-  h.        .s     s.        .h	    h.s      h.s     s.h      s.h
-  h.        .s     s.        .h	    h.shhhhhhh.s     s.hsssssss.h
-  h..........s     s..........h	    h..........s     s..........h
-  hsssssssssss     shhhhhhhhhhh	    hsssssssssss     shhhhhhhhhhh
+  hhhhhhhhhhhs     ............	   hhhhhhhhhhhs      sssssssssssh
+  h..........s     .sssssssssh.	   h..........s      s..........h
+  h.        .s     .s        h.	   h.sssssssh.s      s.hhhhhhhs.h
+  h.        .s     .s        h.	   h.s      h.s      s.h      s.h
+  h.        .s     .s        h.	   h.shhhhhhh.s      s.hsssssss.h
+  h..........s     .shhhhhhhhh.	   h..........s      s..........h
+  hsssssssssss     ............	   hsssssssssss      shhhhhhhhhhh
 
 h = highlight, s = shadow, . = padding
 \end{verbatim}
-
+\caption{Sketch of different border styles and elements}
+\label{fig:borders}
+\end{figure}
 
 \subsubsection{Colours}
 
@@ -181,7 +276,18 @@ of a tab and by shading the tab with a stipple pattern.
 
 Substyles are defined with the function \fnref{de_substyle} within the
 table defining the main style. The parameters to this function are 
-similar to those of \fnref{de_define_style} .
+similar to those of \fnref{de_define_style}.
+
+\begin{verbatim}
+de_define_style("some-style", {
+   ...
+   de_substyle("some-substyle", {
+      ...
+   }),
+   ...
+})
+\end{verbatim}
+
 
 \subsection{An example}
 
