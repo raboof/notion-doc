@@ -71,46 +71,53 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %begin{latexonly}
-\newlength{\fndw}
-\newlength{\descw}
-\settowidth{\descw}{\begin{tabular}{ll}Description: & \end{tabular}}
-\setlength{\fndw}{\textwidth}
-\addtolength{\fndw}{-\descw}
 
+\newcommand{\funclistlabel}[1]{#1\hfill}
 \newenvironment{function}{
-  \begin{tabular*}{\textwidth}{rp{\fndw}}
+  \pagebreak[3]
+  \begin{list}{}{
+        \settowidth{\labelwidth}{Description:}
+        \setlength{\leftmargin}{\labelwidth}
+        \addtolength{\leftmargin}{0.5em}
+        \setlength{\labelsep}{0.5em}
+        \setlength{\itemsep}{0pt}
+        \setlength\parsep{0pt}
+        \setlength\topsep{0pt}
+        %\setlength{\itemsep}{-\parskip}
+        %\addtolength{\itemsep}{\lineskip}
+        \let\makelabel\funclistlabel
+  }
 }{
-  \\
-  \end{tabular*}
-  \par
+  \end{list}
 }
-\newcommand{\synopsis}[1]{
-  Synopsis: & \code{#1} \\
-  Description: &
-}
-\newcommand{\funcname}[1]{
-  Function: & \code{#1} \\
-  Description: &
-}
-\newenvironment{funcdesc}{}{}
-%end{latexonly}
 
+%end{latexonly}
 \begin{htmlonly}
+
 \newenvironment{function}{
   \begin{description}
 }{
   \end{description}
 }
+
+\end{htmlonly}
+
+
 \newcommand{\synopsis}[1]{
-  \item[Synopsis:] \texttt{#1}
+  \item[Synopsis:] \code{#1}
 }
 \newcommand{\funcname}[1]{
-  \item[Function:] \texttt{#1}
+  \item[Function:] \code{#1}
+}
+\newcommand{\hookname}[1]{
+  \item[Hook name:] \hyperlabel{#1}\code{#1}
+}
+\newcommand{\hookparams}[1]{
+  \item[Parameters:] \code{#1}
 }
 \newenvironment{funcdesc}{
   \item[Description:]
 }{}
-\end{htmlonly}
 
 
 % While rapport3/artikel3 are otherwise nice classes, 
