@@ -431,14 +431,96 @@ defbindings("WMPlex", {
 \section{Winprops}
 \label{sec:winprops}
 
-\subsection{Classes, roles and instances}
-
 The so-called ''winprops''\index{Winprops} can be used to change how
 specific windows are handled and to set up some kludges to deal with
 badly behaving applications. They are defined by calling the function
-\code{winprop} with a table containing the properties to set and the
-necessary information to identify a window. This identification
-information is more specifically the
+\code{defwinprop} with a table containing the properties to set and the
+necessary information to identify a window. The currently supported
+winprops are listed table \ref{tab:winprops}, and the following
+subsection subsections explain the usual method of identifying windows,
+and how to obtain this information.
+
+\begin{table}
+\caption{Supported winprops}
+\label{tab:winprops}
+
+\index{switchto@\var{switchto}!winprop}
+\index{jumpto@\var{jumpto}!winprop}
+\index{transient-mode@\var{transient_mode}!winprop}
+\index{target@\var{target}!winprop}
+\index{transparent@\var{transparent}!winprop}
+\index{acrobatic@\var{acrobatic}!winprop}
+\index{max-size@\var{max_size}!winprop}
+\index{aspect@\var{aspect}!winprop}
+\index{ignore-resizeinc@\var{ignore_resizeinc}}
+\index{fullscreen@\var{fullscreen}}
+\index{ignore-cfgrq@\var{ignore_cfgrq}}
+\index{transients-at-top@\var{transients_at_top}}
+
+\begin{tabularx}{\textwidth}{llX}
+    \hline
+    Property & Type & Description\\\hline
+    \var{switchto} &
+    	boolean &
+        Should a newly mapped client window be switched to within
+        its frame. \\
+    \var{jumpto} &
+    	boolean &
+        Should a newly created client window always be made
+        active, even if the allocated frame isn't. \\
+    \var{transient_mode} &
+  	string &
+    	"normal": No change in behaviour. "current": The window
+	should be thought of as a transient for the current active
+	client window (if any) even if it is not marked as a
+	transient by the application. "off": The window should be
+	handled as a normal window even if it is marked as a
+	transient by the application. \\
+    \var{target} &
+    	string &
+    	The name of an object (workspace, frame) that should manage 
+	windows of this type. \\
+    \var{transparent} &
+    	boolean &
+    	Should frames be made transparent when this window is selected? \\
+    \var{acrobatic} &
+    	boolean &
+    	Set this to \code{true} for Acrobat Reader. It has an annoying
+	habit of trying to manage its dialogs instead of setting them as
+	transients and letting the window manager do its job, causing
+	Ion and acrobat go a window-switching loop when a dialog is
+	opened. \\
+    \var{max_size} &
+    	table &
+        The table should contain the entries \var{w} and \var{h} that
+	override application-supplied maximum size hint. \\
+    \var{aspect} &
+    	table &
+        The table should contain the entries \var{w} and \var{h} that
+	override application-supplied aspect ratio hint. \\
+    \var{ignore_resizeinc} &
+    	boolean &
+    	Should application supplied size increments be ignored? \\
+    \var{fullscreen} &
+    	boolean &
+    	Should the window be initially in full screen mode? \\
+    \var{ignore_cfgrq} &
+    	boolean &
+    	Should configure requests on the window be ignored?
+	Only has effect on windows on floatws:s. \\
+    \var{transients_at_top} &
+    	boolean &
+    	When transients are managed by the client window itself (as it
+	is the case on tiled workspaces), should the transients be
+	placed at the top of the window instead of bottom? \\
+\end{tabularx}
+\end{table}
+
+
+\subsection{Classes, roles and instances}
+\label{sec:classesrolesinstances}
+
+The identification information in the winprop specification is usually the
 \var{class}\index{class@\var{class}!winprop},
 \var{role}\index{role@\var{role}!winprop},
 \var{instance}\index{instance@\var{instance}!winprop} and
@@ -506,7 +588,7 @@ only one transient (all on one line):
 
 \begin{verbatim}
 local id=_:current():managed_list()[1]:get_ident();
-query_message(_, id.class..'.'..id.instance);
+mod_query.message(_, id.class..'.'..id.instance);
 \end{verbatim}
 
 Role and name can be retrieved similarly (see the documentation for
@@ -518,78 +600,8 @@ Finally, it should be mentioned that too many authors these days
 everything except name is the same for all of the programs's 
 windows, for example.
 
-
-\subsection{Supported winprops}
-
-Ion currently knows the following winprops:
-
-\index{switchto@\var{switchto}!winprop}
-\index{jumpto@\var{jumpto}!winprop}
-\index{transient-mode@\var{transient_mode}!winprop}
-\index{target@\var{target}!winprop}
-\index{transparent@\var{transparent}!winprop}
-\index{acrobatic@\var{acrobatic}!winprop}
-\index{max-size@\var{max_size}!winprop}
-\index{aspect@\var{aspect}!winprop}
-\index{ignore-resizeinc@\var{ignore_resizeinc}}
-
-\begin{tabularx}{\textwidth}{llX}
-    \hline
-    Property & Type & Description\\\hline
-    \var{switchto} &
-    	boolean &
-        Should a newly mapped client window be switched to within
-        its frame. \\
-    \var{jumpto} &
-    	boolean &
-        Should a newly created client window always be made
-        active, even if the allocated frame isn't. \\
-    \var{transient_mode} &
-  	string &
-    	"normal": No change in behaviour. "current": The window
-	should be thought of as a transient for the current active
-	client window (if any) even if it is not marked as a
-	transient by the application. "off": The window should be
-	handled as a normal window even if it is marked as a
-	transient by the application. \\
-    \var{target} &
-    	string &
-    	The name of an object (workspace, frame) that should manage 
-	windows of this type. \\
-    \var{transparent} &
-    	boolean &
-    	Should frames be made transparent when this window is selected? \\
-    \var{acrobatic} &
-    	boolean &
-    	Set this to \code{true} for Acrobat Reader. It has an annoying
-	habit of trying to manage its dialogs instead of setting them as
-	transients and letting the window manager do its job, causing
-	Ion and acrobat go a window-switching loop when a dialog is
-	opened. \\
-    \var{max_size} &
-    	table &
-        The table should contain the entries \var{w} and \var{h} that
-	override application-supplied maximum size hint. \\
-    \var{aspect} &
-    	table &
-        The table should contain the entries \var{w} and \var{h} that
-	override application-supplied aspect ratio hint. \\
-    \var{ignore_resizeinc} &
-    	boolean &
-    	Should application supplied size increments be ignored? \\
-    \var{fullscreen} &
-    	boolean &
-    	Should the window be initially in full screen mode? \\
-    \var{ignore_cfgrq} &
-    	boolean &
-    	Should configure requests on the window be ignored?
-	Only has effect on windows on floatws:s. \\
-    \var{transients_at_top} &
-    	boolean &
-    	When transients are managed by the client window itself (as it
-	is the case on tiled workspaces), should the transients be
-	placed at the top of the window instead of bottom? \\
-\end{tabularx}
+The winprops currently supported by Ion are listed in 
+table \ref{tab:winprops}.
 
 \subsection{Some common examples}
 
@@ -598,7 +610,7 @@ Ion currently knows the following winprops:
 The following is absolutely necessary for Acrobat reader:
 
 \begin{verbatim}
-winprop{
+defwinprop{
     class = "AcroRead",
     instance = "documentShell",
     acrobatic = true,
@@ -620,7 +632,7 @@ instances or roles for the windows, so we'll have to rely on an ugly title
 match.
 
 \begin{verbatim}
-winprop{
+defwinprop{
     class = "MozillaFirebird-bin",
     name = "Opening .*",
     transient_mode = "current",
@@ -630,22 +642,22 @@ winprop{
 \subsubsection{Forcing newly created windows in named frames}
 
 The following winprop should place xterm started with command-line parameter
-'\code{-name sysmon}' and running a system monitoring program in a
+\mbox{\code{-name sysmon}} and running a system monitoring program in a
 particular frame:
 \begin{verbatim}
-winprop{
+defwinprop{
     class = "XTerm",
     instance = "sysmon",
     target = "sysmonframe",
 }
 \end{verbatim}
 
-For this example to work, we have to somehow create a frame with the 
-name \code{sysmonframe}. One way to do this is to make the following
+For this example to work, we have to somehow create a frame named
+\code{sysmonframe}. One way to do this is to make the following
 call in the \key{Mod1+F3} Lua code query:
 
 \begin{verbatim}
-querylib.query_renameframe(_)
+mod_query.query_renameframe(_)
 \end{verbatim}
 
 Recall that \code{_} points to the multiplexer (frame or screen) in which 
