@@ -814,15 +814,23 @@ The \fnref{defmenu} function is used to define a named menu that can later
 be accessed with this name. The \fnref{menuentry} function is used to
 create an entry in the menu with a title and an entry handler function to
 be called when the menu entry is activated. If the functions discussed in
-the next subsection are used to display the menu from a binding, the 
-parameters that are passed to the function are those that the binding
+subsection \ref{sec:menudisp} are used to display the menu from a binding, 
+the  parameters that are passed to the function are those that the binding
 handler was passed. It is as if the function was called from that binding. 
 
 The \fnref{submenu} function is used to insert a submenu at that point in
 the menu. (One could as well just pass a table with the menu
 entries, but it is not encouraged.)
 
+\subsection{Special menus}
+
+The special menus ''windowlist'' and ''workspacelist'' are predefined
+by \file{menulib}. These are lists of client windows and  workspaces,
+respectively and may be used where normally defined menus, as explained
+above, are used.
+
 \subsection{Displaying menus}
+\label{sec:menudisp}
 
 \index{make_menu_fn@\code{make_menu_fn}}
 \index{make_bigmenu_fn@\code{make_bigmenu_fn}}
