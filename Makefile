@@ -17,9 +17,8 @@ MKFNTEX=$(LUA) $(TOPDIR)/mkexports.lua
 DOCS=ionconf ionnotes
 
 FNTEXES=ioncore-fns.tex mod_ionws-fns.tex mod_floatws-fns.tex \
-	mod_query-fns.tex querylib-fns.tex ioncorelib-fns.tex \
-	de-fns.tex mod_menu-fns.tex menulib-fns.tex mod_dock-fns.tex \
-	mod_sp-fns.tex
+	mod_autows-fns.tex mod_query-fns.tex de-fns.tex mod_menu-fns.tex \
+	mod_dock-fns.tex mod_sp-fns.tex
 
 # Generic rules
 ######################################
@@ -108,7 +107,7 @@ realclean: clean
 # Function reference rules
 ######################################
 
-ioncore-fns.tex: $(TOPDIR)/ioncore/*.c $(TOPDIR)/luaextl/*.c
+ioncore-fns.tex: $(TOPDIR)/ioncore/*.c $(TOPDIR)/share/ioncore-*.lua $(TOPDIR)/luaextl/*.c
 	$(MKFNTEX) -module ioncore -mkdoc -o $@ $+
 
 mod_ionws-fns.tex: $(TOPDIR)/mod_ionws/*.c
@@ -117,30 +116,23 @@ mod_ionws-fns.tex: $(TOPDIR)/mod_ionws/*.c
 mod_floatws-fns.tex: $(TOPDIR)/mod_floatws/*.c
 	$(MKFNTEX) -module mod_floatws -mkdoc -o $@ $+
 
-mod_menu-fns.tex: $(TOPDIR)/mod_menu/*.c
+mod_autows-fns.tex: $(TOPDIR)/mod_autows/*.c
+	$(MKFNTEX) -module mod_autows -mkdoc -o $@ $+
+
+mod_query-fns.tex: $(TOPDIR)/mod_query/*.c $(TOPDIR)/mod_query/mod_query.lua
+	$(MKFNTEX) -module mod_query -mkdoc -o $@ $+
+
+mod_menu-fns.tex: $(TOPDIR)/mod_menu/*.c $(TOPDIR)/mod_menu/mod_menu.lua
 	$(MKFNTEX) -module mod_menu -mkdoc -o $@ $+
 
 mod_dock-fns.tex: $(TOPDIR)/mod_dock/*.c
 	$(MKFNTEX) -module mod_dock -mkdoc -o $@ $+
-
-mod_query-fns.tex: $(TOPDIR)/mod_query/*.c
-	$(MKFNTEX) -module mod_query -mkdoc -o $@ $+
 
 mod_sp-fns.tex: $(TOPDIR)/mod_sp/*.c
 	$(MKFNTEX) -module mod_sp -mkdoc -o $@ $+
 
 de-fns.tex: $(TOPDIR)/de/*.c
 	$(MKFNTEX) -module de -mkdoc -o $@ $+
-
-querylib-fns.tex: $(TOPDIR)/mod_query/querylib.lua
-	$(MKFNTEX) -module querylib -luadoc -o $@ $+
-
-menulib-fns.tex: $(TOPDIR)/mod_menu/menulib.lua
-	$(MKFNTEX) -module menulib -luadoc -o $@ $+
-
-ioncorelib-fns.tex: $(TOPDIR)/share/ioncorelib.lua \
-$(TOPDIR)/share/ioncorelib-*.lua
-	$(MKFNTEX) -module ioncorelib -luadoc -o $@ $+
 
 # Function list
 ######################################
