@@ -72,7 +72,7 @@ rest are included from the former.
     specific to some module are configured in the module's configuration
     file. For details, see section \ref{sec:bindings}. \\
     \file{ioncore-menus.lua} & 
-    Menu definitions; see \ref{sec:menus}. \\
+    Menu definitions; see section \ref{sec:menus}. \\
     %
     \file{kludges.lua} & 
     Settings to get some apps behave more nicely have been collected here.
@@ -84,7 +84,7 @@ rest are included from the former.
     it; for details see chapter \ref{chap:gr}. \\
 \end{tabularx}
 
-Each (non-drawing engine) module has in addtion its own configuration
+Each (non-drawing engine) module has in addition its own configuration
 file loaded when that module is loaded:
 
 \begin{tabularx}{\linewidth}{
@@ -261,16 +261,19 @@ session.
 In the stock configuration file setup, most key and mouse bindings are set
 from the file \file{ioncore-bindings.lua} while module-specific bindings
 are set from the modules' main configuration files (\file{modulename.lua}).
-Ion's modules no longer fail to load if the bindings have not been set
-during the execution of the module's configuration file, so the bindings
-could now be set from elsewhere. In any case, the module must have been
-loaded prior to defining any bindings.
+This, however, does not have to be so as long as the module has been
+loaded prior to defining any module-specific bindings.
+%Ion's modules no longer fail to load if the bindings have not been set
+%during the execution of the module's configuration file, so the bindings
+%could now be set from elsewhere. In any case, the module must have been
+%loaded prior to defining any bindings.
 
 The bindings are defined by calling various functions that add a new set
-of bindings to a binding group. These functions and descriptions of their
-contexts and parameters to bindings handlers are listed in the following 
-subsection. Each of the functions listed there has a single argument: a 
-table listing the keys and mouse actions to be bind functions to. Section
+of bindings to a binding group, usually related to some object class.
+These functions, descriptions of their contexts and parameters passed to 
+''bindings handlers'' are listed in the following subsection. 
+Each of the functions listed there has a single argument: a table listing
+the keys and mouse actions to bind functions to. Section
 \ref{sec:binddef} describes how the binding tables can be constructed.
 
 Note that when multiple objects want to handle a binding, the innermost

@@ -10,8 +10,10 @@ but it should be usefull for the person who just wants to configure
 key bindings to learn at least something about Ion's object hierarchy.
 When you know the class and object hierarchies, you know how and where
 the available functions can be used and how to construct more complex
-scripts. Therefore I suggest that you read this short chapter before
-skipping on to the more interesting things.
+scripts. Therefore I suggest that you read this short chapter or at
+least the executive summary at the end of it before skipping on to the
+more interesting things and even trying to write custom binding
+configuration files.
 
 
 \xsection{Class hierarchy}
@@ -252,3 +254,33 @@ transients managed by them. This is because WFloatWSs choose to handle
 transients differently (transients are put in separate frames like normal
 windows; in the future they should be stacked above the frame containing the
 \code{transient_for} window).
+
+
+\xsection{Executive summary}
+
+In the standard setup, keeping queries, messages and menus out of
+consideration:
+
+\begin{itemize}
+  \item The top-level objects that matter are screens and they correspond
+    to physical screens. The class for screens is \type{WScreen}.
+  \item Screens contain (multiplex) workspaces and full screen client
+    windows. Only one of them can be viewed at a time.
+    Workspace classes are \type{WIonWS} and \type{WFloatWS} 
+    for the two different types of workspaces (and \type{WGenWS}).
+  \item Frames are put on workspaces. Frames are the objects with 
+    decorations such as tabs and borders.
+    Different frame classes are \type{WIonFrame} and \type{WFloatFrame}
+    for the two types of frames. The common base class, the features and
+    bindings of which both of these inherit is \type{WGenFrame}. 
+    
+    Workspace of type \type{WIonWS} tile \type{WIonFrame}s while
+    workspaces of type \type{WFloatWS} contain \type{WFloatFrames}
+    on a more traditional freely-floating fashion.
+
+  \item Frames contain (multiplex) client windows, to each of which
+    corresponds a tab in the frame's decoration. Only one client
+    window (or other object) can be shown at a time in each frame.
+    The class for client windows is \type{WClientWin}.
+\end{itemize}
+

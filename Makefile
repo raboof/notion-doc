@@ -85,35 +85,33 @@ clean:
 # Function reference rules
 ######################################
 
-ioncore-exports.tex: $(TOPDIR)ioncore/*.c $(TOPDIR)luaextl/*.c
+ioncore-exports.tex: $(TOPDIR)/ioncore/*.c $(TOPDIR)/luaextl/*.c
 	$(LUA) $(TOPDIR)/mkexports.lua -module ioncore -mkdoc -o $@ $+
 
-ionws-exports.tex: $(TOPDIR)ionws/*.c
+ionws-exports.tex: $(TOPDIR)/ionws/*.c
 	$(LUA) $(TOPDIR)/mkexports.lua -module ionws -mkdoc -o $@ $+
 
-floatws-exports.tex: $(TOPDIR)floatws/*.c
+floatws-exports.tex: $(TOPDIR)/floatws/*.c
 	$(LUA) $(TOPDIR)/mkexports.lua -module floatws -mkdoc -o $@ $+
 
-de-exports.tex: $(TOPDIR)de/*.c
+de-exports.tex: $(TOPDIR)/de/*.c
 	$(LUA) $(TOPDIR)/mkexports.lua -module de -mkdoc -o $@ $+
 
-menu-exports.tex: $(TOPDIR)menu/*.c
+menu-exports.tex: $(TOPDIR)/menu/*.c
 	$(LUA) $(TOPDIR)/mkexports.lua -module menu -mkdoc -o $@ $+
 
-query-exports.tex: $(TOPDIR)query/*.c
+query-exports.tex: $(TOPDIR)/query/*.c
 	$(LUA) $(TOPDIR)/mkexports.lua -module query -mkdoc -o $@ $+
 
-querylib-fns.tex: $(TOPDIR)query/querylib.lua
+querylib-fns.tex: $(TOPDIR)/query/querylib.lua
 	$(LUA) $(TOPDIR)/mkexports.lua -module query -luadoc -o $@ $+
 
-delib-fns.tex: $(TOPDIR)de/delib.lua
+delib-fns.tex: $(TOPDIR)/de/delib.lua
 	$(LUA) $(TOPDIR)/mkexports.lua -module de -luadoc -o $@ $+
 
-menulib-fns.tex: $(TOPDIR)menu/menulib.lua
+menulib-fns.tex: $(TOPDIR)/menu/menulib.lua
 	$(LUA) $(TOPDIR)/mkexports.lua -module menu -luadoc -o $@ $+
 
-ioncorelib-fns.tex: $(TOPDIR)share/ioncorelib.lua
-	$(LUA) $(TOPDIR)/mkexports.lua -module ioncore -luadoc -o $@ $+
-
-ioncore-mplexfns.tex: $(TOPDIR)share/ioncore-mplexfns.lua
+ioncorelib-fns.tex: $(TOPDIR)/share/ioncorelib.lua \
+$(TOPDIR)/share/ioncorelib-mplexfns.lua
 	$(LUA) $(TOPDIR)/mkexports.lua -module ioncore -luadoc -o $@ $+
