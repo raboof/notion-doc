@@ -2,7 +2,8 @@
 ######################################
 
 TOPDIR=/home/tuomov/coding/ion/
-include $(TOPDIR)/system-inc.mk
+
+LUA=lua
 
 L2H=latex2html -show_section_numbers -short_index -local_icons -noaddress \
     -up_url http://iki.fi/tuomov/ion/ -up_title "Ion homepage" -nofootnode
@@ -11,8 +12,6 @@ FNTEXES=ioncore-exports.tex ionws-exports.tex \
 	floatws-exports.tex query-exports.tex \
 	querylib-fns.tex ioncorelib-fns.tex \
 	ioncore-mplexfns.tex
-
-DOC=ionconf
 
 # Generic rules
 ######################################
@@ -26,11 +25,11 @@ nothing:
 %.pdf: %.dvi
 	dvipdfm -p a4 $<
 
+%.dvi: %.tex
+	latex $<
+
 # ionconf rules
 ######################################
-ionconf-dvi:
-	latex ionconf
-
 ionconf-dvi-full:
 	latex ionconf
 	latex ionconf
@@ -47,9 +46,6 @@ ionconf-all: fntexes ionconf-dvi-full ionconf-html
 
 # ionnotes rules
 ######################################
-
-ionnotes-dvi:
-	latex ionnotes
 
 ionnotes-dvi-full:
 	latex ionnotes
@@ -72,7 +68,17 @@ all-ps: ionconf.ps ionnotes.ps
 
 all-pdf: ionconf.pdf ionnotes.pdf
 
-all-all: all all-ps all-pdf
+
+# Clean
+######################################
+
+clean:
+	rm -f $(FNTEXES)
+	rm -f *.aux *.toc *.log
+	rm -f *.idx *.ild *.ilg *.ind
+	rm -f *.ps *.pdf *.dvi
+	rm -rf ionconf ionnotes
+
 
 # Function reference rules
 ######################################
@@ -92,7 +98,7 @@ query-exports.tex: $(TOPDIR)query/*.c
 querylib-fns.tex: $(TOPDIR)share/querylib.lua
 	$(LUA) $(TOPDIR)/mkexports.lua -module query -luadoc -o $@ $+
 
-ioncorelib-fns.tex: $(TOPDIR)share/ioncorelib.lua $(TOPDIR)share/ioncore-aliases.lua
+ioncorelib-fns.tex: $(TOPDIR)share/ioncorelib.lua
 	$(LUA) $(TOPDIR)/mkexports.lua -module ioncore -luadoc -o $@ $+
 
 ioncore-mplexfns.tex: $(TOPDIR)share/ioncore-mplexfns.lua

@@ -206,7 +206,7 @@ and in the stock configuration file setup the bindings are set in
     \fnref{ionframe_moveres_bindings} & Parameters to handler: 
                               \type{WIonFrame} \\
 			    & Description: Resize mode bindings.  Activated 
-			      by calling \fnref{ionframe_begin_resize}. Only
+			      by calling \fnref{WIonFrame.begin_resize}. Only
 			      certain functions may be called here; see the
 			      function reference for details. \\
 \end{tabularx}
@@ -236,7 +236,7 @@ the FloatWS module. The bindings are defined in the configuration file
                               \type{WIonFrame} \\
 			    & Description: Keyboard move/resize mode 
 			      bindings. Activated by calling the function
-			      \fnref{floatframe_begin_resize}. Only certain
+			      \fnref{WFloatFrame.begin_resize}. Only certain
 			      functions may be called here; see the
 			      function reference for details. \\
 \end{tabularx}
@@ -287,10 +287,10 @@ and as explained in the reference, \fnref{kpress_waitrel} is simply
 \fnref{kpress} with a flag set instructing Ioncore wait for all
 modifiers to be released before processing any further actions.
 This is to stop one from accidentally calling e.g.
-\fnref{region_close} multiple times in a row. The \fnref{submap}
+\fnref{WRegion.close} multiple times in a row. The \fnref{submap}
 function actually returns another function that expects a table
-as an argument. Alternatively you could use
-\code{submap2(keyspec, \{ ... \})}.
+as an argument if called with only one argument. Alternatively you
+could use \code{submap(keyspec, \{ ... \})}.
 
 The parameters \var{keyspec} and \var{buttonspec} are explained below
 in detail. The parameter \var{func} is the handler for the binding.
@@ -401,7 +401,7 @@ As client windows do not have function to set their bindings, it is
 necessary to call client window functions by specifying the bindings
 somewhere else. In the stock configuration file setup this is done
 in \fnref{mplex_bindings} by functions that look up the object currently
-displayed by the \type{WMPlex} (\fnref{mplex_current}). We then check that
+displayed by the \type{WMPlex} (\fnref{WMPlex.current}). We then check that
 it is of type \type{WClientWin} to suppress warning and then call the
 wanted function with the verified client window as argument. 
 
@@ -555,13 +555,13 @@ winprop{
 \end{verbatim}
 
 
-\section{QueryLib}
-\index{QueryLib@\var{QueryLib}}
+\section{The query library}
+\index{querylib@\var{querylib}}
 
 The query module does not implement any queries in itself, but provides
 the function \fnref{query_query} to execute arbitrary queries. Some
 standard queries implemented with this interface are available in 
-QueryLib (\file{SHAREDIR/querylib.lua}). Most of these queries support
+'querylib' (\file{SHAREDIR/querylib.lua}). Most of these queries support
 tab-completion and can be directly passed to the binding setup functions
 for classes based on \type{WMPlex}.  These setup functions are at the moment:
 \begin{itemize}
@@ -577,6 +577,6 @@ while the exit and restart queries are in \fnref{global_bindings}.
 For a listing of the functions, see section \ref{sec:querylibref} in the 
 Function referece. 
 
-QueryLib also provides functions to generate more queries; for details see
+Querylib also provides functions to generate more queries; for details see
 the script.
 
