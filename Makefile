@@ -5,7 +5,7 @@ TOPDIR=/home/tuomov/coding/ion/
 include $(TOPDIR)/system-inc.mk
 
 L2H=latex2html -show_section_numbers -short_index -local_icons -noaddress \
-    -up_url http://www.iki.fi/tuomov/ion/ -up_title "Ion homepage"
+    -up_url http://iki.fi/tuomov/ion/ -up_title "Ion homepage" -nofootnode
 
 FNTEXES=ioncore-exports.tex ionws-exports.tex \
 	floatws-exports.tex query-exports.tex \
