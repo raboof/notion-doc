@@ -9,9 +9,10 @@ L2H=latex2html -show_section_numbers -short_index -local_icons -noaddress \
     -up_url http://iki.fi/tuomov/ion/ -up_title "Ion homepage" -nofootnode\
     -style greyviolet.css
 
-FNTEXES=ioncore-fns.tex ionwsmod-fns.tex floatwsmod-fns.tex \
-	querymod-fns.tex querylib-fns.tex ioncorelib-fns.tex \
-	de-fns.tex menumod-fns.tex menulib-fns.tex dockmod-fns.tex
+FNTEXES=ioncore-fns.tex mod_ionws-fns.tex mod_floatws-fns.tex \
+	mod_query-fns.tex querylib-fns.tex ioncorelib-fns.tex \
+	de-fns.tex mod_menu-fns.tex menulib-fns.tex mod_dock-fns.tex \
+	mod_sp-fns.tex
 
 MKFNTEX=$(LUA) $(TOPDIR)/mkexports.lua
 
@@ -88,23 +89,26 @@ clean:
 ioncore-fns.tex: $(TOPDIR)/ioncore/*.c $(TOPDIR)/luaextl/*.c
 	$(MKFNTEX) -module ioncore -mkdoc -o $@ $+
 
-ionwsmod-fns.tex: $(TOPDIR)/ionws/*.c
-	$(MKFNTEX) -module ionwsmod -mkdoc -o $@ $+
+mod_ionws-fns.tex: $(TOPDIR)/ionws/*.c
+	$(MKFNTEX) -module mod_ionws -mkdoc -o $@ $+
 
-floatwsmod-fns.tex: $(TOPDIR)/floatws/*.c
-	$(MKFNTEX) -module floatwsmod -mkdoc -o $@ $+
+mod_floatws-fns.tex: $(TOPDIR)/floatws/*.c
+	$(MKFNTEX) -module mod_floatws -mkdoc -o $@ $+
+
+mod_menu-fns.tex: $(TOPDIR)/menu/*.c
+	$(MKFNTEX) -module mod_menu -mkdoc -o $@ $+
+
+mod_dock-fns.tex: $(TOPDIR)/dock/*.c
+	$(MKFNTEX) -module mod_dock -mkdoc -o $@ $+
+
+mod_query-fns.tex: $(TOPDIR)/query/*.c
+	$(MKFNTEX) -module mod_query -mkdoc -o $@ $+
+
+mod_sp-fns.tex: $(TOPDIR)/mod_sp/*.c
+	$(MKFNTEX) -module mod_sp -mkdoc -o $@ $+
 
 de-fns.tex: $(TOPDIR)/de/*.c
 	$(MKFNTEX) -module de -mkdoc -o $@ $+
-
-menumod-fns.tex: $(TOPDIR)/menu/*.c
-	$(MKFNTEX) -module menumod -mkdoc -o $@ $+
-
-dockmod-fns.tex: $(TOPDIR)/dock/*.c
-	$(MKFNTEX) -module dockmod -mkdoc -o $@ $+
-
-querymod-fns.tex: $(TOPDIR)/query/*.c
-	$(MKFNTEX) -module querymod -mkdoc -o $@ $+
 
 querylib-fns.tex: $(TOPDIR)/query/querylib.lua
 	$(MKFNTEX) -module querylib -luadoc -o $@ $+
@@ -121,5 +125,5 @@ $(TOPDIR)/share/ioncorelib-*.lua
 
 fnlist.tex: $(FNTEXES)
 	grep hyperlabel $+ | \
-	sed 's/.*fn:\([^}]*\).*/\\fnlisti{\1}/'|sort -d -f \
+	sed 's/.*fn:\([^}]*\).*/\\fnlisti{\1}/;'|sort -d -f \
 	> $@
