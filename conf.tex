@@ -181,200 +181,113 @@ details see the function reference entry for \fnref{add_shortenrule}.
 \label{sec:bindings}
 
 In the stock configuration file setup, most key and mouse bindings are set
-from the file \file{ion-bindings.lua} while module-specific bindings
-are set from the modules' main configuration files (\file{modulename.lua}).
+from the file \file{cfg\_bindings.lua} while module-specific bindings
+are set from the modules' main configuration files (\file{cfg\_modname.lua}).
 This, however, does not have to be so as long as the module has been
 loaded prior to defining any module-specific bindings.
-%Ion's modules no longer fail to load if the bindings have not been set
-%during the execution of the module's configuration file, so the bindings
-%could now be set from elsewhere. In any case, the module must have been
-%loaded prior to defining any bindings.
 
-The bindings are defined by calling various functions that add a new set
-of bindings to a binding group, usually related to some object class.
-These functions, descriptions of their contexts and parameters passed to 
-''bindings handlers'' are listed in the following subsection. 
-Each of the functions listed there has a single argument: a table listing
-the keys and mouse actions to bind functions to. Section
-\ref{sec:binddef} describes how the binding tables can be constructed.
+Bindings are defined by calling the function 
+\fnrefx{ioncore}{defbindings} with the ''context'' of the
+bindings and the a table of new bindings to make. The context is simply
+string indicating one of the classes of regions (or a modes such as
+\type{WMoveresMode}) introduced in section \ref{sec:objects}, and fully
+listed in appendix \ref{app:fullhierarchy}, although not all define
+a binding map. For example, the following skeleton would be used to 
+define new bindings for all frames:
 
-Note that when multiple objects want to handle a binding, the innermost
-(when the root window is considered the outermost) active object in the
-parent--child hierarchy (see Figure \ref{fig:parentship}) of objects 
+\begin{verbatim}
+defbindings("WFrame", {
+    -- List of bindings to make goes here.
+})
+\end{verbatim}
+
+There has been some confusion among users about the need to define the
+''context'' for each binding, so let me try to explain this design
+decision here. The thing is that if there was a just a simple 'bind this 
+key to this action' method without knowledge of the context, some 
+limitations would have to be made on the available actions and writing 
+custom handlers would be more complicated. In addition one may want to 
+bind the same function to different key for different types of objects.
+Indeed, the workspace and frame tab switching functions are the same both
+classes being based on \type{WMPlex}, and in the stock configuration the 
+switch to $n$:th workspaces is bound to \key{Mod1+n} while the switch to 
+$n$:th tab is bound to the sequence \key{Mod1+k n}.
+
+The following subsections describe how to construct elements of the
+binding table. Note that \fnrefx{ioncore}{defbindings} adds
+the the newly defined bindings to the previous bindings of the context,
+overriding duplicates. To unbind an event, set the handler parameter
+to \code{nil} for each of the functions to be described in the following
+subsections.
+
+Also note that when multiple objects want to handle a binding, the 
+innermost (when the root window is considered the outermost) active object
+in the parent--child hierarchy (see Figure \ref{fig:parentship}) of objects 
 gets to handle the action.
 
-\subsection{The binding setup functions}
 
-This section simply lists out the different binding setup functions
-Ioncore and the modules provide and does not even attempt to describe
-how to use these functions; for that refer to \ref{sec:binddef} and
-following sections.
+\subsection{Binding handlers and special variables}
 
-There has been some confusion among users about the need for multiple, 
-partially even overlapping functions to setup bindings so let me try
-to explain this design decision here. 
+Unlike in Ion2, in Ion3 binding handlers are not normally passed as as
+''anonymous functions'', although this is still possible. The preferred
+method now is to pass thecode of the handler as a string. Two special 
+variables are avilable in this code. These are
 
-The thing is that if there was a just a single 'bind this key
-to this function' method to bind keys, some limitations would have to
-be made on the available functions and writing custom functions would
-be more complicated. In addition one may want to bind the same function
-to different key for different types of objects. Indeed, the workspace
-and frame tab switching functions are the same both classes being based
-on \type{WMPlex}, and in the stock configuration the switch to $n$:th 
-workspaces is bound to \key{Mod1+n} (using \fnref{global_bindings}
-explained below) while the switch to $n$:th tab is bound to the
-sequence \key{Mod1+k n}  (using \fnref{genframe_bindings} and 
-\fnref{submap}). 
+\begin{description}
+    \item[\_] (underscore) Reference to the object on which the 
+      binding was triggered. The object is of the same class as the the
+      context of the \fnrefx{ioncore}{defbindings} call
+      defining the binding.
+    \item[\_sub] Usually, the currently active child of the 
+      object referenced by \code{_}, but sometimes (e.g. mouse actions
+      on tabs of frames) something else relevant to the action triggering
+      the binding.
+\end{description}
 
-So, in brief this little additional complexity in configuration is the
-price of flexibility.
+For example, supposing '\code{_}' is a \type{WFrame}, the following
+handler should move the active window right, if possible:
 
-\subsubsection{Ioncore binding setup functions}
+\begin{verbatim}
+"_:inc_index(_sub)"
+\end{verbatim}
 
-The following binding setup functions are defined by Ioncore and in the
-stock configuration file setup, they are set from the file 
-\file{ion-bindings.lua}:
+\subsection{Guards}
 
-\begin{tabularx}{\linewidth}{lX}
-    \hline
-    Function & Handler parameters and description \\
-    \hline
-    \fnref{global_bindings} & Parameters to handler: \type{WScreen} \\
-			    & Description: Bindings that are available all the
-			      time. \\
-    \fnref{mplex_bindings}  & Parameters to handler: \type{WMPlex} \\
-			    & Description: Bindings that are common to all
-			      \type{WMPlex}es (screens and frames). Usually
-			      only bindings that affect current client window
-			      (if any) are set here. \\
-    \fnref{genframe_bindings} & Parameters to handler: 
-    			      \type{WGenFrame}, [\type{WRegion}] \\
-			    & Description: Bindings that are common to all
-			      types of frames (but not screens unlike
-			      \code{mplex_bindings} above. When a tab has been
-			      pressed the \type{WRegion} corresponding to the
-			      tab is passed as the extra parameter. \\
-\end{tabularx}
+To suppress error messages, each binding handler may also be accompanied
+by a ''guard'' that blocks the handler from being called when the guard 
+condition is not met. Currently the following guards are supported:
 
+\begin{description}
+    \item[\_sub:non-nil] to assert that \code{_sub} must be set.
+    \item[\_sub:SomeClass] to assert that \code{_sub} must be member
+      of class \type{SomeClass}.
+\end{description}
+      
 
-\subsubsection{IonWS module binding setup functions}
-
-The following binding setup functions are defined by the IonWS module
-and in the stock configuration file setup the bindings are set in
-\file{ionws.lua}:
-
-\begin{tabularx}{\linewidth}{lX}
-    \hline
-    Function & Handler parameters and description \\
-    \hline
-    \fnref{ionws_bindings}  & Parameters to handler: 
-                              \type{WIonWS}, \type{WRegion} \\
-			    & Description: Bindings that are available on the
-			      tiled workspaces implemented by this module.
-			      The extra parameter to binding handler is the 
-			      currently active object on the workspace. \\
-    \fnref{ionframe_bindings} & Parameters to handler: 
-    			      \type{WIonFrame}, [\type{WRegion}] \\
-			    & Description: Bindings that are specific to 
-			      the tiled frames. As above, when a tab has been
-			      pressed the \type{WRegion} corresponding to the
-			      tab is passed as the extra parameter. \\
-    \fnref{ionframe_moveres_bindings} & Parameters to handler: 
-                              \type{WIonFrame} \\
-			    & Description: Resize mode bindings.  Activated 
-			      by calling \fnref{WIonFrame.begin_resize}. Only
-			      certain functions may be called here; see the
-			      function reference for details. \\
-\end{tabularx}
-
-\subsubsection{FloatWS module binding setup functions}
-
-These functions are similar to the ones described in the above section for 
-the FloatWS module. The bindings are defined in the configuration file 
-\file{floatws.lua}:
-
-\begin{tabularx}{\linewidth}{lX}
-    \hline
-    Function & Handler parameters and description \\
-    \hline
-    \fnref{floatws_bindings}& Parameters to handler: 
-    			      \type{WFloatWS}, [\type{WRegion}] \\
-			    & Description: Bindings that are available on the
-			      conventional workspaces implemented by this 
-			      module. The extra parameter to binding handler
-			      is the  currently active object on the 
-			      workspace, if any. \\
-    \fnref{floatframe_bindings} & Parameters to handler: 
-    			      \type{WFloatFrame}, [\type{WRegion}] \\
-			    & Description: Bindings that are specific to 
-			      the the conventional floating frames. \\
-    \fnref{floatframe_moveres_bindings} & Parameters to handler:
-                              \type{WIonFrame} \\
-			    & Description: Keyboard move/resize mode 
-			      bindings. Activated by calling the function
-			      \fnref{WFloatFrame.begin_resize}. Only certain
-			      functions may be called here; see the
-			      function reference for details. \\
-\end{tabularx}
-
-
-\subsubsection{Query module binding setup functions}
-
-These functions set the bindings for the query module. The bindings are set 
-from the file \file{query.lua}.
-
-\begin{tabularx}{\linewidth}{lX}
-    \hline
-    Function & Handler parameters and description \\
-    \hline
-    \fnref{input_bindings}  & Parameters to handler: \type{WInput} \\
-			    & Description: bindings that are common to
-			      message and query boxes; stuff to close
-			      the box and to scroll message or completions. \\
-    \fnref{query_bindings}  & Parameters to handler: \type{WEdln} \\
-			    & Description: Bindings to edit text and
-			      finish the query.\\
-\end{tabularx}
-
-
-\subsubsection{Menu module binding setup functions}
-
-These functions set the bindings for the menu module. The bindings are set 
-from the file \file{menu.lua}.
-
-\begin{tabularx}{\linewidth}{lX}
-    \hline
-    Function & Handler parameters and description \\
-    \hline
-    \fnref{menu_bindings}  & Parameters to handler: \type{WMenu} \\
-			   & Description: key bindings available in in-frame 
-			     menus. \\
-\end{tabularx}
 
 \subsection{Defining the bindings}
 \label{sec:binddef}
 
-Each of the functions listed above has a single argument: a table listing
-the key presses and other actions to be bound to functions. The descriptions
-of individual bindings in this table are also tables that can be more 
-conveniently constructed with the following functions:
+The descriptions of the individual bindings in the binding table argument
+to \fnrefx{ioncore}{defbindings} should be constructed with the following
+functions.
 
 Key presses:
 \begin{itemize}
-    \item \fnref{kpress}\code{(keyspec, func)},
-    \item \fnref{kpress_waitrel}\code{(keyspec, func)} and
+    \item \fnref{kpress}\code{(keyspec, handler [, guard])},
+    \item \fnref{kpress_wait}\code{(keyspec, handler [, guard])} and
     \item \fnref{submap}\code{(keyspec, \{ ... more key bindings ... \})}.
 \end{itemize}
 Mouse actions:
 \begin{itemize}
-    \item \fnref{mclick}\code{(buttonspec, func, [, area])},
-    \item \fnref{mdblclick}\code{(buttonspec, func, [, area])}, 
-    \item \fnref{mpress}\code{(buttonspec, func, [, area])} and
-    \item \fnref{mdrag}\code{(buttonspec, func, [, area])}.
+    \item \fnref{mclick}\code{(buttonspec, handler [, guard])},
+    \item \fnref{mdblclick}\code{(buttonspec, handler [, guard])}, 
+    \item \fnref{mpress}\code{(buttonspec, handler [, guard])} and
+    \item \fnref{mdrag}\code{(buttonspec, handler [, guard])}.
 \end{itemize}
 
 The actions that most of these functions correspond to should be clear
-and as explained in the reference, \fnref{kpress_waitrel} is simply
+and as explained in the reference, \fnref{kpress_wait} is simply
 \fnref{kpress} with a flag set instructing Ioncore wait for all
 modifiers to be released before processing any further actions.
 This is to stop one from accidentally calling e.g.
@@ -384,72 +297,40 @@ argument to this function is table listing the key press actions
 (\fnref{kpress}) in the submap
 
 The parameters \var{keyspec} and \var{buttonspec} are explained below
-in detail. The parameter \var{func} is the handler for the binding.
-It is a reference to a function that should expect as parameter(s)
-objects of the type defined in the above tables depending on which 
-binding  setup function this binding definition is being passed to.
+in detail. The parameter \var{handler} is the handler for the binding,
+and the optional parameter \var{guard} its guard. These should normally
+be strings as explained above. 
 
-The optional string parameter \var{area} may be used to specify a more
-precise location where the mouse action should occur for the binding to
-take place.
-Currently only \fnref{ionframe_bindings} and \fnref{floatframe_bindings}
-support any meaningful values for this parameter. The allowed values
-are in this case
-\code{"border"}, \code{"tab"}, \code{"empty_tab"}, \code{"client"} and
-\code{nil} (for the whole frame).
-
-\subsection{An example}
+\subsection{Examples}
 
 For example, to just bind the key \key{Mod1+1} to switch to the first
 workspace and \key{Mod1+Right} to the next workspace, you would make the
 following call
 \begin{verbatim}
-global_bindings{
-    kpress("Mod1+Right", WScreen.switch_nth),
-    kpress("Mod1+1", function(scr) scr:switch_nth(1) end),
-}
+defbindings("WScreen", {
+    kpress("Mod1+Right", "_:switch_next()"),
+    kpress("Mod1+1", "_:switch_nth(1)"),
+})
 \end{verbatim}
 
-Recall that \code{global_bindings\{...\}} is syntactical sugar for
-the more cumbersome
-\code{global_bindings(\{...\})}.
-
-The first definition works, because \code{WScreen.switch_next}
-(inherited \fnref{WMPlex.switch_next}) is a function that takes a 
-\type{WScreen} as its sole parameter. On the other hand,
-\code{WScreen.switch_nth} (again inherited \fnref{WMPlex.switch_nth}) 
-expects two parameters: the screen and the $n$ giving the number of
-the workspace to switch to so it could not be directly passed to
-\code{kpress}. Therefore we had to write around it our ''anonymous'' 
-wrapper function around that takes a single parameter and calls
-\code{switch_nth} properly. (Recall that \code{scr:switch_nth(1)}
-is syntactic sugar for \code{WScreen.switch_nth(scr, 1)}.
-Alternatively we could have defined
-\code{function switch_1(scr) scr:switch_nth(1) end} before the call
-to \code{global_bindings} and passed \code{switch_1} to \code{kpress}
-instead of the anonymous function.)
-
-
-\subsection{Another example}
+Note that \code{_:switch_nth(1)} is the same as calling
+\fnref{WMPlex.switch_next}\code{(_, 1)} as \type{WScreen} inherits
+\type{WMPlex} and this is where the function is actually defined.
 
 Similarly to the above example, to bind the key sequence \key{Mod1+k n} 
 switch to the next managed object within a frame, and \key{Mod1+k 1} to the
 first, you would issue the following call:
 \begin{verbatim}
-genframe_bindings{
-    submap("Mod1+k", {
-        kpress("n", WGenFrame.switch_nth),
-        kpress("1", function(frame) frame:switch_nth(1) end),
-    }),
-}
+defbindings("WFrame", {
+    submap("Mod1+K", {
+        kpress("Right", "_:switch_next()"),
+        kpress("1", "_:switch_nth(1)"),
+   }),
+})
 \end{verbatim}
 
-Note that the switching functions being used in this example are exactly
-the same as in the previous example. Both \type{WScreen} and 
-\type{WGenFrame} inherit them from \type{WMPlex}.
 
-
-\subsection{Key and button specifications}
+\subsection{Key specifications}
 
 As seen above, the functions that create key binding specifications require
 a \var{keyspec} argument. This argument should be a string containing the
@@ -486,64 +367,65 @@ to find out what exactly is bound where. \key{AnyModifier} is usually
 used in submaps to indicate that it doesn't matter which modifier keys
 are pressed, if any.
 
-Ion ignores the \key{Lock} modifier and any \key{ModN} modifiers bound
-to 
-\key{NumLock}\index{NumLock@\key{NumLock}} or
+Ion ignores the \key{Lock} modifier and any \key{ModN} ($N=1{\ldots} 5$)
+bound to \key{NumLock}\index{NumLock@\key{NumLock}} or
 \key{ScrollLock}\index{ScrollLock@\key{ScrollLock}}
 by default because such\footnote{Completely useless keys that should be
-  gotten rid of in the author's opinion.} locking keys may otherwise
+gotten rid of in the author's opinion.} locking keys may otherwise
 cause confusion.
+
+
+\subsection{Button specifications}
 
 Button specifications are similar to key definitions but now
 instead of specifying modifiers and a key, you specify modifiers
 and one of the button names \key{Button1} to
-\key{Button5}\index{Button-n@\key{Button-n}}.
+\key{Button5}\index{Button-n@\key{Button-n}}. Additionally the
+specification may end with an optional area name following an @-sign.
+Only frames currently support areas, and the supported values in this
+case are
+\code{"border"}, \code{"tab"}, \code{"empty_tab"}, \code{"client"} and
+\code{nil} (for the whole frame).
 
+For example, the following code binds dragging a tab with the first 
+button pressed to initiate tab drag\&drop handling:
+
+\begin{verbatim}
+defbindings("WFrame", {
+    mdrag("Button1@tab", "_:p_tabdrag()"),
+})
+\end{verbatim}
 
 \subsection{A further note on the default binding configuration}
 
-The variable \code{DEFAULT_MOD} in the above listing defaults to
-\code{"Mod1+"} and is set in \file{ion.lua}. Changing this
-variable allows to easily change the the modifier used by all bindings
-in the default configuration that use modifiers. Quite a few people
-prefer to use the Windows keys as modifiers because many applications
-already use \key{Alt}. Nevertheless, \key{Mod1} is the default as a
-key bound to it is available virtually everywhere.
+The default binding configuration contains references to the variables
+\code{MOD1} and \code{MOD2} instead of directly using the default
+values of \code{"Mod1+"} and \code{""} (nothing). As explained in
+section \ref{sec:walkthrough}, the definitions of these variables
+appear in \file{cfg\_ion.lua}. This way you can easily change the the
+modifiers used by all bindings in the default configuration without 
+changing the whole binding configuration. Quite a few people prefer 
+to use the Windows keys as modifiers because many applications already
+use \key{Alt}. Nevertheless, \key{Mod1} is the default as a key bound 
+to it is available virtually everywhere.
+
 
 \subsection{Client window bindings}
 
 As client windows do not have function to set their bindings, it is
 necessary to call client window functions by specifying the bindings
 somewhere else. In the stock configuration file setup this is done
-in \fnref{mplex_bindings} by functions that look up the object currently
-displayed by the \type{WMPlex} (\fnref{WMPlex.current}). We then check that
-it is of type \type{WClientWin} to suppress warning and then call the
-wanted function with the verified client window as argument. 
+among \type{WMPlex} bindings, setting the guard to \code{_sub:WClientWin}
+and using \code{_sub} to refer to the client window.
 
-To make it easier to write such bindings, the function 
-\fnref{make_mplex_clientwin_fn} is used to construct this wrapper
-function. The following two binding definitions are essentially
-equivalent:
+For example, the full screen toggle key is bound like this:
 
 \begin{verbatim}
-mplex_bindings {
-    kpress("Mod1+Return", function(mplex, r)
-                              if not r or r==mplex
-                                  r=mplex:current()
-                              end
-                              if obj_is(r, "WClientWin") then
-                                  r:toggle_fullscreen()
-                              end
-                          end),
-    kpress("Mod1+Enter",
-           make_mplex_clientwin_fn(WClientWin.toggle_fullscreen)),
-}
+defbindings("WMPlex", {
+    kpress_wait("Mod1+Return", 
+                "_:toggle_fullscreen()", "_sub:WClientWin"),
+})    
 \end{verbatim}
-
-%In the stock configuration files, a similar function
-%\fnref{make_current_or_self_fn} is also used to create a wrapper for
-%\fnref{region_close} that attempts to close the current object managed
-%by the \type{WMPlex} if it exists and otherwise the multiplexer itself.
 
 
 \section{Winprops}
@@ -772,31 +654,6 @@ with the current name of the frame. In our example we would change the
 name to \code{sysmonframe}, but we could just as well have used the 
 default name formed from the frame's class name and an instance number.
 
-\section{The query library}
-\index{querylib@\var{querylib}}
-
-The query module does not implement any queries in itself, but provides
-the function \fnref{query_query} to execute arbitrary queries. Some
-standard queries implemented with this interface are available in 
-'querylib' (\file{SHAREDIR/querylib.lua}). Most of these queries support
-tab-completion and can be directly passed to the binding setup functions
-for classes based on \type{WMPlex}.  These setup functions are at the moment:
-\begin{itemize}
-\item \fnref{global_bindings}
-\item \fnref{mplex_bindings}, 
-\item \fnref{genframe_bindings},
-\item \fnref{ionframe_bindings} and
-\item \fnref{floatframe_bindings}.
-\end{itemize}
-
-The default configuration puts most queries in \fnref{genframe_bindings}
-while the exit and restart queries are in \fnref{global_bindings}.
-For a listing of the functions, see section \ref{sec:querylibref} in the 
-Function reference. 
-
-Querylib also provides functions to generate more queries; for details see
-the script.
-
 \section{Menus}
 \label{sec:menus}
 
@@ -807,36 +664,34 @@ the script.
 \index{menuentry@\code{menuentry}}
 \index{submenu@\code{submenu}}
 In the stock configuration file setup, menus are configured in the file
-\file{ion-menus.lua} as previously mentioned. An example of a 
+\file{cfg\_menus.lua} as previously mentioned. An example of a 
 definition of a rather simple menu with a submenu is:
-\begin{verbatim}
-include("menulib")
 
+\begin{verbatim}
 defmenu("exitmenu", {
-    menuentry("Restart", restart_wm),
-    menuentry("Exit", exit_wm),
+    menuentry("Restart", "ioncore.restart()"),
+    menuentry("Exit", "ioncore.shutdown()"),
 })
 
 defmenu("mainmenu", {
-    menuentry("Lock screen", make_exec_fn("xlock")),
-    menuentry("Help", querylib.query_man),
+    menuentry("Lock screen", "ioncore.exec('xlock')"),
+    menuentry("Help", "mod_query.query_man(_)"),
     submenu("Exit", "exitmenu"),
 })
 \end{verbatim}
 
-The \file{menulib} library must be loaded for some of the functions 
-discussed here to be available.
+The \file{mod\_menu} module must be loaded for one to be able to define
+menus.
 
-The \fnref{defmenu} function is used to define a named menu that can later
-be accessed with this name. The \fnref{menuentry} function is used to
-create an entry in the menu with a title and an entry handler function to
-be called when the menu entry is activated. If the functions discussed in
-subsection \ref{sec:menudisp} are used to display the menu from a binding, 
-the  parameters that are passed to the function are those that the binding
-handler was passed. It is as if the function was called from that binding. 
+The \fnrefx{mod_menu}{defmenu} function is used to define a named
+menu that can later be accessed with this name. The 
+\fnrefx{mod_menu}{menuentry} function is used to create an entry in the menu
+with a title and an entry handler function to be called when the menu entry
+is activated. The parameters to the handler are similar to those of binding
+handlers, and usually the same as those of the binding that opened the menu.
 
-The \fnref{submenu} function is used to insert a submenu at that point in
-the menu. (One could as well just pass a table with the menu
+The \fnref{mod_menu}{submenu} function is used to insert a submenu at that 
+point in the menu. (One could as well just pass a table with the menu
 entries, but it is not encouraged.)
 
 \subsection{Special menus}
@@ -861,46 +716,6 @@ These can be used as the menus defined as above.
 \subsection{Displaying menus}
 \label{sec:menudisp}
 
-\index{make_menu_fn@\code{make_menu_fn}}
-\index{make_bigmenu_fn@\code{make_bigmenu_fn}}
-\index{make_pmenu_fn@\code{make_pmenu_fn}}
-Menus defined with the routines described in the previous subsection
-should be bound to key and pointer actions by creating a bindable
-function with one of the following routines: \fnref{make_menu_fn},
-\fnref{make_bigmenu_fn} or \fnref{make_pmenu_fn}. The first two
-create functions to display in-frame (or in-mplex more generally)
-menus that appear on the bottom-left corner of the \type{WMPlex}
-where the bound action occurred. The difference between the two is
-the different drawing engine style used. The last function creates
-a pop-up menu display function and can only be bound to mouse press
-actions.
-
-An example of a binding to display a menu is:
-\begin{verbatim}
-global_bindings{
-    kpress("F12", make_bigmenu_fn("mainmenu")),
-}
-\end{verbatim}
-
-The low-level functions \fnref{menu_menu} and \fnref{menu_pmenu} can
-also be used to display menus with different kinds of handlers and so
-on, but most users should not need to be concerned with these.
-If you use these functions note that they do not call the menu entry
-handlers but pass the entry to a specified handler the responsibility
-of which it is to decide what to do.
+TODO
 
 
-\section{Some common configuration tasks}
-
-\subsection{Binding a key to execute a program}
-
-Because the \fnref{exec} function immediately executes the argument string,
-we must wrap this function in the bindings in the following way:
-\begin{verbatim}
-    kpress("SomeKey", function() exec("program --param") end)
-\end{verbatim}
-The \fnref{make_exec_fn} function can be used as a convenience; the
-above is equivalent to
-\begin{verbatim}
-    kpress("SomeKey", make_exec_fn("program --param"))
-\end{verbatim}

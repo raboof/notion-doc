@@ -42,7 +42,7 @@
 \newcommand{\file}[1]{\emph{#1}}
 \newcommand{\type}[1]{#1}
 \newcommand{\spec}[1]{#1}
-\newcommand{\key}[1]{\textbf{#1}}
+\newcommand{\key}[1]{\mbox{\textbf{#1}}}
 \newcommand{\indextype}[1]{\index{#1@\type{#1}}}
 
 %begin{latexonly}
@@ -51,6 +51,7 @@
 \newcommand{\command}[1]{\lstinline!#1!}
 
 \newcommand{\hyperlabel}[1]{\hypertarget{#1}{}\label{#1}}
+\newcommand{\fnrefx}[2]{\hyperlink{fn:#1.#2}{\code{#2}}}
 \newcommand{\fnref}[1]{\hyperlink{fn:#1}{\code{#1}}}
 \newcommand{\myhref}[2]{\hyperlink{#1}{#2}}
 %end{latexonly}
