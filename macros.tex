@@ -108,3 +108,29 @@
   \item[Description:]
 }{}
 \end{htmlonly}
+
+
+% While rapport3/artikel3 are otherwise nice classes, 
+% itemize looks awful.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%begin{latexonly}
+\makeatletter
+\renewenvironment{itemize}{%
+  \ifnum \@itemdepth >3
+    \@toodeep
+  \else
+    \advance\@itemdepth \@ne
+    \edef\@itemitem{labelitem\romannumeral\the\@itemdepth}%
+    \list{\csname\@itemitem\endcsname}%
+         {%
+            \if@revlabel
+              \def\makelabel##1{\hskip .5\unitindent{\hfil ##1}}\else
+	      					    %^^^^^^^^^ Changed
+              \def\makelabel##1{\hfil ##1}
+	      		       %^^^^^^^^^ Changed
+            \fi
+          }%
+  \fi}
+ {\global\@ignoretrue \endlist}
+\makeatletter
+%end{latexonly}
