@@ -1,0 +1,94 @@
+\documentclass[english,a4paper,11pt,oldtoc,mctitle]{rapport3}
+\input{macros}
+
+% For including some files from articles
+\newcommand{\xchapter}[1]{\chapter{#1}}
+\newcommand{\xsection}[1]{\section{#1}}
+\newcommand{\xsectionstar}[1]{\section*{#1}}
+\newcommand{\xsubsection}[1]{\subsection{#1}}
+
+
+\title{Ion: Configuring and extending with Lua}
+%begin{latexonly}
+\author{Tuomo Valkonen \\ tuomov@iki.fi}
+%end{latexonly}
+\begin{htmlonly}
+\author{Tuomo Valkonen \\ tuomov at iki.fi}
+\end{htmlonly}
+\date{2003-05-10}
+
+\makeindex
+
+
+\begin{document}
+
+\maketitle
+
+Copyright (c)  2003 Tuomo Valkonen.
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+A copy of the license is included in the section entitled ''GNU
+Free Documentation License''.
+
+\begin{abstract}
+    This document is a sort of ''advanced user'' manual for Ion. It
+    attempts at documenting what is in Ion's configuration files and
+    how to configure Ion by simple modifications to these files and
+    how to write more complex extensions in Lua. As an essential 
+    background the document first, however, explains Ion object and
+    class hierarchy. Finally, the document contains the essential
+    reference on most functions exported by the C side of Ion for use
+    in Lua code.
+\end{abstract}
+
+\tableofcontents
+
+\input{objects}
+
+\input{conf}
+
+\chapter{Function reference}
+\label{sec:exports}
+
+The following subsections list out the functions exported to Lua scripts
+by Ioncore and the ionws, floatws and query modules.
+
+\section{Functions exported by Ioncore}
+\label{sec:ioncoreref}
+
+\input{ioncore-exports.tex}
+
+\section{Functions exported by the ionws module}
+\label{sec:ionwsref}
+
+\input{ionws-exports.tex}
+
+\section{Functions exported by the floatws module}
+\label{sec:floatwsref}
+
+\input{floatws-exports.tex}
+
+\section{Functions exported by the query module}
+\label{sec:queryref}
+
+\input{query-exports.tex}
+
+\section{Ioncorelib functions}
+\label{sec:ioncorelibref}
+
+\input{ioncorelib-fns.tex}
+
+\section{QueryLib functions}
+\label{sec:querylibref}
+
+\input{querylib-fns.tex}
+
+\appendix
+
+\input{fdl}
+
+\printindex
+
+\end{document}
