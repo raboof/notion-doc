@@ -558,11 +558,12 @@ winprop{
 \section{QueryLib}
 \index{QueryLib@\var{QueryLib}}
 
-While the query module only exports the primitive function
-\fnref{query_query}, QueryLib (file \file{querylib.lua}) implements some
-standard queries, most with completion support. These functions can be 
-directly passed to the binding setup functions for classes based on 
-\type{WMPlex}.  These setup functions are at the moment:
+The query module does not implement any queries in itself, but provides
+the function \fnref{query_query} to execute arbitrary queries. Some
+standard queries implemented with this interface are available in 
+QueryLib (\file{SHAREDIR/querylib.lua}). Most of these queries support
+tab-completion and can be directly passed to the binding setup functions
+for classes based on \type{WMPlex}.  These setup functions are at the moment:
 \begin{itemize}
 \item \fnref{global_bindings}
 \item \fnref{mplex_bindings}, 
@@ -575,3 +576,7 @@ The default configuration puts most queries in \fnref{genframe_bindings}
 while the exit and restart queries are in \fnref{global_bindings}.
 For a listing of the functions, see section \ref{sec:querylibref} in the 
 Function referece. 
+
+QueryLib also provides functions to generate more queries; for details see
+the script.
+
