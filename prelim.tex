@@ -17,7 +17,7 @@ could be build by loading the appropriate 'modules'. On modern system
 these modules are simply dynamically loaded \file{.so} libraries. On 
 more primitive systems, or if you want to squeeze total size of the 
 executable and libraries, the modules can optionally be statically 
-linked to the main binary, but most nevertheless be loaded with the
+linked to the main binary, but must nevertheless be loaded with the
 \fnref{load_module} function.
 
 If no modules are loaded, all client windows appear in full screen mode.
@@ -36,6 +36,5 @@ The stock configuration for the 'ion' executable loads all the modules
 mentioned above. The stock configuration for the 'pwm' executable (which
 differs from the 'ion' executable in a few configuration details, such
 as Xinerama usage) does not load the \file{ionws} module.
-
 
 \input{objects}

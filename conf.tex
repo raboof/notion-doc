@@ -287,29 +287,22 @@ following sections.
 
 There has been some confusion among users about the need for multiple, 
 partially even overlapping functions to setup bindings so let me try
-give reasons for this design decision here. 
+to explain this design decision here. 
 
 The thing is that if there was a just a single 'bind this key
 to this function' method to bind keys, some limitations would have to
-be made on the available functions or writing custom functions would
+be made on the available functions and writing custom functions would
 be more complicated. In addition one may want to bind the same function
-to different key for different types of object. Indeed, the workspace
+to different key for different types of objects. Indeed, the workspace
 and frame tab swithing functions are the same both classes being based
 on \type{WMPlex}, and in the stock configuration the switch to $n$:th 
 workspaces is bound to \key{Mod1+n} (using \fnref{global_bindings}
 explained below) while the switch to $n$:th tab is bound to the
 sequence \key{Mod1+k n}  (using \fnref{genframe_bindings} and 
-\fnref{submap}). Of course all this inheritance could be hidden
-from the configuration interface by duplicating functions, but then
-at what level this should be then done? There would quickly be a lot
-of essentially same functions (\code{screen_switch_nth},
-\code{genframe_switch_nth}, \code{ionframe_switch_nth},
-\code{floatframe_switch_nth}, and so on for every new type of 
-multiplexer added) and that prospect does not look so good.
+\fnref{submap}). 
 
 So, in brief this little additional complexity in configuration is the
-price for flexibility and in part elegance (if there can be said to be
-anything of the like in Ion).
+price of flexibility.
 
 \subsubsection{Ioncore binding setup functions}
 
@@ -445,7 +438,7 @@ Key presses:
 \begin{itemize}
     \item \fnref{kpress}\code{(keyspec, func)},
     \item \fnref{kpress_waitrel}\code{(keyspec, func)} and
-    \item \fnref{submap}\code{(keyspec)\{ ... more key bindings ... \}}.
+    \item \fnref{submap}\code{(keyspec, \{ ... more key bindings ... \})}.
 \end{itemize}
 Mouse actions:
 \begin{itemize}
@@ -461,9 +454,9 @@ and as explained in the reference, \fnref{kpress_waitrel} is simply
 modifiers to be released before processing any further actions.
 This is to stop one from accidentally calling e.g.
 \fnref{WRegion.close} multiple times in a row. The \fnref{submap}
-function actually returns another function that expects a table
-as an argument if called with only one argument. Alternatively you
-could use \code{submap(keyspec, \{ ... \})}.
+function is used to define submaps or ''prefix maps''. The second
+argument to this function is table listing the key press actions
+(\fnref{kpress}) in the submap
 
 The parameters \var{keyspec} and \var{buttonspec} are explained below
 in detail. The parameter \var{func} is the handler for the binding.
@@ -483,12 +476,12 @@ are in this case
 \subsection{An example}
 
 For example, to just bind the key \key{Mod1+1} to switch to the first
-workspace and \key{Mod1+n} to the next workspace, you would make the
+workspace and \key{Mod1+Right} to the next workspace, you would make the
 following call
 \begin{verbatim}
 global_bindings{
-    kpress("Mod1+n", WScreen.switch_nth),
-    kpress("Mod1+1", function (scr) scr:switch_nth(1) end),
+    kpress("Mod1+Right", WScreen.switch_nth),
+    kpress("Mod1+1", function(scr) scr:switch_nth(1) end),
 }
 \end{verbatim}
 
@@ -502,14 +495,34 @@ The first definition works, because \code{WScreen.switch_next}
 \code{WScreen.switch_nth} (again inherited \fnref{WMPlex.switch_nth}) 
 expects two parameters: the screen and the $n$ giving the number of
 the workspace to switch to so it could not be directly passed to
-\code{kpress}. Therefore we had to write our ''anonymous'' wrapper
-function around it tha takes a single parameter and calls
+\code{kpress}. Therefore we had to write around it our ''anonymous'' 
+wrapper function around that takes a single parameter and calls
 \code{switch_nth} properly. (Recall that \code{scr:switch_nth(1)}
 is syntactic sugar for \code{WScreen.switch_nth(scr, 1)}.
 Alternatively we could have defined
 \code{function switch_1(scr) scr:switch_nth(1) end} before the call
 to \code{global_bindings} and passed \code{switch_1} to \code{kpress}
 instead of the anonymous function.)
+
+
+\subsection{Another example}
+
+Similarly to the above example, to bind the key sequence \key{Mod1+k n} 
+switch to the next managed object within a frame, and \key{Mod1+k 1} to the
+first, you would issue the following call:
+\begin{verbatim}
+genframe_bindings{
+    submap("Mod1+k", {
+        kpress("n", WGenFrame.switch_nth),
+        kpress("1", function(frame) frame:switch_nth(1) end),
+    }),
+}
+\end{verbatim}
+
+Note that the switching functions being used in this example are exactly
+the same as in the previous example. Both \type{WScreen} and 
+\type{WGenFrame} inherit them from \type{WMPlex}.
+
 
 \subsection{Key and button specifications}
 
