@@ -1,38 +1,79 @@
-TOPDIR=/home/tuomov/coding/ion/
+# Settings
+######################################
+
+TOPDIR=/home/tuomov/coding/i-safelua/
 include $(TOPDIR)/system-inc.mk
+
+L2H=latex2html -show_section_numbers -short_index -local_icons -noaddress \
+    -up_url http://www.iki.fi/tuomov/ion/ -up_title "Ion homepage"
 
 FNTEXES=ioncore-exports.tex ionws-exports.tex \
 	floatws-exports.tex query-exports.tex \
 	querylib-fns.tex ioncorelib-fns.tex
 
+DOC=ionconf
 
-DOC=objects_and_extending
+# Generic rules
+######################################
 
-latex: 
-	latex $(DOC)
+nothing:
+	@ echo "Please read the README first."
 
-latex-full:
-	latex $(DOC)
-	latex $(DOC)
-	latex $(DOC)
-	makeindex $(DOC).idx
-	latex $(DOC)
+%.ps: %.dvi
+	dvips $<
 
-ps:
-	dvips $(DOC)
+%.pdf: %.dvi
+	dvipdfm -p a4 $<
 
-pdf:
-	dvipdfm -p a4 $(DOC)
+# ionconf rules
+######################################
+ionconf-dvi:
+	latex ionconf
 
-html:
-	latex2html -split 4 -show_section_numbers -short_index \
-	-local_icons -noaddress -up_url http://www.iki.fi/tuomov/ion/ \
-	-up_title "Ion homepage" $(DOC)
+ionconf-dvi-full:
+	latex ionconf
+	latex ionconf
+	latex ionconf
+	makeindex ionconf.idx
+	latex ionconf
 
-all: fntexes latex html ps pdf
+ionconf-html: 
+	$(L2H) -split 3 ionconf
 
 fntexes: $(FNTEXES)
 
+ionconf-all: fntexes ionconf-dvi-full ionconf-html
+
+# ionnotes rules
+######################################
+
+ionnotes-dvi:
+	latex ionnotes
+
+ionnotes-dvi-full:
+	latex ionnotes
+	latex ionnotes
+	latex ionnotes
+	makeindex ionnotes.idx
+	latex ionnotes
+
+ionnotes-html: 
+	$(L2H) -split 4 ionnotes
+
+ionnotes-all: ionnotes-dvi-full ionnotes-html
+
+# More generic rules
+######################################
+
+all: ionconf-all ionnotes-all
+
+all-ps: ionconf.pdf ionnotes.pdf
+
+all-pdf: ionconf.pdf ionnotes.pdf
+
+all-all: all all-ps all-pdf
+
+# Function reference rules
 ######################################
 
 ioncore-exports.tex: $(TOPDIR)/ioncore/*.c
