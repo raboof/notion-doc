@@ -1,0 +1,203 @@
+
+\begin{function}
+    \index{clientwin-do-manage-alt@\code{clientwin_do_manage_alt}}
+    \hookname{clientwin_do_manage_alt}
+    \hookparams{(WClientWin, table)}
+    \begin{funcdesc}
+      Called when we want to manage a new client window.
+      The table argument contains the following fields:
+      
+      \begin{tabularx}{\linewidth}{llX}
+          \hline
+          Field & Type & Description \\
+          \hline
+          \var{switchto} & bool & Do we want to switch to the client window. \\
+          \var{jumpto} & bool & Do we want to jump to the client window. \\
+          \var{userpos} & bool & Geometry set by user. \\
+          \var{dockapp} & bool & Client window is a dockapp. \\
+          \var{maprq} & bool & Map request (and not initialisation scan). \\
+          \var{gravity} & number & Window gravity. \\
+          \var{geom} & table & Requested geometry; \var{x}, \var{y}, \var{w}, \var{h}.\\
+          \var{tfor} & WClientWin & Transient for window.
+      \end{tabularx}
+    \end{funcdesc}
+\end{function}
+
+
+\begin{function}
+    \index{clientwin-mapped-hook@\code{clientwin_mapped_hook}}
+    \hookname{clientwin_mapped_hook}
+    \hookparams{WClientWin}
+    \begin{funcdesc}
+      Called when we have started to manage a client window.
+    \end{funcdesc}
+\end{function}
+
+
+\begin{function}
+    \index{clientwin-unmapped-hook@\code{clientwin_unmapped_hook}}
+    \hookname{clientwin_unmapped_hook}
+    \hookparams{number}
+    \begin{funcdesc}
+      Called when we no longer manage a client window. The parameter
+      is the X ID of the window; see \fnref{WClientWin.xid}.
+    \end{funcdesc}
+\end{function}
+
+
+\begin{function}
+    \index{frame-managed-changed-hook@\code{frame_managed_changed_hook}}
+    \hookname{frame_managed_changed_hook}
+    \hookparams{table}
+    \begin{funcdesc}
+      Called when there are changes in the objects managed by a frame
+      or their order. The table parameter has the following fields:
+
+      \begin{tabularx}{\linewidth}{llX}
+          \hline
+          Field & Type & Description \\
+          \hline
+          \var{reg} & WFrame & The frame in question \\
+          \var{mode} & string & \var{"switchonly"}, \var{"reorder"},
+                                \var{"add"} or \var{"remove"} \\
+          \var{sw} & bool & Switch occured \\
+          \var{sub} & WRegion & The managed region (primarily) affected \\
+      \end{tabularx}
+    \end{funcdesc}
+\end{function}
+
+
+\begin{function}
+    \index{ioncore-deinit-hook@\code{ioncore_deinit_hook}}
+    \hookname{ioncore_deinit_hook}
+    \hookparams{()}
+    \begin{funcdesc}
+      Called when Ion is deinitialising and about to quit.
+    \end{funcdesc}
+\end{function}
+
+%ioncore_handle_event_alt -- not available to lua side
+
+\begin{function}
+    \index{ioncore-post-layout-setup-hook@\code{ioncore_post_layout_setup_hook}}
+    \hookname{ioncore_post_layout_setup_hook}
+    \hookparams{()}
+    \begin{funcdesc}
+      Called when Ion has done all initialisation and is almost ready to
+      enter the mainloop, except no windows are yet being managed.
+    \end{funcdesc}
+\end{function}
+
+
+\begin{function}
+    \index{ioncore-snapshot-hook@\code{ioncore_snapshot_hook}}
+    \hookname{ioncore_snapshot_hook}
+    \hookparams{()}
+    \begin{funcdesc}
+      Called to signal scripts and modules to save their state (if any).
+    \end{funcdesc}
+\end{function}
+
+
+\begin{function}
+    \index{ionws-placement-alt@\code{ionws_placement_alt}}
+    \hookname{ionws_placement_alt}
+    \hookparams{(WClientWin, WIonWS, table)}
+    \begin{funcdesc}
+      Called when a client window is about to be managed by a \type{WIonWS}
+      to allow for alternative placement policies. The table parameter
+      has the same fields as that of \fnref{clientwin_do_manage_alt}.
+    \end{funcdesc}
+\end{function}
+
+
+\begin{function}
+    \index{panews-init-layout-alt@\code{panews_init_layout_alt}}
+    \hookname{panews_init_layout_alt}
+    \hookparams{table}
+    \begin{funcdesc}
+      Called to initialise panews layout. The table parameter has
+      initially a single field \var{ws} pointing to the workspace,
+      but the succesfull handler should set the field \var{layout}
+      to a proper layout (as those saved in the layout savefiles).
+    \end{funcdesc}
+\end{function}
+
+
+\begin{function}
+    \index{panews-make-placement-alt@\code{panews_make_placement_alt}}
+    \hookname{panews_make_placement_alt}
+    \hookparams{table}
+    \begin{funcdesc}
+      Called to make a placement on panews. The parameter table has
+      the following fields:
+      
+      \begin{tabularx}{\linewidth}{llX}
+          \hline
+          Field & Type & Description \\
+          \hline
+          \var{ws} & \type{WPaneWS} & The workspace \\
+          \var{frame} & \type{WFrame} & A frame initially allocated for the
+              region to be placed \\
+          \var{reg} & \type{WRegion} & The region to be placed \\
+          \var{specifier} & \type{WRegion} & For drag\&drop on handling empty areas\\
+      \end{tabularx}
+      
+      The handler should set some of these fields on success:
+
+      \begin{tabularx}{\linewidth}{llX}
+          \hline
+          Field & Type & Description \\
+          \hline
+          \var{res_node} & \type{WSplit} & Target split \\
+          \var{res_config} & \type{WFrame} &  New configuration for it, unless
+              \type{WSplitRegion} \\
+          \var{res_w} & integer & New width for target split (optional) \\
+          \var{res_h} & integer & New height for target split (optional) \\
+      \end{tabularx}
+    \end{funcdesc}
+\end{function}
+
+
+\begin{function}
+    \index{region-activated-hook@\code{region_activated_hook}}
+    \hookname{region_activated_hook}
+    \hookparams{WRegion}
+    \begin{funcdesc}
+      Signalled when a region or one of its children has received the focus.
+    \end{funcdesc}
+\end{function}
+
+
+\begin{function}
+    \index{region-do-warp-alt@\code{region_do_warp_alt}}
+    \hookname{region_do_warp_alt}
+    \hookparams{WRegion}
+    \begin{funcdesc}
+      This alt-hook exist to allow for alternative pointer warping
+      implementations.
+    \end{funcdesc}
+\end{function}
+
+
+\begin{function}
+    \index{region-inactivated-hook@\code{region_inactivated_hook}}
+    \hookname{region_inactivated_hook}
+    \hookparams{WRegion}
+    \begin{funcdesc}
+      Signalled when the focus has moved from the parameter region or
+      one of its children to a non-child region of the parameter region.
+    \end{funcdesc}
+\end{function}
+
+
+\begin{function}
+    \index{screen-managed-changed-hook@\code{screen_managed_changed_hook}}
+    \hookname{screen_managed_changed_hook}
+    \hookparams{table}
+    \begin{funcdesc}
+      Called when there are changes in the objects managed by a screen
+      or their order. The table parameter is similar to that of
+      \fnref{frame_managed_changed_hook}.
+    \end{funcdesc}
+\end{function}

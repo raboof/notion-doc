@@ -12,37 +12,25 @@ the basic configuration exlained in chapter \ref{chap:config}.
 \label{sec:hooks}
 
 Hooks are lists of functions to be called when a certain event occurs.
-Hook handlers are registered with the function \fnref{add_to_hook}
-and removed with \fnref{remove_from_hook}. Both of these functions
-take as argument the name of the hook (a string) and the handler,
-the parameters of which depend on the actual hook in question.
+There are two types of them; normal and ''alternative'' hooks. Normal
+hooks do not return anything, but alt-hooks should return a boolean
+indicating whether it handled its assigned task succesfully. In the case
+that \var{true} is returned, remaining handlers are not called.
 
-The following hooks are currently defined:
+Hook handlers are registered by first finding the hook
+with \fnref{ioncore.get_hook} and then calling \fnref{WHook.add}
+on the (succesfull) result with the handler as parameter. Similarly
+handlers are unregistered with \fnref{WHook.remove}. For example:
 
-\begin{tabularx}{\linewidth}{lX}
-\hline
-Hook & Description \\
-\hline
-\code{screen_workspace_switched} &
-	Called when the object (not necessarily a workspace despite the
-	name) viewed on a screen is switched. Parameters to handler:
-	the screen and the newly switched-to region. \\
-\code{genframe_managed_switched} &
-	Called when the region viewed in a frame is switched. Parameters
-	to handler: the frame and the newly switched-to region. \\
-\code{genframe_activated} &
-	Called when a \type{WGenFrame} has received the focus. \\
-\code{genframe_inactivated} &
-	Called when a \type{WGenFrame} has lost the focus. \\
-\code{clientwin_added} &
-	Called when a client window has been mapped by a client program
-	and Ion has started managing it. \\
-\code{deinit} &
-	Called when Ion is about to start deinitialising before exiting.
-	Handler has no parameters. \\
-\end{tabularx}
+\begin{verbatim}
+ioncore.get_hook("ioncore_snapshot_hook"):add(
+    function() print("Snapshot hook called.") end
+)
+\end{verbatim}
 
-More hooks can be added on request as need arises.
+In this example the hook handler has no parameters, but many hook
+handlers do. The types of parameters for each hook are listed in
+the hook reference, section \ref{sec:hookref}.
 
 \subsection{Placement methods}
 
