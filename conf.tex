@@ -48,58 +48,76 @@ configuration file directory for files. Therefore, if you want to change
 some setting, it is advised against that you modify the stock configuration
 files in-place as subsequent installs of Ion will restore the stock
 configuration files. Instead you should always make a copy of the stock
-file in \file{\~{}/.ion-devel/} and modify this file.
+file in \file{\~{}/.ion-devel/} and modify this file. When searching
+for a file, if no extension or path component is given, compiled \file{.lc} 
+files are attempted before \file{.lua} files.
 
 The ioncore main binary and each module have their own configuration
-files that should be used to configure that module. In addition, used
-drawing engine is selected and styles configured in \file{draw.lua}. 
-Usually \file{draw.lua} is a simply a link to or copy of one of the 
-\file{look-*.lua} style files; for details see chapter \ref{chap:gr}.
-
-The rest of the configuration files are as follows:
+files that should be used to configure that module. The configuration
+files related to the ioncore main binary are as follows. The files
+\file{ioncore.lua} and \file{draw.lua} are loaded from Ioncore and the
+rest are included from the former.
 
 \begin{tabularx}{\linewidth}{
       p{\widthof{ioncore-bindings.lua}}%
-      p{\widthof{Loaded from}}%
       X}
     \hline
-    File & Loaded from & Description \\
+    File & Description \\
     \hline
-    \file{ioncore.lua} & ioncore &
+    \file{ioncore.lua} & 
     The main configuration file \\
     %
-    \file{ioncore-bindings.lua} & \file{ioncore.lua} &
-    Global bindings and bindings that are common to screens and
-    all/both workspace modules' frames are configurured here. For
-    details, see section \ref{sec:bindings}. \\
+    \file{ioncore-bindings.lua} & 
+    Most of Ion's bindings are configured here. Bindings that are
+    specific to some module are configured in the module's configuration
+    file. For details, see section \ref{sec:bindings}. \\
+    \file{ioncore-menus.lua} & 
+    Menu definitions; see \ref{sec:menus}. \\
     %
-    \file{kludges.lua} & \file{ioncore.lua}  &
+    \file{kludges.lua} & 
     Settings to get some apps behave more nicely have been collected here.
     See section \ref{sec:winprops} for details on these ''winprops''. \\
     %
-    \file{ionws.lua} & ionws\linebreak module  &
+    \file{draw.lua} &
+    This file is a link to or copy of one of the \file{look-*.lua} style
+    files. It should load a drawing engine and configure a style for
+    it; for details see chapter \ref{chap:gr}. \\
+\end{tabularx}
+
+Each (non-drawing engine) module has in addtion its own configuration
+file loaded when that module is loaded:
+
+\begin{tabularx}{\linewidth}{
+      p{\widthof{ioncore-bindings.lua}}%
+      X}
+    \hline
+    File & Description \\
+    \hline
+    \file{ionws.lua} & 
     Configuration file for the ionws module. Bindings specific to the
     workspace and frame classes implemented by this module are
     configured here. \\
     %
-    \file{floatws.lua} & floatws\linebreak module  &
+    \file{floatws.lua} & 
     Configuration file for the floatws module. Bindings specific to
     the workspace and frame classes implemented by this module are
     configured here. \\
     %
-    \file{query.lua} & query\linebreak module  &
+    \file{query.lua} & 
     Configuration file for the query module. Bindings to edit text
     in the queries and some other bindings related to queries and
     messages are defined here. \\
     %
-    \file{look-*.lua} & ioncore & 
-    Drawing engine configuration files. The \file{draw.lua} file
-    as explained above usually links to or is a copy of one of
-    these. \\
+    \file{menu.lua} & 
+    Configuration file for the menu module. Bindings to navigate
+    menus are defined here. Actual menus are (in the stock
+    configuration file setup) defined in \file{ioncore-menus.lua}
+    as mentioned above. \\
 \end{tabularx}
 
-Some of the files contain references to the file \file{querylib.lua}.
-This file is installed in
+Some of the files contain references to the files \file{querylib.lua}
+and \file{menulib.lua}
+These are installed in
 \code{SHAREDIR}\index{SHAREDIR@\code{SHAREDIR}}
 (\file{/usr/local/ion-devel/share/ion-devel/} by default)
 among some other other \file{.lua} files that are an essential part of
@@ -170,16 +188,18 @@ never move the pointer.
 
 Next the stock \file{ioncore.lua} has the include-statements
 \begin{verbatim}
-include("kludges.lua")
-include("ioncore-bindings.lua")
+include("kludges")
+include("ioncore-bindings")
+include("ioncore-menus")
 \end{verbatim}
 The first of these loads the file \file{kludges.lua} that contains
 some ''winprop'' settings used to make some applications behave a
 little better under Ion. For details see section \ref{sec:winprops}.
-The latter include statement loads file file 
+The second include statement loads file file 
 \file{ioncore-bindings.lua} which containts the statements to configure 
 most of Ion's bindings; modules' bindings are configured in their 
-respective configuration files.
+respective configuration files. The final include statement load
+menu definitions.
 
 Next we have quite a few statements of the form
 \begin{verbatim}
@@ -210,6 +230,7 @@ man pages to tab-complete.
 Finally we load the modules.
 \begin{verbatim}
 load_module("query")
+load_module("menu")
 load_module("ionws")
 load_module("floatws")
 \end{verbatim}
@@ -217,8 +238,9 @@ The first of the modules provides the queries, the minibuffer-like
 line-editor boxes that appear at bottoms of frames and screens and that
 can be and are used to to do quite a few things including starting
 programs and navigating to different windows by their name.
-The second module loaded provides the normal Ion-style tiled workspaces
-and frames of that style. The 'floatws' module provides traditional
+The 'menu' module provides both pop-up and query-style in-frame menus.
+The third module loaded provides the normal Ion-style tiled workspaces
+and frames of that style while the 'floatws' module provides traditional
 ''free-floating'' WIMP workspaces and frames in the PWM style.
 
 As already mentioned, each of these modules have their own configuration
@@ -396,6 +418,21 @@ from the file \file{query.lua}.
 			      finish the query.\\
 \end{tabularx}
 
+
+\subsubsection{Menu module binding setup functions}
+
+These functions set the bindings for the menu module. The bindings are set 
+from the file \file{menu.lua}.
+
+\begin{tabularx}{\linewidth}{lX}
+    \hline
+    Function & Handler parameters and description \\
+    \hline
+    \fnref{menu_bindings}  & Parameters to handler: \type{WMenu} \\
+			   & Description: key bindings available in in-frame 
+			     menus. \\
+\end{tabularx}
+
 \subsection{Defining the bindings}
 \label{sec:binddef}
 
@@ -550,19 +587,22 @@ it is of type \type{WClientWin} to suppress warning and then call the
 wanted function with the verified client window as argument. 
 
 To make it easier to write such bindings, the function 
-\fnref{make_current_clientwin_fn} is used to construct this wrapper
-function. The following two binding definitions are equivalent:
+\fnref{make_mplex_clientwin_fn} is used to construct this wrapper
+function. The following two binding definitions are essentially
+equivalent:
 
 \begin{verbatim}
 mplex_bindings {
-    kpress("Mod1+Return", function(mplex)
-                              local r=mplex_current(scr)
+    kpress("Mod1+Return", function(mplex, r)
+                              if not r or r==mplex
+                                  r=mplex:current()
+                              end
                               if obj_is(r, "WClientWin") then
-                                  clientwin_toggle_fullscreen(r)
+                                  r:toggle_fullscreen()
                               end
                           end),
-    kpress("Mod1+Enter", 
-           make_current_clientwin_fn(clientwin_toggle_fullscreen)),
+    kpress("Mod1+Enter",
+           make_mplex_clientwin_fn(WClientWin.toggle_fullscreen)),
 }
 \end{verbatim}
 
@@ -734,6 +774,80 @@ Function referece.
 
 Querylib also provides functions to generate more queries; for details see
 the script.
+
+\section{Menus}
+\label{sec:menus}
+
+\subsection{Defining menus}
+
+\index{menus}
+\index{defmenu@\code{defmenu}}
+\index{menuentry@\code{menuentry}}
+\index{submenu@\code{submenu}}
+In the stock configuration file setup, menus are configured in the file
+\file{ioncore-menus.lua} as previously mentioned. An example of a 
+definition of a rather simple menu with a submenu is:
+\begin{verbatim}
+include("menulib")
+
+defmenu("exitmenu", {
+    menuentry("Restart", restart_wm),
+    menuentry("Exit", exit_wm),
+})
+
+defmenu("mainmenu", {
+    menuentry("Lock screen", make_exec_fn("xlock")),
+    menuentry("Help", querylib.query_man),
+    submenu("Exit", "exitmenu"),
+})
+\end{verbatim}
+
+The \file{menulib} library must be loaded for some of the functions 
+discussed here to be available.
+
+The \fnref{defmenu} function is used to define a named menu that can later
+be accessed with this name. The \fnref{menuentry} function is used to
+create an entry in the menu with a title and an entry handler function to
+be called when the menu entry is activated. If the functions discussed in
+the next subsection are used to display the menu from a binding, the 
+parameters that are passed to the function are that the binding handler was
+passed. It is as if the function was called from that binding. 
+
+The \fnref{submenu} function is used to insert a submenu at that point in
+the menu. A menu with the given name must previously have been defined
+with \fnref{defmenu}. (One could as well just pass a table with the menu
+entries, but it is not encouraged.)
+
+\subsection{Displaying menus}
+
+\index{make_menu_fn@\code{make_menu_fn}}
+\index{make_bigmenu_fn@\code{make_bigmenu_fn}}
+\index{make_pmenu_fn@\code{make_pmenu_fn}}
+Menus defined with the routines described in the previous subsection
+should be bound to key and pointer actions by creating a bindable
+function with one of the following routines: \fnref{make_menu_fn},
+\fnref{make_bigmenu_fn} or \fnref{make_pmenu_fn}. The first two
+create functions to display in-frame (or in-mplex more generally)
+menus that appear on the bottom-left corner of the \type{WMPlex}
+where the bound action occured. The difference between the two is
+the different drawing engine style used. The last function creates
+a pop-up menu display function and can only be bound to mouse press
+actions.
+
+An example of a binding to display a menu is:
+\begin{verbatim}
+global_bindings{
+    kpress("F12", make_bigmenu_fn(``mainmenu'')),
+}
+\end{verbatim}
+
+The low-level functions \fnref{menu_menu} and \fnref{menu_pmenu} can
+also be used to display menus with different kinds of handlers and so
+on, but most users should not need to be concerned with these.
+If you use these functions note that they do not call the menu entry
+handlers but pass the entry to a specified handler the responsibility
+of which it is to decide what to do.
+
 
 \section{Some common configuration tasks}
 
