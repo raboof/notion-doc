@@ -1,0 +1,41 @@
+
+\chapter{Preliminaries: Key concepts and relations}
+\label{chap:prelim}
+
+The purpose of this chapter to explain some of key concepts and
+relations you need to understand before reading the following
+chapters. These include modules explained in section \ref{sec:modules}
+and the Ion class and object hierarchies, section \ref{sec:objects}.
+
+
+\section{Modules}
+\label{sec:modules}
+
+Ion has been designed so that the 'ion' executable only implements some
+basic services on top of which very different kinds of window managers
+could be build by loading the appropriate 'modules'. On modern system
+these modules are simply dynamically loaded \file{.so} libraries. On 
+more primitive systems, or if you want to squeeze total size of the 
+executable and libraries, the modules can optionally be statically 
+linked to the main binary, but most nevertheless be loaded with the
+\fnref{load_module} function.
+
+If no modules are loaded, all client windows appear in full screen mode.
+To get better window management support, one or more workspace modules
+should be loaded. Currently the \file{ionws} and \file{floatws}
+workspace modules are provided. The formed provides the tiled workspaces 
+familiar from older versions of Ion, while the latter provides the PWM
+flavour of conventional workspaces with freely ''floating'' windows.
+
+Workspace modules alone don't yet make the WM very usable. Better
+input capabilities are achieved through the \file{query} and \file{menu}
+modules. So-called drawing engines are also implemented as a modules,
+but they are not discussed here; see chapter \label{chap:gr}.
+
+The stock configuration for the 'ion' executable loads all the modules
+mentioned above. The stock configuration for the 'pwm' executable (which
+differs from the 'ion' executable in a few configuration details, such
+as Xinerama usage) does not load the \file{ionws} module.
+
+
+\input{objects}
