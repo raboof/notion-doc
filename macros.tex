@@ -1,32 +1,73 @@
+\usepackage{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{ae}
+\usepackage{url}
+\usepackage{html}
+\usepackage[dvipdfm,hypertex]{hyperref}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{makeidx}
+\usepackage{tabularx}
+\usepackage{textcomp}
+\usepackage[nottoc]{tocbibind}
+\usepackage{enumerate} % GNU FDL needs this
+\usepackage{geometry}
+\usepackage{calc}
+
+% URL settings
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\urlstyle{rm}
+
+% listings package
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%begin{latexonly}
+\usepackage{listings}
+
 \lstset{
   extendedchars=true,
   breaklines=true,
   basicstyle=\tt,
-  % Some adjustments for slightly more sensible line breaking
-  alsoletter={"}
-  alsoother={_}
-%  prebreak=\textbackslash,
+  alsoletter={"},
+  alsoother={\_},
 }
+%end{latexonly}
+
+% Some markup
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newcommand{\note}[1]{\color{red}**#1**}
 \newcommand{\file}[1]{\emph{#1}}
 \newcommand{\type}[1]{#1}
 \newcommand{\spec}[1]{#1}
+\newcommand{\key}[1]{\textbf{#1}}
+\newcommand{\indextype}[1]{\index{#1@\type{#1}}}
+
+%begin{latexonly}
 \newcommand{\code}[1]{\lstinline!#1!}
 \newcommand{\var}[1]{\lstinline!#1!}
 \newcommand{\command}[1]{\lstinline!#1!}
 
-\newcommand{\key}[1]{\textbf{#1}}
-
-% Latex2html is broken shit and can't do hyperlink/hypertarget but
-% only some html-specific crap so we must do this too with wrappers.
 \newcommand{\hyperlabel}[1]{\hypertarget{#1}{}}
 \newcommand{\fnref}[1]{\hyperlink{fn:#1}{\code{#1}}}
 \newcommand{\myhref}[2]{\hyperlink{#1}{#2}}
+%end{latexonly}
 
-\newcommand{\indextype}[1]{\index{#1@\type{#1}}}
-  
+\begin{htmlonly}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\var}[1]{\texttt{#1}}
+\newcommand{\command}[1]{\texttt{#1}}
+
+\newcommand{\hyperlabel}[1]{\label{#1}}
+\newcommand{\fnref}[1]{\htmlref{\texttt{#1}}{fn:#1}}
+\newcommand{\myhref}[2]{\htmlref{#2}{#1}}
+\end{htmlonly}
+
 % function tables
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%begin{latexonly}
 \newlength{\fndw}
 \newlength{\descw}
 \settowidth{\descw}{\begin{tabular}{ll}Description: & \end{tabular}}
@@ -49,16 +90,9 @@
   Description: &
 }
 \newenvironment{funcdesc}{}{}
+%end{latexonly}
 
-% HTML
 \begin{htmlonly}
-\newcommand{\code}[1]{\texttt{#1}}
-\newcommand{\var}[1]{\texttt{#1}}
-\newcommand{\command}[1]{\texttt{#1}}
-\newcommand{\hyperlabel}[1]{\label{#1}}
-\newcommand{\fnref}[1]{\htmlref{\texttt{#1}}{fn:#1}}
-\newcommand{\myhref}[2]{\htmlref{#2}{#1}}
-
 \newenvironment{function}{
   \begin{description}
 }{
