@@ -51,23 +51,12 @@ configuration files. Instead you should always make a copy of the stock
 file in \file{\~{}/.ion-devel/} and modify this file.
 
 The ioncore main binary and each module have their own configuration
-files that should be used to configure that module. In addition, each
-(non-Xinerama)\index{Xinerama} screen may have a separate
-\file{draw.lua} configuration file.
-When Ioncore looks for this file, it first checks if the file
-\file{draw-\$DISPLAY.SCREEN.lua} exists. If it cannot find this file, it
-uses \file{draw.lua}. \file{\$DISPLAY} here points to the X display
-on which Ion is running. If Ion was started with the \file{-display}
-argument, it is this string and otherwise the \var{DISPLAY} environment
-variable but with possible screen number removed as this is replaced
-with the \file{SCREEN} we're loading the configuration for.
+files that should be used to configure that module. In addition, used
+drawing engine is selected and styles configured in \file{draw.lua}. 
+Usually \file{draw.lua} is a simply a link to or copy of one of the 
+\file{look-*.lua} style files; for details see chapter \ref{chap:gr}.
 
 The rest of the configuration files are as follows:
-
-%\newlength{\foolength}
-%\settowidth{\foolength}{ioncore-bindings.lua}
-%\newlength{\barlength}
-%\settowidth{\barlength}{ioncore.luaxxx}
 
 \begin{tabularx}{\linewidth}{
       p{\widthof{ioncore-bindings.lua}}%
@@ -104,8 +93,8 @@ The rest of the configuration files are as follows:
     messages are defined here. \\
     %
     \file{look-*.lua} & ioncore & 
-    Drawing engine configuration files. The \file{draw.lua} files
-    as explained above are usually linked to or are copies of one of
+    Drawing engine configuration files. The \file{draw.lua} file
+    as explained above usually links to or is a copy of one of
     these. \\
 \end{tabularx}
 
