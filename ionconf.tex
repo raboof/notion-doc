@@ -111,6 +111,23 @@ by Ioncore and the ionws, floatws and query modules.
 
 \input{gpl}
 
+\chapter*{List of functions}
+\markboth{\MakeUppercase{List of functions}}%
+         {\MakeUppercase{List of functions}}%
+
+%begin{latexonly}
+\makeatletter
+\def\fnlisti#1{\@dottedtocline{1}{0em}{1.5em}{\lstinline!#1!}{\pageref{fn:#1}}}
+{\parskip\z@\input{fnlist}}
+\makeatother
+%end{latexonly}
+
+\begin{htmlonly}
+\newcommand{\fnlisti}[1]{\fnref{#1}\\}
+\input{fnlist}
+\end{htmlonly}
+
+
 \printindex
 
 \end{document}

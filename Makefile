@@ -13,6 +13,8 @@ FNTEXES=ioncore-exports.tex ionws-exports.tex floatws-exports.tex \
 	delib-fns.tex de-exports.tex menu-exports.tex \
 	menulib-fns.tex
 
+MKFNTEX=$(LUA) $(TOPDIR)/mkexports.lua
+
 # Generic rules
 ######################################
 
@@ -42,7 +44,7 @@ ionconf-html:
 
 fntexes: $(FNTEXES)
 
-ionconf-all: fntexes ionconf-dvi-full ionconf-html
+ionconf-all: fntexes fnlist.tex ionconf-dvi-full ionconf-html
 
 # ionnotes rules
 ######################################
@@ -73,7 +75,7 @@ all-pdf: ionconf.pdf ionnotes.pdf
 ######################################
 
 clean:
-	rm -f $(FNTEXES)
+	rm -f $(FNTEXES) fnlist.tex
 	rm -f *.aux *.toc *.log
 	rm -f *.idx *.ild *.ilg *.ind
 	rm -f *.ps *.pdf *.dvi
@@ -84,32 +86,40 @@ clean:
 ######################################
 
 ioncore-exports.tex: $(TOPDIR)/ioncore/*.c $(TOPDIR)/luaextl/*.c
-	$(LUA) $(TOPDIR)/mkexports.lua -module ioncore -mkdoc -o $@ $+
+	$(MKFNTEX) -module ioncore -mkdoc -o $@ $+
 
 ionws-exports.tex: $(TOPDIR)/ionws/*.c
-	$(LUA) $(TOPDIR)/mkexports.lua -module ionws -mkdoc -o $@ $+
+	$(MKFNTEX) -module ionws -mkdoc -o $@ $+
 
 floatws-exports.tex: $(TOPDIR)/floatws/*.c
-	$(LUA) $(TOPDIR)/mkexports.lua -module floatws -mkdoc -o $@ $+
+	$(MKFNTEX) -module floatws -mkdoc -o $@ $+
 
 de-exports.tex: $(TOPDIR)/de/*.c
-	$(LUA) $(TOPDIR)/mkexports.lua -module de -mkdoc -o $@ $+
+	$(MKFNTEX) -module de -mkdoc -o $@ $+
 
 menu-exports.tex: $(TOPDIR)/menu/*.c
-	$(LUA) $(TOPDIR)/mkexports.lua -module menu -mkdoc -o $@ $+
+	$(MKFNTEX) -module menu -mkdoc -o $@ $+
 
 query-exports.tex: $(TOPDIR)/query/*.c
-	$(LUA) $(TOPDIR)/mkexports.lua -module query -mkdoc -o $@ $+
+	$(MKFNTEX) -module query -mkdoc -o $@ $+
 
 querylib-fns.tex: $(TOPDIR)/query/querylib.lua
-	$(LUA) $(TOPDIR)/mkexports.lua -module query -luadoc -o $@ $+
+	$(MKFNTEX) -module query -luadoc -o $@ $+
 
 delib-fns.tex: $(TOPDIR)/de/delib.lua
-	$(LUA) $(TOPDIR)/mkexports.lua -module de -luadoc -o $@ $+
+	$(MKFNTEX) -module de -luadoc -o $@ $+
 
 menulib-fns.tex: $(TOPDIR)/menu/menulib.lua
-	$(LUA) $(TOPDIR)/mkexports.lua -module menu -luadoc -o $@ $+
+	$(MKFNTEX) -module menu -luadoc -o $@ $+
 
 ioncorelib-fns.tex: $(TOPDIR)/share/ioncorelib.lua \
 $(TOPDIR)/share/ioncorelib-mplexfns.lua
-	$(LUA) $(TOPDIR)/mkexports.lua -module ioncore -luadoc -o $@ $+
+	$(MKFNTEX) -module ioncore -luadoc -o $@ $+
+
+# Function list
+######################################
+
+fnlist.tex: $(FNTEXES)
+	grep hyperlabel $+ | \
+	sed 's/.*fn:\([^}]*\).*/\\fnlisti{\1}/'|sort -d -f \
+	> $@
