@@ -63,14 +63,13 @@ end
 
 \subsection{Name-based lookups}
 
-If you want to a single region with an exact known name, use
-\fnref{lookup_region}. If you want e.g. a list of all regions,
-use \fnref{complete_region}\code{("")}. Both functions accept an
-optional argument that can be used to specify that the return region(s)
-must be of a more specific type. The convenience functions
-\fnref{lookup_clientwin}, \fnref{lookup_workspace},
-\fnref{complete_clientwin} and \fnref{complete_workspace} are also
-provided.
+If you want to a single non-\type{WClientWin} region with an exact known 
+name, use \fnref{ioncore.lookup_region}. If you want a list of all regions,
+use \fnref{ioncore.region_list}. Both functions accept an optional argument
+that can be used to specify that the returned region(s) must be of a more 
+specific type. Client windows live in a different namespace and for them
+you should use the equivalent functions \fnref{ioncore.lookup_clientwin}
+and \fnref{ioncore.clientwin_list}.
 
 To get the name of an object, use \fnref{WRegion.name}. Please be
 aware, that the names of client windows reflect their titles and
@@ -80,16 +79,18 @@ region, use \fnref{WRegion.set_name}.
 
 \section{Alternative winprop selection criteria}
 
-Ion calls the Lua function \code{get_winprop} to find a winprop
-table for a window. The sole argument to this function is the
-client window. To select winprops by some alternative criterion,
-simply redefine this function. The function \fnref{WClientWin.get_ident}
-can be used to obtain, the class, instance, role and \code{_ION_KLUDGES}
-properties of the window.
+It is possible to write more complex winprop selection routines than
+those described in section \ref{sec:winprops}. To match a particular
+winprop using whatever way you want to, just set the \var{match}
+field of the winprop to a function that receives the client window
+as its sole parameter, and that returns \code{true} if the winprop
+matches, and \code{false} otherwise.
 
-%\section{Sample scripts}
-%\fname{heuristics.lua}
-%\fname{closeorkill.lua}
-
-
+The class, instance and role properties can be obtained with
+\fnref{WClientWin.get_ident}, and the title with \fnref{WRegion.name}.
+If you want to match against (almost) arbitrary window properties,
+have a look at the documentation for the following functions, and
+their standard Xlib counterparts: \fnref{ioncore.x_intern_atom}
+(XInternAtom), \fnref{ioncore.x_get_window_property} (XGetWindowProperty),
+and \fnref{ioncore.x_get_text_property} (XGetTextProperty).
 
