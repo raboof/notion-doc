@@ -82,7 +82,7 @@ Style name & Description \\
 	\code{s} is one of \code{selected}/\code{unselected},
       	\code{t} is one of \code{tagged}/\code{not_tagged},
 	\code{d} is one of \code{dragged}/\code{not_dragged} and 
-	\code{u} is one of \code{urgent}/\code{not_urgent}. \\
+	\code{u} is one of \code{activity}/\code{no_activity}. \\
 \code{frame-tab-ionframe} & A more specific style for \type{WIonFrame}s' 
 	tabs. Substyles as for \code{frame-tab}. \\
 \code{frame-tab-floatframe} & A more specific style for 
@@ -124,7 +124,7 @@ given as argument is register (the default drawing engine is
 simply called ''de''). If the engine could not be found, it
 tries to load a module of the same name. If the engine still
 is not registered, \fnref{gr_select_engine} returns \code{false}
-and in this case we also exit the script style setup script.
+and in this case we also exit the style setup script.
 If the engine was found, \fnref{gr_select_engine} sees that
 further requests for brushes are forwarded to that engine
 and returns \code{true}.
