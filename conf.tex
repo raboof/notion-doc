@@ -706,8 +706,9 @@ local id=_:current():managed_list()[1]:get_ident();
 query_message(_, id.class..'.'..id.instance);
 \end{verbatim}
 
-Role and name can be retrieved similarly (see the documentation
-for \fnref{WClientWin.get_ident}), but may not always be set.
+Role and name can be retrieved similarly (see the documentation for
+\fnref{WClientWin.get_ident} or \fnref{WRegion.name}). Role may not
+always be set.
 
 Finally, it should be mentioned that too many authors these days
 ''forget'' to set this vital identification to anything meaningful:
@@ -806,7 +807,8 @@ closed before the second is displayed.
 We'd like the first dialog to be transient to the main window. The closest
 we can get to that is to consider it transient to the current window (if
 there's one). Unfortunately Firebird does not set any meaningful classes, 
-instances or roles for the windows, so we'll have to rely an ugly title match.
+instances or roles for the windows, so we'll have to rely on an ugly title
+match.
 
 \begin{verbatim}
 winprop{
