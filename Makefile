@@ -9,7 +9,7 @@ L2H=latex2html -show_section_numbers -short_index -local_icons -noaddress \
     -up_url http://iki.fi/tuomov/ion/ -up_title "Ion homepage" -nofootnode\
     -style greyviolet.css
 
-MKFNTEX=$(LUA) $(TOPDIR)/mkexports.lua
+MKFNTEX=$(LUA) $(TOPDIR)/build/mkexports.lua
 
 # Function documentation to build
 ######################################
