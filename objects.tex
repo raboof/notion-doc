@@ -19,6 +19,10 @@ hierarchies. If you do not wish the read the full section, at least
 read the summary at the end of it, so that you understand the very
 basic relations.
 
+For simplicity we consider only the essential-for-basic-configuration
+Ioncore, \file{mod\_ionws} and \file{mod\_query} classes. 
+See Appendix \ref{app:fullhierarchy} for the full class hierachy visible
+to Lua side.
 
 \subsection{Class hierarchy}
 
@@ -29,58 +33,38 @@ In the case of single-inheritance this hierarchy can be expressed as a
 tree where the class at the root is inherited by all others below it
 and so on. Figure \ref{fig:classhierarchy} lists out the Ion class 
 hierarchy and below we explain what features of Ion the classes 
-implement. 
+implement.
 
 \begin{figure}
 \begin{htmlonly}
 \docode % latex2html kludge
 \end{htmlonly}
 \begin{verbatim}
-    WObj
-     |
+    Obj
      |-->WRegion
-     |    |
      |    |-->WClientWin
-     |    |
      |    |-->WWindow
-     |    |    |
      |    |    |-->WRootWin
-     |    |    |
      |    |    |-->WMPlex
-     |    |    |    |
      |    |    |    |-->WScreen
-     |    |    |    |
-     |    |    |    |-->WGenFrame
-     |    |    |         |
-     |    |    |         |-->WIonFrame (ionws module)
-     |    |    |         |
-     |    |    |         |-->WFloatFrame (floatws module)
-     |    |    |
-     |    |    |-->WInput (query module)
-     |    |         |
-     |    |         |-->WEdln (query module)
-     |    |         |
-     |    |         |-->WMessage (query module)
-     |    |
+     |    |    |    |-->WFrame
+     |    |    |-->WInput (mod_query)
+     |    |         |-->WEdln (mod_query)
+     |    |         |-->WMessage (mod_query)
      |    |-->WGenWS
-     |         |
-     |         |-->WIonWS (ionws module)
-     |         |
-     |         |-->WFloatWS (floatws module)
-     |
-     |-->WWsSplit (ionws)
+     |         |-->WIonWS (mod_ionws)
+     |-->WSplit (mod_ionws)
 \end{verbatim}
-\caption{Ion class hierarchy. The string in parenthesis indicates
-  the module in which this class is implemented if not in Ioncore.}
+\caption{Ioncore, \file{mod\_ionws} and \file{mod\_query} class hierarchy.}
 \label{fig:classhierarchy}
 \end{figure}
 
 The core classes:
 
 \begin{description}
-  \item[\type{WObj}]\indextype{WObj}
+  \item[\type{Obj}]\indextype{Obj}
     Is the base of Ion's object system.
-    
+
   \item[\type{WRegion}]\indextype{WRegion}
     is the base class for everything corresponding to something on the
     screen. Each object of type \type{WRegion} has a size and  position
@@ -106,24 +90,23 @@ The core classes:
     such as Xinerama\index{Xinerama} are used. (Actually there
     can be only one \type{WRootWin} when Xinerama is used.)
 	
-  \item[\type{WMPlex}] is again a virtual base class for all regions that
-    ''multiplex'' other regions. This means that of the regions managed by
-    the multiplexer, only one can be displayed at a time. \type{WMPlex}es 
-    include screens and the different types of frames.
+  \item[\type{WMPlex}] is a base class for all regions that''multiplex'' 
+    other regions. This means that of the regions managed by the multiplexer,
+    only one can be displayed at a time. Classes that inhereit \type{WMPlex}
+    include screens and frames.
     
   \item[\type{WScreen}]\indextype{WScreen} is the class for objects
     corresponding to physical screens. Screens may share a root
     window when Xinerama multihead extensions are used as explained
     above.
 
-  \item[\type{WGenFrame}]\indextype{WGenFrame} is another virtual class
-    implementing what is common to the concrete frame classes but not
-    all \type{WMPlex}es. While most Ion's objects have no graphical 
-    presentation, frames are basically the decorations around client
-    windows (borders, tabs).
+  \item[\type{WFrame}]\indextype{WFrame} is the class for frames.
+    While most Ion's objects have no graphical presentation, frames basically
+    add to \type{WMPlex}es the decorations around client windows 
+    (borders, tabs).
 
-  \item[\type{WGenWS}]\indextype{WGenWS} is a light virtual base class
-    for different types of workspaces.
+  \item[\type{WGenWS}]\indextype{WGenWS} is a light base class for
+    different types of workspaces.
 \end{description}
 
 
@@ -132,22 +115,8 @@ Classes implemented by the ionws module:
 \begin{description}
   \item[\type{WIonWS}]\indextype{WIonWS} is the class for the
     usual tiled workspaces.
-  \item[\type{WIonFrame}]\indextype{WIonFrame} implements the
-    style of frames seen on \type{WIonWS}s.
-  \item[\type{WWsSplit}]\indextype{WWsSplit} is an object internal to
-    \type{WIonWS} implementation and stores the tree structure of the
-    workspaces.
-\end{description}
-
-
-Classes implemented by the floatws module:
-
-\begin{description}
-  \item[\type{WFloatWS}]\indextype{WFloatWS} is the class for the
-    conventional workspaces where frames and other objects are
-    allowed to ''float'' around.
-  \item[\type{WFloatFrame}]\indextype{WIonFrame} implements the
-    frames seen on \type{WFloatWS}s decorated in the PWM style.
+  \item[\type{WSplit}]\indextype{WSplit} (or, more specifically, classes
+    that inherit it) encode the \type{WIonWS} tree structure.
 \end{description}
 
 
@@ -183,17 +152,11 @@ Figure \ref{fig:parentship}.
 \end{htmlonly}
 \begin{verbatim}
     WRootWins
-     |
      |-->WScreens
-          |
-          |-->WIonWS:s and WFloatWS:s
-          |
+          |-->WIonWSs
           |-->WClientWins in full screen mode
-          |
-          |-->WIonFrames and WFloatFrames
-               |
+          |-->WFrames
                |-->WClientWins, including transients
-               |
                |-->a possible WEdln or WMessage
 \end{verbatim}
 \caption{Most common parent--child relations}
@@ -217,39 +180,23 @@ but all have a parent--a screen if not anything else.
 \end{htmlonly}
 \begin{verbatim}
     WRootWins
-     |
      |-->WScreens
-          |
           |-->full screen WClientWins
-          |    |
           |    |-->transient WClientWins (dialogs)
-          |
           |-->WIonWSs
-          |    |
-          |    |-->WIonFrames
-          |         |
-          |         |-->WClientWins
-          |         |    |
-          |         |    |-->transient WClientWins (dialogs)
-          |         |
-          |         |-->a possible WEdln or WMessage
-          |
-          |-->WFloatWSs
-               |
-               |-->WFloatFrames
-                    |
+               |-->WFrames
                     |-->WClientWins
-                    |
-                    |-->a possible WEdln or WMessage
+                    |    |-->transient WClientWins (dialogs)
+                    |-->possibly a WEdln or WMessage
 \end{verbatim}
 \caption{Most common manager--managed relations}
 \label{fig:managership}
 \end{figure}
 
-Note how the \type{WClientWin}s managed by \type{WFloatFrame}s don't have
-transients managed by them. This is because WFloatWSs choose to handle
-transients differently (transients are put in separate frames like normal
-windows).
+%Note how the \type{WClientWin}s managed by \type{WFloatFrame}s don't have
+%transients managed by them. This is because WFloatWSs choose to handle
+%transients differently (transients are put in separate frames like normal
+%windows).
 
 \subsection{Summary}
 
@@ -263,16 +210,8 @@ consideration:
     windows. Only one of them can be viewed at a time.
     Workspace classes are \type{WIonWS} and \type{WFloatWS} 
     for the two different types of workspaces (and \type{WGenWS}).
-  \item Frames are put on workspaces. Frames are the objects with 
+  \item Frames are managed by workspaces. Frames are the objects with 
     decorations such as tabs and borders.
-    Different frame classes are \type{WIonFrame} and \type{WFloatFrame}
-    for the two types of frames. The common base class, the features and
-    bindings of which both of these inherit is \type{WGenFrame}. 
-    
-    Workspace of type \type{WIonWS} tile \type{WIonFrame}s while
-    workspaces of type \type{WFloatWS} contain \type{WFloatFrames}
-    on a more traditional freely-floating fashion.
-
   \item Frames contain (multiplex) client windows, to each of which
     corresponds a tab in the frame's decoration. Only one client
     window (or other object) can be shown at a time in each frame.

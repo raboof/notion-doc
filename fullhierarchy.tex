@@ -1,0 +1,46 @@
+\chapter{Full class hierarchy visible to Lua-side}
+
+%\begin{figure}
+%\begin{htmlonly}
+%\docode % latex2html kludge
+%\end{htmlonly}
+{\small
+\begin{verbatim}
+    Obj
+     |-->WHook
+     |-->WTimer
+     |-->WMoveresMode
+     |-->WMgmtMode (mod_mgmtmode)
+     |-->WRegion
+     |    |-->WClientWin
+     |    |-->WWindow
+     |    |    |-->WRootWin
+     |    |    |-->WMPlex
+     |    |    |    |-->WScreen
+     |    |    |    |-->WFrame
+     |    |    |         |-->WFloatFrame (mod_floatws)
+     |    |    |         |-->WScratchpad (mod_statusbar)
+     |    |    |-->WInfoWin
+     |    |    |    |-->WStatusBar (mod_statusbar
+     |    |    |-->WMenu (mod_menu)
+     |    |    |-->WInput (mod_query)
+     |    |         |-->WEdln (mod_query)
+     |    |         |-->WMessage (mod_query)
+     |    |
+     |    |-->WGenWS
+     |         |-->WIonWS (mod_ionws)
+     |         |    |-->WPaneWS (mod_ionws)
+     |         |-->WFloatWS (floatws module)
+     |-->WSplit (mod_ionws)
+          |-->WSplitInner (mod_ionws)
+          |    |-->WSplitSplit
+          |    |    |-->WSplitFloat (mod_ionws)
+          |    |-->WSplitPane (mod_panews)
+          |-->WSplitRegion (mod_ionws)
+               |-->WSplitUnused (mod_panews)
+\end{verbatim}
+}
+%\caption{Full Ioncore and most common modules' class hierarchy
+%  visible to Lua side.}
+%\label{fig:fullclasshierarchy}
+%\end{figure}
