@@ -10,7 +10,7 @@ loaded prior to defining any module-specific bindings.
 Bindings are defined by calling the function 
 \fnrefx{ioncore}{defbindings} with the ''context'' of the
 bindings and the a table of new bindings to make. The context is simply
-string indicating one of the classes of regions (or a modes such as
+string indicating one of the classes of regions (or modes such as
 \type{WMoveresMode}) introduced in section \ref{sec:objects}, and fully
 listed in appendix \ref{app:fullhierarchy}, although not all define
 a binding map. For example, the following skeleton would be used to 
@@ -49,7 +49,7 @@ gets to handle the action.
 
 \subsection{Binding handlers and special variables}
 
-Unlike in Ion2, in Ion3 binding handlers are not normally passed as as
+Unlike in Ion2, in Ion3 binding handlers are not normally passed as
 ''anonymous functions'', although this is still possible. The preferred
 method now is to pass the code of the handler as a string. Two special 
 variables are available in this code. These are
@@ -63,7 +63,7 @@ variables are available in this code. These are
       defining the binding. \\
     \code{_sub} &
       Usually, the currently active child of the 
-      object referenced by \code{_}, but sometimes (e.g. mouse actions
+      object referred to by \code{_}, but sometimes (e.g. mouse actions
       on tabs of frames) something else relevant to the action triggering
       the binding. \\
 \end{tabularx}
@@ -116,7 +116,7 @@ and as explained in the reference, \fnref{kpress_wait} is simply
 \fnref{kpress} with a flag set instructing Ioncore wait for all
 modifiers to be released before processing any further actions.
 This is to stop one from accidentally calling e.g.
-\fnref{WRegion.close} multiple times in a row. The \fnref{submap}
+\fnref{WRegion.rqclose} multiple times in a row. The \fnref{submap}
 function is used to define submaps or ''prefix maps''. The second
 argument to this function is table listing the key press actions
 (\fnref{kpress}) in the submap
