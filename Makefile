@@ -9,7 +9,6 @@ L2H=latex2html -show_section_numbers -short_index -local_icons -noaddress \
     -up_url http://iki.fi/tuomov/ion/ -up_title "Ion homepage" -nofootnode\
     -style greyviolet.css
 
-MKFNTEX=$(LUA) $(TOPDIR)/build/mkexports.lua
 
 # Function documentation to build
 ######################################
@@ -107,32 +106,32 @@ realclean: clean
 # Function reference rules
 ######################################
 
-ioncore-fns.tex: $(TOPDIR)/ioncore/*.c $(TOPDIR)/ioncore/*.lua $(TOPDIR)/luaextl/*.c
-	$(MKFNTEX) -module ioncore -mkdoc -o $@ $+
+ioncore-fns.tex: $(TOPDIR)/ioncore/*.c $(TOPDIR)/ioncore/*.lua
+	$(MKEXPORTS) -module ioncore -mkdoc -o $@ $+
 
 mod_ionws-fns.tex: $(TOPDIR)/mod_ionws/*.c
-	$(MKFNTEX) -module mod_ionws -mkdoc -o $@ $+
+	$(MKEXPORTS) -module mod_ionws -mkdoc -o $@ $+
 
 mod_floatws-fns.tex: $(TOPDIR)/mod_floatws/*.c
-	$(MKFNTEX) -module mod_floatws -mkdoc -o $@ $+
+	$(MKEXPORTS) -module mod_floatws -mkdoc -o $@ $+
 
 mod_panews-fns.tex: $(TOPDIR)/mod_panews/*.c $(TOPDIR)/mod_panews/mod_panews.lua
-	$(MKFNTEX) -module mod_panews -mkdoc -o $@ $+
+	$(MKEXPORTS) -module mod_panews -mkdoc -o $@ $+
 
 mod_query-fns.tex: $(TOPDIR)/mod_query/*.c $(TOPDIR)/mod_query/mod_query.lua
-	$(MKFNTEX) -module mod_query -mkdoc -o $@ $+
+	$(MKEXPORTS) -module mod_query -mkdoc -o $@ $+
 
 mod_menu-fns.tex: $(TOPDIR)/mod_menu/*.c $(TOPDIR)/mod_menu/mod_menu.lua
-	$(MKFNTEX) -module mod_menu -mkdoc -o $@ $+
+	$(MKEXPORTS) -module mod_menu -mkdoc -o $@ $+
 
 mod_dock-fns.tex: $(TOPDIR)/mod_dock/*.c
-	$(MKFNTEX) -module mod_dock -mkdoc -o $@ $+
+	$(MKEXPORTS) -module mod_dock -mkdoc -o $@ $+
 
 mod_sp-fns.tex: $(TOPDIR)/mod_sp/*.c
-	$(MKFNTEX) -module mod_sp -mkdoc -o $@ $+
+	$(MKEXPORTS) -module mod_sp -mkdoc -o $@ $+
 
 de-fns.tex: $(TOPDIR)/de/*.c
-	$(MKFNTEX) -module de -mkdoc -o $@ $+
+	$(MKEXPORTS) -module de -mkdoc -o $@ $+
 
 # Function list
 ######################################
