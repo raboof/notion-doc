@@ -88,8 +88,8 @@ floatws-exports.tex: $(TOPDIR)floatws/*.c
 query-exports.tex: $(TOPDIR)query/*.c
 	$(LUA) $(TOPDIR)/mkexports.lua -module query -mkdoc -o $@ $+
 
-querylib-fns.tex: $(TOPDIR)etc/querylib.lua
+querylib-fns.tex: $(TOPDIR)share/querylib.lua
 	$(LUA) $(TOPDIR)/mkexports.lua -module query -luadoc -o $@ $+
 
-ioncorelib-fns.tex: $(TOPDIR)etc/ioncorelib.lua
+ioncorelib-fns.tex: $(TOPDIR)share/ioncorelib.lua
 	$(LUA) $(TOPDIR)/mkexports.lua -module query -luadoc -o $@ $+

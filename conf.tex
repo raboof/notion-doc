@@ -97,21 +97,27 @@ The rest of the configuration files are as follows:
     these.
 \end{tabularx}
 
-In addition to these files, the stock configuration file directory also
-lists the files \file{ioncorelib.lua}, \file{querylib.lua} and
-\file{compat.lua}. The first two of these are essential pieces of Lua code
-and users who only want to change a few settings should not need to modify
-these files.
+Some of the files contain references to the file \file{querylib.lua}.
+This file is installed in
+\code{SHAREDIR}\index{SHAREDIR@\code{SHAREDIR}}
+(\file{/usr/local/ion-devel/share/ion-devel/} by default)
+among some other other \file{.lua} files that are an essential part of
+Ion's code. Users who only want to change a few settings should not
+need to modify the files in this directory. Nevertheless, it is
+possible to override the files in \code{SHAREDIR} as it is on the search
+path after \code{\~/.ion-devel} and \code{ETCDIR}.
 
-The third, \file{compat.lua}, contains some wrapper functions for backwards
-compatibility to make the process of updating Ion a little less painfull.
-If you have have modified configuration files that use some features no
-longer available in the latest Ion, you may just load this file (with
-\code{include("compat.lua")} at the beginning of \file{ioncore.lua}, for
-example) instead of immediately updating your configuration files. However,
-the wrappers will be removed eventually  (maybe about two months after adding
-them depending on the rate of new releases) so you should nevertheless update
-your configuration files before this happens.
+There is one extra file in \code{SHAREDIR} that you may find usefull and
+that is not loaded by default. This is \file{compat.lua} and it contains
+some wrapper functions for backwards compatibility to make the process of
+updating Ion a little less painfull. If you have have modified configuration
+files that use some features no longer available in the latest Ion, you may
+just load this file (with \code{include("compat.lua")} at the beginning of
+\file{ioncore.lua}, for example) instead of immediately updating your
+configuration files. However, the wrappers will be removed eventually
+(maybe about two months after adding them depending on the rate of new
+releases) so you should nevertheless update your configuration files before
+this happens.
 
 \section{Keys and rodents}
 \label{sec:bindings}
