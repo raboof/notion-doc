@@ -8,40 +8,46 @@ files and how to write more complex extensions in Lua, the lightweight
 configuration and scripting language used by Ion. 
 
 Reader unfamiliar with Lua is advised to first glance at the Lua manual
-at \url{http://www.lua.org/docs.html} and perhaps some tutorial pages at
-the lua-users wiki, \url{http://lua-users.org/wiki/LuaTutorial}.
+at 
+
+\centerurl{http://www.lua.org/docs.html}
+
+and perhaps some tutorial pages at the lua-users wiki:
+
+\centerurl{http://lua-users.org/wiki/LuaTutorial}
 
 Back in this document, first in chapter \ref{chap:prelim} some key
-concepts and relations are explained. These include Ion's object and
-class hierarchies are. While it might not at first occur that knowing
-such things would be necessary to \emph{configure} a program, this 
-material is essential because of the object-oriented nature of most 
-of Ion's scripting interface.
+concepts and relations are explained. These include the module system
+and Ion's object and class hierarchies. While it might not at first 
+occur that knowing such things would be necessary to \emph{configure} 
+a program, this  material is essential because of the object-oriented 
+nature of most of Ion's scripting interface.
 
 The new user, fed up with the default key bindings and eager to just
 quickly configure Ion to his liking may question the reasons for 
 exposing the ''heavy'' internal OO structure in the scripting and
 configuration interface. I'm not the one to  blame him for that. 
-Sure it would be easier for new users to  configure Ion to the liking
-if a consistently simpler configuration interface was provided. Such an
+Sure it would be easier for new users to configure Ion to their liking
+if a simpler binding configuration interface was provided. Such an
 interface would, however, also be far more limited or at least make 
 writing extensions more complicated and the advantages from using a 
 real scripting language would be partly lost. One more advantage from
 a rich scripting and configuration interface is that it allows 
 implementing scripts to read alternate configuration file formats,
-one that could be e.g. modified by external configuration tools. 
+ones that could be, for example, modified by external configuration tools. 
 
 In chapter \ref{chap:config} the very basic Ion configuration know-how
-is provided. The different configuration files and their locations
+is provided. All the different configuration files and their locations
 are explained and instructions are given to allow the reader to
-configure bindings and so-called ''winprops''.  Chapter \ref{chap:gr}
+configure bindings and so-called ''winprops''. Chapter \ref{chap:gr}
 explains the notion of drawing engines and graphical styles and how to
 write new looks for Ion and more advanced aspects of Ion's scripting 
 interface are documented in chapter \ref{chap:tricks} (a work in 
 progress).
 
 Finally, most of the functions provided by Ion's scripting interface
-are listed and documented in the Function reference in 
-chapter \ref{sec:exports}.
+are listed and documented in the Function reference in chapter
+\ref{sec:exports}. At the end of the document is an alphabetical
+listing of all these functions.
 
 
