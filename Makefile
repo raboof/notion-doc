@@ -9,10 +9,9 @@ L2H=latex2html -show_section_numbers -short_index -local_icons -noaddress \
     -up_url http://iki.fi/tuomov/ion/ -up_title "Ion homepage" -nofootnode\
     -style greyviolet.css
 
-FNTEXES=ioncore-exports.tex ionws-exports.tex floatws-exports.tex \
-	query-exports.tex querylib-fns.tex ioncorelib-fns.tex \
-	delib-fns.tex de-exports.tex menu-exports.tex \
-	menulib-fns.tex dock-exports.tex
+FNTEXES=ioncore-fns.tex ionwsmod-fns.tex floatwsmod-fns.tex \
+	querymod-fns.tex querylib-fns.tex ioncorelib-fns.tex \
+	de-fns.tex menumod-fns.tex menulib-fns.tex dockmod-fns.tex
 
 MKFNTEX=$(LUA) $(TOPDIR)/mkexports.lua
 
@@ -86,39 +85,36 @@ clean:
 # Function reference rules
 ######################################
 
-ioncore-exports.tex: $(TOPDIR)/ioncore/*.c $(TOPDIR)/luaextl/*.c
+ioncore-fns.tex: $(TOPDIR)/ioncore/*.c $(TOPDIR)/luaextl/*.c
 	$(MKFNTEX) -module ioncore -mkdoc -o $@ $+
 
-ionws-exports.tex: $(TOPDIR)/ionws/*.c
-	$(MKFNTEX) -module ionws -mkdoc -o $@ $+
+ionwsmod-fns.tex: $(TOPDIR)/ionws/*.c
+	$(MKFNTEX) -module ionwsmod -mkdoc -o $@ $+
 
-floatws-exports.tex: $(TOPDIR)/floatws/*.c
-	$(MKFNTEX) -module floatws -mkdoc -o $@ $+
+floatwsmod-fns.tex: $(TOPDIR)/floatws/*.c
+	$(MKFNTEX) -module floatwsmod -mkdoc -o $@ $+
 
-de-exports.tex: $(TOPDIR)/de/*.c
+de-fns.tex: $(TOPDIR)/de/*.c
 	$(MKFNTEX) -module de -mkdoc -o $@ $+
 
-menu-exports.tex: $(TOPDIR)/menu/*.c
-	$(MKFNTEX) -module menu -mkdoc -o $@ $+
+menumod-fns.tex: $(TOPDIR)/menu/*.c
+	$(MKFNTEX) -module menumod -mkdoc -o $@ $+
 
-dock-exports.tex: $(TOPDIR)/dock/*.c
-	$(MKFNTEX) -module menu -mkdoc -o $@ $+
+dockmod-fns.tex: $(TOPDIR)/dock/*.c
+	$(MKFNTEX) -module dockmod -mkdoc -o $@ $+
 
-query-exports.tex: $(TOPDIR)/query/*.c
-	$(MKFNTEX) -module query -mkdoc -o $@ $+
+querymod-fns.tex: $(TOPDIR)/query/*.c
+	$(MKFNTEX) -module querymod -mkdoc -o $@ $+
 
 querylib-fns.tex: $(TOPDIR)/query/querylib.lua
-	$(MKFNTEX) -module query -luadoc -o $@ $+
-
-delib-fns.tex: $(TOPDIR)/de/delib.lua
-	$(MKFNTEX) -module de -luadoc -o $@ $+
+	$(MKFNTEX) -module querylib -luadoc -o $@ $+
 
 menulib-fns.tex: $(TOPDIR)/menu/menulib.lua
-	$(MKFNTEX) -module menu -luadoc -o $@ $+
+	$(MKFNTEX) -module menulib -luadoc -o $@ $+
 
 ioncorelib-fns.tex: $(TOPDIR)/share/ioncorelib.lua \
-$(TOPDIR)/share/ioncorelib-mplexfns.lua
-	$(MKFNTEX) -module ioncore -luadoc -o $@ $+
+$(TOPDIR)/share/ioncorelib-*.lua
+	$(MKFNTEX) -module ioncorelib -luadoc -o $@ $+
 
 # Function list
 ######################################
