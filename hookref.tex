@@ -74,6 +74,16 @@ reg:attach(cwin)
 
 
 \begin{function}
+    \index{ioncore-sigchld-hook@\code{ioncore_sigchld_hook}}
+    \hookname{ioncore_sigchld_hook}
+    \hookparams{integer}
+    \begin{funcdesc}
+      Called when a child process has exited. The parameter
+      is the PID of the process.
+    \end{funcdesc}
+\end{function}
+
+\begin{function}
     \index{ioncore-deinit-hook@\code{ioncore_deinit_hook}}
     \hookname{ioncore_deinit_hook}
     \hookparams{()}
