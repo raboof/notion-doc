@@ -1,0 +1,240 @@
+\section{Winprops}
+\label{sec:winprops}
+
+The so-called ''winprops''\index{Winprops} can be used to change how
+specific windows are handled and to set up some kludges to deal with
+badly behaving applications. They are defined by calling the function
+\code{defwinprop} with a table containing the properties to set and the
+necessary information to identify a window. The currently supported
+winprops are listed table \ref{tab:winprops}, and the following
+subsection subsections explain the usual method of identifying windows,
+and how to obtain this information.
+
+\begin{table}
+\begin{htmlonly}
+\docode % latex2html kludge
+\end{htmlonly}
+\caption{Supported winprops}
+\label{tab:winprops}
+
+\index{switchto@\var{switchto}!winprop}
+\index{jumpto@\var{jumpto}!winprop}
+\index{transient-mode@\var{transient_mode}!winprop}
+\index{target@\var{target}!winprop}
+\index{transparent@\var{transparent}!winprop}
+\index{acrobatic@\var{acrobatic}!winprop}
+\index{max-size@\var{max_size}!winprop}
+\index{aspect@\var{aspect}!winprop}
+\index{ignore-resizeinc@\var{ignore_resizeinc}}
+\index{fullscreen@\var{fullscreen}}
+\index{ignore-cfgrq@\var{ignore_cfgrq}}
+\index{transients-at-top@\var{transients_at_top}}
+
+\begin{tabularx}{\textwidth}{llX}
+    \hline
+    Property & Type & Description\\\hline
+    \var{switchto} &
+    	boolean &
+        Should a newly mapped client window be switched to within
+        its frame. \\
+    \var{jumpto} &
+    	boolean &
+        Should a newly created client window always be made
+        active, even if the allocated frame isn't. \\
+    \var{transient_mode} &
+  	string &
+    	"normal": No change in behaviour. "current": The window
+	should be thought of as a transient for the current active
+	client window (if any) even if it is not marked as a
+	transient by the application. "off": The window should be
+	handled as a normal window even if it is marked as a
+	transient by the application. \\
+    \var{target} &
+    	string &
+    	The name of an object (workspace, frame) that should manage 
+	windows of this type. \\
+    \var{transparent} &
+    	boolean &
+    	Should frames be made transparent when this window is selected? \\
+    \var{acrobatic} &
+    	boolean &
+    	Set this to \code{true} for Acrobat Reader. It has an annoying
+	habit of trying to manage its dialogs instead of setting them as
+	transients and letting the window manager do its job, causing
+	Ion and acrobat go a window-switching loop when a dialog is
+	opened. \\
+    \var{max_size} &
+    	table &
+        The table should contain the entries \var{w} and \var{h} that
+	override application-supplied maximum size hint. \\
+    \var{aspect} &
+    	table &
+        The table should contain the entries \var{w} and \var{h} that
+	override application-supplied aspect ratio hint. \\
+    \var{ignore_resizeinc} &
+    	boolean &
+    	Should application supplied size increments be ignored? \\
+    \var{fullscreen} &
+    	boolean &
+    	Should the window be initially in full screen mode? \\
+    \var{ignore_cfgrq} &
+    	boolean &
+    	Should configure requests on the window be ignored?
+	Only has effect on windows on floatws:s. \\
+    \var{transients_at_top} &
+    	boolean &
+    	When transients are managed by the client window itself (as it
+	is the case on tiled workspaces), should the transients be
+	placed at the top of the window instead of bottom? \\
+\end{tabularx}
+\end{table}
+
+
+\subsection{Classes, roles and instances}
+\label{sec:classesrolesinstances}
+
+The identification information in the winprop specification is usually the
+\var{class}\index{class@\var{class}!winprop},
+\var{role}\index{role@\var{role}!winprop},
+\var{instance}\index{instance@\var{instance}!winprop} and
+\var{name}
+of the window. The \var{name} field is a Lua-style regular expression
+matched against the window's title and the rest are strings that must
+exactly much the corresponding window information. It is not necessary
+to specify all of these fields.
+
+Ion looks for a matching winprop in the order listed by the following
+table. An 'E' indicates that the field must be set in the winprop
+and it must match the window's corresponding property exactly or, in
+case of \var{name}, the regular expression must match the window
+title. An asterisk '*' indicates that a winprop where the field is
+not specified (or is itself an asterisk in case of the first three
+fields) is tried.
+
+\begin{center}
+\begin{tabular}{llll}
+\hline
+\var{class} & \var{role} & \var{instance} & \var{name} \\
+\hline
+  E	       & E          & E              & E \\
+  E	       & E          & E              & * \\
+  E	       & E          & *              & E \\
+  E	       & E          & *              & * \\
+  E	       & *          & E              & E \\
+  E	       & *          & E              & * \\
+  E	       & *          & *              & E \\
+  \vdots       & \vdots     & \vdots         & etc. \\
+\end{tabular}
+\end{center}
+
+If there are multiple winprops with other identification information 
+the same but different \var{name}, the longest match is chosen.
+
+\subsection{Finding window identification with \command{xprop}}
+
+\index{xprop}
+To get the identification information required for winprops, in case of
+normally framed windows you may use the command \command{xprop WM_CLASS} 
+and click on the particular window of interest. The class is the latter of
+the strings while the instance is the former. To get the role -- few windows
+have this property -- use the command \command{xprop WM_ROLE}.
+
+\index{transient}
+So-called ''transient windows'' are usually short-lived dialogs (although
+some programs abuse this property) that have a parent window that they are
+''transient for''. On tiled workspaces Ion displays these windows 
+simulatenously with the parent window at the bottom of the same frame.
+Unfortunately \command{xprop} is stupid and can't cope with this situation,
+returning the parent window's properties when the transient is clicked on.
+For this reason you'll have to do a little extra work to get the properties
+for that window.\footnote{There's a patch to \command{xprop} to
+fix this, but nothing seems to be happening with respect to including it in 
+XFree86.}
+
+If you can guess the title of the transient, the simplest solution
+is to use the \key{Mod1+A} query (\fnref{querylib.query_attachclient})
+to attach it directly to a frame. Another easy solution is to create
+a \type{WFloatWS} and run the program for this once. A little more
+complicated solution is to run the following code in the \key{Mod1+F3}
+(\fnref{querylib.query_lua)} Lua code execution query, assuming there's
+only one transient (all on one line):
+
+\begin{verbatim}
+local id=_:current():managed_list()[1]:get_ident();
+mod_query.message(_, id.class..'.'..id.instance);
+\end{verbatim}
+
+Role and name can be retrieved similarly (see the documentation for
+\fnref{WClientWin.get_ident} or \fnref{WRegion.name}). Role may not
+always be set.
+
+Finally, it should be mentioned that too many authors these days
+''forget'' to set this vital identification to anything meaningful:
+everything except name is the same for all of the programs's 
+windows, for example.
+
+The winprops currently supported by Ion are listed in 
+table \ref{tab:winprops}.
+
+\subsection{Some common examples}
+
+\subsubsection{Acrobat Reader}
+
+The following is absolutely necessary for Acrobat reader:
+
+\begin{verbatim}
+defwinprop{
+    class = "AcroRead",
+    instance = "documentShell",
+    acrobatic = true,
+}
+\end{verbatim}
+
+\subsubsection{Fixing a Mozilla Firebird transient}
+
+Mozilla Firebird (0.7) incorrectly does not set the \code{WM_TRANSIENT_FOR} 
+property for the dialog that is used to ask the action to take for a file.
+It, however, sets the the property point to the main window for the save
+dialog. This can be annoying and confusing, as the first dialog is not 
+closed before the second is displayed.
+
+We'd like the first dialog to be transient to the main window. The closest
+we can get to that is to consider it transient to the current window (if
+there's one). Unfortunately Firebird does not set any meaningful classes, 
+instances or roles for the windows, so we'll have to rely on an ugly title
+match.
+
+\begin{verbatim}
+defwinprop{
+    class = "MozillaFirebird-bin",
+    name = "Opening .*",
+    transient_mode = "current",
+}
+\end{verbatim}
+
+\subsubsection{Forcing newly created windows in named frames}
+
+The following winprop should place xterm started with command-line parameter
+\mbox{\code{-name sysmon}} and running a system monitoring program in a
+particular frame:
+\begin{verbatim}
+defwinprop{
+    class = "XTerm",
+    instance = "sysmon",
+    target = "sysmonframe",
+}
+\end{verbatim}
+
+For this example to work, we have to somehow create a frame named
+\code{sysmonframe}. One way to do this is to make the following
+call in the \key{Mod1+F3} Lua code query:
+
+\begin{verbatim}
+mod_query.query_renameframe(_)
+\end{verbatim}
+
+Recall that \code{_} points to the multiplexer (frame or screen) in which 
+the query was opened. Running this code should open a new query prefilled
+with the current name of the frame. In our example we would change the 
+name to \code{sysmonframe}, but we could just as well have used the 
+default name formed from the frame's class name and an instance number.

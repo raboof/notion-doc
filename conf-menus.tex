@@ -1,0 +1,120 @@
+\section{Menus}
+\label{sec:menus}
+
+\subsection{Defining menus}
+
+\index{menus}
+\index{defmenu@\code{defmenu}}
+\index{menuentry@\code{menuentry}}
+\index{submenu@\code{submenu}}
+In the stock configuration file setup, menus are defined in the file
+\file{cfg\_menus.lua} as previously mentioned. The \file{mod\_menu} module
+must be loaded for one to be able to define menus, and this is done with
+the function \fnrefx{mod_menu}{defmenu} provided by it.
+
+Here's an example of the definition of a rather simple menu with a submenu:
+
+\begin{verbatim}
+defmenu("exitmenu", {
+    menuentry("Restart", "ioncore.restart()"),
+    menuentry("Exit", "ioncore.shutdown()"),
+})
+
+defmenu("mainmenu", {
+    menuentry("Lock screen", "ioncore.exec('xlock')"),
+    menuentry("Help", "mod_query.query_man(_)"),
+    submenu("Exit", "exitmenu"),
+})
+\end{verbatim}
+
+
+The \fnrefx{mod_menu}{menuentry} function is used to create an entry in the 
+menu with a title and an entry handler to be called when the menu entry
+is activated. The parameters to the handler are similar to those of binding
+handlers, and usually the same as those of the binding that opened the menu.
+
+The \fnrefx{mod_menu}{submenu} function is used to insert a submenu at that 
+point in the menu. (One could as well just pass a table with the menu
+entries, but it is not encouraged.)
+
+\subsection{Special menus}
+
+The menu module predefines the following special menus. These can be used
+just like the menus defined as above.
+
+\begin{tabularx}{\linewidth}{lX}
+    \hline
+    Menu name & Description \\
+    \hline
+    \code{windowlist} & 
+    List of all client windows. Activating an entry jumps to that window. \\
+    \code{workspacelist} & 
+    List of all workspaces. Activating an entry jumps to that workspaces. \\
+    \code{stylemenu} &
+    List of available \file{look-*.lua} style files. Activating an entry
+    loads that style and ask to save the selection. \\
+    \code{ctxmenu} &
+    Context menu for given object. \\
+\end{tabularx}
+
+
+\subsection{Defining context menus}
+
+The ''ctxmenu'' is a special menu that is assembled from a defined context
+menu for the object for which the menu was opened for, but also includes
+the context menus for the manager objects as submenus.
+
+Context menus for a given region class are defined with the
+\fnrefx{mod_menu}{defctxmenu} function. This is other ways similar to
+\fnrefx{mod_menu}{defmenu}, but the first argument instead being the name
+of the menu, the name of the region class to define context menu for.
+For example, here's part of the stock \type{WFrame} context menu 
+definition:
+
+\begin{verbatim}
+defctxmenu("WFrame", {
+    menuentry("Close", "WRegion.rqclose_propagate(_, _sub)"),
+    menuentry("Kill",  "WClientWin.kill(_sub)", "_sub:WClientWin"),
+})
+\end{verbatim}
+
+
+\subsection{Displaying menus}
+\label{sec:menudisp}
+
+The following functions may be used to display menus from binding
+handlers (and elsewhere):
+
+\begin{tabularx}{\linewidth}{lX}
+    \hline
+    Function & Description \\
+    \hline
+    \fnref{mod_menu.menu} &
+      Keyboard (or mouse) operated menus that open in the bottom-left corner
+      of a screen or frame. \\
+    \fnref{mod_menu.bigmenu} &
+      Same as previous, but uses another graphical style. \\
+    \fnref{mod_menu.pmenu} &
+      Mouse-operated drop-down menus. This function can only be called from a
+      mouse press or drag handler. \\
+    \fnref{mod_menu.grabmenu} &
+      A special version of \fnref{mod_menu.menu} that grabs the keyboard
+      and is scrolled with a given key until all modifiers have been released,
+      after which the selected entry is activated. This function is meant to 
+      be used for implementing, for example, Win***s-style \key{Alt-Tab} 
+      handling.\footnote{See the \file{wcirculate.lua} script in the Ion 
+        scripts repository \url{http://iki.fi/tuomov/repos/ion-scripts-3/}.} \\
+\end{tabularx}
+
+The \fnrefx{mod_menu}{grabmenu} function takes the extra key parameter, but
+aside from that each of these functions takes three arguments, which when
+called from a binding handler, should be the parameters to the handler, and
+the name of the menu. For example, the following snippet of of code binds
+the both ways to open a context menu for a frame:
+
+\begin{verbatim}
+defbindings("WFrame", {
+    kpress(MOD1.."M", "mod_menu.menu(_, _sub, 'ctxmenu')"),
+    mpress("Button3", "mod_menu.pmenu(_, _sub, 'ctxmenu')"),
+})
+\end{verbatim}
