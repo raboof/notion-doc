@@ -1,7 +1,7 @@
 # Settings
 ######################################
 
-TOPDIR=/home/tuomov/coding/i-safelua/
+TOPDIR=/home/tuomov/coding/ion/
 include $(TOPDIR)/system-inc.mk
 
 L2H=latex2html -show_section_numbers -short_index -local_icons -noaddress \
@@ -67,7 +67,7 @@ ionnotes-all: ionnotes-dvi-full ionnotes-html
 
 all: ionconf-all ionnotes-all
 
-all-ps: ionconf.pdf ionnotes.pdf
+all-ps: ionconf.ps ionnotes.ps
 
 all-pdf: ionconf.pdf ionnotes.pdf
 
