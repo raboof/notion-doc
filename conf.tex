@@ -153,6 +153,11 @@ gets to handle the action.
 
 \subsection{The binding setup functions}
 
+This section simply lists out the different binding setup functions
+Ioncore and the modules provide and does not even attempt to describe
+how to use these functions; for that refer to \ref{sec:binddef} and
+following sections.
+
 \subsubsection{Ioncore binding setup functions}
 
 The following binding setup functions are defined by the ioncore
@@ -263,10 +268,10 @@ from the file \file{query.lua}.
 \subsection{Defining the bindings}
 \label{sec:binddef}
 
-Each of the functions given above has a single argument: a table
-listing other tables describing the bindings. While it is possible
-to directly construct these tables, the following convenience
-functions are provided. 
+Each of the functions listed above has a single argument: a table listing
+the key presses and other actions to be bound to functions. The descriptions
+of individual bindings in this table are also tables that can be more 
+conveniently constructed with the following functions:
 
 Key presses:
 \begin{itemize}
@@ -294,8 +299,9 @@ could use \code{submap(keyspec, \{ ... \})}.
 
 The parameters \var{keyspec} and \var{buttonspec} are explained below
 in detail. The parameter \var{func} is the handler for the binding.
-It should expect as parameter(s) objects the types of which depend
-on the context as defined in the above table.
+It is a reference to a function that should expect as parameter(s)
+objects of the type defined in the above tables depending on which 
+binding  setup function this binding definition is being passed to.
 
 The optional string parameter \var{area} may be used to specify a more
 precise location where the mouse action should occur for the binding to
@@ -305,6 +311,37 @@ support any meaningfull values for this parameter. The allowed values
 are in this case
 \code{"border"}, \code{"tab"}, \code{"empty_tab"}, \code{"client"} and
 \code{nil} (for the whole frame).
+
+\subsection{An example}
+
+For example, to just bind the key \key{Mod1+1} to switch to the first
+workspace and \key{Mod1+n} to the next workspace, you would make the
+following call
+\begin{verbatim}
+global_bindings{
+    kpress("Mod1+n", WScreen.switch_nth),
+    kpress("Mod1+1", function (scr) scr:switch_nth(1) end),
+}
+\end{verbatim}
+
+Recall that \code{global_bindings\{...\}} is syntactical sugar for
+the more cumbersome
+\code{global_bindings(\{...\})}.
+
+The first definition works, because \code{WScreen.switch_next}
+(inherited \fnref{WMPlex.switch_next}) is a function that takes a 
+\type{WScreen} as its sole parameter. On the other hand,
+\code{WScreen.switch_nth} (again inherited \fnref{WMPlex.switch_nth}) 
+expects two parameters: the screen and the $n$ giving the number of
+the workspace to switch to so it could not be directly passed to
+\code{kpress}. Therefore we had to write our ''anonymous'' wrapper
+function around it tha takes a single parameter and calls
+\code{switch_nth} properly. (Recall that \code{scr:switch_nth(1)}
+is syntactic sugar for \code{WScreen.switch_nth(scr, 1)}.
+Alternatively we could have defined
+\code{function switch_1(scr) scr:switch_nth(1) end} before the call
+to \code{global_bindings} and passed \code{switch_1} to \code{kpress}
+instead of the anonymous function.)
 
 \subsection{Key and button specifications}
 
@@ -357,33 +394,9 @@ and one of the button names \key{Button1} to
 \key{Button5}\index{Button-n@\key{Button-n}}.
 
 
-\subsection{An example}
+\subsection{Another example}
 
-As an example, let's look at an extract from the default bindings for
-\type{WIonFrame}s:
-
-\begin{verbatim}
-ionframe_bindings{
-    kpress(DEFAULT_MOD .. "R", ionframe_begin_resize),
-    kpress(DEFAULT_MOD .. "S",
-           function(frame) ionframe_split(frame, "bottom") end),
-
-    submap(DEFAULT_MOD .. "K"){
-        kpress("AnyModifier+X", ionframe_close),
-        kpress("AnyModifier+S",
-               function(frame) ionframe_split(frame, "right") end),
-    },
-    
-    mclick("Button1", genframe_p_switch_tab, "tab"),
-    mdrag("Button1", genframe_p_tabdrag, "tab"),
-    mdrag("Button1", genframe_p_resize, "border"),
-    
-    mclick("Button2", genframe_p_switch_tab, "tab"),
-    mdrag("Button2", genframe_p_tabdrag, "tab"),
-    
-    mdrag(DEFAULT_MOD .. "Button3", genframe_p_resize),
-}
-\end{verbatim}
+TODO
 
 \subsection{A further note on the default binding configuration}
 
