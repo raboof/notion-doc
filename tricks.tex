@@ -62,7 +62,7 @@ decision. For example. the window placement heuristics in
 
 \subsection{Direct object references}
 
-All Ion objects are passed to Lua scripts as 'userdata', and you may
+All Ion objects are passed to Lua scriptss as 'userdatas', and you may
 safely store such object references for future use. The C-side object
 may be destroyed while Lua still refers to the object. All exported
 functions gracefully fail in such a case, but if you need to explicitly
