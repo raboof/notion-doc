@@ -14,11 +14,11 @@ Ioncore returns to its main event loop.
 Calling the \code{destroy_obj} function directly is allowed in the
 following cases:
 \begin{itemize}
-    \item In the deinit handler for another object. Usually managed object
+    \item In the deinit handler for another object. Usually managed objects
       are destroyed this way.
     \item The object was created during the current call to the function
       that wants to get rid of the object. This is the case, for example,
-      when the function created a frame to manage other object but for
+      when the function created a frame to manage some other object but for
       some reason failed to reparent the object to this frame.
     \item In a deferred action handler set with
       \code{defer_action}\index{defer-action@\code{defer_action}}.

@@ -9,7 +9,8 @@ L2H=latex2html -show_section_numbers -short_index -local_icons -noaddress \
 
 FNTEXES=ioncore-exports.tex ionws-exports.tex \
 	floatws-exports.tex query-exports.tex \
-	querylib-fns.tex ioncorelib-fns.tex
+	querylib-fns.tex ioncorelib-fns.tex \
+	ioncore-mplexfns.tex
 
 DOC=ionconf
 
@@ -91,5 +92,8 @@ query-exports.tex: $(TOPDIR)query/*.c
 querylib-fns.tex: $(TOPDIR)share/querylib.lua
 	$(LUA) $(TOPDIR)/mkexports.lua -module query -luadoc -o $@ $+
 
-ioncorelib-fns.tex: $(TOPDIR)share/ioncorelib.lua
-	$(LUA) $(TOPDIR)/mkexports.lua -module query -luadoc -o $@ $+
+ioncorelib-fns.tex: $(TOPDIR)share/ioncorelib.lua $(TOPDIR)share/ioncore-aliases.lua
+	$(LUA) $(TOPDIR)/mkexports.lua -module ioncore -luadoc -o $@ $+
+
+ioncore-mplexfns.tex: $(TOPDIR)share/ioncore-mplexfns.lua
+	$(LUA) $(TOPDIR)/mkexports.lua -module ioncore -luadoc -o $@ $+

@@ -36,15 +36,19 @@ the classes are explained below:\footnote{If the experimental
      |    |
      |    |-->WClientWin
      |    |
+     |    |-->WRootWin
+     |    |
      |    |-->WWindow
      |    |    |
-     |    |    |-->WRootWin
-     |    |    |
-     |    |    |-->WGenFrame
+     |    |    |-->WMPlex
      |    |    |    |
-     |    |    |    |-->WIonFrame (ionws.so)
+     |    |    |    |-->WScreen
      |    |    |    |
-     |    |    |    |-->WFloatFrame (floatws.so)
+     |    |    |    |-->WGenFrame
+     |    |    |         |
+     |    |    |         |-->WIonFrame (ionws.so)
+     |    |    |         |
+     |    |    |         |-->WFloatFrame (floatws.so)
      |    |    |
      |    |    |-->WInput (query.so)
      |    |         |
@@ -53,12 +57,10 @@ the classes are explained below:\footnote{If the experimental
      |    |         |-->WMessage (query.so)
      |    |
      |    |-->WGenWS
-     |    |    |
-     |    |    |-->WIonWS (ionws.so)
-     |    |    |
-     |    |    |-->WFloatWS (floatws.so)
-     |    |
-     |    |-->Screen
+     |         |
+     |         |-->WIonWS (ionws.so)
+     |         |
+     |         |-->WFloatWS (floatws.so)
      |
      |-->WWsSplit
 \end{verbatim}
@@ -91,20 +93,26 @@ the classes are explained below:\footnote{If the experimental
 	such as Xinerama\index{Xinerama} are used. (Actually there
 	can be only one \type{WRootWin} when Xinerama is used.)
 	
-      \item[\type{WScreens}]\indextype{WScreen} are objects that should
-	correspond to physical screens and may share a root window.
-	
-      \item[\type{WGenFrame}]\indextype{WGenFrame} is a ''virtual'' (to
-	lend the C++ terminology) base class implementing everything in
-	common to Ion and PWM (''floating'') style frames and why not others
-	if such are ever implemented.
-	
+      \item[\type{WMPlex}] is a ''virtual'' (to lend the C++ terminology)
+	base class for all regions that ''multiplex'' other regions. These
+	include:
+	\begin{description}
+           \item[\type{WScreen}s]\indextype{WScreen} that are objects
+	     corresponding to physical screens. Screens may share a root
+	     window when Xinerama is enabled as explained above.
+           \item[\type{WGenFrame}]\indextype{WGenFrame} based frames
+	     (\type{WIonFrame} and \type{WFloatFrame}).
+	     \type{WGenFrame} is also a ''virtual'' class that implements
+	     what is common to Ion and PWM (''floating'') style frames --
+	     and maybe other kinds of frames as well in the future? -- but
+	     not to all multiplixing objects.
+	\end{description}
       \item[\type{WInput}]\indextype{WInput} is again a virtual base class
 	for the different kinds of inputs implemented by the query module
 	(the line editor and message display).
-	
       \item[\type{WGenWS}]\indextype{WGenWS} like \type{WGenFrame} is a
-	virtual base class for the two types of workspaces.
+	virtual base class for the two types of workspaces
+	(\type{WIonWS} and \type{WFloatWS}).
     \end{description}
     
   \item[\type{WWsSplit}]\indextype{WWsSplit} is an object internal to
