@@ -456,32 +456,39 @@ information is more specifically the
 \var{class}\index{class@\var{class}!winprop},
 \var{role}\index{role@\var{role}!winprop} and
 \var{instance}\index{instance@\var{instance}!winprop}
-of the window. It is not necessary to specify all of these; if one is
-not specified or is the string \code{"*"} that particular field matches
-all windows. For a window with identification information \var{id}, Ion
-looks for a matching winprop in the following order:
-%\begin{verbatim}
-%for _, c in {id.class, "*"} do
-%    for _, r in {id.role, "*"} do
-%        for _, i in {id.instance, "*"} do
-%            -- Check for winprop matching (c, r, i)
-%        end
-%    end
-%end
-%\end{verbatim}
+\var{name}
+of the window. The \var{name} field is a Lua-style regular expression
+matched against the window's title and the rest are strings that must
+exactly much the corresponding window information. It is not necessary
+to specify all of these fields.
 
-\begin{enumerate}
-    \item \code{class, role, instance}
-    \item \code{class, role, "*"}
-    \item \code{class, "*", instance}
-    \item \code{class, "*", "*"}
-    \item \code{"*", role, instance}
-    \item \code{"*", role, "*"}
-    \item \code{"*", "*", instance}
-    \item \code{"*", "*", "*"}
-\end{enumerate}
-Here \var{class}, \var{role} and \var{instance} are those of the
-client window or \code{"*"} if unset.
+Ion looks for a matching winprop in the order listed by the following
+table. An 'E' indicates that the field must be set in the winprop
+and it must match the window's corresponding propertyexactly or, in
+case of \var{name}, the regular expression must match the window
+title. An asterisk '*' indicates that a winprop where the field is
+not specified (or is itself an asterisk in case of the first three
+fields) is tried.
+
+\begin{center}
+\begin{tabular}{llll}
+\hline
+\var{class} & \var{role} & \var{instance} & \var{name} \\
+\hline
+  E	       & E          & E              & E \\
+  E	       & E          & E              & * \\
+  E	       & E          & *              & E \\
+  E	       & E          & *              & * \\
+  E	       & *          & E              & E \\
+  E	       & *          & E              & * \\
+  E	       & *          & *              & E \\
+  \vdots       & \vdots     & \vdots         & etc. \\
+\end{tabular}
+\end{center}
+
+If there are multiple winprops with other identification information 
+the same but different \var{name}, the chosen winprop is arbitrary
+among these.
 
 To get this identification information for a particular window, you
 may use the command \command{xprop WM_CLASS} and click on that
