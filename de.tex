@@ -79,11 +79,11 @@ Style name & Description \\
 	Substyles as for \code{frame}. \\
 \code{frame-tab} & Style for frames' tabs. 
 	Substyles: combinations of the form \code{a-s-t-d-u} where
-	\code{a} is one of \code{active}/\code{inactive},
-	\code{s} is one of \code{selected}/\code{unselected},
-      	\code{t} is one of \code{tagged}/\code{not_tagged},
-	\code{d} is one of \code{dragged}/\code{not_dragged} and 
-	\code{u} is one of \code{activity}/\code{no_activity}. \\
+	\code{a} is one of \code{active}\nobreak/\code{inactive},
+	\code{s} is one of \code{selected}\nobreak/\code{unselected},
+      	\code{t} is one of \code{tagged}\nobreak/\code{not_tagged},
+	\code{d} is one of \code{dragged}\nobreak/\code{not_dragged} and 
+	\code{u} is one of \code{activity}\nobreak/\code{no_activity}. \\
 \code{frame-tab-ionframe} & A more specific style for \type{WIonFrame}s' 
 	tabs. Substyles as for \code{frame-tab}. \\
 \code{frame-tab-floatframe} & A more specific style for 
@@ -201,9 +201,9 @@ in \file{/usr/X11R6/lib/X11/rgb.txt} (exact path varying).
 Field  & Description \\
 \hline
 \var{highlight_colour} &  
-	Colour for the ''highlight'' part of a border border. \\
+	Colour for the ''highlight'' part of a border. \\
 \var{shadow_colour}    &  
-	Colour for the ''highlight'' part of a border border. \\
+	Colour for the ''highlight'' part of a border. \\
 \var{foreground_colour} &  
 	Colour for the normal drawing operations, e.g. text. \\
 \var{background_colour} &  
@@ -247,7 +247,7 @@ Field  & Description \\
 \var{font} & Font to be used in text-drawing operations; standard X font
 	     name. \\
 \var{text_align} & How text is to be aligned in text boxes/tabs; one of
-		   the strings left/right/center. \\
+		   the strings left\nobreak/right\nobreak/center. \\
 \end{tabularx}
 
 
@@ -293,7 +293,7 @@ de_define_style("some-style", {
 \subsection{An example}
 
 The following shortened segment from \file{look-cleanviolet.lua}
-should help to clarify the mattesr discussed in the previous
+should help to clarify the matters discussed in the previous
 subsection.
 
 \begin{verbatim}
