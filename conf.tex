@@ -1,21 +1,122 @@
 
-\section{Configuring Ion with Lua}
+\chapter{Configuring Ion with Lua}
 
-The following subsections are indended to help users configure Ion
-with Lua. If you are new to Lua, you might first want to read the
-the Lua manual at \url{http://www.lua.org/docs.html} and perhaps
+The following subsections are indended to help users to configure Ion.
+As the reader probably knows, Ion uses Lua as a configuration and 
+extension language. If you are new to Lua, you might first want to read
+the the Lua manual at \url{http://www.lua.org/docs.html} and/or perhaps
 some helpfull lua-users wiki pages (including a quick to read tutorial)
 at \url{http://lua-users.org/wiki/}.
 
-Section \ref{sec:bindings} desribes how keys and mouse
-actions are bound to functions and in section \ref{sec:winprops}
-winprops are explained. For a reference on exported functions, see
-section \ref{sec:exports}.
+Section \ref{sec:conffiles} is an overview of the multiple configuration
+files Ion uses.
+How keys and mouse action are bound to functions is described in detail
+in \ref{sec:bindings} and in section \ref{sec:winprops} winprops are
+explained. For a reference on exported functions, see section
+\ref{sec:exports}.
 
-\subsection{Keys and rodents}
+\section{The configuration files}
+\label{sec:conffiles}
+
+Ion (development branch) stores its stock configuration files and other
+Lua code in \file{/usr/local/ion-devel/etc/ion-devel/} unless you or the
+OS package maintainer has modified the variables
+\code{PREFIX}\index{PREFIX@\code{PREFIX}} or
+\code{ETCDIR}\index{ETCDIR@\code{ETCDIR}} in
+\file{system.mk}.\index{system.mk@\file{system.mk}}
+In the former case you probably know where to find the files and in the
+latter the OS package maintainer should have provided documentation to
+point to the correct location. If these instructions don't point you
+to the correct directory, the command \code{locate ioncore.lua} might help
+provided \code{updatedb} has been run recently. User configuration files
+go in \file{\~{}/.ion-devel/}. 
+
+Ion always searches user configuration file directory before the stock
+configuration file directory for files. Therefore, if you want to change
+some setting, it is advised against that you modify the stock configuration
+files in-place as subsequent installs of Ion will restore the stock
+configuration files. Instead you should always make a copy of the stock
+file in \file{\~{}/.ion-devel/} and modify this file.
+
+The ioncore main binary and each module have their own configuration
+files that should be used to configure that module. In addition, each
+(non-Xinerama)\index{Xinerama} screen may have a separate
+\file{draw.lua} configuration file.
+When Ioncore looks for this file, it first checks if the file
+\file{draw-\$DISPLAY.SCREEN.lua} exists. If it cannot find this file, it
+uses \file{draw.lua}. \file{\$DISPLAY} here points to the X display
+on which Ion is running. If Ion was started with the \file{-display}
+argument, it is this string and otherwise the \var{DISPLAY} environment
+variable but with possible screen number removed as this is replaced
+with the \file{SCREEN} we're loading the configuration for.
+
+The rest of the configuration files are as follows:
+
+%\newlength{\foolength}
+%\settowidth{\foolength}{ioncore-bindings.lua}
+%\newlength{\barlength}
+%\settowidth{\barlength}{ioncore.luaxxx}
+
+\begin{tabularx}{\linewidth}{
+      p{\widthof{ioncore-bindings.lua}}%
+      p{\widthof{Loaded from}}%
+      X}
+    \hline
+    File & Loaded from & Description \\
+    \hline
+    \file{ioncore.lua} & ioncore &
+    The main configuration file \\
+    %
+    \file{ioncore-bindings.lua} & \file{ioncore.lua} &
+    Global bindings are configured in this file; see section 
+    \ref{sec:bindings}. \\
+    %
+    \file{kludges.lua} & \file{ioncore.lua}  &
+    Settings to get some apps behave more nicely have been collected here.
+    See section \ref{sec:winprops} for details on these ''winprops''. \\
+    %
+    \file{ionws.lua} & ionws\linebreak module  &
+    Configuration file for the ionws module. (This module only
+    supports configuring bindings.) \\
+    %
+    \file{floatws.lua} & floatws\linebreak module  &
+    Configuration file for the floatws module. Only bindings and
+    placement method (see \fnref{set_floatws_placement_method}) are
+    configurable. \\
+    %
+    \file{common-frame-bindings.lua} & \file{ionws.lua} and
+                                       \file{floatws.lua} &
+    Bindings common to both workspace modules' frames. \\
+    %
+    \file{query.lua} & query module  &
+    Configuration file for the query module. (Again, bindings only.) \\
+    %
+    \file{look-*.lua} & ioncore & 
+    Drawing engine configuration files. The \file{draw.lua} files
+    as explained above are usually linked to or are copies of one of
+    these.
+\end{tabularx}
+
+In addition to these files, the stock configuration file directory also
+lists the files \file{ioncorelib.lua}, \file{querylib.lua} and
+\file{compat.lua}. The first two of these are essential pieces of Lua code
+and users who only want to change a few settings should not need to modify
+these files.
+
+The third, \file{compat.lua}, contains some wrappers functions for backwards
+compatibility to make the process of updating Ion a little less painfull.
+If you have have modified configuration files that use some features no
+longer available in the latest Ion, you may just load this file (with
+\code{include("compat.lua")} at the beginning of \file{ioncore.lua}, for
+example) instead of immediately updating your configuration files. However,
+the wrappers will be removed eventually  (maybe about two months after adding
+them depending on the rate of new releases) so you should nevertheless update
+your configuration files before this happens.
+
+\section{Keys and rodents}
 \label{sec:bindings}
 
-\subsubsection{Defining the bindings}
+\subsection{Defining the bindings}
 
 Keyboard- and mouse bindings are defined by calling various functions
 that add a new set of bindings to a binding ``context'' (in lack of
@@ -24,7 +125,7 @@ are given in the following table. The last column additionally lists
 the types of parameters the binding handler (explained later in this
 section) gets if different from context:
 
-\begin{tabularx}{\textwidth}{llXX}
+\begin{tabularx}{\textwidth}{llX}
     \hline
     Module & Function & Context; parameter(s) \\
     \hline
@@ -100,11 +201,11 @@ precise location where the mouse action should occur for the binding to
 take place.
 Currently only \fnref{ionframe_bindings} and \fnref{floatframe_bindings}
 support any meaningfull values for this parameter. The allowed values
-are in thise case
+are in this case
 \code{"border"}, \code{"tab"}, \code{"empty_tab"}, \code{"client"} and
 \code{nil} (for the whole frame).
 
-\subsubsection{Key and button specifications}
+\subsection{Key and button specifications}
 
 As seen above, the functions that create key binding specifications require
 a \var{keyspec} argument. This argument should be a string containing the
@@ -143,9 +244,11 @@ are pressed, if any.
 
 Ion ignores the \key{Lock} modifier and any \key{Mod-n} modifiers bound
 to 
-\key{NumLock}\index{NumLock@\key{NumLock}}
+\key{NumLock}\index{NumLock@\key{NumLock}} or
 \key{ScrollLock}\index{ScrollLock@\key{ScrollLock}}
-by default because such evil locking keys may otherwise cause confusion.
+by default because such\footnote{Completely useless keys that should be
+  gotten rid of in the author's opinion.} locking keys may otherwise
+cause confusion.
 
 Button specifications are similar to key definitions but now
 instead of specifying modifiers and a key, you specify modifiers
@@ -153,7 +256,7 @@ and one of the button names \key{Button1} to
 \key{Button5}\index{Button-n@\key{Button-n}}.
 
 
-\subsubsection{An example}
+\subsection{An example}
 
 As an example, let's look at an extract from the default bindings for
 \type{WIonFrame}s:
@@ -181,17 +284,17 @@ ionframe_bindings{
 }
 \end{verbatim}
 
-\subsubsection{A further note on the default binding configuration}
+\subsection{A further note on the default binding configuration}
 
 The variable \code{DEFAULT_MOD} in the above listing defaults to
-\code{"Mod1+"} and is set ion \file{ioncore.lua}. Changing this
+\code{"Mod1+"} and is set in \file{ioncore.lua}. Changing this
 variable allows to easily change the the modifier used by all bindings
 in the default configuration that use modifiers. Quite a few people
 prefer to use the Windows keys as modifiers because many applications
-use already use \key{Alt}. Nevertheless, \key{Mod1} is the default as a
+already use \key{Alt}. Nevertheless, \key{Mod1} is the default as a
 key bound to it is available virtually everywhere.
 
-\subsubsection{Client window bindings}
+\subsection{Client window bindings}
 
 As client windows do not have function to set their bindings, it is
 necessary to call client window functions by specifying the bindings
@@ -224,10 +327,10 @@ object returned by this function is not the same as what
 \fnref{region_get_active_leaf} would return if there are transients!)
 
 
-\subsection{Winprops}
+\section{Winprops}
 \label{sec:winprops}
 
-\subsubsection{Classes, roles and instances}
+\subsection{Classes, roles and instances}
 
 The so-called ''winprops''\index{Winprops} can be used to change how
 specific windows are handled and to set up some kludges to deal with
@@ -259,7 +362,7 @@ WIonFrames.} The class is the latter of the strings while
 the instance is the former. To get the role -- few windows have
 this property -- use the command \command{xprop WM_ROLE}.
 
-\subsubsection{Supported winprops}
+\subsection{Supported winprops}
 
 Ion currently knows the following winprops:
 
@@ -292,7 +395,7 @@ Ion currently knows the following winprops:
 	manage windows of this type. \\
     \var{transparent} &
     	boolean &
-    	Should frames be made transparent when this window is selected. \\
+    	Should frames be made transparent when this window is selected? \\
     \var{acrobatic} &
     	boolean &
     	Set this to \code{true} for Acrobat Reader. It has an annoying
@@ -313,7 +416,7 @@ Ion currently knows the following winprops:
     	Should application supplied size increments be ignored? \\
 \end{tabularx}
 
-\subsubsection{Examples}
+\subsection{Examples}
 
 Acrobat Reader's manners aren't exactly good:
 \begin{verbatim}
@@ -335,7 +438,7 @@ winprop{
 \end{verbatim}
 
 
-\subsection{QueryLib}
+\section{QueryLib}
 \index{QueryLib@\var{QueryLib}}
 
 While the query module only exportes the primitive function
@@ -345,16 +448,3 @@ directly passed as arguments to the binding creation functions
 (\code{kpress} and so on) for \fnref{ionframe_bindings} and
 \fnref{floatframe_bindings}. For a listing of these, see section
 \ref{sec:querylibref}.
-
-\subsection{Miscellaneous issues}
-
-The \code{QueryLib.query_lua} function is quite useless at the moment as it
-is not possible to simply enter a name of a command and call it.
-The query takes in Lua code and executes it as-is. `\code{arg[1]}' is set
-to \myhref{fn:genframe_current}{\code{genframe_current()}} for the frame
-in which the query is executing in or to the frame if such does not exist.
-This argument can not be directly passed to most functions and it is
-necessary to somehow obtain an object of wanted type. Later, a better
-handler for executing single commands in addition to to one for executing
-arbitrary code should be written, in Lua.
-
