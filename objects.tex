@@ -23,10 +23,14 @@ In the case of single-inheritance this hierarchy can be expressed as a
 tree where the object at the root is inherited by all others below it
 and so on.
 
-Figure \ref{fig:classhierarchy} lists out the Ion class hierarchy and
-the classes are explained below:\footnote{If the experimental 
-  compile-time option \var{CF_WINDOWED_SCREENS} is set, \type{WScreen}
-  then inherits \type{WWindow}.}
+Figure \ref{fig:classhierarchy} lists out the Ion class hierarchy and below
+we explain what the classes implement. If you are wondering what the 
+''(xyz module)'' strings in the figure are, they're related to the 
+division of Ion into a core binary and multiple modules that implement
+optional features. Module support also allows implementing  C-side
+extensions to Ion without changes to Ion's code or the need of 
+recompiling if the operating system has decent support for dynamic 
+linking.
 
 \begin{figure}
 \begin{verbatim}
@@ -46,77 +50,117 @@ the classes are explained below:\footnote{If the experimental
      |    |    |    |
      |    |    |    |-->WGenFrame
      |    |    |         |
-     |    |    |         |-->WIonFrame (ionws.so)
+     |    |    |         |-->WIonFrame (ionws module)
      |    |    |         |
-     |    |    |         |-->WFloatFrame (floatws.so)
+     |    |    |         |-->WFloatFrame (floatws module)
      |    |    |
-     |    |    |-->WInput (query.so)
+     |    |    |-->WInput (query module)
      |    |         |
-     |    |         |-->WEdln (query.so)
+     |    |         |-->WEdln (query module)
      |    |         |
-     |    |         |-->WMessage (query.so)
+     |    |         |-->WMessage (query module)
      |    |
      |    |-->WGenWS
      |         |
-     |         |-->WIonWS (ionws.so)
+     |         |-->WIonWS (ionws module)
      |         |
-     |         |-->WFloatWS (floatws.so)
+     |         |-->WFloatWS (floatws module)
      |
-     |-->WWsSplit
+     |-->WWsSplit (ionws)
 \end{verbatim}
 \caption{Ion class hierarchy. The string in parenthesis indicates
   the module in which this class is implemented if not in Ioncore.}
 \label{fig:classhierarchy}
 \end{figure}
 
+The core classes:
+
 \begin{description}
   \item[\type{WObj}]\indextype{WObj}
     Is the base of Ion's object system.
-  \item[\type{WRegion}]\indextype{WRegion}
-    is the base class for everything on the screen
-    and most actions done on screen objects. Each object of type
-    \type{WRegion}  has a size and position relative to the parent
-    \type{WRegion}. (More on parents and managers below).
-    \begin{description}
-      \item[\type{WClientWin}\indextype{WClientWin}] is a class for
-	client window objects -- the objects that window managers are
-	supposed to manage.
-      \item[\type{WWindow}]\indextype{WWindow} is the base class for all
-	internal objects having an X window associated to them
-	(\type{WClientWins} also have X windows associated to them).
-	
-      \item[\type{WRootWin}]\indextype{WRootWin} is the class for
-	root windows\index{root window} of X screens\index{screen!X}.
-	Note that an ''X screen'' or root window is not necessarily a
-	single  physical screen\index{screen!physical} as a root window
-	may be split over multiple screens when multi-head extensions 
-	such as Xinerama\index{Xinerama} are used. (Actually there
-	can be only one \type{WRootWin} when Xinerama is used.)
-	
-      \item[\type{WMPlex}] is a ''virtual'' (to lend the C++ terminology)
-	base class for all regions that ''multiplex'' other regions. These
-	include:
-	\begin{description}
-           \item[\type{WScreen}s]\indextype{WScreen} that are objects
-	     corresponding to physical screens. Screens may share a root
-	     window when Xinerama is enabled as explained above.
-           \item[\type{WGenFrame}]\indextype{WGenFrame} based frames
-	     (\type{WIonFrame} and \type{WFloatFrame}).
-	     \type{WGenFrame} is also a ''virtual'' class that implements
-	     what is common to Ion and PWM (''floating'') style frames --
-	     and maybe other kinds of frames as well in the future? -- but
-	     not to all multiplixing objects.
-	\end{description}
-      \item[\type{WInput}]\indextype{WInput} is again a virtual base class
-	for the different kinds of inputs implemented by the query module
-	(the line editor and message display).
-      \item[\type{WGenWS}]\indextype{WGenWS} like \type{WGenFrame} is a
-	virtual base class for the two types of workspaces
-	(\type{WIonWS} and \type{WFloatWS}).
-    \end{description}
     
+  \item[\type{WRegion}]\indextype{WRegion}
+    is the base class for everything corresponding to something on the
+    screen. Each object of type \type{WRegion} has a size and  position
+    relative to the parent \type{WRegion}. While a great part of Ion 
+    operates on these instead of more specialised classes, \type{WRegion}
+    is a ''virtual''  base class in that there are no objects of ''pure''
+    type \type{WRegion}; all concrete regions are objects of some class 
+    that inherits \type{WRegion}.
+
+  \item[\type{WClientWin}\indextype{WClientWin}] is a class for
+    client window objects -- the objects that window managers are
+    supposed to manage.
+
+  \item[\type{WWindow}]\indextype{WWindow} is the base class for all
+    internal objects having an X window associated to them
+    (\type{WClientWins} also have X windows associated to them).
+    
+  \item[\type{WRootWin}]\indextype{WRootWin} is the class for
+    root windows\index{root window} of X screens\index{screen!X}.
+    Note that an ''X screen'' or root window is not necessarily a
+    single  physical screen\index{screen!physical} as a root window
+    may be split over multiple screens when multi-head extensions 
+    such as Xinerama\index{Xinerama} are used. (Actually there
+    can be only one \type{WRootWin} when Xinerama is used.)
+	
+  \item[\type{WMPlex}] is again a virtual base class for all regions that
+    ''multiplex'' other regions. This means that of the regions managed by
+    the multiplexer, only one can be displayed at a time. \type{WMPlex}es 
+    include screens and the different types of frames.
+    
+  \item[\type{WScreen}]\indextype{WScreen} is the class for objects
+    corresponding to physical screens. Screens may share a root
+    window when Xinerama multihead extensions are used as explained
+    above.
+
+  \item[\type{WGenFrame}]\indextype{WGenFrame} is another virtual class
+    implementing what is common to the concrete frame classes but not
+    all \type{WMPlex}es. While most Ion's objects how no graphical 
+    presentation, frames are basically the decorations around client
+    windows (borders, tabs).
+
+  \item[\type{WGenWS}]\indextype{WGenWS} is a light virtual base class
+    for different types of workspaces.
+\end{description}
+
+
+Classes implemented by the ionws module:
+
+\begin{description}
+  \item[\type{WIonWS}]\indextype{WIonWS} is the class for the
+    usual tiled workspaces.
+  \item[\type{WIonFrame}]\indextype{WIonFrame} implements the
+    style of frames seen on \type{WIonWS}s.
   \item[\type{WWsSplit}]\indextype{WWsSplit} is an object internal to
-    \type{WIonWS} implementation.
+    \type{WIonWS} implementation and stores the tree structure of the
+    workspaces.
+\end{description}
+
+
+Classes implemented by the floatws module:
+
+\begin{description}
+  \item[\type{WFloatWS}]\indextype{WFloatWS} is the class for the
+    conventional workspaces where frames and other objects are
+    allowed to ''float'' around.
+  \item[\type{WFloatFrame}]\indextype{WIonFrame} implements the
+    frames seen on \type{WFloatWS}s decorated in the PWM style.
+\end{description}
+
+
+Classes implemented by the query module:
+
+\begin{description}
+  \item[\type{WInput}]\indextype{WInput} is a virtual base class for the
+    two classes below.
+  \item[\type{WEdln}]\indextype{WEdln} is the class for the ''queries'',
+    the text inputs that usually appear at bottoms of frames and sometimes
+    screens. Quiries are the functional equivalent of ''mini buffers'' in
+    many text editors.
+  \item[\type{WMessage}]\indextype{WMessage} implements the boxes for 
+    warning and other messages that Ion may wish to display to the user. 
+    These also usually appear at bottoms of frames.
 \end{description}
 
 
@@ -129,10 +173,7 @@ associated to it. The parent\index{parent} for an object is always a
 the X windows. For other \type{WRegion}s the relation is not as clear.
 There is generally very few restrictions other than the above on the
 parent---child relation but the most common is as described in
-Figure \ref{fig:parentship}.\footnote{This hierarchy does not hold
-  if the compile-time option \var{CF_WINDOWED_SCREENS} is set. In that
-  case everything except \type{WRootWin}s  should be below \type{WScreen}s
-  as they are windowed objects.}
+Figure \ref{fig:parentship}.
 
 \begin{figure}
 \begin{verbatim}
