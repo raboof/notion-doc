@@ -6,9 +6,7 @@ This chapter documents some additional features of the Ion configuration
 and scripting interface that can be used for more advanced scripting than
 the basic configuration exlained in chapter \ref{chap:config}.
 
-\section{Hooks and other callbacks}
-
-\subsection{Hooks}
+\section{Hooks}
 \label{sec:hooks}
 
 Hooks are lists of functions to be called when a certain event occurs.
@@ -31,21 +29,6 @@ ioncore.get_hook("ioncore_snapshot_hook"):add(
 In this example the hook handler has no parameters, but many hook
 handlers do. The types of parameters for each hook are listed in
 the hook reference, section \ref{sec:hookref}.
-
-\subsection{Placement methods}
-
-In addition to the hooks mentioned above there is (at the moment) 
-one callback that is not a hook. It is the function
-\code{ionws_placement_method} can be used by scripts to decide
-in which frame a newly mapped client window should be placed 
-within an already decided on \type{WIonWS}. The function has
-three parameters: the workspace, the client window and a boolean
-indicating whether the client window's geometry (see
-\fnref{WRegion.geom}) was specified by the user by e.g. a
-\code{-geometry} command line switch. The function should
-return a frame on the workspace or \code{nil} if it made no
-decision. For example. the window placement heuristics in 
-\file{heuristics.lua} implement this function.
 
 \section{Referring to regions}
 
