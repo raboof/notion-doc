@@ -1,43 +1,32 @@
 
-\section{Preliminaries: The Ion object system and hierarchy}
+\xchapter{Preliminaries: The Ion class and object hierarchies}
+\label{chap:prelim}
 
-It is essential for the module writer to learn Ion's object system,
+Although Ion does not have a truely object-oriented design -- and I,
+the author of this document and Ion wouldn't even like such a design -- 
+it does have a primitive object oriented design for ''screen objects''.
+It is essential for the module writer to learn this object system,
 but it should be usefull for the person who just wants to configure
 key bindings to learn at least something about Ion's object hierarchy.
-When you know the object hierarchy, you know how and where the available
-functions can be used and hwo to construct more complex scripts.
-Therefore I suggest that you read this short section before skipping on
-to the more interesting things.
+When you know the class and object hierarchies, you know how and where
+the available functions can be used and how to construct more complex
+scripts. Therefore I suggest that you read this short chapter before
+skipping on to the more interesting things.
 
 
-\subsection{Implementation basics}
+\xsection{Class hierarchy}
 
-First, to get things clear, what are considered objects here are C
-structures containing a properly initialized \type\indextype{WObj}
-structure defined in \file{ioncore/obj.c} as the first element (or the
-first element of the structure which is the first element and so on which
-gives rise to inheritance). The \type{WObj} structure contains a pointer
-to a \type{WObjDescr}\indextype{WObjDescr} class type info structure and
-a list of so called ''watches''. The \type{WObjDescr} structure simply
-lists the class name, a table of dynamic functions and a pointer to
-deinitialisation function (or ''destructor'').
+One of the most important principles of object-oriented design methodology
+is inheritance -- roughly how classes (objects are instances of classes)
+extend on others' features. Inheritance gives rise to class hierarchy.
+In the case of single-inheritance this hierarchy can be expressed as a
+tree where the object at the root is inherited by all others below it
+and so on.
 
-Ion does not do any reference counting, garbage collecting or other
-fancy things related to automatic safe freeing of objects with its
-simplistic object system. Instead special watches (the \type{WWatch}
-\indextype{WWatch} structure) may be used to create safe references to
-objects that might be destroyed during the time the specific pointer is
-needed. When an object is destroyed, its list of watches is processed,
-setting the pointers in the watches to NULL and the watch handlers for
-each watch are called. 
-
-\subsection{Class hierarchy}
-
-Now that the basics have been covered, Figure \ref{fig:classhierarchy}
-lists out the Ion class hierarchy and the classes are explained below:
+Figure \ref{fig:classhierarchy} lists out the Ion class hierarchy and
+the classes are explained below:
 
 \begin{figure}
-\iftrue
 \begin{verbatim}
     WObj
      |
@@ -71,34 +60,34 @@ lists out the Ion class hierarchy and the classes are explained below:
      |
      |-->WWsSplit
 \end{verbatim}
-\fi
-%\includegraphics{objhier.eps}
-%\begin{center}
-%\input{objhier.latex}
-%\end{center}
-\caption{Ion class hierarchy}
+\caption{Ion class hierarchy. The string in parenthesis indicates
+  the module in which this class is implemented if not in Ioncore.}
 \label{fig:classhierarchy}
 \end{figure}
 
 \begin{description}
-  \item[\type{WRegion}\indextype{WRegion}]
-    is the base object for everything on the screen
-    and most actions done on these. Each WRegion has a size and position
-    relative to the parent WRegion. (More on parents and managers
-    below).
+  \item[\type{WObj}]\indextype{WObj}
+    Is the base of Ion's object system.
+  \item[\type{WRegion}]\indextype{WRegion}
+    is the base class for everything on the screen
+    and most actions done on screen objects. Each object of type
+    \type{WRegion}  has a size and position relative to the parent
+    \type{WRegion}. (More on parents and managers below).
     \begin{description}
-      \item[\type{WClientWin}\indextype{WClientWin}] is an object
-	referencing to client windows--what window managers are supposed
-	to manage.
+      \item[\type{WClientWin}\indextype{WClientWin}] is a class for
+	client window objects -- the objects that window managers are
+	supposed to manage.
+      \item[\type{WWindow}]\indextype{WWindow} is the base class for all
+	internal objects having an X window associated to them
+	(\type{WClientWins} also have X windows associated to them).
 	
-      \item[\type{WWindow}]\indextype{WWindow} is the base for all internal
-	objects having an X window associated to them (\type{WClientWins}
-	also have X windows associated to them).
-	
-      \item[\type{WScreen}]\indextype{WScreen} is the root window of an
-	X screen. Note that an X screen is not necessarily a single physical
-	screen as it may be split over multiple screens when Xinerama is
-	used. The \type{WViewport} objects are supposed to point to the
+      \item[\type{WScreen}]\indextype{WScreen} is the class for
+	root windows\index{root window} of X screens\index{screen!X}.
+	Note that an ''X screen'' is not necessarily a single 
+	physical screen\index{screen!physical} as a root window may be
+	split over multiple screens when multi-head extensions such as
+	Xinerama\index{Xinerama} are used. 
+	Objects of type \type{WViewport} are supposed to point to the
 	areas of the \type{WScreen} that are visible on single physical
 	screens (actually there can be only one \type{WScreen} if Xinerama
 	is used).
@@ -121,15 +110,16 @@ lists out the Ion class hierarchy and the classes are explained below:
 \end{description}
 
 
-\subsection{\type{WRegion} parents and managers}
+\xsection{Object hierarchies: \type{WRegion} parents and managers}
 
-Each \type{WRegion} has a parent and possibly a manager associated to it.
-The parent\index{parent} for an object is always a \type{WWindow} and for
-\type{WRegion} with an X window (\type{WClientWin}, \type{WWindow}) the
-parent \type{WWindow} is given by the same relation of the X windows.
-For other \type{WRegion}s the relation is not as clear. There is generally
-very few restrictions other than the above on the parent---child relation
-but the most common is as described in Figure \ref{fig:parentship}.
+Each object of type \type{WRegion} has a parent and possibly a manager
+associated to it. The parent\index{parent} for an object is always a 
+\type{WWindow} and for \type{WRegion} with an X window (\type{WClientWin},
+\type{WWindow}) the parent \type{WWindow} is given by the same relation of
+the X windows. For other \type{WRegion}s the relation is not as clear.
+There is generally very few restrictions other than the above on the
+parent---child relation but the most common is as described in
+Figure \ref{fig:parentship}.
 
 \begin{figure}
 \begin{verbatim}
