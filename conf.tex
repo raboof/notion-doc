@@ -19,7 +19,7 @@ Ion's stock configuration files use anonymous functions quite extensively.
 Section \ref{sec:conffiles} is an overview of the multiple configuration
 files Ion uses and as a perhaps more understandable introduction to the
 general layout of the configuration files, a walk-through of the main 
-configuration file \file{ioncore.lua} is provided in section 
+configuration file \file{ion.lua} is provided in section 
 \ref{sec:walkthrough}.
 How keys and mouse action are bound to functions is described in detail
 in \ref{sec:bindings} and in section \ref{sec:winprops} winprops are
@@ -30,7 +30,7 @@ explained. For a reference on exported functions, see section
 \label{sec:conffiles}
 
 The development branch of Ion (to which document applies) stores its stock
-configuration files in \file{/usr/local/ion-devel/etc/ion-devel/} unless 
+configuration files in \file{/usr/local/etc/ion/} unless 
 you, OS package maintainer or whoever installed the package has modified 
 the variables
 \code{PREFIX}\index{PREFIX@\code{PREFIX}} or
@@ -39,39 +39,39 @@ the variables
 In the first case you probably know where to find the files and in 
 the other case the system administrator or OS package maintainer should 
 have provided documentation to point to the correct location. If these
-instructions are no help in locationthe correct directory, the command
-\code{locate ioncore.lua} might help provided \code{updatedb} has been
-run recently. User configuration files go in \file{\~{}/.ion-devel/}. 
+instructions are no help in locating the correct directory, the command
+\code{locate ion.lua} might help provided \code{updatedb} has been
+run recently. User configuration files go in \file{\~{}/.ion2/}. 
 
 Ion always searches user configuration file directory before the stock
 configuration file directory for files. Therefore, if you want to change
 some setting, it is advised against that you modify the stock configuration
 files in-place as subsequent installs of Ion will restore the stock
 configuration files. Instead you should always make a copy of the stock
-file in \file{\~{}/.ion-devel/} and modify this file. When searching
+file in \file{\~{}/.ion2/} and modify this file. When searching
 for a file, if no extension or path component is given, compiled \file{.lc} 
 files are attempted before \file{.lua} files.
 
-The ioncore main binary and each module have their own configuration
-files that should be used to configure that module. The configuration
-files related to the ioncore main binary are as follows. The files
-\file{ioncore.lua} and \file{draw.lua} are loaded from Ioncore and the
-rest are included from the former.
+The ''Ioncore'' window manager core and each module have their own
+configuration files that should be used to configure that module. 
+The configuration files related to the ioncore main binary are as
+follows. The files \file{ion.lua} and \file{draw.lua} are loaded 
+from Ioncore and the rest are included from the former.
 
 \begin{tabularx}{\linewidth}{
-      p{\widthof{ioncore-bindings.lua}}%
+      p{\widthof{ion-bindings.lua}}%
       X}
     \hline
     File & Description \\
     \hline
-    \file{ioncore.lua} & 
+    \file{ion.lua} & 
     The main configuration file \\
     %
-    \file{ioncore-bindings.lua} & 
+    \file{ion-bindings.lua} & 
     Most of Ion's bindings are configured here. Bindings that are
     specific to some module are configured in the module's configuration
     file. For details, see section \ref{sec:bindings}. \\
-    \file{ioncore-menus.lua} & 
+    \file{ion-menus.lua} & 
     Menu definitions; see section \ref{sec:menus}. \\
     %
     \file{kludges.lua} & 
@@ -88,7 +88,7 @@ Each (non-drawing engine) module has in addition its own configuration
 file loaded when that module is loaded:
 
 \begin{tabularx}{\linewidth}{
-      p{\widthof{ioncore-bindings.lua}}%
+      p{\widthof{ion-bindings.lua}}%
       X}
     \hline
     File & Description \\
@@ -111,7 +111,7 @@ file loaded when that module is loaded:
     \file{menu.lua} & 
     Configuration file for the menu module. Bindings to navigate
     menus are defined here. Actual menus are (in the stock
-    configuration file setup) defined in \file{ioncore-menus.lua}
+    configuration file setup) defined in \file{ion-menus.lua}
     as mentioned above. \\
 \end{tabularx}
 
@@ -119,12 +119,12 @@ Some of the files contain references to the files \file{querylib.lua}
 and \file{menulib.lua}
 These are installed in
 \code{SHAREDIR}\index{SHAREDIR@\code{SHAREDIR}}
-(\file{/usr/local/ion-devel/share/ion-devel/} by default)
+(\file{/usr/local/share/ion/} by default)
 among some other other \file{.lua} files that are an essential part of
 Ion's code. Users who only want to change a few settings should not
 need to modify the files in this directory. Nevertheless, it is
 possible to override the files in \code{SHAREDIR} as it is on the search
-path after \code{\~/.ion-devel} and \code{ETCDIR}.
+path after \code{\~/.ion2} and \code{ETCDIR}.
 
 There is one extra file in \code{SHAREDIR} that you may find usefull and
 that is not loaded by default. This is \file{compat.lua} and it contains
@@ -132,20 +132,20 @@ some wrapper functions for backwards compatibility to make the process of
 updating Ion a little less painfull. If you have have modified configuration
 files that use some features no longer available in the latest Ion, you may
 just load this file (with \code{include("compat.lua")} at the beginning of
-\file{ioncore.lua}, for example) instead of immediately updating your
+\file{ion.lua}, for example) instead of immediately updating your
 configuration files. However, the wrappers will be removed eventually
 (maybe about two months after adding them depending on the rate of new
 releases) so you should nevertheless update your configuration files before
 this happens.
 
-\section{A walk through \file{ioncore.lua}}
+\section{A walk through \file{ion.lua}}
 \label{sec:walkthrough}
 
-As already mentioned \file{ioncore.lua} is Ion's main configuration
+As already mentioned \file{ion.lua} is Ion's main configuration
 file. Some basic 'feel' settings are usually configured there and
 the necessary modules and other configuration files configuring some 
 more specific aspects of Ion are loaded there. In this section we
-take a walk through the stock \file{ioncore.lua}.
+take a walk through the stock \file{ion.lua}.
 
 The first thing that is done in that file is set
 \begin{verbatim}
@@ -186,17 +186,17 @@ Some people may consider this annoying so setting the parameter
 to \verb!false! can be used to disable this feature and have Ion
 never move the pointer.
 
-Next the stock \file{ioncore.lua} has the include-statements
+Next the stock \file{ion.lua} has the include-statements
 \begin{verbatim}
 include("kludges")
-include("ioncore-bindings")
-include("ioncore-menus")
+include("ion-bindings")
+include("ion-menus")
 \end{verbatim}
 The first of these loads the file \file{kludges.lua} that contains
 some ''winprop'' settings used to make some applications behave a
 little better under Ion. For details see section \ref{sec:winprops}.
 The second include statement loads file file 
-\file{ioncore-bindings.lua} which containts the statements to configure 
+\file{ion-bindings.lua} which containts the statements to configure 
 most of Ion's bindings; modules' bindings are configured in their 
 respective configuration files. The final include statement load
 menu definitions.
@@ -212,9 +212,8 @@ a rule to construct a new title of a match occurs. This particular
 rule is used to shorten e.g. 'Foo: barbaz<3>' to 'barba{\ldots}<3>'; for
 details see the function reference entry for \fnref{add_shortenrule}.
 
-The settings
+The setting
 \begin{verbatim}
-query_ssh_hosts = { "host1", "host2" }
 query_man_path = {
     "/usr/man",
     "/usr/share/man",
@@ -222,10 +221,8 @@ query_man_path = {
     "/usr/local/man"
 }
 \end{verbatim}
-are, respectively, used to configure the hosts the \fnref{querylib.query_ssh} 
-query  (\key{F4} key in the stock configuration) knows to tab-complete and 
-the where the \fnref{querylib.query_man} query (\key{F1}) knows to look for
-man pages to tab-complete.
+is used to configure where the \fnref{querylib.query_man} query
+(\key{F1}) looks for man pages to tab-complete.
 
 Finally we load the modules.
 \begin{verbatim}
@@ -259,7 +256,7 @@ session.
 \label{sec:bindings}
 
 In the stock configuration file setup, most key and mouse bindings are set
-from the file \file{ioncore-bindings.lua} while module-specific bindings
+from the file \file{ion-bindings.lua} while module-specific bindings
 are set from the modules' main configuration files (\file{modulename.lua}).
 This, however, does not have to be so as long as the module has been
 loaded prior to defining any module-specific bindings.
@@ -316,9 +313,9 @@ anything of the like in Ion).
 
 \subsubsection{Ioncore binding setup functions}
 
-The following binding setup functions are defined by the ioncore
-main executable and in the stock configuration file setup, they
-are set from the file \file{ioncore-bindings.lua}:
+The following binding setup functions are defined by Ioncore and in the
+stock configuration file setup, they are set from the file 
+\file{ion-bindings.lua}:
 
 \begin{tabularx}{\linewidth}{lX}
     \hline
@@ -572,7 +569,7 @@ TODO
 \subsection{A further note on the default binding configuration}
 
 The variable \code{DEFAULT_MOD} in the above listing defaults to
-\code{"Mod1+"} and is set in \file{ioncore.lua}. Changing this
+\code{"Mod1+"} and is set in \file{ion.lua}. Changing this
 variable allows to easily change the the modifier used by all bindings
 in the default configuration that use modifiers. Quite a few people
 prefer to use the Windows keys as modifiers because many applications
@@ -729,6 +726,11 @@ Ion currently knows the following winprops:
     	boolean &
     	Should configure requests on the window be ignored?
 	Only has effect on windows on floatws:s. \\
+    \var{transients_at_top} &
+    	boolean &
+    	When transients are managed by the client window itself (as it
+	is the case on tiled workspaces), should the transients be
+	placed at the top of the window instead of bottom? \\
 \end{tabularx}
 
 \subsection{Examples}
@@ -788,7 +790,7 @@ the script.
 \index{menuentry@\code{menuentry}}
 \index{submenu@\code{submenu}}
 In the stock configuration file setup, menus are configured in the file
-\file{ioncore-menus.lua} as previously mentioned. An example of a 
+\file{ion-menus.lua} as previously mentioned. An example of a 
 definition of a rather simple menu with a submenu is:
 \begin{verbatim}
 include("menulib")
@@ -813,12 +815,11 @@ be accessed with this name. The \fnref{menuentry} function is used to
 create an entry in the menu with a title and an entry handler function to
 be called when the menu entry is activated. If the functions discussed in
 the next subsection are used to display the menu from a binding, the 
-parameters that are passed to the function are that the binding handler was
-passed. It is as if the function was called from that binding. 
+parameters that are passed to the function are those that the binding
+handler was passed. It is as if the function was called from that binding. 
 
 The \fnref{submenu} function is used to insert a submenu at that point in
-the menu. A menu with the given name must previously have been defined
-with \fnref{defmenu}. (One could as well just pass a table with the menu
+the menu. (One could as well just pass a table with the menu
 entries, but it is not encouraged.)
 
 \subsection{Displaying menus}
@@ -840,7 +841,7 @@ actions.
 An example of a binding to display a menu is:
 \begin{verbatim}
 global_bindings{
-    kpress("F12", make_bigmenu_fn(``mainmenu'')),
+    kpress("F12", make_bigmenu_fn("mainmenu")),
 }
 \end{verbatim}
 

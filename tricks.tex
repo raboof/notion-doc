@@ -29,8 +29,15 @@ Hook & Description \\
 \code{genframe_managed_switched} &
 	Called when the region viewed in a frame is switched. Parameters
 	to handler: the frame and the newly switched-to region. \\
+\code{genframe_activated} &
+	Called when a \type{WGenFrame} has received the focus. \\
+\code{genframe_inactivated} &
+	Called when a \type{WGenFrame} has lost the focus. \\
+\code{clientwin_added} &
+	Called when a client window has been mapped by a client program
+	and Ion has started managing it. \\
 \code{deinit} &
-	Called when Ion is about to start deinitilising before exiting.
+	Called when Ion is about to start deinitialising before exiting.
 	Handler has no parameters. \\
 \end{tabularx}
 
