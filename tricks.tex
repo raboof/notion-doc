@@ -58,6 +58,53 @@ return a frame on the workspace or \code{nil} if it made no
 decision. For example. the window placement heuristics in 
 \file{heuristics.lua} implement this function.
 
+\section{Referring to regions}
+
+\subsection{Direct object references}
+
+All Ion objects are passed to Lua scripts as 'userdata', and you may
+safely store such object references for future use. The C-side object
+may be destroyed while Lua still refers to the object. All exported
+functions gracefully fail in such a case, but if you need to explicitly
+test that the C-side object still exists, use \fnref{obj_exists}.
+
+As an example, the following short piece of code implements 
+bookmarking:
+
+\begin{verbatim}
+local bookmarks={}
+
+-- Set bookmark bm point to the region reg
+function set_bookmark(bm, reg)
+    bookmarks[bm]=frame
+end
+
+-- Go to bookmark bm
+function goto_bookmark(bm)
+    if bookmarks[bm] then
+        -- We could check that bookmarks[bm] still exists, if we
+        -- wanted to avoid an error message.
+        bookmarks[bm]:goto()
+    end
+end
+\end{verbatim}
+
+\subsection{Name-based lookups}
+
+If you want to a single region with an exact known name, use
+\fnref{lookup_region}. If you want e.g. a list of all regions,
+use \fnref{complete_region}\code{("")}. Both functions accept an
+optional argument that can be used to specify that the return region(s)
+must be of a more specific type. The convenience functions
+\fnref{lookup_clientwin}, \fnref{lookup_workspace},
+\fnref{complete_clientwin} and \fnref{complete_workspace} are also
+provided.
+
+To get the name of an object, use \fnref{WRegion.name}. Please be
+aware, that the names of client windows reflect their titles and
+are subject to changes. To change the name of a non-client window
+region, use \fnref{WRegion.set_name}.
+
 
 %\section{Sample scripts}
 %\fname{heuristics.lua}
