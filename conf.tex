@@ -75,7 +75,7 @@ from Ioncore and the rest are included from the former.
     Menu definitions; see section \ref{sec:menus}. \\
     %
     \file{kludges.lua} & 
-    Settings to get some apps behave more nicely have been collected here.
+    Settings to get some applications behave more nicely have been collected here.
     See section \ref{sec:winprops} for details on these ''winprops''. \\
     %
     \file{draw.lua} &
@@ -126,10 +126,10 @@ need to modify the files in this directory. Nevertheless, it is
 possible to override the files in \code{SHAREDIR} as it is on the search
 path after \code{\~/.ion2} and \code{ETCDIR}.
 
-There is one extra file in \code{SHAREDIR} that you may find usefull and
+There is one extra file in \code{SHAREDIR} that you may find useful and
 that is not loaded by default. This is \file{compat.lua} and it contains
 some wrapper functions for backwards compatibility to make the process of
-updating Ion a little less painfull. If you have have modified configuration
+updating Ion a little less painful. If you have have modified configuration
 files that use some features no longer available in the latest Ion, you may
 just load this file (with \code{include("compat.lua")} at the beginning of
 \file{ion.lua}, for example) instead of immediately updating your
@@ -160,7 +160,7 @@ Next there are the commented-out delay settings
 -- set_dblclick_delay(250)
 -- set_resize_delay(1500)
 \end{verbatim}
-The first of these settings is the maximum interlval in milliseconds 
+The first of these settings is the maximum interval in milliseconds 
 between two mouse button presses for the second press to be actually
 considered a double-click. The latter setting sets the delay, again 
 in milliseconds, after which Ion will automatically terminate 
@@ -170,7 +170,7 @@ The setting
 \begin{verbatim}
 enable_opaque_resize(false)
 \end{verbatim}
-says that a XOR rubberband should be shown when moving or resizing
+says that a XOR rubber band should be shown when moving or resizing
 frames. This will, unfortunately, cause Ion to also grab the X
 server and has some side effects. If your computer is fast enough
 and you prefer so-called ''opaque resize'' mode where the frame is
@@ -196,7 +196,7 @@ The first of these loads the file \file{kludges.lua} that contains
 some ''winprop'' settings used to make some applications behave a
 little better under Ion. For details see section \ref{sec:winprops}.
 The second include statement loads file file 
-\file{ion-bindings.lua} which containts the statements to configure 
+\file{ion-bindings.lua} which contains the statements to configure 
 most of Ion's bindings; modules' bindings are configured in their 
 respective configuration files. The final include statement load
 menu definitions.
@@ -231,7 +231,7 @@ load_module("menu")
 load_module("ionws")
 load_module("floatws")
 \end{verbatim}
-The first of the modules provides the queries, the minibuffer-like
+The first of the modules provides the queries, the mini buffer-like
 line-editor boxes that appear at bottoms of frames and screens and that
 can be and are used to to do quite a few things including starting
 programs and navigating to different windows by their name.
@@ -249,7 +249,7 @@ At the moment there are no other modules than the above three. Any of
 these modules may be removed; Ion is able to operate without any modules
 in full-screen  only mode, but if you do so, you might first want to 
 reconfigure some of the bindings. Ion will, however, complain of broken
-workspace savefiles if starting a module-less configuration over an old
+workspace save files if starting a module-less configuration over an old
 session.
 
 \section{Keys and rodents}
@@ -294,7 +294,7 @@ to this function' method to bind keys, some limitations would have to
 be made on the available functions and writing custom functions would
 be more complicated. In addition one may want to bind the same function
 to different key for different types of objects. Indeed, the workspace
-and frame tab swithing functions are the same both classes being based
+and frame tab switching functions are the same both classes being based
 on \type{WMPlex}, and in the stock configuration the switch to $n$:th 
 workspaces is bound to \key{Mod1+n} (using \fnref{global_bindings}
 explained below) while the switch to $n$:th tab is bound to the
@@ -468,7 +468,7 @@ The optional string parameter \var{area} may be used to specify a more
 precise location where the mouse action should occur for the binding to
 take place.
 Currently only \fnref{ionframe_bindings} and \fnref{floatframe_bindings}
-support any meaningfull values for this parameter. The allowed values
+support any meaningful values for this parameter. The allowed values
 are in this case
 \code{"border"}, \code{"tab"}, \code{"empty_tab"}, \code{"client"} and
 \code{nil} (for the whole frame).
@@ -643,7 +643,7 @@ to specify all of these fields.
 
 Ion looks for a matching winprop in the order listed by the following
 table. An 'E' indicates that the field must be set in the winprop
-and it must match the window's corresponding propertyexactly or, in
+and it must match the window's corresponding property exactly or, in
 case of \var{name}, the regular expression must match the window
 title. An asterisk '*' indicates that a winprop where the field is
 not specified (or is itself an asterisk in case of the first three
@@ -783,7 +783,7 @@ for classes based on \type{WMPlex}.  These setup functions are at the moment:
 The default configuration puts most queries in \fnref{genframe_bindings}
 while the exit and restart queries are in \fnref{global_bindings}.
 For a listing of the functions, see section \ref{sec:querylibref} in the 
-Function referece. 
+Function reference. 
 
 Querylib also provides functions to generate more queries; for details see
 the script.
@@ -840,7 +840,7 @@ These can be used as the menus defined as above.
     Menu name & Description \\
     \hline
     \code{windowlist} & 
-    List of all client windows. Activing an entry jumps to that window. \\
+    List of all client windows. Activating an entry jumps to that window. \\
     \code{workspacelist} & 
     List of all workspaces. Activating an entry jumps to that workspaces. \\
     \code{stylemenu} &
@@ -861,7 +861,7 @@ function with one of the following routines: \fnref{make_menu_fn},
 \fnref{make_bigmenu_fn} or \fnref{make_pmenu_fn}. The first two
 create functions to display in-frame (or in-mplex more generally)
 menus that appear on the bottom-left corner of the \type{WMPlex}
-where the bound action occured. The difference between the two is
+where the bound action occurred. The difference between the two is
 the different drawing engine style used. The last function creates
 a pop-up menu display function and can only be bound to mouse press
 actions.
