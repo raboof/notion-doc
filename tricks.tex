@@ -99,3 +99,48 @@ their standard Xlib counterparts: \fnref{ioncore.x_intern_atom}
 (XInternAtom), \fnref{ioncore.x_get_window_property} (XGetWindowProperty),
 and \fnref{ioncore.x_get_text_property} (XGetTextProperty).
 
+
+\section{Layers}
+
+In ion3, \type{WMPlex} manage two lists of objects. The layer 1
+objects are the ``normal'' objects that appear on screen, and in
+addition, you can add layer 2 objects, that will either be hidden, or
+appear on top of the screen. The Scratchpad, for example, is a layer 2
+object.
+
+Layer 2 objects can be either passive (ion will never give them the
+focus) or not (ion will never give the focus to a layer 1 object while
+a non-passive object is displayed).
+
+You can, for example, attach a \type{WFloatWS} on top of a
+\type{WIonWS} with the following lua code:
+
+\begin{verbatim}
+fws = foo:screen_of():attach_new({
+    type = "WFloatWS",
+    name = "foobar",
+    layer = 2,
+    passive = false,
+    switchto = false,
+})
+\end{verbatim}
+
+While the \type{WFloatWS} is empty, it will off course not be visible,
+but windows opened in this workspace will appear floating on top of
+the layer 1 workspace.
+
+You can hide this workspace (and all it contains) with
+
+\begin{verbatim}
+fws:screen_of():l2_hide(fws)
+\end{verbatim}
+
+and show it again with
+
+\begin{verbatim}
+fws:screen_of():l2_show(fws)
+\end{verbatim}
+
+The script \file{detach.lua} available in the Ion3 scripts repository%
+\footnote{\url{http://iki.fi/tuomov/repos/ion-scripts-3/}}
+can give you some ideas about what it is possible to do with this feature.
