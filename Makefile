@@ -17,7 +17,7 @@ MKFNTEX=$(LUA) $(TOPDIR)/build/mkexports.lua
 DOCS=ionconf ionnotes
 
 FNTEXES=ioncore-fns.tex mod_ionws-fns.tex mod_floatws-fns.tex \
-	mod_autows-fns.tex mod_query-fns.tex de-fns.tex mod_menu-fns.tex \
+	mod_panews-fns.tex mod_query-fns.tex de-fns.tex mod_menu-fns.tex \
 	mod_dock-fns.tex mod_sp-fns.tex
 
 # Generic rules
@@ -107,7 +107,7 @@ realclean: clean
 # Function reference rules
 ######################################
 
-ioncore-fns.tex: $(TOPDIR)/ioncore/*.c $(TOPDIR)/share/ioncore-*.lua $(TOPDIR)/luaextl/*.c
+ioncore-fns.tex: $(TOPDIR)/ioncore/*.c $(TOPDIR)/ioncore/*.lua $(TOPDIR)/luaextl/*.c
 	$(MKFNTEX) -module ioncore -mkdoc -o $@ $+
 
 mod_ionws-fns.tex: $(TOPDIR)/mod_ionws/*.c
@@ -116,8 +116,8 @@ mod_ionws-fns.tex: $(TOPDIR)/mod_ionws/*.c
 mod_floatws-fns.tex: $(TOPDIR)/mod_floatws/*.c
 	$(MKFNTEX) -module mod_floatws -mkdoc -o $@ $+
 
-mod_autows-fns.tex: $(TOPDIR)/mod_autows/*.c
-	$(MKFNTEX) -module mod_autows -mkdoc -o $@ $+
+mod_panews-fns.tex: $(TOPDIR)/mod_panews/*.c $(TOPDIR)/mod_panews/mod_panews.lua
+	$(MKFNTEX) -module mod_panews -mkdoc -o $@ $+
 
 mod_query-fns.tex: $(TOPDIR)/mod_query/*.c $(TOPDIR)/mod_query/mod_query.lua
 	$(MKFNTEX) -module mod_query -mkdoc -o $@ $+
