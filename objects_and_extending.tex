@@ -10,7 +10,10 @@
 \usepackage{listings}
 \usepackage{makeidx}
 \usepackage{tabularx}
+\usepackage[nottoc]{tocbibind}
 \input{macros}
+
+\urlstyle{rm}
 
 \title{Ion: Object model and extending with Lua}
 %begin{latexonly}
@@ -35,15 +38,26 @@ modules and Lua scripts and the necessary basics of the Ion object
 system.
 \end{abstract}
 
+%begin{latexonly}
+    If you would prefer a HTML version of this document, see
+    \url{http://iki.fi/tuomov/ion/objects_and_extending/}.
+%end{latexonly}
+\begin{htmlonly}
+    If you want to print this document or just prefer such a layout,
+    there is a
+    \htmladdnormallink{DVI version}{../objects_and_extending.dvi}
+    of this document.
+\end{htmlonly}
+
 \tableofcontents
 
 \input{objects}
 
-\input{luaif}
-
 \input{conf}
 
-\section{Exported functions}
+\input{luaif}
+
+\section{Reference on exported functions}
 \label{sec:exports}
 
 The following subsections list out the functions exported to Lua scripts
