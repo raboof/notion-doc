@@ -12,7 +12,8 @@ FNTEXES=ioncore-exports.tex ionws-exports.tex \
 	floatws-exports.tex query-exports.tex \
 	querylib-fns.tex ioncorelib-fns.tex \
 	ioncore-mplexfns.tex delib-fns.tex \
-	de-exports.tex
+	de-exports.tex menu-exports.tex \
+	menulib-fns.tex
 
 # Generic rules
 ######################################
@@ -94,16 +95,22 @@ floatws-exports.tex: $(TOPDIR)floatws/*.c
 	$(LUA) $(TOPDIR)/mkexports.lua -module floatws -mkdoc -o $@ $+
 
 de-exports.tex: $(TOPDIR)de/*.c
-	$(LUA) $(TOPDIR)/mkexports.lua -module floatws -mkdoc -o $@ $+
+	$(LUA) $(TOPDIR)/mkexports.lua -module de -mkdoc -o $@ $+
+
+menu-exports.tex: $(TOPDIR)menu/*.c
+	$(LUA) $(TOPDIR)/mkexports.lua -module menu -mkdoc -o $@ $+
 
 query-exports.tex: $(TOPDIR)query/*.c
 	$(LUA) $(TOPDIR)/mkexports.lua -module query -mkdoc -o $@ $+
 
-querylib-fns.tex: $(TOPDIR)share/querylib.lua
+querylib-fns.tex: $(TOPDIR)query/querylib.lua
 	$(LUA) $(TOPDIR)/mkexports.lua -module query -luadoc -o $@ $+
 
-delib-fns.tex: $(TOPDIR)share/delib.lua
-	$(LUA) $(TOPDIR)/mkexports.lua -module query -luadoc -o $@ $+
+delib-fns.tex: $(TOPDIR)de/delib.lua
+	$(LUA) $(TOPDIR)/mkexports.lua -module de -luadoc -o $@ $+
+
+menulib-fns.tex: $(TOPDIR)menu/menulib.lua
+	$(LUA) $(TOPDIR)/mkexports.lua -module menu -luadoc -o $@ $+
 
 ioncorelib-fns.tex: $(TOPDIR)share/ioncorelib.lua
 	$(LUA) $(TOPDIR)/mkexports.lua -module ioncore -luadoc -o $@ $+

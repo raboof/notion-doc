@@ -735,3 +735,17 @@ Function referece.
 Querylib also provides functions to generate more queries; for details see
 the script.
 
+\section{Some common configuration tasks}
+
+\subsection{Binding a key to execute a program}
+
+Because the \fnref{exec} function immediately executes the argument string,
+we must wrap this function in the bindings in the following way:
+\begin{verbatim}
+    kpress("SomeKey", function() exec("program --param") end)
+\end{verbatim}
+The \fnref{make_exec_fn} function can be used as a convenience; the
+above is equivalent to
+\begin{verbatim}
+    kpress("SomeKey", make_exec_fn("program --param"))
+\end{verbatim}

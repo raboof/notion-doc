@@ -28,7 +28,7 @@ are strings of the form
 element1-element2-...-elementn
 \end{verbatim}
 
-An example of such a style specification is \code{frame-tab};
+An example of such a style specification is \code{tab-frame};
 see the table in subsection \ref{sec:styles} for more styles.
 
 When an object asks for a brush of certain style, the selected
@@ -67,6 +67,8 @@ tag and drag states.)
 \subsection{Known styles and substyles}
 \label{sec:styles}
 
+\subsubsection{Frames}
+
 \begin{tabularx}{\linewidth}{lX}
 \hline
 Style name & Description \\
@@ -77,22 +79,45 @@ Style name & Description \\
 	Substyles as for \code{frame}. \\
 \code{frame-floatframe} & A more specific style for \type{WFloatFrame}s. 
 	Substyles as for \code{frame}. \\
-\code{frame-tab} & Style for frames' tabs. 
+\end{tabularx}
+
+\subsubsection{Tabs and menu entries}
+
+\begin{tabularx}{\linewidth}{lX}
+\hline
+Style name & Description \\
+\hline
+\code{tab} & Style for frames' tabs and menu entries. 
+	Substyles: combinations of the form \code{a-s} where
+	\code{a} is one of \code{active}\nobreak/\code{inactive} and
+	\code{s} is one of \code{selected}\nobreak/\code{unselected} \\
+\code{tab-frame} & A more specific style for frames' tabs.
 	Substyles: combinations of the form \code{a-s-t-d-u} where
-	\code{a} is one of \code{active}\nobreak/\code{inactive},
-	\code{s} is one of \code{selected}\nobreak/\code{unselected},
+	\code{a} and \code{s} are as above and
       	\code{t} is one of \code{tagged}\nobreak/\code{not_tagged},
-	\code{d} is one of \code{dragged}\nobreak/\code{not_dragged} and 
+	\code{d} is one of \code{dragged}\nobreak/\code{not_dragged} and
 	\code{u} is one of \code{activity}\nobreak/\code{no_activity}. \\
-\code{frame-tab-ionframe} & A more specific style for \type{WIonFrame}s' 
-	tabs. Substyles as for \code{frame-tab}. \\
-\code{frame-tab-floatframe} & A more specific style for 
-	\type{WFloatFrame}s' tabs. Substyles as for \code{frame-tab}. \\
+\code{tab-frame-ionframe} & A more specific style for \type{WIonFrame}s' 
+	tabs. Substyles as for \code{tab-frame}. \\
+\code{tab-frame-floatframe} & A more specific style for 
+	\type{WFloatFrame}s' tabs. \\
+\code{tab-menuentry} & A more specific style for entries in \type{WMenu}s. \\
+\code{tab-menuentry-bigmenu} & An alternate style for entries in \type{WMenu}s. \\
+\end{tabularx}
+
+\subsubsection{The rest}
+
+\begin{tabularx}{\linewidth}{lX}
+\hline
+Style name & Description \\
+\hline
 \code{input} & A style for \type{WInput}s. \\
 \code{input-edln} & A more specific style for \type{WEdln}s. 
 	Substyles: \code{selection} for selected text and
 	\code{cursor} for the cursor indicating current editing point. \\
 \code{input-message} & A more specific style for \type{WMessage}s. \\
+\code{input-menu} & A more specific style for \type{WMenu}s. \\
+\code{input-menu-bigmenu} & An alternate style for \type{WMenu}s. \\
 \code{moveres_display} & The box displaying position/size when
 	moving or resizing frames. \\
 \end{tabularx}
@@ -271,9 +296,10 @@ As discussed in previous sections, styles may have substyles to e.g.
 indicate different states of the object being drawn. The ''de'' engine
 limits what can be configured in substyles to the set of colours in the
 first table above, but also specifically interprets for the main style
-\code{frame-tab} the substyles \code{*-*-tagged} and \code{*-*-*-dragged}
+\code{tab-frame} the substyles \code{*-*-tagged} and \code{*-*-*-dragged}
 by, respectively, drawing a right angle shape at the top right corner 
-of a tab and by shading the tab with a stipple pattern.
+of a tab and by shading the tab with a stipple pattern. Also for
+menus the substyles \code{*-*-submenu} are handled as a special case.
 
 Substyles are defined with the function \fnref{de_substyle} within the
 table defining the main style. The parameters to this function are 
@@ -314,7 +340,7 @@ de_define_style("*", {
     text_align = "center",
 })
 
-de_define_style("frame-tab", {
+de_define_style("tab-frame", {
     based_on = "*",
     
     de_substyle("active-selected", {
