@@ -106,11 +106,14 @@ are subject to changes. To change the name of a non-client window
 region, use \fnref{WRegion.set_name}.
 
 
-%\section{Alternative winprop selection criteria}
+\section{Alternative winprop selection criteria}
 
-%Ion calls the Lua function \code{get_winprop} to find a winprop
-%table for a window. Thus, to select winprops by some alternative
-%criterion, simply redefine this function. 
+Ion calls the Lua function \code{get_winprop} to find a winprop
+table for a window. The sole argument to this function is the
+client window. To select winprops by some alternative criterion,
+simply redefine this function. The function \fnref{WClientWin.get_ident}
+can be used to obtain, the class, instance, role and \code{_ION_KLUDGES}
+properties of the window.
 
 %\section{Sample scripts}
 %\fname{heuristics.lua}
