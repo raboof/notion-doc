@@ -1,12 +1,21 @@
 
 \chapter{Configuring Ion with Lua}
 
-The following subsections are indended to help users to configure Ion.
-As the reader probably knows, Ion uses Lua as a configuration and 
+This chapter should help the reader configure Ion to her/his liking. As 
+the reader probably already knows, Ion uses Lua as a configuration and 
 extension language. If you are new to Lua, you might first want to read
 the the Lua manual at \url{http://www.lua.org/docs.html} and/or perhaps
-some helpfull lua-users wiki pages (including a quick to read tutorial)
-at \url{http://lua-users.org/wiki/}.
+some helpfull lua-users wiki pages at \url{http://lua-users.org/wiki/}
+and the tutorial pages there (\url{http://lua-users.org/wiki/LuaTutorial}).
+
+Ion's configuration files use so-called anonymous functions extensively. 
+If that sounds or the function construct in
+\begin{verbatim}
+kpress("Mod1+1", function(s) screen_switch_nth(s, 0) end)
+\end{verbatim} 
+looks confusing to you, please consider reading some Lua documentation.
+In particular you might want to look at
+\url{http://lua-users.org/wiki/FunctionsTutorial}.
 
 Section \ref{sec:conffiles} is an overview of the multiple configuration
 files Ion uses.
@@ -18,9 +27,9 @@ explained. For a reference on exported functions, see section
 \section{The configuration files}
 \label{sec:conffiles}
 
-Ion (development branch) stores its stock configuration files and other
-Lua code in \file{/usr/local/ion-devel/etc/ion-devel/} unless you or the
-OS package maintainer has modified the variables
+The development branch of Ion (to which document applies) stores its stock
+configuration files in \file{/usr/local/ion-devel/etc/ion-devel/} unless 
+you or the OS package maintainer has modified the variables
 \code{PREFIX}\index{PREFIX@\code{PREFIX}} or
 \code{ETCDIR}\index{ETCDIR@\code{ETCDIR}} in
 \file{system.mk}.\index{system.mk@\file{system.mk}}
@@ -86,7 +95,7 @@ The rest of the configuration files are as follows:
     the workspace and frame classes implemented by this module are
     configured here. \\
     %
-    \file{query.lua} & query module  &
+    \file{query.lua} & query\linebreak module  &
     Configuration file for the query module. Bindings to edit text
     in the queries and some other bindings related to queries and
     messages are defined here. \\
@@ -133,27 +142,29 @@ loaded prior to defining any bindings.
 The bindings are defined by calling various functions that add a new set
 of bindings to a binding group. These functions and descriptions of their
 contexts and parameters to bindings handlers are listed in the following 
-subsection.
+subsection. Each of the functions listed there has a single argument: a 
+table listing the keys and mouse actions to be bind functions to. Section
+\ref{sec:binddef} describes how the binding tables can be constructed.
 
 Note that when multiple objects want to handle a binding, the innermost
 (when the root window is considered the outermost) active object in the
-parent--child hierarchy (see Figure \ref{fig:managership}) of objects 
+parent--child hierarchy (see Figure \ref{fig:parentship}) of objects 
 gets to handle the action.
 
-\subsection{Binding setting functions}
+\subsection{The binding setup functions}
 
-\subsubsection{Ioncore binding setting functions}
+\subsubsection{Ioncore binding setup functions}
 
-The following binding setting functions are defined by the ioncore
+The following binding setup functions are defined by the ioncore
 main executable and in the stock configuration file setup, they
 are set from the file \file{ioncore-bindings.lua}:
 
 \begin{tabularx}{\linewidth}{lX}
     \hline
-    Function & Description \\
+    Function & Handler parameters and description \\
     \hline
     \fnref{global_bindings} & Parameters to handler: \type{WScreen} \\
-			    & Description: bindings that are available all the
+			    & Description: Bindings that are available all the
 			      time. \\
     \fnref{mplex_bindings}  & Parameters to handler: \type{WMPlex} \\
 			    & Description: Bindings that are common to all
@@ -170,19 +181,19 @@ are set from the file \file{ioncore-bindings.lua}:
 \end{tabularx}
 
 
-\subsubsection{IonWS module binding setting functions}
+\subsubsection{IonWS module binding setup functions}
 
-The following binding setting functions are defined by the IonWS module
+The following binding setup functions are defined by the IonWS module
 and in the stock configuration file setup the bindings are set in
 \file{ionws.lua}:
 
 \begin{tabularx}{\linewidth}{lX}
     \hline
-    Function & Description \\
+    Function & Handler parameters and description \\
     \hline
     \fnref{ionws_bindings}  & Parameters to handler: 
                               \type{WIonWS}, \type{WRegion} \\
-			    & Description: bindings that are available on the
+			    & Description: Bindings that are available on the
 			      tiled workspaces implemented by this module.
 			      The extra parameter to binding handler is the 
 			      currently active object on the workspace. \\
@@ -200,7 +211,7 @@ and in the stock configuration file setup the bindings are set in
 			      function reference for details. \\
 \end{tabularx}
 
-\subsubsection{FloatWS module binding setting functions}
+\subsubsection{FloatWS module binding setup functions}
 
 These functions are similar to the ones described in the above section for 
 the FloatWS module. The bindings are defined in the configuration file 
@@ -208,11 +219,11 @@ the FloatWS module. The bindings are defined in the configuration file
 
 \begin{tabularx}{\linewidth}{lX}
     \hline
-    Function & Description \\
+    Function & Handler parameters and description \\
     \hline
     \fnref{floatws_bindings}& Parameters to handler: 
     			      \type{WFloatWS}, [\type{WRegion}] \\
-			    & Description: bindings that are available on the
+			    & Description: Bindings that are available on the
 			      conventional workspaces implemented by this 
 			      module. The extra parameter to binding handler
 			      is the  currently active object on the 
@@ -231,14 +242,14 @@ the FloatWS module. The bindings are defined in the configuration file
 \end{tabularx}
 
 
-\subsubsection{Query module binding setting functions}
+\subsubsection{Query module binding setup functions}
 
 These functions set the bindings for the query module. The bindings are set 
 from the file \file{query.lua}.
 
 \begin{tabularx}{\linewidth}{lX}
     \hline
-    Function & Description \\
+    Function & Handler parameters and description \\
     \hline
     \fnref{input_bindings}  & Parameters to handler: \type{WInput} \\
 			    & Description: bindings that are common to
@@ -250,6 +261,7 @@ from the file \file{query.lua}.
 \end{tabularx}
 
 \subsection{Defining the bindings}
+\label{sec:binddef}
 
 Each of the functions given above has a single argument: a table
 listing other tables describing the bindings. While it is possible
@@ -401,11 +413,10 @@ function. The following two binding definitions are equivalent:
 mplex_bindings {
     kpress("Mod1+Return", function(mplex)
                               local r=mplex_current(scr)
-			      if obj_is(r, "WClientWin") then
-			          clientwin_toggle_fullscreen(r)
-			      end
-                          end
-          ),
+                              if obj_is(r, "WClientWin") then
+                                  clientwin_toggle_fullscreen(r)
+                              end
+                          end),
     kpress("Mod1+Enter", 
            make_current_clientwin_fn(clientwin_toggle_fullscreen)),
 }
@@ -435,15 +446,28 @@ of the window. It is not necessary to specify all of these; if one is
 not specified or is the string \code{"*"} that particular field matches
 all windows. For a window with identification information \var{id}, Ion
 looks for a matching winprop in the following order:
-\begin{verbatim}
-for _, c in {id.class, "*"} do
-    for _, r in {id.role, "*"} do
-        for _, i in {id.instance, "*"} do
-            -- Check for winprop matching (c, r, i)
-        end
-    end
-end
-\end{verbatim}
+%\begin{verbatim}
+%for _, c in {id.class, "*"} do
+%    for _, r in {id.role, "*"} do
+%        for _, i in {id.instance, "*"} do
+%            -- Check for winprop matching (c, r, i)
+%        end
+%    end
+%end
+%\end{verbatim}
+
+\begin{enumerate}
+    \item \code{class, role, instance}
+    \item \code{class, role, "*"}
+    \item \code{class, "*", instance}
+    \item \code{class, "*", "*"}
+    \item \code{"*", role, instance}
+    \item \code{"*", role, "*"}
+    \item \code{"*", "*", instance}
+    \item \code{"*", "*", "*"}
+\end{enumerate}
+Here \var{class}, \var{role} and \var{instance} or those of the
+client window or \code{"*"} if unset.
 
 To get this identification information for a particular window, you
 may use the command \command{xprop WM_CLASS} and click on that
@@ -534,10 +558,20 @@ winprop{
 \section{QueryLib}
 \index{QueryLib@\var{QueryLib}}
 
-While the query module only exportes the primitive function
-\fnref{query_query}, QueryLib, in \file{querylib.lua}, implements some
-standard queries, most with completion support. These functions can be
-directly passed as arguments to the binding creation functions
-(\code{kpress} and so on) for \fnref{ionframe_bindings} and
-\fnref{floatframe_bindings}. For a listing of these, see section
-\ref{sec:querylibref}.
+While the query module only exports the primitive function
+\fnref{query_query}, QueryLib (file \file{querylib.lua}) implements some
+standard queries, most with completion support. These functions can be 
+directly passed to the binding setup functions for classes based on 
+\type{WMPlex}.  These setup functions are at the moment:
+\begin{itemize}
+\item \fnref{global_bindings}
+\item \fnref{mplex_bindings}, 
+\item \fnref{genframe_bindings},
+\item \fnref{ionframe_bindings} and
+\item \fnref{floatframe_bindings}.
+\end{itemize}
+
+The default configuration puts most queries in \fnref{genframe_bindings}
+while the exit and restart queries are in \fnref{global_bindings}.
+For a listing of the functions, see section \ref{sec:querylibref} in the 
+Function referece. 
