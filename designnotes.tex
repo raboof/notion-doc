@@ -9,7 +9,7 @@ function that calls watches, the deinit routine and frees memory may
 be called directly. In all other cases the 
 \code{defer_destroy}\index{defer-destroy@\code{defer_destroy}}
 function should be used to defer the call of \code{destroy_obj} until
-Ioncore returns to its main event loop.
+Ioncore returns to its main event loop. 
 
 Calling the \code{destroy_obj} function directly is allowed in the
 following cases:
@@ -27,3 +27,7 @@ following cases:
     \item You are absolute sure that C code outside your code has no
       references to the object.
 \end{itemize}
+
+If there are no serious side effects from deferring destroying the
+object or you're unsure whether it is safe to destroy the object
+immediately, use \code{defer_destroy}.
