@@ -4,19 +4,17 @@
 
 This chapter should help the reader configure Ion to her/his liking. As 
 the reader probably already knows, Ion uses Lua as a configuration and 
-extension language. If you are new to Lua, you might first want to read
-the the Lua manual at \url{http://www.lua.org/docs.html} and/or perhaps
-some helpfull lua-users wiki pages at \url{http://lua-users.org/wiki/}
-and the tutorial pages there (\url{http://lua-users.org/wiki/LuaTutorial}).
+extension language. If the reader is new to Lua, he might first want
+to read some Lua documentation as already suggested and pointed to in the
+Introduction before continuing with this chapter.
 
-Ion's configuration files use so-called anonymous functions extensively. 
-If that sounds or the function construct in
+In particular, if ''anonymous function'' sounds or the function construct in
 \begin{verbatim}
 kpress("Mod1+1", function(s) screen_switch_nth(s, 0) end)
-\end{verbatim} 
-looks confusing to you, please consider reading some Lua documentation.
-In particular you might want to look at
-\url{http://lua-users.org/wiki/FunctionsTutorial}.
+\end{verbatim}
+looks confusing to you, please consider reading some Lua documentation,
+\url{http://lua-users.org/wiki/FunctionsTutorial} if nothing else.
+Ion's stock configuration files use anonymous functions quite extensively.
 
 Section \ref{sec:conffiles} is an overview of the multiple configuration
 files Ion uses.
@@ -30,16 +28,17 @@ explained. For a reference on exported functions, see section
 
 The development branch of Ion (to which document applies) stores its stock
 configuration files in \file{/usr/local/ion-devel/etc/ion-devel/} unless 
-you or the OS package maintainer has modified the variables
+you, OS package maintainer or whoever installed the package has modified 
+the variables
 \code{PREFIX}\index{PREFIX@\code{PREFIX}} or
 \code{ETCDIR}\index{ETCDIR@\code{ETCDIR}} in
-\file{system.mk}.\index{system.mk@\file{system.mk}}
-In the former case you probably know where to find the files and in the
-latter the OS package maintainer should have provided documentation to
-point to the correct location. If these instructions don't point you
-to the correct directory, the command \code{locate ioncore.lua} might help
-provided \code{updatedb} has been run recently. User configuration files
-go in \file{\~{}/.ion-devel/}. 
+\file{system.mk}\index{system.mk@\file{system.mk}} before compiling Ion.
+In the first case you probably know where to find the files and in 
+the other case the system administrator or OS package maintainer should 
+have provided documentation to point to the correct location. If these
+instructions are no help in locationthe correct directory, the command
+\code{locate ioncore.lua} might help provided \code{updatedb} has been
+run recently. User configuration files go in \file{\~{}/.ion-devel/}. 
 
 Ion always searches user configuration file directory before the stock
 configuration file directory for files. Therefore, if you want to change
@@ -158,6 +157,32 @@ This section simply lists out the different binding setup functions
 Ioncore and the modules provide and does not even attempt to describe
 how to use these functions; for that refer to \ref{sec:binddef} and
 following sections.
+
+There has been some confusion among users about the need for multiple, 
+partially even overlapping functions to setup bindings so let me try
+give reasons for this design decision here. 
+
+The thing is that if there was a just a single 'bind this key
+to this function' method to bind keys, some limitations would have to
+be made on the available functions or writing custom functions would
+be more complicated. In addition one may want to bind the same function
+to different key for different types of object. Indeed, the workspace
+and frame tab swithing functions are the same both classes being based
+on \type{WMPlex}, and in the stock configuration the switch to $n$:th 
+workspaces is bound to \key{Mod1+n} (using \fnref{global_bindings}
+explained below) while the switch to $n$:th tab is bound to the
+sequence \key{Mod1+k n}  (using \fnref{genframe_bindings} and 
+\fnref{submap}). Of course all this inheritance could be hidden
+from the configuration interface by duplicating functions, but then
+at what level this should be then done? There would quickly be a lot
+of essentially same functions (\code{screen_switch_nth},
+\code{genframe_switch_nth}, \code{ionframe_switch_nth},
+\code{floatframe_switch_nth}, and so on for every new type of 
+multiplexer added) and that prospect does not look so good.
+
+So, in brief this little additional complexity in configuration is the
+price for flexibility and in part elegance (if there can be said to be
+anything of the like in Ion).
 
 \subsubsection{Ioncore binding setup functions}
 
