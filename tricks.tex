@@ -30,6 +30,11 @@ In this example the hook handler has no parameters, but many hook
 handlers do. The types of parameters for each hook are listed in
 the hook reference, section \ref{sec:hookref}.
 
+
+Note that many of the hooks are called in ''protected mode'' and can not 
+use any functions that modify Ion's internal state. TODO: More detailed 
+documentation when this is final.
+
 \section{Referring to regions}
 
 \subsection{Direct object references}
