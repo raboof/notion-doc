@@ -1,0 +1,58 @@
+
+\chapter{Advanced scripting, assorted tricks}
+
+This chapter explains some additional possibilities of scripting Ion
+that are not part of the basic configuration framework documented in
+chapter \ref{chap:config}.
+
+\section{Hooks and other callbacks}
+
+\subsection{Hooks}
+
+Hooks are lists of functions to be called when a certain event occurs.
+Hook handlers are registered with the function \fnref{add_to_hook}
+and removed with \fnref{remove_from_hook}. Both of these functions
+take as argument the name of the hook (a string) and the handler,
+the parameters of which depend on the actual hook in question.
+
+The following hooks are currently defined:
+
+\begin{tabularx}{\linewidth}{lX}
+\hline
+Hook & Description \\
+\hline
+\code{screen_workspace_switched} &
+	Called when the object (not necessarily a workspace despite the
+	name) viewed on a screen is switched. Parameters to handler:
+	the screen and the newly switched-to region. \\
+\code{genframe_managed_switched} &
+	Called when the region viewed in a frame is switched. Parameters
+	to handler: the frame and the newly switched-to region. \\
+\code{deinit} &
+	Called when Ion is about to start deinitilising before exiting.
+	Handler has no parameters. \\
+\end{tabularx}
+
+More hooks can be added on request as need arises.
+
+\subsection{Placement methods}
+
+In addition to the hooks mentioned above there is (at the moment) 
+one callback that is not a hook. It is the function
+\code{ionws_placement_method} can be used by scripts to decide
+in which frame a newly mapped client window should be placed 
+within an already decided on \type{WIonWS}. The function has
+three parameters: the workspace, the client window and a boolean
+indicating whether the client window's geometry (see
+\fnref{WRegion.geom}) was specified by the user by e.g. a
+\code{-geometry} command line switch. The function should
+return a frame on the workspace or \code{nil} if it made no
+decision. For example. the window placement heuristics in 
+\file{heuristics.lua} implement this function.
+
+
+%\section{Sample scripts}
+%\fname{heuristics.lua}
+%\fname{closeorkill.lua}
+
+
