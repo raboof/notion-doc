@@ -37,7 +37,7 @@ may have asterixes (\verb!*!) as some of the elements indicating
 a match to anything. Exact matches are preferred to asterisk
 matches and longer matches to shorter. For example, let a brush
 for style \code{foo-bar-baz} be queried, then the following
-brushes are in order of precedence:
+brushes are in order of preference:
 
 \begin{verbatim}
 foo-bar-baz
@@ -47,8 +47,8 @@ foo-bar
 foo-baz   -- Doesn't match, not selected!
 \end{verbatim}
 
-Some of the drawing primitives also extra attributes to be
-specified also in the form
+Some of the drawing primitives allow extra attributes to be
+specified, also in the form
 \begin{verbatim}
 attr1-attr2-...-attrn
 \end{verbatim}
