@@ -24,7 +24,9 @@ tree where the object at the root is inherited by all others below it
 and so on.
 
 Figure \ref{fig:classhierarchy} lists out the Ion class hierarchy and
-the classes are explained below:
+the classes are explained below:\footnote{If the experimental 
+  compile-time option \var{CF_WINDOWED_SCREENS} is set, \type{WScreen}
+  then inherits \type{WWindow}.}
 
 \begin{figure}
 \begin{verbatim}
@@ -36,7 +38,7 @@ the classes are explained below:
      |    |
      |    |-->WWindow
      |    |    |
-     |    |    |-->WScreen
+     |    |    |-->WRootWin
      |    |    |
      |    |    |-->WGenFrame
      |    |    |    |
@@ -56,7 +58,7 @@ the classes are explained below:
      |    |    |
      |    |    |-->WFloatWS (floatws.so)
      |    |
-     |    |-->WViewport
+     |    |-->Screen
      |
      |-->WWsSplit
 \end{verbatim}
@@ -81,16 +83,16 @@ the classes are explained below:
 	internal objects having an X window associated to them
 	(\type{WClientWins} also have X windows associated to them).
 	
-      \item[\type{WScreen}]\indextype{WScreen} is the class for
+      \item[\type{WRootWin}]\indextype{WRootWin} is the class for
 	root windows\index{root window} of X screens\index{screen!X}.
-	Note that an ''X screen'' is not necessarily a single 
-	physical screen\index{screen!physical} as a root window may be
-	split over multiple screens when multi-head extensions such as
-	Xinerama\index{Xinerama} are used. 
-	Objects of type \type{WViewport} are supposed to point to the
-	areas of the \type{WScreen} that are visible on single physical
-	screens (actually there can be only one \type{WScreen} if Xinerama
-	is used).
+	Note that an ''X screen'' or root window is not necessarily a
+	single  physical screen\index{screen!physical} as a root window
+	may be split over multiple screens when multi-head extensions 
+	such as Xinerama\index{Xinerama} are used. (Actually there
+	can be only one \type{WRootWin} when Xinerama is used.)
+	
+      \item[\type{WScreens}]\indextype{WScreen} are objects that should
+	correspond to physical screens and may share a root window.
 	
       \item[\type{WGenFrame}]\indextype{WGenFrame} is a ''virtual'' (to
 	lend the C++ terminology) base class implementing everything in
@@ -119,13 +121,16 @@ associated to it. The parent\index{parent} for an object is always a
 the X windows. For other \type{WRegion}s the relation is not as clear.
 There is generally very few restrictions other than the above on the
 parent---child relation but the most common is as described in
-Figure \ref{fig:parentship}.
+Figure \ref{fig:parentship}.\footnote{This hierarchy does not hold
+  if the compile-time option \var{CF_WINDOWED_SCREENS} is set. In that
+  case everything except \type{WRootWin}s  should be below \type{WScreen}s
+  as they are windowed objects.}
 
 \begin{figure}
 \begin{verbatim}
-    WScreens
+    WRootWins
      |
-     |-->WViewports
+     |-->WScreens
      |
      |-->WIonWS:s and WFloatWS:s
      |
@@ -154,9 +159,9 @@ but all have a parent--a screen if not anything else.
 
 \begin{figure}
 \begin{verbatim}
-    WScreens
+    WRootWins
      |
-     |-->WViewports
+     |-->WScreens
           |
           |-->full screen WClientWins
           |    |
