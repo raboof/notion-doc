@@ -68,33 +68,33 @@ The rest of the configuration files are as follows:
     The main configuration file \\
     %
     \file{ioncore-bindings.lua} & \file{ioncore.lua} &
-    Global bindings are configured in this file; see section 
-    \ref{sec:bindings}. \\
+    Global bindings and bindings that are common to screens and
+    all/both workspace modules' frames are configurured here. For
+    details, see section \ref{sec:bindings}. \\
     %
     \file{kludges.lua} & \file{ioncore.lua}  &
     Settings to get some apps behave more nicely have been collected here.
     See section \ref{sec:winprops} for details on these ''winprops''. \\
     %
     \file{ionws.lua} & ionws\linebreak module  &
-    Configuration file for the ionws module. (This module only
-    supports configuring bindings.) \\
+    Configuration file for the ionws module. Bindings specific to the
+    workspace and frame classes implemented by this module are
+    configured here. \\
     %
     \file{floatws.lua} & floatws\linebreak module  &
-    Configuration file for the floatws module. Only bindings and
-    placement method (see \fnref{set_floatws_placement_method}) are
-    configurable. \\
-    %
-    \file{common-frame-bindings.lua} & \file{ionws.lua} and
-                                       \file{floatws.lua} &
-    Bindings common to both workspace modules' frames. \\
+    Configuration file for the floatws module. Bindings specific to
+    the workspace and frame classes implemented by this module are
+    configured here. \\
     %
     \file{query.lua} & query module  &
-    Configuration file for the query module. (Again, bindings only.) \\
+    Configuration file for the query module. Bindings to edit text
+    in the queries and some other bindings related to queries and
+    messages are defined here. \\
     %
     \file{look-*.lua} & ioncore & 
     Drawing engine configuration files. The \file{draw.lua} files
     as explained above are usually linked to or are copies of one of
-    these.
+    these. \\
 \end{tabularx}
 
 Some of the files contain references to the file \file{querylib.lua}.
@@ -122,55 +122,134 @@ this happens.
 \section{Keys and rodents}
 \label{sec:bindings}
 
-\subsection{Defining the bindings}
+In the stock configuration file setup, most key and mouse bindings are set
+from the file \file{ioncore-bindings.lua} while module-specific bindings
+are set from the modules' main configuration files (\file{modulename.lua}).
+Ion's modules no longer fail to load if the bindings have not been set
+during the execution of the module's configuration file, so the bindings
+could now be set from elsewhere. In any case, the module must have been
+loaded prior to defining any bindings.
 
-Keyboard- and mouse bindings are defined by calling various functions
-that add a new set of bindings to a binding ``context'' (in lack of
-a better name). These functions, their contexts and defining modules
-are given in the following table. The last column additionally lists
-the types of parameters the binding handler (explained later in this
-section) gets if different from context:
+The bindings are defined by calling various functions that add a new set
+of bindings to a binding group. These functions and descriptions of their
+contexts and parameters to bindings handlers are listed in the following 
+subsection.
 
-\begin{tabularx}{\textwidth}{llX}
+Note that when multiple objects want to handle a binding, the innermost
+(when the root window is considered the outermost) active object in the
+parent--child hierarchy (see Figure \ref{fig:managership}) of objects 
+gets to handle the action.
+
+\subsection{Binding setting functions}
+
+\subsubsection{Ioncore binding setting functions}
+
+The following binding setting functions are defined by the ioncore
+main executable and in the stock configuration file setup, they
+are set from the file \file{ioncore-bindings.lua}:
+
+\begin{tabularx}{\linewidth}{lX}
     \hline
-    Module & Function & Context; parameter(s) \\
+    Function & Description \\
     \hline
-    ioncore & \fnref{global_bindings} & \type{WScreen} \\
-    ionws   & \fnref{ionws_bindings}  & All objects on \type{WIonWS}s;
-    					parameters: the \type{WIonWS}
-				        and a \type{WWindow} where the event
-				        actually occured\\
-            & \fnref{ionframe_bindings} & \type{WIonFrame}s; parameters: the
-	    				\type{WIonFrame}. For actions on tabs
-					this is followed by the \type{WRegion} 
-					corresponding to the tab. \\
-            & \fnref{ionframe_moveres_bindings} & \type{WIonFrame}s in resize mode \\
-    floatws & \fnref{floatws_bindings} & All objects on \type{WFloatWS}s;
-    					 parameters: the \type{WFloatWS}
-				         and a \type{WWindow} where
-					 the event actually occured, if any\\
-    	    & \fnref{floatframe_bindings} & \type{WFloatFrame}; parameters
-	    				similar to \code{ionframe_bindings}. \\
-            & \fnref{floatframe_moveres_bindings} & \type{WFloatFrame}s in move/resize mode \\
-    query   & \fnref{input_bindings} & \type{WInput}s \\
-            & \fnref{wedln_bindings} & \type{WEdln}s \\
+    \fnref{global_bindings} & Parameters to handler: \type{WScreen} \\
+			    & Description: bindings that are available all the
+			      time. \\
+    \fnref{mplex_bindings}  & Parameters to handler: \type{WMPlex} \\
+			    & Description: Bindings that are common to all
+			      \type{WMPlex}es (screens and frames). Usually
+			      only bindings that affect current client window
+			      (if any) are set here. \\
+    \fnref{genframe_bindings} & Parameters to handler: 
+    			      \type{WGenFrame}, [\type{WRegion}] \\
+			    & Description: Bindings that are common to all
+			      types of frames (but not screens unlike
+			      \code{mplex_bindings} above. When a tab has been
+			      pressed the \type{WRegion} corresponding to the
+			      tab is passed as the extra parameter. \\
 \end{tabularx}
 
-In the default configuration, global bindings are set from a file
-included from the Ioncore main configuration file (\file{ioncore.lua}),
-\file{ioncore-bindings.lua}.
-The rest of the bindings are set in the defining modules' main
-configuration files (\file{modulename.lua}). The module bindings
-must indeed be set during the execution of the module configuration
-file as the functions to set the bindings are not available before
-the module is loaded and the modules check that there are enough
-bindings defined after reading the configuration file and
-refuse to load otherwise.
 
-The resize mode bindings are used when either
-\fnref{ionframe_begin_resize} or \fnref{floatframe_begin_resize} 
-depending on the type of object has been called until the mode
-ends. Only the resize and move functions may be used in these modes.
+\subsubsection{IonWS module binding setting functions}
+
+The following binding setting functions are defined by the IonWS module
+and in the stock configuration file setup the bindings are set in
+\file{ionws.lua}:
+
+\begin{tabularx}{\linewidth}{lX}
+    \hline
+    Function & Description \\
+    \hline
+    \fnref{ionws_bindings}  & Parameters to handler: 
+                              \type{WIonWS}, \type{WRegion} \\
+			    & Description: bindings that are available on the
+			      tiled workspaces implemented by this module.
+			      The extra parameter to binding handler is the 
+			      currently active object on the workspace. \\
+    \fnref{ionframe_bindings} & Parameters to handler: 
+    			      \type{WIonFrame}, [\type{WRegion}] \\
+			    & Description: Bindings that are specific to 
+			      the tiled frames. As above, when a tab has been
+			      pressed the \type{WRegion} corresponding to the
+			      tab is passed as the extra parameter. \\
+    \fnref{ionframe_moveres_bindings} & Parameters to handler: 
+                              \type{WIonFrame} \\
+			    & Description: Resize mode bindings.  Activated 
+			      by calling \fnref{ionframe_begin_resize}. Only
+			      certain functions may be called here; see the
+			      function reference for details. \\
+\end{tabularx}
+
+\subsubsection{FloatWS module binding setting functions}
+
+These functions are similar to the ones described in the above section for 
+the FloatWS module. The bindings are defined in the configuration file 
+\file{floatws.lua}:
+
+\begin{tabularx}{\linewidth}{lX}
+    \hline
+    Function & Description \\
+    \hline
+    \fnref{floatws_bindings}& Parameters to handler: 
+    			      \type{WFloatWS}, [\type{WRegion}] \\
+			    & Description: bindings that are available on the
+			      conventional workspaces implemented by this 
+			      module. The extra parameter to binding handler
+			      is the  currently active object on the 
+			      workspace, if any. \\
+    \fnref{floatframe_bindings} & Parameters to handler: 
+    			      \type{WFloatFrame}, [\type{WRegion}] \\
+			    & Description: Bindings that are specific to 
+			      the the conventional floating frames. \\
+    \fnref{floatframe_moveres_bindings} & Parameters to handler:
+                              \type{WIonFrame} \\
+			    & Description: Keyboard move/resize mode 
+			      bindings. Activated by calling the function
+			      \fnref{floatframe_begin_resize}. Only certain
+			      functions may be called here; see the
+			      function reference for details. \\
+\end{tabularx}
+
+
+\subsubsection{Query module binding setting functions}
+
+These functions set the bindings for the query module. The bindings are set 
+from the file \file{query.lua}.
+
+\begin{tabularx}{\linewidth}{lX}
+    \hline
+    Function & Description \\
+    \hline
+    \fnref{input_bindings}  & Parameters to handler: \type{WInput} \\
+			    & Description: bindings that are common to
+			      message and query boxes; stuff to close
+			      the box and to scroll message or completions. \\
+    \fnref{query_bindings}  & Parameters to handler: \type{WEdln} \\
+			    & Description: Bindings to edit text and
+			      finish the query.\\
+\end{tabularx}
+
+\subsection{Defining the bindings}
 
 Each of the functions given above has a single argument: a table
 listing other tables describing the bindings. While it is possible
@@ -308,33 +387,34 @@ key bound to it is available virtually everywhere.
 
 As client windows do not have function to set their bindings, it is
 necessary to call client window functions by specifying the bindings
-somewhere else (e.g. \fnref{global_bindings} or \fnref{ionframe_bindings}
-and \fnref{floatframe_bindings}), and then looking up the previously
-active leaf node in Ion's hierarchy of objects, starting from the
-first parameter to the callback with
-\fnref{region_get_active_leaf}%
-\index{region-get-active-leaf@\code{region_get_active_leaf}}.
-The convenience function \code{make_active_leaf_fn} is provided to
-make a function to do this. The following two binding definitions are
-equivalent:
+somewhere else. In the stock configuration file setup this is done
+in \fnref{mplex_bindings} by functions that look up the object currently
+displayed by the \type{WMPlex} (\fnref{mplex_current}). We then check that
+it is of type \type{WClientWin} to suppress warning and then call the
+wanted function with the verified client window as argument. 
+
+To make it easier to write such bindings, the function 
+\fnref{make_current_clientwin_fn} is used to construct this wrapper
+function. The following two binding definitions are equivalent:
 
 \begin{verbatim}
-global_bindings {
-    kpress("Mod1+C", function(scr)
-                         lf=region_get_active_leaf(scr)
-                         region_close(lf)
-                     end
+mplex_bindings {
+    kpress("Mod1+Return", function(mplex)
+                              local r=mplex_current(scr)
+			      if obj_is(r, "WClientWin") then
+			          clientwin_toggle_fullscreen(r)
+			      end
+                          end
           ),
-    kpress("Mod1+C", make_active_leaf_fn(region_close)),
+    kpress("Mod1+Enter", 
+           make_current_clientwin_fn(clientwin_toggle_fullscreen)),
 }
 \end{verbatim}
 
-The function
-\fnref{genframe_current}
-\index{genframe-current@\code{genframe_curent}}
-may also be used to get the current managed region of a frame. (The
-object returned by this function is not the same as what
-\fnref{region_get_active_leaf} would return if there are transients!)
+In the stock configuration files, a similar function
+\fnref{make_current_or_self_fn} is also used to create a wrapper for
+\fnref{region_close} that attempts to close the current object managed
+by the \type{WMPlex} if it exists and otherwise the multiplexer itself.
 
 
 \section{Winprops}
