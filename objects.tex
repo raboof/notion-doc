@@ -1,0 +1,195 @@
+
+\section{Preliminaries: The Ion object system and hierarchy}
+
+\subsection{Implementation basics}
+
+It may be usefull for the scripter too to learn some of Ion's object
+system and hierarchy to know how to write proper scripts.
+
+First, to get things clear, what are considered objects here are C
+structures containing a properly initialized \type\indextype{WObj}
+structure defined in \file{ioncore/obj.c} as the first element (or the
+first element of the structure which is the first element and so on which
+gives rise to inheritance). The \type{WObj} structure contains a pointer
+to a \type{WObjDescr}\indextype{WObjDescr} class type info structure and
+a list of so called ''watches''. The \type{WObjDescr} structure simply
+lists the class name, a table of dynamic functions and a pointer to
+deinitialisation function (or ''destructor'').
+
+Ion does not do any reference counting, garbage collecting or other
+fancy things related to automatic safe freeing of objects with its
+simplistic object system. Instead special watches (the \type{WWatch}
+\indextype{WWatch} structure) may be used to create safe references to
+objects that might be destroyed during the time the specific pointer is
+needed. When an object is destroyed, its list of watches is processed,
+setting the pointers in the watches to NULL and the watch handlers for
+each watch are called. 
+
+\subsection{Class hierarchy}
+
+Now that the basics have been covered, Figure \ref{fig:classhierarchy}
+lists out the Ion class hierarchy and the classes are explained below:
+
+\begin{figure}
+\iftrue
+\begin{verbatim}
+    WObj
+     |
+     |-->WRegion
+     |    |
+     |    |-->WClientWin
+     |    |
+     |    |-->WWindow
+     |    |    |
+     |    |    |-->WScreen
+     |    |    |
+     |    |    |-->WGenFrame
+     |    |    |    |
+     |    |    |    |-->WIonFrame (ionws.so)
+     |    |    |    |
+     |    |    |    |-->WFloatFrame (floatws.so)
+     |    |    |
+     |    |    |-->WInput (query.so)
+     |    |         |
+     |    |         |-->WEdln (query.so)
+     |    |         |
+     |    |         |-->WMessage (query.so)
+     |    |
+     |    |-->WGenWS
+     |    |    |
+     |    |    |-->WIonWS (ionws.so)
+     |    |    |
+     |    |    |-->WFloatWS (floatws.so)
+     |    |
+     |    |-->WViewport
+     |
+     |-->WWsSplit
+\end{verbatim}
+\fi
+%\includegraphics{objhier.eps}
+%\begin{center}
+%\input{objhier.latex}
+%\end{center}
+\caption{Ion class hierarchy}
+\label{fig:classhierarchy}
+\end{figure}
+
+\begin{description}
+  \item[\type{WRegion}\indextype{WRegion}]
+    is the base object for everything on the screen
+    and most actions done on these. Each WRegion has a size and position
+    relative to the parent WRegion. (More on parents and managers
+    below).
+    \begin{description}
+      \item[\type{WClientWin}\indextype{WClientWin}] is an object
+	referencing to client windows--what window managers are supposed
+	to manage.
+	
+      \item[\type{WWindow}]\indextype{WWindow} is the base for all internal
+	objects having an X window associated to them (\type{WClientWins}
+	also have X windows associated to them).
+	
+      \item[\type{WScreen}]\indextype{WScreen} is the root window of an
+	X screen. Note that an X screen is not necessarily a single physical
+	screen as it may be split over multiple screens when Xinerama is
+	used. The \type{WViewport} objects are supposed to point to the
+	areas of the \type{WScreen} that are visible on single physical
+	screens (actually there can be only one \type{WScreen} if Xinerama
+	is used).
+	
+      \item[\type{WGenFrame}]\indextype{WGenFrame} is a ''virtual'' (to
+	lend the C++ terminology) base class implementing everything in
+	common to Ion and PWM (''floating'') style frames and why not others
+	if such are ever implemented.
+	
+      \item[\type{WInput}]\indextype{WInput} is again a virtual base class
+	for the different kinds of inputs implemented by the query module
+	(the line editor and message display).
+	
+      \item[\type{WGenWS}]\indextype{WGenWS} like \type{WGenFrame} is a
+	virtual base class for the two types of workspaces.
+    \end{description}
+    
+  \item[\type{WWsSplit}]\indextype{WWsSplit} is an object internal to
+    \type{WIonWS} implementation.
+\end{description}
+
+
+\subsection{\type{WRegion} parents and managers}
+
+Each \type{WRegion} has a parent and possibly a manager associated to it.
+The parent\index{parent} for an object is always a \type{WWindow} and for
+\type{WRegion} with an X window (\type{WClientWin}, \type{WWindow}) the
+parent \type{WWindow} is given by the same relation of the X windows.
+For other \type{WRegion}s the relation is not as clear. There is generally
+very few restrictions other than the above on the parent---child relation
+but the most common is as described in Figure \ref{fig:parentship}.
+
+\begin{figure}
+\begin{verbatim}
+    WScreens
+     |
+     |-->WViewports
+     |
+     |-->WIonWS:s and WFloatWS:s
+     |
+     |-->WClientWins in full screen mode
+     |
+     |-->WIonFrames and WFloatFrames
+          |
+          |-->WClientWins, including transients
+          |
+          |-->a possible WEdln or WMessage
+\end{verbatim}
+\caption{Most common parentship relations}
+\label{fig:parentship}
+\end{figure}
+
+\type{WRegion}s have very little control over their children as a parent.
+The manager\index{manager} \type{WRegion} has much more control over its
+managed \type{WRegion}s. Managers, for example, handle resize requests,
+focusing and displaying of the managed regions. Indeed the manager---managed
+relationship gives a better picture of the logical ordering of objects on
+the screen. Again, there are generally few limits, but the most common
+hierarchy is given in Figure \ref{fig:managership}. Note that sometimes
+the parent and manager are the same object and not all objects may have
+a manager (e.g. the dock in the dock module at the time of writing this)
+but all have a parent--a screen if not anything else.
+
+\begin{figure}
+\begin{verbatim}
+    WScreens
+     |
+     |-->WViewports
+          |
+          |-->full screen WClientWins
+          |    |
+          |    |-->transient WClientWins (dialogs)
+          |
+          |-->WIonWSs
+          |    |
+          |    |-->WIonFrames
+          |         |
+          |         |-->WClientWins
+          |         |    |
+          |         |    |-->transient WClientWins (dialogs)
+          |         |
+          |         |-->a possible WEdln or WMessage
+          |
+          |-->WFloatWSs
+               |
+               |-->WFloatFrames
+                    |
+                    |-->WClientWins
+                    |
+                    |-->a possible WEdln or WMessage
+\end{verbatim}
+\caption{Most common manager--managed relations}
+\label{fig:managership}
+\end{figure}
+
+Note how the \type{WClientWin}s managed by \type{WFloatFrame}s don't have
+transients managed by them. This is because WFloatWSs choose to handle
+transients differently (transients are put in separate frames like normal
+windows; in the future they should be stacked above the frame containing the
+\code{transient_for} window).

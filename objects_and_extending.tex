@@ -1,0 +1,75 @@
+\documentclass[english,a4paper,11pt,oldtoc]{artikel3}
+\usepackage{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{ae}
+\usepackage{url}
+\usepackage{html}
+\usepackage[dvipdfm,hypertex]{hyperref}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{listings}
+\usepackage{makeidx}
+\usepackage{tabularx}
+\input{macros}
+
+\title{Ion: Object model and extending with Lua}
+%begin{latexonly}
+\author{Tuomo Valkonen \\ tuomov@iki.fi}
+%end{latexonly}
+\begin{htmlonly}
+\author{Tuomo Valkonen \\ tuomov at iki.fi}
+\end{htmlonly}
+\date{2003-05-06}
+
+\makeindex
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This preliminary version of this short document makes
+an attempt at
+describing how Ion's interface to Lua works, how to use it in both
+modules and Lua scripts and the necessary basics of the Ion object
+system.
+\end{abstract}
+
+$Log: objects_and_extending.tex,v $
+Revision 1.1  2003/05/06 17:28:31  tuomov
+Initial revision
+\\
+
+\tableofcontents
+
+\input{objects}
+
+\input{luaif}
+
+\input{conf}
+
+\section{Exported functions}
+\label{sec:exports}
+
+The following subsections list out the functions exported to Lua scripts
+by Ioncore and the ionws, floatws and query modules.
+
+\subsection{Functions exported by Ioncore}
+
+\input{/home/tuomov/coding/ion/doc/ioncore-exports.tex}
+
+\subsection{Functions exported by the ionws module}
+
+\input{/home/tuomov/coding/ion/doc/ionws-exports.tex}
+
+\subsection{Functions exported by the floatws module}
+
+\input{/home/tuomov/coding/ion/doc/floatws-exports.tex}
+
+\subsection{Functions exported by the query module}
+
+\input{/home/tuomov/coding/ion/doc/query-exports.tex}
+
+\printindex
+
+\end{document}

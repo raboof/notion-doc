@@ -1,0 +1,180 @@
+
+\section{Configuring Ion with Lua}
+
+The following subsections are indended to help users configure Ion
+with Lua. Section \ref{sec:bindings} desribes how keys and mouse
+actions are bound to functions and in section \ref{sec:winprops}
+winprops are explained. More help to come.
+
+For a reference on exported functions, see section \ref{sec:exports}.
+
+\subsection{Defining bindings}
+\label{sec:bindings}
+
+TODO: describe this more thoroughly
+
+Binding callback functions will receive two arguments: the region
+owning the binding and the region where the actual event occured.
+For ''normal'' regions like frames these are the same but for e.g.
+workspaces that can't directly have bindings but grab them on their
+''managed'' frames, the first argument is the workspace and the second
+the frame. Also, button event callbacks for frames will receive as the
+second argument the owner of the tab where the event occured, if any.
+
+The first parameter to any binding callback function is always of the
+type of the respective bindings group (for \fnref{global_bindings}
+\type{WScreen}).
+
+As client windows do not have a binding group, it is necessary to
+call client window functions by specifying the bindings somewhere
+else (e.g. \fnref{global_bindings} or \fnref{ionframe_bindings}
+and \fnref{floatframe_bindings}), and then looking up the previously
+active leaf node in Ion's hierarchy of objects, starting from the
+first parameter to the callback with
+\fnref{region_get_active_leaf}%
+\index{region-get-active-leaf@\code{region_get_active_leaf}}.
+The convenience function \code{make_active_leaf_fn} is provided to
+make a function to do this. The following two binding definitions are
+equivalent:
+
+\begin{verbatim}
+global_bindings {
+    kpress("Mod1+C", function(scr)
+                         lf=region_get_active_leaf(scr)
+                         region_close(lf)
+                     end
+          ),
+    kpress("Mod1+C", make_active_leaf_fn(region_close)),
+}
+\end{verbatim}
+
+The function
+\fnref{genframe_current}
+\index{genframe-current@\code{genframe_curent}}
+may also be used to get the current managed region of a frame. (The
+object returned by this function is not the same as what
+\fnref{region_get_active_leaf} would return if there are transients!)
+
+\subsection{Winprops}
+\label{sec:winprops}
+
+\subsubsection{Classes, roles and instances}
+
+The so-called ''winprops''\index{winprop} can be used to change how
+specific windows are handled and to set up some kludges to deal with
+badly behaving applications. They are defined by calling the function
+\code{winprop} with a table containing the properties to set and the
+necessary information to identify a window. This identification
+information is more specifically the
+\var{class}\index{class@\var{class}!winprop},
+\var{role}\index{role@\var{role}!winprop} and
+\var{instance}\index{instance@\var{instance}!winprop}
+of the window. It is not necessary to specify all of these; if one is
+not specified or is the string \code{"*"} that particular field matches
+all windows. For a window with identification information \var{id}, Ion
+looks for a matching winprop in the following order:
+\begin{verbatim}
+for _, c in {id.class, "*"} do
+    for _, r in {id.role, "*"} do
+        for _, i in {id.instance, "*"} do
+            -- Check for winprop matching (c, r, i)
+        end
+    end
+end
+\end{verbatim}
+
+To get this identification information for a particular window, you
+may use the command \command{xprop WM_CLASS} and click on that
+particular window.\footnote{This does not work for transients in
+WIonFrames.} The class is the latter of the strings while
+the instance is the former. To get the role -- few windows have
+this property -- use the command \command{xprop WM_ROLE}.
+
+\subsubsection{Supported winprops}
+
+Ion currently knows the following winprops:
+
+\index{switchto@\var{switchto}!winprop}
+\index{transient-mode@\var{transient_mode}!winprop}
+\index{target@\var{target}!winprop}
+\index{transparent@\var{transparent}!winprop}
+\index{acrobatic@\var{acrobatic}!winprop}
+\index{max-size@\var{max_size}!winprop}
+\index{aspect@\var{aspect}!winprop}
+\index{ignore-resizeinc@\var{ignore_resizeinc}}
+
+\begin{tabularx}{\textwidth}{llX}
+    \hline
+    Property & Type & Description\\\hline
+    \var{switchto} &
+    	boolean &
+    	Should the window be switched to when it is created. \\
+    \var{transient_mode} &
+  	string &
+    	"normal": No change in behaviour. "current": The window
+	should be thought of as a transient for the current active
+	client window (if any) even if it is not marked as a
+	transient by the application. "off": The window should be
+	handled as a normal window even if it is marked as a
+	transient by the application. \\
+    \var{target} &
+    	string &
+    	The full name of an object (workspace, frame) that should
+	manage windows of this type. \\
+    \var{transparent} &
+    	boolean &
+    	Should frames be made transparent when this window is selected. \\
+    \var{acrobatic} &
+    	boolean &
+    	Set this to \code{true} for Acrobat Reader. It has an annoying
+	habit of trying to manage its dialogs instead of setting them as
+	transients and letting the window manager do its job, causing
+	Ion and acrobat go a window-switching loop when a dialog is
+	opened. \\
+    \var{max_size} &
+    	table &
+        The table should countain the entries \var{w} and \var{h} that
+	override application-supplied maximum size hint. \\
+    \var{aspect} &
+    	table &
+        The table should countain the entries \var{w} and \var{h} that
+	override application-supplied aspect ratio hint. \\
+    \var{ignore_resizeinc} &
+    	boolean &
+    	Should application supplied size increments be ignored? \\
+\end{tabularx}
+
+\subsubsection{Examples}
+
+Acrobat Reader's manners aren't exactly good:
+\begin{verbatim}
+winprop{
+    class = "AcroRead",
+    instance = "documentShell",
+    acrobatic = true,
+}
+\end{verbatim}
+
+Place xterm started with '\code{-name sysmon}' and running a system
+monitoring program in a specific frame:
+\begin{verbatim}
+winprop{
+    class = "XTerm",
+    instance = "sysmon",
+    target = "sysmonframe",
+}
+\end{verbatim}
+
+
+\subsection{Miscellaneous issues}
+
+The \code{QueryLib.query_lua} function is quite useless at the moment as it
+is not possible to simply enter a name of a command and call it.
+The query takes in Lua code and executes it as-is. `\code{arg[1]}' is set
+to \myhref{fn:genframe_current}{\code{genframe_current()}} for the frame
+in which the query is executing in or to the frame if such does not exist.
+This argument can not be directly passed to most functions and it is
+necessary to somehow obtain an object of wanted type. Later, a better
+handler for executing single commands in addition to to one for executing
+arbitrary code should be written, in Lua.
+
