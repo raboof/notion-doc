@@ -111,19 +111,19 @@ realclean: clean
 ioncore-fns.tex: $(TOPDIR)/ioncore/*.c $(TOPDIR)/luaextl/*.c
 	$(MKFNTEX) -module ioncore -mkdoc -o $@ $+
 
-mod_ionws-fns.tex: $(TOPDIR)/ionws/*.c
+mod_ionws-fns.tex: $(TOPDIR)/mod_ionws/*.c
 	$(MKFNTEX) -module mod_ionws -mkdoc -o $@ $+
 
-mod_floatws-fns.tex: $(TOPDIR)/floatws/*.c
+mod_floatws-fns.tex: $(TOPDIR)/mod_floatws/*.c
 	$(MKFNTEX) -module mod_floatws -mkdoc -o $@ $+
 
-mod_menu-fns.tex: $(TOPDIR)/menu/*.c
+mod_menu-fns.tex: $(TOPDIR)/mod_menu/*.c
 	$(MKFNTEX) -module mod_menu -mkdoc -o $@ $+
 
-mod_dock-fns.tex: $(TOPDIR)/dock/*.c
+mod_dock-fns.tex: $(TOPDIR)/mod_dock/*.c
 	$(MKFNTEX) -module mod_dock -mkdoc -o $@ $+
 
-mod_query-fns.tex: $(TOPDIR)/query/*.c
+mod_query-fns.tex: $(TOPDIR)/mod_query/*.c
 	$(MKFNTEX) -module mod_query -mkdoc -o $@ $+
 
 mod_sp-fns.tex: $(TOPDIR)/mod_sp/*.c
@@ -132,10 +132,10 @@ mod_sp-fns.tex: $(TOPDIR)/mod_sp/*.c
 de-fns.tex: $(TOPDIR)/de/*.c
 	$(MKFNTEX) -module de -mkdoc -o $@ $+
 
-querylib-fns.tex: $(TOPDIR)/query/querylib.lua
+querylib-fns.tex: $(TOPDIR)/mod_query/querylib.lua
 	$(MKFNTEX) -module querylib -luadoc -o $@ $+
 
-menulib-fns.tex: $(TOPDIR)/menu/menulib.lua
+menulib-fns.tex: $(TOPDIR)/mod_menu/menulib.lua
 	$(MKFNTEX) -module menulib -luadoc -o $@ $+
 
 ioncorelib-fns.tex: $(TOPDIR)/share/ioncorelib.lua \
