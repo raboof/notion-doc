@@ -2,6 +2,10 @@
   extendedchars=true,
   breaklines=true,
   basicstyle=\tt,
+  % Some adjustments for slightly more sensible line breaking
+  alsoletter={"}
+  alsoother={_}
+%  prebreak=\textbackslash,
 }
 
 \newcommand{\note}[1]{\color{red}**#1**}
@@ -11,6 +15,8 @@
 \newcommand{\code}[1]{\lstinline!#1!}
 \newcommand{\var}[1]{\lstinline!#1!}
 \newcommand{\command}[1]{\lstinline!#1!}
+
+\newcommand{\key}[1]{\textbf{#1}}
 
 % Latex2html is broken shit and can't do hyperlink/hypertarget but
 % only some html-specific crap so we must do this too with wrappers.

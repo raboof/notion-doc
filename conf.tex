@@ -12,26 +12,190 @@ actions are bound to functions and in section \ref{sec:winprops}
 winprops are explained. For a reference on exported functions, see
 section \ref{sec:exports}.
 
-\subsection{Defining bindings}
+\subsection{Keys and rodents}
 \label{sec:bindings}
 
-TODO: describe this more thoroughly
+\subsubsection{Defining the bindings}
 
-Binding callback functions will receive two arguments: the region
-owning the binding and the region where the actual event occured.
-For ''normal'' regions like frames these are the same but for e.g.
-workspaces that can't directly have bindings but grab them on their
-''managed'' frames, the first argument is the workspace and the second
-the frame. Also, button event callbacks for frames will receive as the
-second argument the owner of the tab where the event occured, if any.
+Keyboard- and mouse bindings are defined by calling various functions
+that add a new set of bindings to a binding ``context'' (in lack of
+a better name). These functions, their contexts and defining modules
+are given in the following table. The last column additionally lists
+the types of parameters the binding handler (explained later in this
+section) gets if different from context:
 
-The first parameter to any binding callback function is always of the
-type of the respective bindings group (for \fnref{global_bindings}
-\type{WScreen}).
+\begin{tabularx}{\textwidth}{llXX}
+    \hline
+    Module & Function & Context; parameter(s) \\
+    \hline
+    ioncore & \fnref{global_bindings} & \type{WScreen} \\
+    ionws   & \fnref{ionws_bindings}  & All objects on \type{WIonWS}s;
+    					parameters: the \type{WIonWS}
+				        and a \type{WWindow} where the event
+				        actually occured\\
+            & \fnref{ionframe_bindings} & \type{WIonFrame}s \\
+            & \fnref{ionframe_moveres_bindings} & \type{WIonFrame}s in resize mode \\
+    floatws & \fnref{floatws_bindings} & All objects on \type{WFloatWS}s;
+    					 parameters: the \type{WFloatWS}
+				         and a \type{WWindow} where
+					 the event actually occured, if any\\
+    	    & \fnref{floatframe_bindings} & \type{WFloatFrame} \\
+            & \fnref{floatframe_moveres_bindings} & \type{WFloatFrame}s in move/resize mode \\
+    query   & \fnref{input_bindings} & \type{WInput}s \\
+            & \fnref{wedln_bindings} & \type{WEdln}s \\
+\end{tabularx}
 
-As client windows do not have a binding group, it is necessary to
-call client window functions by specifying the bindings somewhere
-else (e.g. \fnref{global_bindings} or \fnref{ionframe_bindings}
+In the default configuration, global bindings are set from a file
+included from the Ioncore main configuration file (\file{ioncore.lua}),
+\file{ioncore-bindings.lua}.
+The rest of the bindings are set in the defining modules' main
+configuration files (\file{modulename.lua}). The module bindings
+must indeed be set during the execution of the module configuration
+file as the functions to set the bindings are not available before
+the module is loaded and the modules check that there are enough
+bindings defined after reading the configuration file and
+refuse to load otherwise.
+
+The resize mode bindings are used when either
+\fnref{ionframe_begin_resize} or \fnref{floatframe_begin_resize} 
+depending on the type of object has been called until the mode
+ends. Only the resize and move functions may be used in these modes.
+
+Each of the functions given above has a single argument: a table
+listing other tables describing the bindings. While it is possible
+to directly construct these tables, the following convenience
+functions are provided. 
+
+Key presses:
+\begin{itemize}
+    \item \fnref{kpress}\code{(keyspec, func)},
+    \item \fnref{kpress_waitrel}\code{(keyspec, func)} and
+    \item \fnref{submap}\code{(keyspec)\{ ... more key bindings ... \}}.
+\end{itemize}
+Mouse actions:
+\begin{itemize}
+    \item \fnref{mclick}\code{(buttonspec, func, [, area])},
+    \item \fnref{mdblclick}\code{(buttonspec, func, [, area])}, 
+    \item \fnref{mpress}\code{(buttonspec, func, [, area])} and
+    \item \fnref{mdrag}\code{(buttonspec, func, [, area])}.
+\end{itemize}
+
+The actions that most of these functions correspond to should be clear
+and as explained in the reference, \fnref{kpress_waitrel} is simply
+\fnref{kpress} with a flag set instructing Ioncore wait for all
+modifiers to be released before processing any further actions.
+This is the stop one from accidentally calling e.g.
+\fnref{region_close} multiple times in a row. The \fnref{submap}
+function actually returns another function that expects a table
+as an argument. Alternatively you could use
+\code{submap2(keyspec, \{ ... \})}.
+
+The parameters \var{keyspec} and \var{buttonspec} are explained below
+in detail. The parameter \var{func} is the handler for the binding.
+It should expect as parameter(s) objects the types of which depend
+on the context as defined in the above table.
+
+The optional string parameter \var{area} may be used to specify a more
+precise location where the mouse action should occur for the binding to
+take place.
+Currently only \fnref{ionframe_bindings} and \fnref{floatframe_bindings}
+support any meaningfull values for this parameter. The allowed values
+are in thise case
+\code{"border"}, \code{"tab"}, \code{"empty_tab"}, \code{"client"} and
+\code{nil} (for the whole frame).
+
+\subsubsection{Key and button specifications}
+
+As seen above, the functions that create key binding specifications require
+a \var{keyspec} argument. This argument should be a string containing the
+name of a key as listed in the X header file \file{keysymdef.h}%
+\footnote{This file can usually be found in the directory
+\file{/usr/X11R6/include/X11/}.} without the \code{XK_} prefix.
+\index{keysymdef.h@\file{keysymdef.h}}
+Most of the key names are quite intuitive while some are not. For example,
+the \key{Enter} key on the main part of the keyboard has the less common
+name \key{Return} while the one one the numpad is called \key{KP\_Enter}.
+
+The \var{keyspec} string may optionally have multiple ''modifier'' names
+followed by a plus sign (\code{+}) as a prefix. X defines the following
+modifiers:
+\begin{quotation}
+\key{Shift}, \key{Control}, \key{Mod1} to \key{Mod5},
+\key{AnyModifier} and \key{Lock}.
+\index{Shift@\key{Shift}}
+\index{Control@\key{Control}}
+\index{Mod-n@\key{Mod-n}}
+\index{AnyModifier@\key{AnyModifier}}
+\index{Lock@\key{Lock}}
+\end{quotation}
+
+X allows binding all of these modifiers to almost any key and while this
+list of modifiers does not explicitly list keys such as 
+\key{Alt}\index{Alt@\key{Alt}} that are common on modern keyboards, such
+keys are bound to one of the \key{Mod-n}. On systems running XFree86
+\key{Alt} is usually \key{Mod1}. On Suns \key{Mod1} is the diamond key
+and \key{Alt} something else. One of the ''flying window'' keys on so
+called Windows-keyboards is probably mapped to \key{Mod3} if you have
+such a key. Use the program \file{xmodmap}\index{xmodmap@\file{xmodmap}}
+to find out what exactly is bound where. \key{AnyModifier} is usually
+used in submaps to indicate that it doesn't matter which modifier keys
+are pressed, if any.
+
+Ion ignores the \key{Lock} modifier and any \key{Mod-n} modifiers bound
+to 
+\key{NumLock}\index{NumLock@\key{NumLock}}
+\key{ScrollLock}\index{ScrollLock@\key{ScrollLock}}
+by default because such evil locking keys may otherwise cause confusion.
+
+Button specifications are similar to key definitions but now
+instead of specifying modifiers and a key, you specify modifiers
+and one of the button names \key{Button1} to
+\key{Button5}\index{Button-n@\key{Button-n}}.
+
+
+\subsubsection{An example}
+
+As an example, let's look at an extract from the default bindings for
+\type{WIonFrame}s:
+
+\begin{verbatim}
+ionframe_bindings{
+    kpress(DEFAULT_MOD .. "R", ionframe_begin_resize),
+    kpress(DEFAULT_MOD .. "S",
+           function(frame) ionframe_split(frame, "bottom") end),
+
+    submap(DEFAULT_MOD .. "K"){
+        kpress("AnyModifier+X", ionframe_close),
+        kpress("AnyModifier+S",
+               function(frame) ionframe_split(frame, "right") end),
+    },
+    
+    mclick("Button1", genframe_p_switch_tab, "tab"),
+    mdrag("Button1", genframe_p_tabdrag, "tab"),
+    mdrag("Button1", genframe_p_resize, "border"),
+    
+    mclick("Button2", genframe_p_switch_tab, "tab"),
+    mdrag("Button2", genframe_p_tabdrag, "tab"),
+    
+    mdrag(DEFAULT_MOD .. "Button3", genframe_p_resize),
+}
+\end{verbatim}
+
+\subsubsection{A further note on the default binding configuration}
+
+The variable \code{DEFAULT_MOD} in the above listing defaults to
+\code{"Mod1+"} and is set ion \file{ioncore.lua}. Changing this
+variable allows to easily change the the modifier used by all bindings
+in the default configuration that use modifiers. Quite a few people
+prefer to use the Windows keys as modifiers because many applications
+use already use \key{Alt}. Nevertheless, \key{Mod1} is the default as a
+key bound to it is available virtually everywhere.
+
+\subsubsection{Client window bindings}
+
+As client windows do not have function to set their bindings, it is
+necessary to call client window functions by specifying the bindings
+somewhere else (e.g. \fnref{global_bindings} or \fnref{ionframe_bindings}
 and \fnref{floatframe_bindings}), and then looking up the previously
 active leaf node in Ion's hierarchy of objects, starting from the
 first parameter to the callback with
@@ -59,12 +223,13 @@ may also be used to get the current managed region of a frame. (The
 object returned by this function is not the same as what
 \fnref{region_get_active_leaf} would return if there are transients!)
 
+
 \subsection{Winprops}
 \label{sec:winprops}
 
 \subsubsection{Classes, roles and instances}
 
-The so-called ''winprops''\index{winprop} can be used to change how
+The so-called ''winprops''\index{Winprops} can be used to change how
 specific windows are handled and to set up some kludges to deal with
 badly behaving applications. They are defined by calling the function
 \code{winprop} with a table containing the properties to set and the

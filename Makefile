@@ -29,7 +29,7 @@ html:
 	-local_icons -noaddress -up_url http://www.iki.fi/tuomov/ion/ \
 	-up_title "Ion homepage" $(DOC)
 
-all: fntexes latex html
+all: fntexes latex html ps pdf
 
 fntexes: $(FNTEXES)
 
