@@ -85,7 +85,7 @@ clean:
 # Function reference rules
 ######################################
 
-ioncore-exports.tex: $(TOPDIR)/ioncore/*.c
+ioncore-exports.tex: $(TOPDIR)ioncore/*.c $(TOPDIR)luaextl/*.c
 	$(LUA) $(TOPDIR)/mkexports.lua -module ioncore -mkdoc -o $@ $+
 
 ionws-exports.tex: $(TOPDIR)ionws/*.c
