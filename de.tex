@@ -1,0 +1,229 @@
+
+\chapter{Graphical styles}
+
+This chapter first gives in section \ref{sec:engines} a general outline 
+of how drawing engines are used, of style specifications and then
+in section \ref{sec:defaultde} describes how to specify styles
+for the default drawing engine.
+
+\section{Drawing engines, style specifications and substyles}
+\label{sec:engines}
+
+
+\subsection{Known styles and substyles}
+
+\begin{tabularx}{\linewidth}{lX}
+\hline
+Style name & Description \\
+\hline
+\code{frame} & Style for frames. 
+	Substyles: \code{active}, \code{inactive}. \\
+\code{frame-ionframe} & A more specific style for \type{WIonFrame}s. 
+	Substyles as for \code{frame}. \\
+\code{frame-floatframe} & A more specific style for \type{WFloatFrame}s. 
+	Substyles as for \code{frame}. \\
+\code{frame-tab} & Style for frames' tabs. 
+	Substyles: combinations of the form \code{a-s-t-d-u} where
+	\code{a} is one of \code{active}/\code{inactive},
+	\code{s} is one of \code{selected}/\code{unselected},
+      	\code{t} is one of \code{tagged}/\code{not_tagged},
+	\code{d} is one of \code{dragged}/\code{not_dragged} and 
+	\code{u} is one of \code{urgent}/\code{not_urgent}. \\
+\code{frame-tab-ionframe} & A more specific style for \type{WIonFrame}s' 
+	tabs. Substyles as for \code{frame-tab}. \\
+\code{frame-tab-floatframe} & A more specific style for 
+	\type{WFloatFrame}s' tabs. Substyles as for \code{frame-tab}. \\
+\code{input} & A style for \type{WInput}s. \\
+\code{input-edln} & A more specific style for \type{WEdln}s. 
+	Substyles: \code{selection} for selected text and
+	\code{cursor} for the cursor indicating current editing point. \\
+\code{input-message} & A more specific style for \type{WMessage}s. \\
+\code{moveres_display} & The box displaying position/size when
+	moving or resizing frames. \\
+\end{tabularx}
+
+
+\section{Defining styles for the default drawing engine}
+\label{sec:defaultde}
+
+\subsection{Loading the drawing engine}
+
+The first thing to do in a stylefile is to choose the drawing
+engine, possibly loading the module as well. This is done
+with the following chunk of code.
+
+\begin{verbatim}
+if not gr_select_engine("de") then 
+    return 
+end
+\end{verbatim}
+
+The \fnref{gr_select_engine} function sees if the engine
+given as argument is register (the default drawing engine is
+simply called ''de''). If the engine could not be found, it
+tries to load a module of the same name. If the engine still
+is not registered, \fnref{gr_select_engine} returns \code{false}
+and in this case we also exit the script style setup script.
+If the engine was found, \fnref{gr_select_engine} sees that
+further requests for brushes are forwarded to that engine
+and returns \code{true}.
+
+
+\subsection{Defining the styles}
+
+Styles for the default drawing engine are defined with the
+function \fnref{de_define_style}. It has two arguments the first being
+a style specification as explained in previous sections and the second
+a table whose fields describe the style. The known fields are described
+in tables below and the different border elements discussed there are 
+explained by the following sketch:
+
+\begin{verbatim}
+Elevated:        Inlaid:         Ridge:            Groove:        
+  hhhhhhhhhhhs     sssssssssssh	    hhhhhhhhhhhs     sssssssssssh
+  h..........s     s..........h	    h..........s     s..........h
+  h.        .s     s.        .h	    h.sssssssh.s     s.hhhhhhhs.h
+  h.        .s     s.        .h	    h.s      h.s     s.h      s.h
+  h.        .s     s.        .h	    h.shhhhhhh.s     s.hsssssss.h
+  h..........s     s..........h	    h..........s     s..........h
+  hsssssssssss     shhhhhhhhhhh	    hsssssssssss     shhhhhhhhhhh
+
+h = highlight, s = shadow, . = padding
+\end{verbatim}
+
+
+\subsubsection{Colours}
+
+Each of these fields a string of the form that can be
+passed to \code{XAllocNamedColor}. Valid strings are e.g.
+hexadecimal RGB specifications of the form
+\code{#RRGGBB} and colour names as specified
+in \file{/usr/X11R6/lib/X11/rgb.txt} (exact path varying).
+
+\begin{tabularx}{\linewidth}{lX}
+\hline
+Field  & Description \\
+\hline
+\var{highlight_colour} &  
+	Colour for the ''highlight'' part of a border border. \\
+\var{shadow_colour}    &  
+	Colour for the ''highlight'' part of a border border. \\
+\var{foreground_colour} &  
+	Colour for the normal drawing operations, e.g. text. \\
+\var{background_colour} &  
+	Window background colour (unless transparency is enabled) and
+	background colour boxes. \\
+\var{padding_colour} &  
+	Colour for the ''padding'' part of a border border. Set to 
+	\var{background_colour} if unset. \\
+\end{tabularx}
+
+
+\subsubsection{Borders and widths}
+
+All other fields below except \var{border_style} are non-negative integers
+indicating a number of pixels.
+
+\begin{tabularx}{\linewidth}{lX}
+\hline
+Field  & Description \\
+\hline
+\var{border_style} & A string indicating the style of border; one of
+		     elevated/inlaid/ridge/groove as seen in the
+		     above sketch. \\
+\var{highlight_pixels} &  
+	Width of the highlight part of the border in pixels. \\
+\var{shadow_pixels}    &  
+	Width of the shadow part of the border in pixels. \\
+\var{padding_pixels} &  
+	Width of the padding part of the border in pixels. \\
+\var{spacing} &
+	Space to be left between all kinds of boxes. \\
+\end{tabularx}
+
+
+\subsubsection{Text}
+
+\begin{tabularx}{\linewidth}{lX}
+\hline
+Field  & Description \\
+\hline
+\var{font} & Font to be used in text-drawing operations; standard X font
+	     name. \\
+\var{text_align} & How text is to be aligned in text boxes/tabs; one of
+		   the strings left/right/center. \\
+\end{tabularx}
+
+
+\subsubsection{Miscellaneous}
+
+
+\begin{tabularx}{\linewidth}{lX}
+\hline
+Field  & Description \\
+\hline
+\var{transparent_background} & Should windows' that use this style
+	background be transparent? true/false. \\
+\var{based_on} & The name of a previously defined style that this
+	style should be based on. \\
+\end{tabularx}
+
+
+\subsubsection{Substyles}
+
+As discussed in previous sections, styles may have substyles to e.g.
+indicate different states of the object being drawn. The ''de'' engine
+limits what can be configured in substyles to the set of colours in the
+first table above, but also specifically interprets for the main style
+\code{frame-tab} the substyles \code{*-*-tagged} and \code{*-*-*-dragged}
+by, respectively, drawing a right angle shape at the top right corner 
+of a tab and by shading the tab with a stipple pattern.
+
+Substyles are defined with the function \fnref{de_substyle} within the
+table defining the main style. The parameters to this function are 
+similar to those of \fnref{de_define_style} .
+
+\subsection{An example}
+
+The following shortened segment from \file{look-cleanviolet.lua}
+should help to clarify the mattesr discussed in the previous
+subsection.
+
+\begin{verbatim}
+de_define_style("*", {
+    -- Gray background
+    highlight_colour = "#eeeeee",
+    shadow_colour = "#eeeeee",
+    background_colour = "#aaaaaa",
+    foreground_colour = "#ffffff",
+    
+    shadow_pixels = 1,
+    highlight_pixels = 1,
+    padding_pixels = 1,
+    spacing = 0,
+    border_style = "elevated",
+    
+    font = "-*-helvetica-medium-r-normal-*-12-*-*-*-*-*-*-*",
+    text_align = "center",
+})
+
+de_define_style("frame-tab", {
+    based_on = "*",
+    
+    de_substyle("active-selected", {
+        -- Violet tab
+        highlight_colour = "#aaaacc",
+        shadow_colour = "#aaaacc",
+        background_colour = "#666699",
+        foreground_colour = "#eeeeee",
+    }),
+
+    --  More substyles would follow ...
+})
+\end{verbatim}
+
+
+Hopefully that's enough to get you started in writing new style
+configuration files for Ion. When in doubt, study the existing
+style configuration files.
+

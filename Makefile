@@ -11,7 +11,8 @@ L2H=latex2html -show_section_numbers -short_index -local_icons -noaddress \
 FNTEXES=ioncore-exports.tex ionws-exports.tex \
 	floatws-exports.tex query-exports.tex \
 	querylib-fns.tex ioncorelib-fns.tex \
-	ioncore-mplexfns.tex
+	ioncore-mplexfns.tex delib-fns.tex \
+	de-exports.tex
 
 # Generic rules
 ######################################
@@ -92,10 +93,16 @@ ionws-exports.tex: $(TOPDIR)ionws/*.c
 floatws-exports.tex: $(TOPDIR)floatws/*.c
 	$(LUA) $(TOPDIR)/mkexports.lua -module floatws -mkdoc -o $@ $+
 
+de-exports.tex: $(TOPDIR)de/*.c
+	$(LUA) $(TOPDIR)/mkexports.lua -module floatws -mkdoc -o $@ $+
+
 query-exports.tex: $(TOPDIR)query/*.c
 	$(LUA) $(TOPDIR)/mkexports.lua -module query -mkdoc -o $@ $+
 
 querylib-fns.tex: $(TOPDIR)share/querylib.lua
+	$(LUA) $(TOPDIR)/mkexports.lua -module query -luadoc -o $@ $+
+
+delib-fns.tex: $(TOPDIR)share/delib.lua
 	$(LUA) $(TOPDIR)/mkexports.lua -module query -luadoc -o $@ $+
 
 ioncorelib-fns.tex: $(TOPDIR)share/ioncorelib.lua
