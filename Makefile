@@ -10,6 +10,12 @@ latex-full:
 	makeindex $(DOC).idx
 	latex $(DOC)
 
+ps:
+	dvips $(DOC)
+
+pdf:
+	dvipdfm -p a4 $(DOC)
+
 html:
 	latex2html -split 4 -show_section_numbers -short_index \
 	-local_icons -noaddress -up_url http://www.iki.fi/tuomov/ion/ \
