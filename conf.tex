@@ -2,23 +2,11 @@
 \chapter{Basic configuration}
 \label{chap:config}
 
-This chapter should help the reader configure Ion to her/his liking. As 
-the reader probably already knows, Ion uses Lua as a configuration and 
-extension language. If the reader is new to Lua, he might first want
-to read some Lua documentation as already suggested and pointed to in the
-Introduction before continuing with this chapter.
-
-In particular, if ''anonymous function'' sounds or the function construct in
-\begin{verbatim}
-kpress("Mod1+1", function(s) screen_switch_nth(s, 0) end)
-\end{verbatim}
-looks confusing to you, please consider reading some Lua documentation.
-Read the functions tutorial at
-
-\centerurl{http://lua-users.org/wiki/FunctionsTutorial}
-
-if nothing else. Ion's stock configuration files use anonymous functions 
-quite extensively.
+This chapter should help your configure Ion to your liking. As  the your
+probably already know, Ion uses Lua as a configuration and extension 
+language. If you're new to it, you might first want to read some Lua 
+documentation as already suggested and pointed to in the Introduction
+before continuing with this chapter.
 
 Section \ref{sec:conffiles} is an overview of the multiple configuration
 files Ion uses and as a perhaps more understandable introduction to the
@@ -34,179 +22,153 @@ explained. For a reference on exported functions, see section
 \label{sec:conffiles}
 
 Ion3, to which document applies, stores its stock configuration files in
-\file{/usr/local/etc/ion/} unless you, OS package maintainer or whoever 
-installed the package has modified the variables
+\file{/usr/local/etc/ion3/} unless you, the OS package maintainer or 
+whoever  installed the package on the system has modified the variables
 \code{PREFIX}\index{PREFIX@\code{PREFIX}} or
 \code{ETCDIR}\index{ETCDIR@\code{ETCDIR}} in
 \file{system.mk}\index{system.mk@\file{system.mk}} before compiling Ion.
 In the first case you probably know where to find the files and in 
-the other case the system administrator or OS package maintainer should 
-have provided documentation to point to the correct location. If these
-instructions are no help in locating the correct directory, the command
-\code{locate ion.lua} might help provided \code{updatedb} has been
-run recently. User configuration files go in \file{\~{}/.ion2/}. 
+the other case the system administrator or the OS package maintainer
+should  have provided documentation to point to the correct location. 
+If these instructions are no help in locating the correct directory, 
+the command \code{locate cfg_ion.lua} might help provided \code{updatedb} 
+has been run recently. 
 
-Ion always searches user configuration file directory before the stock
+User configuration files go in \file{\~{}/.ion3/}. 
+Ion always searches the user configuration file directory before the stock
 configuration file directory for files. Therefore, if you want to change
 some setting, it is advised against that you modify the stock configuration
 files in-place as subsequent installs of Ion will restore the stock
 configuration files. Instead you should always make a copy of the stock
-file in \file{\~{}/.ion2/} and modify this file. When searching
+file in \file{\~{}/.ion3/} and modify this file. When searching
 for a file, if no extension or path component is given, compiled \file{.lc} 
 files are attempted before \file{.lua} files.
 
-The ''Ioncore'' window manager core and each module have their own
-configuration files that should be used to configure that module. 
-The configuration files related to the ioncore main binary are as
-follows. The files \file{ion.lua} and \file{draw.lua} are loaded 
-from Ioncore and the rest are included from the former.
+All the configuration files are named \file{cfg\_*.lua} with the ''\file{*}''
+part varying. The configuration file for each module \file{mod\_modname} is
+\file{cfg\_modname.lua}, with \file{modname} varying by the module in
+question. The following table summarises these and other configuration
+files:
 
 \begin{tabularx}{\linewidth}{
-      p{\widthof{ion-bindings.lua}}%
+      p{\widthof{cfg-bindings.lua}}%
       X}
     \hline
     File & Description \\
     \hline
-    \file{ion.lua} & 
+    \file{cfg\_ion.lua} & 
     The main configuration file \\
     %
-    \file{ion-bindings.lua} & 
+    \file{cfg\_bindings.lua} & 
     Most of Ion's bindings are configured here. Bindings that are
     specific to some module are configured in the module's configuration
     file. For details, see section \ref{sec:bindings}. \\
-    \file{ion-menus.lua} & 
+    %
+    \file{cfg\_menus.lua} & 
     Menu definitions; see section \ref{sec:menus}. \\
     %
-    \file{kludges.lua} & 
-    Settings to get some applications behave more nicely have been collected here.
-    See section \ref{sec:winprops} for details on these ''winprops''. \\
+    \file{cfg\_kludges.lua} & 
+    Settings to get some applications behave more nicely have been 
+    collected here. See section \ref{sec:winprops}. \\
     %
-    \file{draw.lua} &
-    This file is a link to or copy of one of the \file{look-*.lua} style
-    files. It should load a drawing engine and configure a style for
-    it; for details see chapter \ref{chap:gr}. \\
+    \file{cfg\_ionws.lua} 
+    \file{cfg\_floatws.lua} 
+    \file{cfg\_panews.lua} 
+    \file{cfg\_query.lua} 
+    \file{cfg\_menu.lua} 
+    \file{cfg\_dock.lua} 
+    \file{cfg\_statusbar.lua} 
+    \dots & Configuration files for different modules. \\
 \end{tabularx}
 
-Each (non-drawing engine) module has in addition its own configuration
-file loaded when that module is loaded:
+Additionally, there's \file{look.lua} that configures the drawing engine,
+but for details in it see chapter \ref{chap:gr}.
 
-\begin{tabularx}{\linewidth}{
-      p{\widthof{ion-bindings.lua}}%
-      X}
-    \hline
-    File & Description \\
-    \hline
-    \file{ionws.lua} & 
-    Configuration file for the ionws module. Bindings specific to the
-    workspace and frame classes implemented by this module are
-    configured here. \\
-    %
-    \file{floatws.lua} & 
-    Configuration file for the floatws module. Bindings specific to
-    the workspace and frame classes implemented by this module are
-    configured here. \\
-    %
-    \file{query.lua} & 
-    Configuration file for the query module. Bindings to edit text
-    in the queries and some other bindings related to queries and
-    messages are defined here. \\
-    %
-    \file{menu.lua} & 
-    Configuration file for the menu module. Bindings to navigate
-    menus are defined here. Actual menus are (in the stock
-    configuration file setup) defined in \file{ion-menus.lua}
-    as mentioned above. \\
-\end{tabularx}
-
-Some of the files contain references to the files \file{querylib.lua}
-and \file{menulib.lua}
-These are installed in
-\code{SHAREDIR}\index{SHAREDIR@\code{SHAREDIR}}
-(\file{/usr/local/share/ion/} by default)
-among some other other \file{.lua} files that are an essential part of
-Ion's code. Users who only want to change a few settings should not
-need to modify the files in this directory. Nevertheless, it is
-possible to override the files in \code{SHAREDIR} as it is on the search
-path after \code{\~/.ion2} and \code{ETCDIR}.
-
-There is one extra file in \code{SHAREDIR} that you may find useful and
-that is not loaded by default. This is \file{compat.lua} and it contains
-some wrapper functions for backwards compatibility to make the process of
-updating Ion a little less painful. If you have have modified configuration
-files that use some features no longer available in the latest Ion, you may
-just load this file (with \code{include("compat.lua")} at the beginning of
-\file{ion.lua}, for example) instead of immediately updating your
-configuration files. However, the wrappers will be removed eventually
-(maybe about two months after adding them depending on the rate of new
-releases) so you should nevertheless update your configuration files before
-this happens.
-
-\section{A walk through \file{ion.lua}}
+\section{A walk through \file{cfg\_ion.lua}}
 \label{sec:walkthrough}
 
-As already mentioned \file{ion.lua} is Ion's main configuration
+As already mentioned \file{cfg\_ion.lua} is Ion's main configuration
 file. Some basic 'feel' settings are usually configured there and
 the necessary modules and other configuration files configuring some 
 more specific aspects of Ion are loaded there. In this section we
-take a walk through the stock \file{ion.lua}.
+take a walk through the stock \file{cfg\_ion.lua}.
 
 The first thing that is done in that file is set
+
 \begin{verbatim}
-DEFAULT_MOD = "Mod1+"
+MOD1="Mod1+"
+MOD2=""
 \end{verbatim}
 This causes most of Ion's key bindings to use \key{Mod1} as the
-modifier key; for details on modifiers and key binding setup in 
-general see section \ref{sec:bindings}.
+modifier key. If \code{MOD2} is set, it is used as modifier for the keys
+that don't normally use a modifier. for details on modifiers and key 
+binding setup in general see section \ref{sec:bindings}.
 
-Next there are the commented-out delay settings
+Next we do some basic feel configuration:
+
 \begin{verbatim}
--- set_dblclick_delay(250)
--- set_resize_delay(1500)
+ioncore.set{
+    dblclick_delay=250,
+    kbresize_delay=1500,
+}
 \end{verbatim}
-The first of these settings is the maximum interval in milliseconds 
-between two mouse button presses for the second press to be actually
-considered a double-click. The latter setting sets the delay, again 
-in milliseconds, after which Ion will automatically terminate 
-one of the keyboard resize modes if nothing has happened. 
 
-The setting
+These two will set the delay between button presses in a double click, and
+the timeout to quit resize mode in milliseconds.
+
 \begin{verbatim}
-enable_opaque_resize(false)
+ioncore.set{
+    opaque_resize=true,
+    warp=true,
+}
 \end{verbatim}
-says that a XOR rubber band should be shown when moving or resizing
-frames. This will, unfortunately, cause Ion to also grab the X
-server and has some side effects. If your computer is fast enough
-and you prefer so-called ''opaque resize'' mode where the frame is
-being resized already during the resize action  you may set the parameter
-to \verb!true!.
 
-The following settings controls whether Ion will ''warp'' the (mouse)
-pointer to an object whenever it is focused from the keyboard. 
+The first of these two settings enables opaque resize mode: in move/resize
+move frames and other objects mirror you actions immediately. If opaque
+resize is disabled, a XOR rubber band is shown during the mode instead.
+This will, unfortunately, cause Ion to also grab the X server and has some
+side effects.
+
 \begin{verbatim}
-enable_warp(true)
+ioncore.set{
+    default_ws_type="WIonWS",
+}
 \end{verbatim}
-Some people may consider this annoying so setting the parameter
-to \verb!false! can be used to disable this feature and have Ion
-never move the pointer.
 
-Next the stock \file{ion.lua} has the include-statements
+This will set the default workspace type to \type{WIonWS} -- tiled workspaces.
+
+To actually be able to do something besides display windows in full screen
+mode, we must next load some modules:
+
 \begin{verbatim}
-include("kludges")
-include("ion-bindings")
-include("ion-menus")
+dopath("mod_query")
+dopath("mod_menu")
+dopath("mod_ionws")
+dopath("mod_floatws")
+dopath("mod_panews")
+dopath("mod_statusbar")
+--dopath("mod_dock")
+--dopath("mod_sp")
 \end{verbatim}
-The first of these loads the file \file{kludges.lua} that contains
-some ''winprop'' settings used to make some applications behave a
-little better under Ion. For details see section \ref{sec:winprops}.
-The second include statement loads file file 
-\file{ion-bindings.lua} which contains the statements to configure 
-most of Ion's bindings; modules' bindings are configured in their 
-respective configuration files. The final include statement load
-menu definitions.
 
-Next we have quite a few statements of the form
+As already mentioned, each of these modules have their own configuration
+files. Finally, additional configuration files are loaded:
+
 \begin{verbatim}
-add_shortenrule("[^:]+: (.*)(<[0-9]+>)", "$1$2$|$1$<...$2")
+dopath("cfg_kludges")
+dopath("cfg_bindings")
+dopath("cfg_menus")
+\end{verbatim}
+
+Bindings and menus are defined in \file{cfg\_bindings.lua} and
+\file{cfg\_menus.lua}. Details on making such definitions follow in
+sections \ref{sec:bindings} and \ref{sec:menus}, respectively. 
+some kludges or ''winprops'' to make some applications behave better
+under Ion are colledted in \file{cfg\_kludges.lua}; see section
+\ref{sec:winprops} for details. In addition to these, this file
+lists quite a few statements of the form
+\begin{verbatim}
+ioncore.defshortening("[^:]+: (.*)(<[0-9]+>)", "$1$2$|$1$<...$2")
 \end{verbatim}
 These are used to configure how Ion attempts to shorten window titles
 when they do not fit in a Tab. The first argument is a POSIX regular
@@ -214,46 +176,6 @@ expression that is used to match against the title and the next is
 a rule to construct a new title of a match occurs. This particular
 rule is used to shorten e.g. 'Foo: barbaz<3>' to 'barba{\ldots}<3>'; for
 details see the function reference entry for \fnref{add_shortenrule}.
-
-The setting
-\begin{verbatim}
-query_man_path = {
-    "/usr/man",
-    "/usr/share/man",
-    "/usr/X11R6/man",
-    "/usr/local/man"
-}
-\end{verbatim}
-is used to configure where the \fnref{querylib.query_man} query
-(\key{F1}) looks for man pages to tab-complete.
-
-Finally we load the modules.
-\begin{verbatim}
-load_module("query")
-load_module("menu")
-load_module("ionws")
-load_module("floatws")
-\end{verbatim}
-The first of the modules provides the queries, the mini buffer-like
-line-editor boxes that appear at bottoms of frames and screens and that
-can be and are used to to do quite a few things including starting
-programs and navigating to different windows by their name.
-The 'menu' module provides both pop-up and query-style in-frame menus.
-The third module loaded provides the normal Ion-style tiled workspaces
-and frames of that style while the 'floatws' module provides traditional
-''free-floating'' WIMP workspaces and frames in the PWM style.
-
-As already mentioned, each of these modules have their own configuration
-files \file{modulename.lua} that configure things that can only be
-configured if the module is loaded. These settings are mostly just the
-bindings that are specific to the classes provided by the module.
-
-At the moment there are no other modules than the above three. Any of
-these modules may be removed; Ion is able to operate without any modules
-in full-screen  only mode, but if you do so, you might first want to 
-reconfigure some of the bindings. Ion will, however, complain of broken
-workspace save files if starting a module-less configuration over an old
-session.
 
 \section{Keys and rodents}
 \label{sec:bindings}
