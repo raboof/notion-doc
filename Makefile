@@ -1,18 +1,16 @@
 # Settings
 ######################################
 
-TOPDIR=/home/tuomov/coding/ion/
+TOPDIR=../ion
 
 LUA=lua
 
 L2H=latex2html -show_section_numbers -short_index -local_icons -noaddress \
     -up_url http://iki.fi/tuomov/ion/ -up_title "Ion homepage" -nofootnode
 
-FNTEXES=ioncore-exports.tex ionws-exports.tex \
-	floatws-exports.tex query-exports.tex \
-	querylib-fns.tex ioncorelib-fns.tex \
-	ioncore-mplexfns.tex delib-fns.tex \
-	de-exports.tex menu-exports.tex \
+FNTEXES=ioncore-exports.tex ionws-exports.tex floatws-exports.tex \
+	query-exports.tex querylib-fns.tex ioncorelib-fns.tex \
+	delib-fns.tex de-exports.tex menu-exports.tex \
 	menulib-fns.tex
 
 # Generic rules
