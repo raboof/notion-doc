@@ -31,3 +31,26 @@ following cases:
 If there are no serious side effects from deferring destroying the
 object or you're unsure whether it is safe to destroy the object
 immediately, use \code{defer_destroy}.
+
+\subsection{The types \code{char*} and \code{const char*} as function
+  parameters and return values}
+
+The following rules should apply to using strings as return values and
+parameters to functions. 
+
+\begin{tabularx}{\linewidth}{lXX}
+    \hline
+    Type & Return value & Parameter \\
+    \hline
+    \code{const char*} & The string is owned by the called function
+       and the caller is only quaranteed short-term read access to the
+       string. &
+       The called function may only read the string during its execution.
+       For further reference a copy must be made. \\
+    \code{char*} & The string is the caller's responsibility and it
+       \emph{must} free it when no longer needed. &
+       The called function may modify the string but the ''owner'' of
+       the string is case-dependant. \\
+\end{tabularx}
+
+
