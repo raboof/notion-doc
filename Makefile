@@ -1,7 +1,7 @@
 # Settings
 ######################################
 
-TOPDIR=../ion
+TOPDIR=../ion-3
 
 include $(TOPDIR)/system-inc.mk
 

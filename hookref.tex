@@ -98,11 +98,21 @@
 \begin{function}
     \index{ionws-placement-alt@\code{ionws_placement_alt}}
     \hookname{ionws_placement_alt}
-    \hookparams{(WClientWin, WIonWS, table)}
+    \hookparams{table}
     \begin{funcdesc}
       Called when a client window is about to be managed by a \type{WIonWS}
-      to allow for alternative placement policies. The table parameter
-      has the same fields as that of \fnref{clientwin_do_manage_alt}.
+      to allow for alternative placement policies. The table has the
+      following fields:
+      \begin{tabularx}{\linewidth}{llX}
+          \tabhead{Field & Type & Description}
+          \var{ws} & \type{WPaneWS} & The workspace \\
+          \var{reg} & \type{WRegion} & The region (always a WClientWin at 
+              the moment) to be placed \\
+          \var{mp} & \type{table} & This table contains the same fields as
+            the parameter of \fnref{clientwin_do_manage_alt} \\
+          \var{res_frame} & \type{WFrame} & A succesfull handler should 
+            return the target frame here. \\
+      \end{tabularx}
     \end{funcdesc}
 \end{function}
 
