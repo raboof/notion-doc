@@ -23,7 +23,8 @@ fi
 
 set -e
 
-d=`echo $release|sed 's/\(....\)\(..\)\(..\)/\1-\2-\3/'`
+d=`echo $release|sed 's/[^-]\+-\(....\)\(..\)\(..\)/\1-\2-\3/'`
+
 perl -p -i -e "s/%%DATE/\\\\date{$d}/" ionconf.tex
 sed 's:^TOPDIR=.*:TOPDIR='$top'/ion-'$release':' Makefile > Makefile.tmp
 make -f Makefile.tmp all
