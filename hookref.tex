@@ -18,6 +18,16 @@
           \var{geom} & table & Requested geometry; \var{x}, \var{y}, \var{w}, \var{h}.\\
           \var{tfor} & WClientWin & Transient for window.
       \end{tabularx}
+
+      This hook is not called in protected mode and can be used for
+      arbitrary placement policies (deciding in which workspace a new
+      \type{WClientWin} should go). In this case, you can call
+\begin{verbatim}
+reg:attach(cwin)
+\end{verbatim}
+      where \var{reg} is the region where the window should go, and
+      \var{cwin} is the first argument of the function added to the
+      hook.
     \end{funcdesc}
 \end{function}
 
@@ -113,6 +123,11 @@
           \var{res_frame} & \type{WFrame} & A succesfull handler should 
             return the target frame here. \\
       \end{tabularx}
+      This hook is just for placing within a given workspace after the
+      workspace has been decided by the default workspace selection
+      policy. It is called in protected mode. For arbitrary placement
+      policies, \fnref{clientwin_do_manage_alt} should be used; it
+      isn't called in protected mode,
     \end{funcdesc}
 \end{function}
 
