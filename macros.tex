@@ -38,6 +38,10 @@
   Synopsis: & \code{#1} \\
   Description: &
 }
+\newcommand{\funcname}[1]{
+  Function: & \code{#1} \\
+  Description: &
+}
 \newenvironment{funcdesc}{}{}
 
 % HTML
@@ -56,6 +60,9 @@
 }
 \newcommand{\synopsis}[1]{
   \item[Synopsis:] \texttt{#1}
+}
+\newcommand{\funcname}[1]{
+  \item[Function:] \texttt{#1}
 }
 \newenvironment{funcdesc}{
   \item[Description:]

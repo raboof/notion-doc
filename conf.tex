@@ -170,6 +170,17 @@ winprop{
 \end{verbatim}
 
 
+\subsection{QueryLib}
+\index{QueryLib@\var{QueryLib}}
+
+While the query module only exportes the primitive function
+\fnref{query_query}, QueryLib, in \file{querylib.lua}, implements some
+standard queries, most with completion support. These functions can be
+directly passed as arguments to the binding creation functions
+(\code{kpress} and so on) for \fnref{ionframe_bindings} and
+\fnref{floatframe_bindings}. For a listing of these, see section
+\ref{sec:querylibref}.
+
 \subsection{Miscellaneous issues}
 
 The \code{QueryLib.query_lua} function is quite useless at the moment as it

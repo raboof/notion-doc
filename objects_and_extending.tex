@@ -11,6 +11,7 @@
 \usepackage{makeidx}
 \usepackage{tabularx}
 \usepackage[nottoc]{tocbibind}
+%\usepackage{underscore}
 \input{macros}
 
 \urlstyle{rm}
@@ -22,7 +23,7 @@
 \begin{htmlonly}
 \author{Tuomo Valkonen \\ tuomov at iki.fi}
 \end{htmlonly}
-\date{2003-05-06}
+\date{2003-05-07}
 
 \makeindex
 
@@ -57,27 +58,41 @@ system.
 
 \input{luaif}
 
-\section{Reference on exported functions}
+\section{Lua function reference}
 \label{sec:exports}
 
 The following subsections list out the functions exported to Lua scripts
 by Ioncore and the ionws, floatws and query modules.
 
 \subsection{Functions exported by Ioncore}
+\label{sec:ioncoreref}
 
-\input{/home/tuomov/coding/ion/doc/ioncore-exports.tex}
+\input{ioncore-exports.tex}
 
 \subsection{Functions exported by the ionws module}
+\label{sec:ionwsref}
 
-\input{/home/tuomov/coding/ion/doc/ionws-exports.tex}
+\input{ionws-exports.tex}
 
 \subsection{Functions exported by the floatws module}
+\label{sec:floatwsref}
 
-\input{/home/tuomov/coding/ion/doc/floatws-exports.tex}
+\input{floatws-exports.tex}
 
 \subsection{Functions exported by the query module}
+\label{sec:queryref}
 
-\input{/home/tuomov/coding/ion/doc/query-exports.tex}
+\input{query-exports.tex}
+
+\subsection{Ioncorelib functions}
+\label{sec:ioncorelibref}
+
+\input{ioncorelib-fns.tex}
+
+\subsection{QueryLib functions}
+\label{sec:querylibref}
+
+\input{querylib-fns.tex}
 
 \printindex
 
