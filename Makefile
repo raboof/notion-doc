@@ -6,12 +6,13 @@ TOPDIR=../ion
 LUA=lua
 
 L2H=latex2html -show_section_numbers -short_index -local_icons -noaddress \
-    -up_url http://iki.fi/tuomov/ion/ -up_title "Ion homepage" -nofootnode
+    -up_url http://iki.fi/tuomov/ion/ -up_title "Ion homepage" -nofootnode\
+    -style greyviolet.css
 
 FNTEXES=ioncore-exports.tex ionws-exports.tex floatws-exports.tex \
 	query-exports.tex querylib-fns.tex ioncorelib-fns.tex \
 	delib-fns.tex de-exports.tex menu-exports.tex \
-	menulib-fns.tex
+	menulib-fns.tex dock-exports.tex
 
 MKFNTEX=$(LUA) $(TOPDIR)/mkexports.lua
 
@@ -98,6 +99,9 @@ de-exports.tex: $(TOPDIR)/de/*.c
 	$(MKFNTEX) -module de -mkdoc -o $@ $+
 
 menu-exports.tex: $(TOPDIR)/menu/*.c
+	$(MKFNTEX) -module menu -mkdoc -o $@ $+
+
+dock-exports.tex: $(TOPDIR)/dock/*.c
 	$(MKFNTEX) -module menu -mkdoc -o $@ $+
 
 query-exports.tex: $(TOPDIR)/query/*.c

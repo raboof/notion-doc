@@ -120,6 +120,7 @@ Style name & Description \\
 \code{input-menu-bigmenu} & An alternate style for \type{WMenu}s. \\
 \code{moveres_display} & The box displaying position/size when
 	moving or resizing frames. \\
+\code{dock} & The dock. \\	
 \end{tabularx}
 
 
@@ -356,7 +357,49 @@ de_define_style("tab-frame", {
 \end{verbatim}
 
 
+\section{Miscellaneous settings}
+
+The following style fields are independent of the drawing engine used,
+but are related to objects' styles and therefore configured in the drawing
+engine configuration file.
+
+\subsection{Extra fields for style \code{frame-ionframe}}
+
+\begin{tabularx}{\linewidth}{lX}
+\hline
+Field  & Description \\
+\hline
+\code{ionframe_bar_inside_border} & Controls whether the tab-bar
+	appears inside or outside of the frame's borders. true/false.
+\end{tabularx}
+
+\subsection{Extra fields for style \code{frame-floatframe}}
+	
+\begin{tabularx}{\linewidth}{lX}
+\hline
+Field  & Description \\
+\hline
+\code{floatframe_tab_min_w} & Minimum tab width in pixels, given
+	that this number times number of tabs doesn't exceed frame width. \\
+\code{floatframe_bar_max_w_q} & Maximum tab-bar width quotient of
+	frame width. A number in the interval $(0, 1]$.
+\end{tabularx}	
+
+\subsection{Extra fields for style \code{dock}}
+
+\begin{tabularx}{\linewidth}{lX}
+\hline
+Field  & Description \\
+\hline
+\code{outline_style} & How borders are drawn:
+			\code{"none"} -- no border,
+			\code{"all"} -- border around whole dock,
+			\code{"each"} -- border around each dockapp. \\
+\code{tile_size} & A table with entries \code{width} and \code{height},
+	indicating the width and height of tiles in pixels.
+\end{tabularx}
+
+
 Hopefully that's enough to get you started in writing new style
 configuration files for Ion. When in doubt, study the existing
 style configuration files.
-
