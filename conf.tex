@@ -672,12 +672,48 @@ fields) is tried.
 If there are multiple winprops with other identification information 
 the same but different \var{name}, the longest match is chosen.
 
-To get this identification information for a particular window, you
-may use the command \command{xprop WM_CLASS} and click on that
-particular window.\footnote{This does not work for transients in
-WIonFrames.} The class is the latter of the strings while
-the instance is the former. To get the role -- few windows have
-this property -- use the command \command{xprop WM_ROLE}.
+\subsection{Finding window identification with \command{xprop}}
+
+\index{xprop}
+To get the identification information required for winprops, in case of
+normally framed windows you may use the command \command{xprop WM_CLASS} 
+and click on the particular window of interest. The class is the latter of
+the strings while the instance is the former. To get the role -- few windows
+have this property -- use the command \command{xprop WM_ROLE}.
+
+\index{transient}
+So-called ''transient windows'' are usually short-lived dialogs (although
+some programs abuse this property) that have a parent window that they
+''transient for''. On tiled workspaces Ion displays these windows 
+simulatenously with the parent window at the bottom of the same frame.
+Unfortunately \command{xprop} is stupid and can't cope with this situation,
+returning the parent window's properties when the transient is clicked on.
+For this reason you'll have to do a little extra work to get the properties
+for that window.\footnote{There's a patch to \command{xprop} to
+fix this, but nothing seems to be happening with respect to including it in 
+XFree86.}
+
+If you can guess the title of the transient, the simplest solution
+is to use the \key{Mod1+A} query (\fnref{querylib.query_attachclient})
+to attach it directly to a frame. Another easy solution is to create
+a \type{WFloatWS} and run the program for this once. A little more
+complicated solution is to run the following code in the \key{Mod1+F3}
+(\fnref{querylib.query_lua)} Lua code execution query, assuming there's
+only one transient (all on one line):
+
+\begin{verbatim}
+local id=_:current():managed_list()[1]:get_ident();
+query_message(_, id.class..'.'..id.instance);
+\end{verbatim}
+
+Role and name can be retrieved similarly (see the documentation
+for \fnref{WClientWin.get_ident}), but may not always be set.
+
+Finally, it should be mentioned that too many authors these days
+''forget'' to set this vital identification to anything meaningful:
+everything except name is the same for all of the programs's 
+windows, for example.
+
 
 \subsection{Supported winprops}
 
@@ -745,9 +781,12 @@ Ion currently knows the following winprops:
 	placed at the top of the window instead of bottom? \\
 \end{tabularx}
 
-\subsection{Examples}
+\subsection{Some common examples}
 
-Acrobat Reader's manners aren't exactly good:
+\subsubsection{Acrobat Reader}
+
+The following is absolutely necessary for Acrobat reader:
+
 \begin{verbatim}
 winprop{
     class = "AcroRead",
@@ -756,8 +795,32 @@ winprop{
 }
 \end{verbatim}
 
-Place xterm started with '\code{-name sysmon}' and running a system
-monitoring program in a specific frame:
+\subsubsection{Fixing a Mozilla Firebird transient}
+
+Mozilla Firebird (0.7) incorrectly does not set the \code{WM_TRANSIENT_FOR} 
+property for the dialog that is used to ask the action to take for a file.
+It, however, sets the the property point to the main window for the save
+dialog. This can be annoying and confusing, as the first dialog is not 
+closed before the second is displayed.
+
+We'd like the first dialog to be transient to the main window. The closest
+we can get to that is to consider it transient to the current window (if
+there's one). Unfortunately Firebird does not set any meaningful classes, 
+instances or roles for the windows, so we'll have to rely an ugly title match.
+
+\begin{verbatim}
+winprop{
+    class = "MozillaFirebird-bin",
+    name = "Opening .*",
+    transient_mode = "current",
+}
+\end{verbatim}
+
+\subsubsection{Forcing newly created windows in named frames}
+
+The following winprop should place xterm started with command-line parameter
+'\code{-name sysmon}' and running a system monitoring program in a
+particular frame:
 \begin{verbatim}
 winprop{
     class = "XTerm",
@@ -766,6 +829,19 @@ winprop{
 }
 \end{verbatim}
 
+For this example to work, we have to somehow create a frame with the 
+name \code{sysmonframe}. One way to do this is to make the following
+call in the \key{Mod1+F3} Lua code query:
+
+\begin{verbatim}
+querylib.query_renameframe(_)
+\end{verbatim}
+
+Recall that \code{_} points to the multiplexer (frame or screen) in which 
+the query was opened. Running this code should open a new query prefilled
+with the current name of the frame. In our example we would change the 
+name to \code{sysmonframe}, but we could just as well have used the 
+default name formed from the frame's class name and an instance number.
 
 \section{The query library}
 \index{querylib@\var{querylib}}
