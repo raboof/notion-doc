@@ -84,14 +84,14 @@ The core classes:
   \item[\type{WRegion}]\indextype{WRegion}
     is the base class for everything corresponding to something on the
     screen. Each object of type \type{WRegion} has a size and  position
-    relative to the parent \type{WRegion}. While a great part of Ion 
+    relative to the parent \type{WRegion}. While a big part of Ion 
     operates on these instead of more specialised classes, \type{WRegion}
     is a ''virtual''  base class in that there are no objects of ''pure''
     type \type{WRegion}; all concrete regions are objects of some class 
     that inherits \type{WRegion}.
 
   \item[\type{WClientWin}\indextype{WClientWin}] is a class for
-    client window objects -- the objects that window managers are
+    client window objects, the objects that window managers are
     supposed to manage.
 
   \item[\type{WWindow}]\indextype{WWindow} is the base class for all
@@ -249,9 +249,7 @@ but all have a parent--a screen if not anything else.
 Note how the \type{WClientWin}s managed by \type{WFloatFrame}s don't have
 transients managed by them. This is because WFloatWSs choose to handle
 transients differently (transients are put in separate frames like normal
-windows; in the future they should be stacked above the frame containing the
-\code{transient_for} window).
-
+windows).
 
 \subsection{Summary}
 
