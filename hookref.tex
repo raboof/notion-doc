@@ -8,9 +8,7 @@
       The table argument contains the following fields:
       
       \begin{tabularx}{\linewidth}{llX}
-          \hline
-          Field & Type & Description \\
-          \hline
+          \tabhead{Field & Type & Description}
           \var{switchto} & bool & Do we want to switch to the client window. \\
           \var{jumpto} & bool & Do we want to jump to the client window. \\
           \var{userpos} & bool & Geometry set by user. \\
@@ -54,9 +52,7 @@
       or their order. The table parameter has the following fields:
 
       \begin{tabularx}{\linewidth}{llX}
-          \hline
-          Field & Type & Description \\
-          \hline
+          \tabhead{Field & Type & Description}
           \var{reg} & WFrame & The frame in question \\
           \var{mode} & string & \var{"switchonly"}, \var{"reorder"},
                                 \var{"add"} or \var{"remove"} \\
@@ -133,9 +129,7 @@
       the following fields:
       
       \begin{tabularx}{\linewidth}{llX}
-          \hline
-          Field & Type & Description \\
-          \hline
+          \tabhead{Field & Type & Description}
           \var{ws} & \type{WPaneWS} & The workspace \\
           \var{frame} & \type{WFrame} & A frame initially allocated for the
               region to be placed \\
@@ -146,9 +140,7 @@
       The handler should set some of these fields on success:
 
       \begin{tabularx}{\linewidth}{llX}
-          \hline
-          Field & Type & Description \\
-          \hline
+          \tabhead{Field & Type & Description}
           \var{res_node} & \type{WSplit} & Target split \\
           \var{res_config} & \type{WFrame} &  New configuration for it, unless
               \type{WSplitRegion} \\

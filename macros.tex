@@ -54,9 +54,10 @@
 \newcommand{\fnrefx}[2]{\hyperlink{fn:#1.#2}{\code{#2}}}
 \newcommand{\fnref}[1]{\hyperlink{fn:#1}{\code{#1}}}
 \newcommand{\myhref}[2]{\hyperlink{#1}{#2}}
-%end{latexonly}
 
+%end{latexonly}
 \begin{htmlonly}
+    
 \newcommand{\key}[1]{\textbf{#1}}
 \newcommand{\code}[1]{\texttt{#1}}
 \newcommand{\var}[1]{\texttt{#1}}
@@ -66,7 +67,10 @@
 \newcommand{\fnref}[1]{\htmlref{\texttt{#1}}{fn:#1}}
 \newcommand{\fnrefx}[2]{\htmlref{\texttt{#1}}{fn:#1.#2}}
 \newcommand{\myhref}[2]{\htmlref{#2}{#1}}
+
 \end{htmlonly}
+
+\newcommand{\tabhead}[1]{\hline #1 \\ \hline}
 
 % function tables
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

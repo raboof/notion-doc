@@ -70,9 +70,7 @@ tag and drag states.)
 \subsubsection{Frames}
 
 \begin{tabularx}{\linewidth}{lX}
-\hline
-Style name & Description \\
-\hline
+\tabhead{Style name & Description}
 \code{frame} & Style for frames. 
 	Substyles: \code{active}, \code{inactive}. \\
 \code{frame-ionframe} & A more specific style for \type{WIonFrame}s. 
@@ -84,9 +82,7 @@ Style name & Description \\
 \subsubsection{Tabs and menu entries}
 
 \begin{tabularx}{\linewidth}{lX}
-\hline
-Style name & Description \\
-\hline
+\tabhead{Style name & Description}
 \code{tab} & Style for frames' tabs and menu entries. 
 	Substyles: combinations of the form \code{a-s} where
 	\code{a} is one of \code{active}\nobreak/\code{inactive} and
@@ -108,9 +104,7 @@ Style name & Description \\
 \subsubsection{The rest}
 
 \begin{tabularx}{\linewidth}{lX}
-\hline
-Style name & Description \\
-\hline
+\tabhead{Style name & Description}
 \code{input} & A style for \type{WInput}s. \\
 \code{input-edln} & A more specific style for \type{WEdln}s. 
 	Substyles: \code{selection} for selected text and
@@ -223,9 +217,7 @@ hexadecimal RGB specifications of the form
 in \file{/usr/X11R6/lib/X11/rgb.txt} (exact path varying).
 
 \begin{tabularx}{\linewidth}{lX}
-\hline
-Field  & Description \\
-\hline
+\tabhead{Field  & Description}
 \var{highlight_colour} &  
 	Colour for the ''highlight'' part of a border. \\
 \var{shadow_colour}    &  
@@ -247,9 +239,7 @@ All other fields below except \var{border_style} are non-negative integers
 indicating a number of pixels.
 
 \begin{tabularx}{\linewidth}{lX}
-\hline
-Field  & Description \\
-\hline
+\tabhead{Field  & Description}
 \var{border_style} & A string indicating the style of border; one of
 		     elevated/inlaid/ridge/groove as seen in the
 		     above sketch. \\
@@ -267,9 +257,7 @@ Field  & Description \\
 \subsubsection{Text}
 
 \begin{tabularx}{\linewidth}{lX}
-\hline
-Field  & Description \\
-\hline
+\tabhead{Field  & Description}
 \var{font} & Font to be used in text-drawing operations; standard X font
 	     name. \\
 \var{text_align} & How text is to be aligned in text boxes/tabs; one of
@@ -281,9 +269,7 @@ Field  & Description \\
 
 
 \begin{tabularx}{\linewidth}{lX}
-\hline
-Field  & Description \\
-\hline
+\tabhead{Field  & Description}
 \var{transparent_background} & Should windows' that use this style
 	background be transparent? true/false. \\
 \var{based_on} & The name of a previously defined style that this
@@ -366,9 +352,7 @@ engine configuration file.
 \subsection{Extra fields for style \code{frame-ionframe}}
 
 \begin{tabularx}{\linewidth}{lX}
-\hline
-Field  & Description \\
-\hline
+\tabhead{Field  & Description}
 \code{ionframe_bar_inside_border} & Controls whether the tab-bar
 	appears inside or outside of the frame's borders. true/false.
 \end{tabularx}
@@ -376,9 +360,7 @@ Field  & Description \\
 \subsection{Extra fields for style \code{frame-floatframe}}
 	
 \begin{tabularx}{\linewidth}{lX}
-\hline
-Field  & Description \\
-\hline
+\tabhead{Field  & Description}
 \code{floatframe_tab_min_w} & Minimum tab width in pixels, given
 	that this number times number of tabs doesn't exceed frame width. \\
 \code{floatframe_bar_max_w_q} & Maximum tab-bar width quotient of
@@ -388,9 +370,7 @@ Field  & Description \\
 \subsection{Extra fields for style \code{dock}}
 
 \begin{tabularx}{\linewidth}{lX}
-\hline
-Field  & Description \\
-\hline
+\tabhead{Field  & Description}
 \code{outline_style} & How borders are drawn:
 			\code{"none"} -- no border,
 			\code{"all"} -- border around whole dock,

@@ -55,9 +55,7 @@ method now is to pass thecode of the handler as a string. Two special
 variables are avilable in this code. These are
 
 \begin{tabularx}{\linewidth}{lX}
-    \hline
-    Variable & Description \\
-    \hline
+    \tabhead{Variable & Description}
     \code{_} (underscore) &
       Reference to the object on which the 
       binding was triggered. The object is of the same class as the the
@@ -84,9 +82,7 @@ by a ''guard'' that blocks the handler from being called when the guard
 condition is not met. Currently the following guards are supported:
 
 \begin{tabularx}{\linewidth}{lX}
-    \hline
-    Guard & Description \\
-    \hline
+    \tabhead{Guard & Description}
     \code{"_sub:non-nil"} & The \code{_sub} parameter must be set. \\
     \code{"_sub:SomeClass"} & The \code{_sub} parameter must be member
       of class \type{SomeClass}. \\
