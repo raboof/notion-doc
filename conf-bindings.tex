@@ -188,9 +188,13 @@ keys are bound to one of the \key{ModN}. On systems running XFree86
 and \key{Alt} something else. One of the ''flying window'' keys on so
 called Windows-keyboards is probably mapped to \key{Mod3} if you have
 such a key. Use the program \file{xmodmap}\index{xmodmap@\file{xmodmap}}
-to find out what exactly is bound where. \key{AnyModifier} is usually
-used in submaps to indicate that it doesn't matter which modifier keys
-are pressed, if any.
+to find out what exactly is bound where. 
+
+Ion defaults to \key{AnyModifier} in submaps. This can sometimes lead to
+unwanted effects when the same key is used with and without explicitly
+specified modifiers in nested regions. For this reason, Ion recognises
+\key{NoModifier} as a special modifier that can be used to reset this
+default.
 
 Ion ignores the \key{Lock} modifier and any \key{ModN} ($N=1{\ldots} 5$)
 bound to \key{NumLock}\index{NumLock@\key{NumLock}} or
