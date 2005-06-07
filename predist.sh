@@ -1,7 +1,5 @@
 #!/bin/sh
 
-top=/home/tuomov/coding/releases/
-
 ##
 ## Versioning
 ##
@@ -16,6 +14,13 @@ if test "$release" == ""; then
     exit 1
 fi
 
+##
+## Ion path
+##
+
+if test "$ION_PATH" = ""; then
+    ION_PATH="../ion-${release}"
+fi
 
 ##
 ## Build
@@ -26,7 +31,7 @@ set -e
 d=`echo $release|sed 's/[^-]\+-\(....\)\(..\)\(..\)/\1-\2-\3/'`
 
 perl -p -i -e "s/%%DATE/\\\\date{$d}/" ionconf.tex
-sed 's:^TOPDIR=.*:TOPDIR='$top'/ion-'$release':' Makefile > Makefile.tmp
+sed "s:^TOPDIR=.*:TOPDIR=${ION_PATH}:" Makefile > Makefile.tmp
 make -f Makefile.tmp all
 make -f Makefile.tmp all-ps
 make -f Makefile.tmp clean
