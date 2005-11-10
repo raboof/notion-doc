@@ -133,14 +133,19 @@ fields) is tried.
 If there are multiple winprops with other identification information 
 the same but different \var{name}, the longest match is chosen.
 
-\subsection{Finding window identification with \command{xprop}}
+\subsection{Finding window identification}
 
-\index{xprop}
-To get the identification information required for winprops, in case of
-normally framed windows you may use the command \command{xprop WM_CLASS} 
+The 'Window info' context menu entry (\key{Mod1+M} or \key{Button3} on a tab)
+can be used to list the identification information required to set winprops
+for a window and all the transient windows managed within it. 
+
+\index{xprop} 
+Another way to get the identification information is to use \command{xprop}.
+Simply run To get class and instance, simply run \command{xprop WM_CLASS}
 and click on the particular window of interest. The class is the latter of
-the strings while the instance is the former. To get the role -- few windows
-have this property -- use the command \command{xprop WM_ROLE}.
+the strings while the instance is the former.  To get the role -- few
+windows have this property -- use the command \command{xprop WM_ROLE}. 
+This method, however, will not work on transients. 
 
 \index{transient}
 So-called ''transient windows'' are usually short-lived dialogs (although
@@ -153,23 +158,6 @@ For this reason you'll have to do a little extra work to get the properties
 for that window.\footnote{There's a patch to \command{xprop} to
 fix this, but nothing seems to be happening with respect to including it in 
 XFree86.}
-
-If you can guess the title of the transient, the simplest solution
-is to use the \key{Mod1+A} query (\fnref{mod_query.query_attachclient})
-to attach it directly to a frame. Another easy solution is to create
-a \type{WFloatWS} and run the program for this once. A little more
-complicated solution is to run the following code in the \key{Mod1+F3}
-(\fnref{mod_query.query_lua)} Lua code execution query, assuming there's
-only one transient (all on one line):
-
-\begin{verbatim}
-local id=_:current():managed_list()[1]:get_ident();
-mod_query.message(_, id.class..'.'..id.instance);
-\end{verbatim}
-
-Role and name can be retrieved similarly (see the documentation for
-\fnref{WClientWin.get_ident} or \fnref{WRegion.name}). Role may not
-always be set.
 
 Finally, it should be mentioned that too many authors these days
 ''forget'' to set this vital identification to anything meaningful:

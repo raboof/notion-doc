@@ -73,10 +73,10 @@ tag and drag states.)
 \tabhead{Style name & Description}
 \code{frame} & Style for frames. 
 	Substyles: \code{active}, \code{inactive}. \\
-\code{frame-ionframe} & A more specific style for \type{WIonFrame}s. 
-	Substyles as for \code{frame}. \\
-\code{frame-floatframe} & A more specific style for \type{WFloatFrame}s. 
-	Substyles as for \code{frame}. \\
+\code{frame-tiled-ionws} & A more specific style for frames on tiled
+        workspaces. Substyles as for \code{frame}. \\
+\code{frame-floating-floatws} & A more specific style for frames on
+        floating workspaces. Substyles as for \code{frame}. \\
 \end{tabularx}
 
 \subsubsection{Tabs and menu entries}
@@ -93,10 +93,10 @@ tag and drag states.)
       	\code{t} is one of \code{tagged}\nobreak/\code{not_tagged},
 	\code{d} is one of \code{dragged}\nobreak/\code{not_dragged} and
 	\code{u} is one of \code{activity}\nobreak/\code{no_activity}. \\
-\code{tab-frame-ionframe} & A more specific style for \type{WIonFrame}s' 
-	tabs. Substyles as for \code{tab-frame}. \\
-\code{tab-frame-floatframe} & A more specific style for 
-	\type{WFloatFrame}s' tabs. \\
+\code{tab-frame-tiled-ionws} & A more specific tab style for
+        \code{frame-tiled-ionws} frames. \\
+\code{tab-frame-floating-floatws} & A more specific style for 
+        \code{frame-floating-floatws} frames. \\
 \code{tab-menuentry} & A more specific style for entries in \type{WMenu}s. \\
 \code{tab-menuentry-bigmenu} & An alternate style for entries in \type{WMenu}s. \\
 \end{tabularx}
@@ -349,7 +349,7 @@ The following style fields are independent of the drawing engine used,
 but are related to objects' styles and therefore configured in the drawing
 engine configuration file.
 
-\subsection{Extra fields for style \code{frame-ionframe}}
+\subsection{Extra fields for style \code{frame-tiled-ionws}}
 
 \begin{tabularx}{\linewidth}{lX}
 \tabhead{Field  & Description}
@@ -357,7 +357,7 @@ engine configuration file.
 	appears inside or outside of the frame's borders. true/false.
 \end{tabularx}
 
-\subsection{Extra fields for style \code{frame-floatframe}}
+\subsection{Extra fields for style \code{frame-floating-floatws}}
 	
 \begin{tabularx}{\linewidth}{lX}
 \tabhead{Field  & Description}
