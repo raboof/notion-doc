@@ -6,9 +6,8 @@ specific windows are handled and to set up some kludges to deal with
 badly behaving applications. They are defined by calling the function
 \code{defwinprop} with a table containing the properties to set and the
 necessary information to identify a window. The currently supported
-winprops are listed in the following table, and the subsequent
-subsections explain the usual method of identifying windows, and how
-to obtain this information.
+winprops are listed below, and the subsequent subsections explain the
+usual method of identifying windows, and how to obtain this information.
 
 %\begin{table}
 %\begin{htmlonly}
@@ -17,82 +16,127 @@ to obtain this information.
 %\caption{Supported winprops}
 %\label{tab:winprops}
 
-\index{switchto@\var{switchto}!winprop}
-\index{jumpto@\var{jumpto}!winprop}
-\index{transient-mode@\var{transient_mode}!winprop}
-\index{target@\var{target}!winprop}
-\index{transparent@\var{transparent}!winprop}
-\index{acrobatic@\var{acrobatic}!winprop}
-\index{max-size@\var{max_size}!winprop}
-\index{aspect@\var{aspect}!winprop}
-\index{ignore-resizeinc@\var{ignore_resizeinc}}
-\index{fullscreen@\var{fullscreen}}
-\index{ignore-cfgrq@\var{ignore_cfgrq}}
-\index{transients-at-top@\var{transients_at_top}}
+\newenvironment{winprop}[2]{
+  \begin{function}%
+      % Sigh. (La)TeX is a mess.
+      %\index{%
+      %  \ifx\\#1\\%
+      %  #2\else#1\fi%
+      %  @\expandafter\var{#2}}
+      \item[Winprop:] \var{#1} (#2)
+      \item[Description:]
+}
+{
+  \end{function}
+}
 
-\begin{tabularx}{\textwidth}{llX}
-    \tabhead{Property & Type & Description}
-    \var{switchto} &
-    	boolean &
-        Should a newly mapped client window be switched to within
-        its frame. \\
-    \var{jumpto} &
-    	boolean &
-        Should a newly created client window always be made
-        active, even if the allocated frame isn't. \\
-    \var{transient_mode} &
-  	string &
-    	"normal": No change in behaviour. "current": The window
-	should be thought of as a transient for the current active
-	client window (if any) even if it is not marked as a
-	transient by the application. "off": The window should be
-	handled as a normal window even if it is marked as a
-	transient by the application. \\
-    \var{target} &
-    	string &
-    	The name of an object (workspace, frame) that should manage 
-	windows of this type. \\
-    \var{transparent} &
-    	boolean &
-    	Should frames be made transparent when this window is selected? \\
-    \var{acrobatic} &
-    	boolean &
-    	Set this to \code{true} for Acrobat Reader. It has an annoying
-	habit of trying to manage its dialogs instead of setting them as
-	transients and letting the window manager do its job, causing
-	Ion and acrobat go a window-switching loop when a dialog is
-	opened. \\
-    \var{max_size} &
-    	table &
-        The table should contain the entries \var{w} and \var{h} that
-	override application-supplied maximum size hint. \\
-    \var{aspect} &
-    	table &
-        The table should contain the entries \var{w} and \var{h} that
-	override application-supplied aspect ratio hint. \\
-    \var{ignore_resizeinc} &
-    	boolean &
-    	Should application supplied size increments be ignored? \\
-    \var{fullscreen} &
-    	boolean &
-    	Should the window be initially in full screen mode? \\
-    \var{ignore_cfgrq} &
-    	boolean &
-    	Should configure requests on the window be ignored?
-	Only has effect on windows on floatws:s. \\
-    \var{transients_at_top} &
-    	boolean &
-    	When transients are managed by the client window itself (as it
-	is the case on tiled workspaces), should the transients be
-	placed at the top of the window instead of bottom? \\
-    \var{ignore_net_active_window} &
-        boolean &
-        Ignore extended WM hints \code{_NET_ACTIVE_WINDOW} request. \\
-    \var{oneshot} \\
-        boolean &
-        Discard this winprop after first use. \\
-\end{tabularx}
-%\end{table}
+
+\begin{winprop}{acrobatic}{boolean}
+    \index{acrobatic@\var{acrobatic}}
+    Set this to \code{true} for Acrobat Reader. It has an annoying
+    habit of trying to manage its dialogs instead of setting them as
+    transients and letting the window manager do its job, causing
+    Ion and acrobat go a window-switching loop when a dialog is
+    opened. 
+\end{winprop}
+
+
+\begin{winprop}{aspect}{table}
+    \index{aspect@\var{aspect}}
+    The table should contain the entries \var{w} and \var{h} that
+    override application-supplied aspect ratio hint.
+\end{winprop}
+
+
+\begin{winprop}{fullscreen}{boolean}
+    \index{fullscreen@\var{fullscreen}}
+    Should the window be initially in full screen mode?
+\end{winprop}
+
+
+\begin{winprop}{ignore_cfgrq}{boolean}
+    \index{ignore-cfgrq@\var{ignore_cfgrq}}
+    Should configure requests on the window be ignored?
+    Only has effect on windows on floatws:s. 
+\end{winprop}
+
+
+\begin{winprop}{ignore_net_active_window}{boolean}
+    \index{ignore-net-active-window@\var{ignore_net_active_window}}
+    Ignore extended WM hints \code{_NET_ACTIVE_WINDOW} request. 
+\end{winprop}
+
+
+\begin{winprop}{ignore_resizeinc}{boolean}
+    \index{ignore-resizeinc@\var{ignore_resizeinc}}
+    Should application supplied size increments be ignored?
+\end{winprop}
+
+
+\begin{winprop}{jumpto}{boolean}
+    \index{jumpto@\var{jumpto}}
+    Should a newly created client window always be made
+    active, even if the allocated frame isn't. 
+\end{winprop}
+
+
+\begin{winprop}{max_size}{table}
+    \index{max-size@\var{max_size}}
+    The table should contain the entries \var{w} and \var{h} that
+    override application-supplied maximum size hint. 
+\end{winprop}
+
+
+\begin{winprop}{min_size}{table}
+    \index{min-size@\var{min_size}}
+    Similar to \var{max_size} but for the minimum size hint. 
+\end{winprop}
+
+
+\begin{winprop}{oneshot}{boolean}
+    \index{oneshot@\var{oneshot}}
+    Discard this winprop after first use. 
+\end{winprop}
+
+
+\begin{winprop}{switchto}{boolean}
+    \index{switchto@\var{switchto}}
+    Should a newly mapped client window be switched to within
+    its frame.
+\end{winprop}
+        
+
+\begin{winprop}{target}{string}
+    \index{target@\var{target}}
+    The name of an object (workspace, frame) that should manage 
+    windows of this type. 
+\end{winprop}
+
+        
+\begin{winprop}{transient_mode}{string}
+    \index{transient-mode@\var{transient_mode}}
+    "normal": No change in behaviour. "current": The window
+    should be thought of as a transient for the current active
+    client window (if any) even if it is not marked as a
+    transient by the application. "off": The window should be
+    handled as a normal window even if it is marked as a
+    transient by the application. 
+\end{winprop}
+
+
+\begin{winprop}{transients_at_top}{boolean}
+    \index{transients-at-top@\var{transients_at_top}}
+    When transients are managed by the client window itself (as it
+    is the case on tiled workspaces), should the transients be
+    placed at the top of the window instead of bottom? 
+\end{winprop}
+
+
+\begin{winprop}{transparent}{boolean}
+    \index{transparent@\var{transparent}}
+    Should frames be made transparent when this window is selected? \\
+\end{winprop}
+
 
 
 \subsection{Classes, roles and instances}
