@@ -73,10 +73,14 @@ tag and drag states.)
 \tabhead{Style name & Description}
 \code{frame} & Style for frames. 
 	Substyles: \code{active}, \code{inactive}. \\
-\code{frame-tiled-ionws} & A more specific style for frames on tiled
-        workspaces. Substyles as for \code{frame}. \\
-\code{frame-floating-floatws} & A more specific style for frames on
-        floating workspaces. Substyles as for \code{frame}. \\
+\code{frame-tiled} & A more specific style for tiled frames.
+        Substyles as for \code{frame}. \\
+\code{frame-tiled-alt} & An alternative style for tiled frames.
+        Often used to disable the tab-bar. \\
+\code{frame-floating} & A more specific style for floating
+        frames. \\
+\code{frame-transient} & A more specific style for frames
+        containing transient windows. \\
 \end{tabularx}
 
 \subsubsection{Tabs and menu entries}
@@ -93,10 +97,11 @@ tag and drag states.)
       	\code{t} is one of \code{tagged}\nobreak/\code{not_tagged},
 	\code{d} is one of \code{dragged}\nobreak/\code{not_dragged} and
 	\code{u} is one of \code{activity}\nobreak/\code{no_activity}. \\
-\code{tab-frame-tiled-ionws} & A more specific tab style for
-        \code{frame-tiled-ionws} frames. \\
-\code{tab-frame-floating-floatws} & A more specific style for 
-        \code{frame-floating-floatws} frames. \\
+\code{tab-frame-tiled}, & \\
+\code{tab-frame-tiled-alt}, & \\
+\code{tab-frame-floating}, & \\
+\code{tab-frame-transient} & More specific styles for frames in the
+        different modes. \\
 \code{tab-menuentry} & A more specific style for entries in \type{WMenu}s. \\
 \code{tab-menuentry-bigmenu} & An alternate style for entries in \type{WMenu}s. \\
 \end{tabularx}
@@ -349,23 +354,21 @@ The following style fields are independent of the drawing engine used,
 but are related to objects' styles and therefore configured in the drawing
 engine configuration file.
 
-\subsection{Extra fields for style \code{frame-tiled}}
+\subsection{Extra fields for style \code{frame}}
 
 \begin{tabularx}{\linewidth}{lX}
 \tabhead{Field  & Description}
-\code{bar_inside_border} & Controls whether the tab-bar
-	appears inside or outside of the frame's borders. true/false.
-\end{tabularx}
-
-\subsection{Extra fields for style \code{frame-floating-floatws}}
-	
-\begin{tabularx}{\linewidth}{lX}
-\tabhead{Field  & Description}
-\code{floatframe_tab_min_w} & Minimum tab width in pixels, given
-	that this number times number of tabs doesn't exceed frame width. \\
+\code{bar} & Controls the style of the tab-bar. Possible values
+        are the strings \code{"none"}, \code{"inside"}, \code{"outside"}
+        and \code{"shaped"}, with the last providing the PWM-style
+        tab-bars for floating frames. \\
+\code{floatframe_tab_min_w} & Minimum tab width in pixels for
+        the shaped style, given that this number times number of tabs
+        doesn't exceed frame width. \\
 \code{floatframe_bar_max_w_q} & Maximum tab-bar width quotient of
-	frame width. A number in the interval $(0, 1]$.
-\end{tabularx}	
+	frame width for the shaped styles. A number in the 
+	interval $(0, 1]$.
+\end{tabularx}
 
 \subsection{Extra fields for style \code{dock}}
 

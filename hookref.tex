@@ -116,8 +116,8 @@ reg:attach(cwin)
 
 
 \begin{function}
-    \index{ionws-placement-alt@\code{ionws_placement_alt}}
-    \hookname{ionws_placement_alt}
+    \index{tiling-placement-alt@\code{tiling_placement_alt}}
+    \hookname{tiling_placement_alt}
     \hookparams{table}
     \begin{funcdesc}
       Called when a client window is about to be managed by a \type{WIonWS}
@@ -142,17 +142,17 @@ reg:attach(cwin)
 \end{function}
 
 
-\begin{function}
-    \index{panews-init-layout-alt@\code{panews_init_layout_alt}}
-    \hookname{panews_init_layout_alt}
-    \hookparams{table}
-    \begin{funcdesc}
-      Called to initialise panews layout. The table parameter has
-      initially a single field \var{ws} pointing to the workspace,
-      but the succesfull handler should set the field \var{layout}
-      to a proper layout (as those saved in the layout savefiles).
-    \end{funcdesc}
-\end{function}
+%\begin{function}
+%    \index{panews-init-layout-alt@\code{panews_init_layout_alt}}
+%    \hookname{panews_init_layout_alt}
+%    \hookparams{table}
+%    \begin{funcdesc}
+%      Called to initialise panews layout. The table parameter has
+%      initially a single field \var{ws} pointing to the workspace,
+%      but the succesfull handler should set the field \var{layout}
+%      to a proper layout (as those saved in the layout savefiles).
+%    \end{funcdesc}
+%\end{function}
 
 
 \begin{function}

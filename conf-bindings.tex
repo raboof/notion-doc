@@ -2,7 +2,7 @@
 \label{sec:bindings}
 
 In the stock configuration file setup, most key and mouse bindings are set
-from the file \file{cfg\_bindings.lua} while module-specific bindings
+from the file \file{cfg\_ioncore.lua} while module-specific bindings
 are set from the modules' main configuration files (\file{cfg\_modname.lua}).
 This, however, does not have to be so as long as the module has been
 loaded prior to defining any module-specific bindings.
@@ -34,6 +34,31 @@ classes being based on \type{WMPlex}, and in the stock configuration the
 switch to $n$:th workspaces is bound to \key{Mod1+n} while the switch to 
 $n$:th tab is bound to the sequence \key{Mod1+k n}.
 
+Currently known ''contexts'' include: 
+\code{WScreen},
+\code{WMPlex},
+\code{WMPlex.toplevel},
+\code{WFrame},
+\code{WFrame.toplevel},
+\code{WFrame.floating},
+\code{WFrame.tiled},
+\code{WFrame.transient},
+\code{WMoveresMode},
+\code{WGroup},
+\code{WGroupCW},
+\code{WGroupWS},
+\code{WClientWin},
+\code{WTiling}, and
+\code{WStatusBar}.
+Most of these should be self-explanatory, corresponding to objects
+of class with the same name. The ones with \code{.toplevel} suffix
+refer to screens and ''toplevel''  frames, i.e. frames that are
+not used for transient windows. Likewise \code{.transient} refers
+to frames in transient mode, and \code{.tiled} and \code{.floating}
+to frames in, respectively, tiled and floating modes. 
+
+                                                        
+
 The following subsections describe how to construct elements of the
 binding table. Note that \fnrefx{ioncore}{defbindings} adds
 the the newly defined bindings to the previous bindings of the context,
@@ -62,10 +87,13 @@ variables are available in this code. These are
       context of the \fnrefx{ioncore}{defbindings} call
       defining the binding. \\
     \code{_sub} &
-      Usually, the currently active child of the 
+      Usually, the currently active \emph{managed object} of the 
       object referred to by \code{_}, but sometimes (e.g. mouse actions
       on tabs of frames) something else relevant to the action triggering
       the binding. \\
+    \code{_chld} &
+      Object corresponding to the currently active child window of the
+       object referred to by \code{_}.
 \end{tabularx}
 
 For example, supposing '\code{_}' is a \type{WFrame}, the following
@@ -80,7 +108,7 @@ handler should move the active window to the right, if possible:
 To suppress error messages, each binding handler may also be accompanied
 by a ''guard'' expression that blocks the handler from being called when
 the guard condition is not met. Currently the following guard expressions
-are supported:
+are supported (for both \code{_sub} and \code{_chld}):
 
 \begin{tabularx}{\linewidth}{lX}
     \tabhead{Guard & Description}
@@ -225,10 +253,11 @@ defbindings("WFrame", {
 })
 \end{verbatim}
 
+
 \subsection{A further note on the default binding configuration}
 
 The default binding configuration contains references to the variables
-\code{MOD1} and \code{MOD2} instead of directly using the default
+\code{META} and \code{ALTMETA} instead of directly using the default
 values of \code{"Mod1+"} and \code{""} (nothing). As explained in
 section \ref{sec:walkthrough}, the definitions of these variables
 appear in \file{cfg\_ion.lua}. This way you can easily change the the
@@ -237,24 +266,4 @@ changing the whole binding configuration. Quite a few people prefer
 to use the Windows keys as modifiers because many applications already
 use \key{Alt}. Nevertheless, \key{Mod1} is the default as a key bound 
 to it is available virtually everywhere.
-
-
-\subsection{Client window bindings}
-
-As client windows do not have a binding map of their own due to technical
-reasons, it is necessary to call client window functions by specifying the
-bindings somewhere else. In the stock configuration file setup this is done
-among \type{WMPlex} bindings, setting the guard to \code{_sub:WClientWin}
-and using \code{_sub} to refer to the client window.
-
-For example, the full screen toggle key is bound like this:
-
-\begin{verbatim}
-defbindings("WMPlex", {
-    kpress_wait("Mod1+Return", 
-                "_:toggle_fullscreen()", "_sub:WClientWin"),
-})    
-\end{verbatim}
-
-
 

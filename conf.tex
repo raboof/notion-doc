@@ -59,21 +59,17 @@ files:
     \file{cfg\_ion.lua} & 
     The main configuration file \\
     %
-    \file{cfg\_bindings.lua} & 
-    Most of Ion's bindings are configured here. Bindings that are
+    \file{cfg\_ioncore.lua} & 
+    Configuration file for Ion's core library.
+    Most of the bindings and menus are configured here. Bindings that are
     specific to some module are configured in the module's configuration
     file. For details, see section \ref{sec:bindings}. \\
-    %
-    \file{cfg\_menus.lua} & 
-    Menu definitions; see section \ref{sec:menus}. \\
     %
     \file{cfg\_kludges.lua} & 
     Settings to get some applications behave more nicely have been 
     collected here. See section \ref{sec:winprops}. \\
     %
-    \file{cfg\_ionws.lua} 
-    \file{cfg\_floatws.lua} 
-    \file{cfg\_panews.lua} 
+    \file{cfg\_tiling.lua} 
     \file{cfg\_query.lua} 
     \file{cfg\_menu.lua} 
     \file{cfg\_dock.lua} 
@@ -81,8 +77,8 @@ files:
     \dots & Configuration files for different modules. \\
 \end{tabularx}
 
-Additionally, there's \file{look.lua} that configures the drawing engine,
-but it is covered in chapter \ref{chap:gr}.
+Additionally, there's the file \file{look.lua} that configures the 
+drawing engine, but it is covered in chapter \ref{chap:gr}.
 
 \section{A walk through \file{cfg\_ion.lua}}
 \label{sec:walkthrough}
@@ -92,15 +88,17 @@ file. Some basic 'feel' settings are usually configured there and
 the necessary modules and other configuration files configuring some 
 more specific aspects of Ion are loaded there. In this section we
 take a walk through the stock \file{cfg\_ion.lua}.
+Notice that most of the settings are commented-out (\code{--} is a 
+line comment in Lua) in the actual file, as they're the defaults
+nevertheless.
 
-The first thing that is done in that file is set
-
+The first thing one in the file is to set
 \begin{verbatim}
-MOD1="Mod1+"
-MOD2=""
+META="Mod1+"
+ALTMETA=""
 \end{verbatim}
-This causes most of Ion's key bindings to use \key{Mod1} as the
-modifier key. If \code{MOD2} is set, it is used as modifier for the keys
+These settings cause most of Ion's key bindings to use \key{Mod1} as the
+modifier key. If \code{ALTMETA} is set, it is used as modifier for the keys
 that don't normally use a modifier. for details on modifiers and key 
 binding setup in general see section \ref{sec:bindings}.
 
@@ -119,7 +117,7 @@ the timeout to quit resize mode in milliseconds.
 \begin{verbatim}
 ioncore.set{
     opaque_resize=true,
-    warp=true,
+    warp=true
 }
 \end{verbatim}
 
@@ -129,40 +127,16 @@ resize is disabled, a XOR rubber band is shown during the mode instead.
 This will, unfortunately, cause Ion to also grab the X server and has some
 side effects.
 
-\begin{verbatim}
-ioncore.set{
-    default_ws_type="WIonWS",
-}
-\end{verbatim}
-
-This will set the default workspace type to \type{WIonWS} -- tiled workspaces.
-
-To actually be able to do something besides display windows in full screen
-mode, we must next load some modules:
+Next we load the configuration for Ion's core, and some kludges:
 
 \begin{verbatim}
-dopath("mod_query")
-dopath("mod_menu")
-dopath("mod_ionws")
-dopath("mod_floatws")
-dopath("mod_panews")
-dopath("mod_statusbar")
---dopath("mod_dock")
---dopath("mod_sp")
-\end{verbatim}
-
-As already mentioned, each of these modules have their own configuration
-files. Finally, additional configuration files are loaded:
-
-\begin{verbatim}
+dopath("cfg_ioncore")
 dopath("cfg_kludges")
-dopath("cfg_bindings")
-dopath("cfg_menus")
 \end{verbatim}
 
-Bindings and menus are defined in \file{cfg\_bindings.lua} and
-\file{cfg\_menus.lua}. Details on making such definitions follow in
-sections \ref{sec:bindings} and \ref{sec:menus}, respectively. 
+Most bindings and menus are defined in \file{cfg\_ioncore.lua}.
+Details on making such definitions follow in sections \ref{sec:bindings} 
+and \ref{sec:menus}, respectively. 
 some kludges or ''winprops'' to make some applications behave better
 under Ion are colledted in \file{cfg\_kludges.lua}; see section
 \ref{sec:winprops} for details. In addition to these, this file
@@ -176,6 +150,26 @@ expression that is used to match against the title and the next is
 a rule to construct a new title of a match occurs. This particular
 rule is used to shorten e.g. 'Foo: barbaz<3>' to 'barba{\ldots}<3>'; for
 details see the function reference entry for \fnref{ioncore.defshortening}.
+
+To actually be able to do something besides display windows in full screen
+mode, we must next load some modules:
+
+\begin{verbatim}
+dopath("cfg_modules")
+--dopath("mod_query")
+--dopath("mod_menu")
+--dopath("mod_tiling")
+--dopath("mod_statusbar")
+--dopath("mod_dock")
+--dopath("mod_sp")
+\end{verbatim}
+
+We actually load there another file listing the default selection of
+modules. If you only want to load additional modules, just uncomment
+the corresponding line. If you want to disable loading some modules,
+comment out the the line loading \file{cfg\_modules}, and uncomment
+the lines for the modules you want, or add more.
+
 
 \input{conf-bindings.tex}
 

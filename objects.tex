@@ -20,7 +20,7 @@ read the summary at the end of it, so that you understand the very
 basic relations.
 
 For simplicity we consider only the essential-for-basic-configuration
-Ioncore, \file{mod\_ionws} and \file{mod\_query} classes. 
+Ioncore, \file{mod\_tiling} and \file{mod\_query} classes. 
 See Appendix \ref{app:fullhierarchy} for the full class hierachy visible
 to Lua side.
 
@@ -51,11 +51,14 @@ implement.
      |    |    |-->WInput (mod_query)
      |    |         |-->WEdln (mod_query)
      |    |         |-->WMessage (mod_query)
-     |    |-->WGenWS
-     |         |-->WIonWS (mod_ionws)
-     |-->WSplit (mod_ionws)
+     |    |-->WGroup
+     |    |    |-->WGroupWS
+     |    |    |-->WGroupCW
+     |    |-->WTiling (mod_tiling)
+     |-->WSplit (mod_tiling)
 \end{verbatim}
-\caption{Ioncore, \file{mod\_ionws} and \file{mod\_query} class hierarchy.}
+\caption{Partial Ioncore, \file{mod\_tiling} and \file{mod\_query} 
+    class hierarchy.}
 \label{fig:classhierarchy}
 \end{figure}
 
@@ -104,23 +107,26 @@ The core classes:
     While most Ion's objects have no graphical presentation, frames basically
     add to \type{WMPlex}es the decorations around client windows 
     (borders, tabs).
-
-  \item[\type{WGenWS}]\indextype{WGenWS} is a light base class for
-    different types of workspaces.
+    
+  \item[\type{WGroup}]\indextype{WGroup} is the base class for groups.
+    Particular types of groups are workspaces 
+    (\type{WGroupWS}\indextype{WGroupWS})
+    and groups of client windows
+    (\type{WGroupCW}\indextype{WGroupCW}).
 \end{description}
 
 
-Classes implemented by the ionws module:
+Classes implemented by the \file{mod\_tiling} module:
 
 \begin{description}
-  \item[\type{WIonWS}]\indextype{WIonWS} is the class for the
-    usual tiled workspaces.
+  \item[\type{WTiling}]\indextype{WTiling} is the class for tilings
+    of frames.
   \item[\type{WSplit}]\indextype{WSplit} (or, more specifically, classes
-    that inherit it) encode the \type{WIonWS} tree structure.
+    that inherit it) encode the \type{WTiling} tree structure.
 \end{description}
 
 
-Classes implemented by the query module:
+Classes implemented by the \file{mod\_query} module:
 
 \begin{description}
   \item[\type{WInput}]\indextype{WInput} is a virtual base class for the
@@ -133,6 +139,11 @@ Classes implemented by the query module:
     warning and other messages that Ion may wish to display to the user. 
     These also usually appear at bottoms of frames.
 \end{description}
+
+There are also some other ''proxy'' classes that do not refer
+to objects on the screen. The only important one of these for
+basic configuration is \type{WMoveresMode} that is used for
+binding callbacks in the move and resize mode.
 
 
 \subsection{Object hierarchies: \type{WRegion} parents and managers}
@@ -154,10 +165,13 @@ Figure \ref{fig:parentship}.
 \begin{verbatim}
     WRootWins
      |-->WScreens
-          |-->WIonWSs
+          |-->WGroupWSs
+          |-->WTilings
           |-->WClientWins in full screen mode
           |-->WFrames
-               |-->WClientWins, including transients
+               |-->WGroupCWs
+               |-->WClientWins
+               |-->WFrames for transients
                |-->a possible WEdln or WMessage
 \end{verbatim}
 \caption{Most common parent--child relations}
@@ -184,15 +198,17 @@ but all have a parent--a screen if not anything else.
 \begin{verbatim}
     WRootWins
      |-->WScreens
-          |-->full screen WClientWins
-          |    |-->transient WClientWins (dialogs)
-          |-->WScratchpad
-          |-->WIonWSs/WFloatWS/WPaneWS
-               |-->WFrames
-               |    |-->WClientWins
-               |    |    |-->transient WClientWins (dialogs)
-               |    |-->possibly a WEdln or WMessage
-               |-->WIonWSs/WFloatWS/WPaneWS
+          |-->WGroupCWs for full screen WClientWins
+          |    |-->WClientWins
+          |    |-->WFrames for transients (dialogs)
+          |         |--> WClientWin
+          |-->WGroupWSs for workspaces
+          |    |-->WTiling
+          |    |    |-->possibly a WEdln, WMessage or WMenu
+          |    |    |-->WFrames
+          |    |         |-->WGroupCWs (with contents as above)
+          |    |-->WFrames for floating content
+          |-->WFrames for sticky stuff, such as the scratchpad
 \end{verbatim}
 \caption{Most common manager--managed relations}
 \label{fig:managership}
@@ -215,15 +231,16 @@ consideration:
 \begin{itemize}
   \item The top-level objects that matter are screens and they correspond
     to physical screens. The class for screens is \type{WScreen}.
-  \item Screens contain (multiplex) workspaces and full screen client
-    windows. Only one of them can be viewed at a time.
-    Workspace classes are \type{WIonWS} and \type{WFloatWS} 
-    for the two different types of workspaces (and \type{WGenWS}).
-  \item Frames are managed by workspaces. Frames are the objects with 
-    decorations such as tabs and borders.
-  \item Frames contain (multiplex) client windows, to each of which
-    corresponds a tab in the frame's decoration. Only one client
-    window (or other object) can be shown at a time in each frame.
-    The class for client windows is \type{WClientWin}.
+  \item Screens contain (multiplex) groups (\type{WGroup}) and other 
+    objects, such as \type{WFrames}. Some of these are mutually exclusive
+    to be viewed at a time.
+  \item Groups of the specific kind \type{WGroupWS} often contain a
+    \type{WTiling} tiling for tiling frames (\type{WFrame}), but 
+    groups may also directly contain floating frames.
+  \item Frames are the objects with decorations such as tabs and borders.
+    Frames contain (multiplex) among others (groups of) client windows, 
+    to each of which corresponds a tab in the frame's decoration. Only 
+    one client window (or other object) can be shown at a time in each 
+    frame. The class for client windows is \type{WClientWin}.
 \end{itemize}
 

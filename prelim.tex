@@ -22,22 +22,11 @@ linked to the main binary, but must nevertheless be loaded with the
 
 If no modules are loaded, all client windows appear in full screen mode.
 To get better window management support, one or more workspace modules
-should be loaded. Currently Ion provides the following workspace modules
+should be loaded. Currently Ion provides the following modules:
 
 \begin{description}
-    \item[\file{mod\_ionws}] Tiled workspaces of the original Ion kind.
-    \item[\file{mod\_floatws}] Conventional workspaces with freely floating
-      frames of the PWM flavour.
-    \item[\file{mod\_panews}] Tiled workspaces with automatic tiling in a
-      template layout based on silly heuristics or winprop (see section
-      \ref{sec:winprops}).
-\end{description}
-
-Workspace modules alone don't yet make the WM very usable. At the least
-the \file{mod\_query} and \file{mod\_menu} modules should be loaded for
-better input capabilities. The full list of additional modules is as
-follows
-\begin{description}
+    \item[\file{mod\_tiling}] Tilings for workspaces of the original tiled
+       Ion kind.
     \item[\file{mod\_query}] Queries (for starting programs and so on)
       and message boxes.
     \item[\file{mod\_menu}] Support for menus, both pull-down and
@@ -62,7 +51,8 @@ but they are not discussed here; see chapter \ref{chap:gr}.
 The stock configuration for the 'ion3' executable loads all of the modules
 mentioned above except \file{mod\_dock} and file{mod\_mgmtmode}.
 The stock configuration for the 'pwm3' executable (which differs from the 
-'ion3' executable in a few configuration details, such as Xinerama usage) 
-only load \file{mod\_floatws}, \file{mod\_menu} and \file{mod\_query}.
+'ion3' executable in a few configuration details, such as Xinerama usage)
+loads another set of modules.
+
 
 \input{objects}
