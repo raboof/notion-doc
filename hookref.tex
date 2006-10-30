@@ -120,12 +120,12 @@ reg:attach(cwin)
     \hookname{tiling_placement_alt}
     \hookparams{table}
     \begin{funcdesc}
-      Called when a client window is about to be managed by a \type{WIonWS}
+      Called when a client window is about to be managed by a \type{WTiling}
       to allow for alternative placement policies. The table has the
       following fields:
       \begin{tabularx}{\linewidth}{llX}
           \tabhead{Field & Type & Description}
-          \var{ws} & \type{WIonWS} & The workspace \\
+          \var{tiling} & \type{WTiling} & The tiling \\
           \var{reg} & \type{WRegion} & The region (always a WClientWin at 
               the moment) to be placed \\
           \var{mp} & \type{table} & This table contains the same fields as
