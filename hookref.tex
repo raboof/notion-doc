@@ -43,6 +43,17 @@ reg:attach(cwin)
 
 
 \begin{function}
+    \index{clientwin-property-change-hook@\code{clientwin_property_change_hook}}
+    \hookname{clientwin_property_change_hook}
+    \hookparams{(WClientWin, integer)}
+    \begin{funcdesc}
+      Called when the property identified by the parameter atom id
+      (integer) has changed on a client window.
+    \end{funcdesc}
+\end{function}
+
+
+\begin{function}
     \index{clientwin-unmapped-hook@\code{clientwin_unmapped_hook}}
     \hookname{clientwin_unmapped_hook}
     \hookparams{number}
