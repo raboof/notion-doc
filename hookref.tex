@@ -196,17 +196,6 @@ reg:attach(cwin)
     \end{funcdesc}
 \end{function}
 
-
-\begin{function}
-    \index{region-activated-hook@\code{region_activated_hook}}
-    \hookname{region_activated_hook}
-    \hookparams{WRegion}
-    \begin{funcdesc}
-      Signalled when a region or one of its children has received the focus.
-    \end{funcdesc}
-\end{function}
-
-
 \begin{function}
     \index{region-activity-hook@\code{region_activity_hook}}
     \hookname{region_activity_hook}
@@ -230,17 +219,6 @@ reg:attach(cwin)
 
 
 \begin{function}
-    \index{region-inactivated-hook@\code{region_inactivated_hook}}
-    \hookname{region_inactivated_hook}
-    \hookparams{WRegion}
-    \begin{funcdesc}
-      Signalled when the focus has moved from the parameter region or
-      one of its children to a non-child region of the parameter region.
-    \end{funcdesc}
-\end{function}
-
-
-\begin{function}
     \index{screen-managed-changed-hook@\code{screen_managed_changed_hook}}
     \hookname{screen_managed_changed_hook}
     \hookparams{table}
@@ -248,5 +226,29 @@ reg:attach(cwin)
       Called when there are changes in the objects managed by a screen
       or their order. The table parameter is similar to that of
       \fnref{frame_managed_changed_hook}.
+    \end{funcdesc}
+\end{function}
+
+
+\begin{function}
+    \index{region-notify-hook@\code{region_notify_hook}}
+    \hookname{region_notify_hook}
+    \hookparams{(WRegion, string, WRegion)}
+    \begin{funcdesc}
+      Signalled when something (minor) has changed in relation to 
+      the first parameter region. The string argument gives the
+      change, and the second region parameter provides detail:
+      
+      \begin{tabularx}{\linewidth}{llX}
+          \tabhead{String & Detail & Description}
+          \code{activated} & & The region has received focus. \\
+          \code{inactivated} & & The region has lost focus. \\
+          \code{activity} & & There's been activity in the region itself. \\
+          \code{sub-activity} & & There's been activity in some sub-region. \\
+          \code{name} & & The name of the region has changed. \\
+          \code{unset_manager} & Old manager & The region no longer has a manager. \\
+          \code{set_manager} & New manager & The region now has a manager. \\
+          \code{tag} & & Tagging state has changed. \\
+      \end{tabularx}
     \end{funcdesc}
 \end{function}
