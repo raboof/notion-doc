@@ -153,60 +153,6 @@ reg:attach(cwin)
 \end{function}
 
 
-%\begin{function}
-%    \index{panews-init-layout-alt@\code{panews_init_layout_alt}}
-%    \hookname{panews_init_layout_alt}
-%    \hookparams{table}
-%    \begin{funcdesc}
-%      Called to initialise panews layout. The table parameter has
-%      initially a single field \var{ws} pointing to the workspace,
-%      but the succesfull handler should set the field \var{layout}
-%      to a proper layout (as those saved in the layout savefiles).
-%    \end{funcdesc}
-%\end{function}
-
-
-\begin{function}
-    \index{panews-make-placement-alt@\code{panews_make_placement_alt}}
-    \hookname{panews_make_placement_alt}
-    \hookparams{table}
-    \begin{funcdesc}
-      Called to make a placement on panews. The parameter table has
-      the following fields:
-      
-      \begin{tabularx}{\linewidth}{llX}
-          \tabhead{Field & Type & Description}
-          \var{ws} & \type{WPaneWS} & The workspace \\
-          \var{frame} & \type{WFrame} & A frame initially allocated for the
-              region to be placed \\
-          \var{reg} & \type{WRegion} & The region to be placed \\
-          \var{specifier} & \type{WRegion} & For drag\&drop on handling empty areas\\
-      \end{tabularx}
-      
-      The handler should set some of these fields on success:
-
-      \begin{tabularx}{\linewidth}{llX}
-          \tabhead{Field & Type & Description}
-          \var{res_node} & \type{WSplit} & Target split \\
-          \var{res_config} & \type{WFrame} &  New configuration for it, unless
-              \type{WSplitRegion} \\
-          \var{res_w} & integer & New width for target split (optional) \\
-          \var{res_h} & integer & New height for target split (optional) \\
-      \end{tabularx}
-    \end{funcdesc}
-\end{function}
-
-\begin{function}
-    \index{region-activity-hook@\code{region_activity_hook}}
-    \hookname{region_activity_hook}
-    \hookparams{WRegion}
-    \begin{funcdesc}
-      This hook is triggered when the activity flag of the parameter 
-      region has been changed.
-    \end{funcdesc}
-\end{function}
-
-
 \begin{function}
     \index{region-do-warp-alt@\code{region_do_warp_alt}}
     \hookname{region_do_warp_alt}
@@ -233,22 +179,32 @@ reg:attach(cwin)
 \begin{function}
     \index{region-notify-hook@\code{region_notify_hook}}
     \hookname{region_notify_hook}
-    \hookparams{(WRegion, string, WRegion)}
+    \hookparams{(WRegion, string)}
     \begin{funcdesc}
       Signalled when something (minor) has changed in relation to 
       the first parameter region. The string argument gives the
-      change, and the second region parameter provides detail:
+      change:
       
-      \begin{tabularx}{\linewidth}{llX}
-          \tabhead{String & Detail & Description}
-          \code{activated} & & The region has received focus. \\
-          \code{inactivated} & & The region has lost focus. \\
-          \code{activity} & & There's been activity in the region itself. \\
-          \code{sub_activity} & & There's been activity in some sub-region. \\
-          \code{name} & & The name of the region has changed. \\
-          \code{unset_manager} & Old manager & The region no longer has a manager. \\
-          \code{set_manager} & New manager & The region now has a manager. \\
-          \code{tag} & & Tagging state has changed. \\
+      \begin{tabularx}{\linewidth}{lX}
+          \tabhead{String & Description}
+          \code{deinit} & The region is about to be deinitialised. \\
+          \code{activated} & The region has received focus. \\
+          \code{inactivated} & The region has lost focus. \\
+          \code{activity} & There's been activity in the region itself. \\
+          \code{sub_activity} & There's been activity in some sub-region. \\
+          \code{name} & The name of the region has changed. \\
+          \code{unset_manager} & The region no longer has a manager. \\
+          \code{set_manager} & The region now has a manager. \\
+          \code{tag} & Tagging state has changed. \\
+          \code{pseudoactivated} & The region has become pseudoactive
+                      (see below). \\
+          \code{pseudoinactivated} & The region is no longer pseudoactive. \\
       \end{tabularx}
+
+      A region is pseudoactive, when a) it is itself not active (does
+      not not have the focus, and may not even have a window that could
+      have it), but b) some region managed by it is active.
     \end{funcdesc}
 \end{function}
+
+
