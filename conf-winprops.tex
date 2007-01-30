@@ -100,6 +100,17 @@ usual method of identifying windows, and how to obtain this information.
 \end{winprop}
 
 
+\begin{winprop}{new_group}{string}
+    \index{new-group@\var{new_group}}
+    If the region specified by \code{target} winprop does not exist
+    (or that winprop is not set), create a new workspace using the 
+    previously stored layout (see \fnref{ioncore.deflayout}) named by
+    this property. After creating the workspace, \code{target} is 
+    attempted to be found again. (If that still fails, the newly 
+    created workspace is still asked to manage the client window.)
+\end{winprop}
+
+
 \begin{winprop}{oneshot}{boolean}
     \index{oneshot@\var{oneshot}}
     Discard this winprop after first use. 
@@ -116,7 +127,7 @@ usual method of identifying windows, and how to obtain this information.
 \begin{winprop}{target}{string}
     \index{target@\var{target}}
     The name of an object (workspace, frame) that should manage 
-    windows of this type. 
+    windows of this type. See also \code{new_group}.
 \end{winprop}
 
         
