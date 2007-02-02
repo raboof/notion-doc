@@ -17,7 +17,7 @@ DOCS=ionconf ionnotes
 
 FNTEXES=ioncore-fns.tex mod_tiling-fns.tex \
 	mod_query-fns.tex de-fns.tex mod_menu-fns.tex \
-	mod_dock-fns.tex mod_sp-fns.tex
+	mod_dock-fns.tex mod_sp-fns.tex mod_statusbar-fns.tex
 
 # Generic rules
 ######################################
@@ -123,6 +123,9 @@ mod_dock-fns.tex: $(TOPDIR)/mod_dock/*.c
 
 mod_sp-fns.tex: $(TOPDIR)/mod_sp/*.c
 	$(MKEXPORTS) -module mod_sp -mkdoc -o $@ $+
+
+mod_statusbar-fns.tex: $(TOPDIR)/mod_statusbar/*.c
+	$(MKEXPORTS) -module mod_statusbar -mkdoc -o $@ $+
 
 de-fns.tex: $(TOPDIR)/de/*.c
 	$(MKEXPORTS) -module de -mkdoc -o $@ $+
