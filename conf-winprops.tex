@@ -119,10 +119,10 @@ usual method of identifying windows, and how to obtain this information.
 
 \begin{winprop}{statusbar}{string}
     \index{statusbar@\var{statusbar}}
-    Put the window on the statusbar, in the named tray component,
-    (The default tray component is called simply ``\code{systray}'', 
+    Put the window in the statusbar, in the named tray component,
+    (The default tray component is called simply \code{"systray"}, 
     and others you give names to in your custom template, always 
-    prefixed by ``\code{systray_}''.
+    prefixed by \code{"systray_"}.
 \end{winprop}
 
 
@@ -142,11 +142,11 @@ usual method of identifying windows, and how to obtain this information.
         
 \begin{winprop}{transient_mode}{string}
     \index{transient-mode@\var{transient_mode}}
-    "normal": No change in behaviour. "current": The window
-    should be thought of as a transient for the current active
-    client window (if any) even if it is not marked as a
-    transient by the application. "off": The window should be
-    handled as a normal window even if it is marked as a
+    \code{"normal"}: No change in behaviour. \code{"current"}:
+    The window should be thought of as a transient for the current
+    active client window (if any) even if it is not marked as a
+    transient by the application. \code{"off"}: The window should 
+    be handled as a normal window even if it is marked as a
     transient by the application. 
 \end{winprop}
 
