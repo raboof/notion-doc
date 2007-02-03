@@ -45,7 +45,6 @@ foo-bar-baz
 foo-*-baz
 foo-bar
 *
-foo-baz   -- Doesn't match, not selected!
 \end{verbatim}
 
 Some of the drawing primitives allow extra attributes to be
@@ -72,9 +71,13 @@ tag and drag states.)
 \begin{tabularx}{\linewidth}{lX}
 \tabhead{Style name & Description}
 \code{frame} & Style for frames. 
-	Substyles: \code{active}, \code{inactive}. \\
+	Substyle attributes: \code{active}/\code{inactive} 
+	(mutually exclusive) and
+	\code{quasiactive}\nobreak/\code{not_quasiactive}. 
+	A frame is ``quasiactive'' when an active region
+	has a backlink to it, such as a detached window. \\
 \code{frame-tiled} & A more specific style for tiled frames.
-        Substyles as for \code{frame}. \\
+        Substyle attributes as for \code{frame}. \\
 \code{frame-tiled-alt} & An alternative style for tiled frames.
         Often used to disable the tab-bar. \\
 \code{frame-floating} & A more specific style for floating
@@ -88,22 +91,25 @@ tag and drag states.)
 \begin{tabularx}{\linewidth}{lX}
 \tabhead{Style name & Description}
 \code{tab} & Style for frames' tabs and menu entries. 
-	Substyles: combinations of the form \code{a-s} where
-	\code{a} is one of \code{active}\nobreak/\code{inactive} and
-	\code{s} is one of \code{selected}\nobreak/\code{unselected} \\
+	Substyle attributes:
+	\code{active}\nobreak/\code{inactive} and
+	\code{selected}\nobreak/\code{unselected} \\
 \code{tab-frame} & A more specific style for frames' tabs.
-	Substyles: combinations of the form \code{a-s-t-d-u} where
-	\code{a} and \code{s} are as above and
-      	\code{t} is one of \code{tagged}\nobreak/\code{not_tagged},
-	\code{d} is one of \code{dragged}\nobreak/\code{not_dragged} and
-	\code{u} is one of \code{activity}\nobreak/\code{no_activity}. \\
+        Additional substyle attributes include:
+      	\code{tagged}\nobreak/\code{not_tagged},
+	\code{dragged}\nobreak/\code{not_dragged},
+	\code{activity}\nobreak/\code{no_activity} and
+	\code{quasiactive}\nobreak/\code{not_quasiactive}. \\
 \code{tab-frame-tiled}, & \\
 \code{tab-frame-tiled-alt}, & \\
 \code{tab-frame-floating}, & \\
 \code{tab-frame-transient} & More specific styles for frames in the
         different modes. \\
-\code{tab-menuentry} & A more specific style for entries in \type{WMenu}s. \\
-\code{tab-menuentry-bigmenu} & An alternate style for entries in \type{WMenu}s. \\
+\code{tab-menuentry} & A more specific style for entries in \type{WMenu}s. 
+        Additional substyle attributes include \code{submenu} and
+        occasionally also \code{activity} is used.\\
+\code{tab-menuentry-bigmenu} & 
+        An alternate style for entries in \type{WMenu}s. \\
 \end{tabularx}
 
 \subsubsection{The rest}
@@ -112,7 +118,7 @@ tag and drag states.)
 \tabhead{Style name & Description}
 \code{input} & A style for \type{WInput}s. \\
 \code{input-edln} & A more specific style for \type{WEdln}s. 
-	Substyles: \code{selection} for selected text and
+	Substyle attributes: \code{selection} for selected text and
 	\code{cursor} for the cursor indicating current editing point. \\
 \code{input-message} & A more specific style for \type{WMessage}s. \\
 \code{input-menu} & A more specific style for \type{WMenu}s. \\
@@ -135,7 +141,7 @@ and should usually be symlinked to or a copy of of some
 
 \subsection{The structure of the configuration files}
 
-The first thing to do in a stylefile is to choose the drawing
+The first thing to do in a style file is to choose the drawing
 engine, possibly loading the module as well. This is done
 with the following chunk of code.
 
