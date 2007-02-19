@@ -203,10 +203,12 @@ but all have a parent--a screen if not anything else.
           |         |--> WClientWin
           |-->WGroupWSs for workspaces
           |    |-->WTiling
-          |    |    |-->possibly a WEdln, WMessage or WMenu
           |    |    |-->WFrames
-          |    |         |-->WGroupCWs (with contents as above)
+          |    |    |    |-->WGroupCWs (with contents as above)
+          |    |    |-->possibly a WStatusBar or WDock
           |    |-->WFrames for floating content
+          |    |-->possibly a WEdln, WMessage or WMenu
+          |    |-->possibly a WStatusBar or WDock (if no tiling)
           |-->WFrames for sticky stuff, such as the scratchpad
 \end{verbatim}
 \caption{Most common manager--managed relations}
