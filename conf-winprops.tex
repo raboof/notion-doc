@@ -41,13 +41,6 @@ usual method of identifying windows, and how to obtain this information.
 \end{winprop}
 
 
-\begin{winprop}{aspect}{table}
-    \index{aspect@\var{aspect}}
-    The table should contain the entries \var{w} and \var{h} that
-    override application-supplied aspect ratio hint.
-\end{winprop}
-
-
 \begin{winprop}{float}{boolean}
     \index{float@\var{float}}
     Set this to open the window in a floating frame, when
@@ -74,29 +67,10 @@ usual method of identifying windows, and how to obtain this information.
 \end{winprop}
 
 
-\begin{winprop}{ignore_resizeinc}{boolean}
-    \index{ignore-resizeinc@\var{ignore_resizeinc}}
-    Should application supplied size increments be ignored?
-\end{winprop}
-
-
 \begin{winprop}{jumpto}{boolean}
     \index{jumpto@\var{jumpto}}
     Should a newly created client window always be made
     active, even if the allocated frame isn't. 
-\end{winprop}
-
-
-\begin{winprop}{max_size}{table}
-    \index{max-size@\var{max_size}}
-    The table should contain the entries \var{w} and \var{h} that
-    override application-supplied maximum size hint. 
-\end{winprop}
-
-
-\begin{winprop}{min_size}{table}
-    \index{min-size@\var{min_size}}
-    Similar to \var{max_size} but for the minimum size hint. 
 \end{winprop}
 
 
@@ -156,6 +130,23 @@ usual method of identifying windows, and how to obtain this information.
     Should frames be made transparent when this window is selected? \\
 \end{winprop}
 
+
+\subsection{Sizehint winprops}
+
+Additionally, the winprops 
+\code{max_size}\index{max-size@\var{max_size}},
+\code{min_size}\index{min-size@\var{min_size}},
+\code{aspect}\index{aspect@\var{aspect}},
+\code{resizeinc}\index{aspect@\var{resizeinc}},
+and
+\code{ignore_max_size}\index{ignore-max-size@\var{ignore_max_size}},
+\code{ignore_min_size}\index{ignore-min-size@\var{ignore_min_size}},
+\code{ignore_aspect}\index{ignore-aspect@\var{ignore_aspect}},
+\code{ignore_resizeinc}\index{ignore-aspect@\var{ignore_resizeinc}},
+may be used to override application-supplied size hints. The four
+first ones are tables with the fields \var{w} and \var{h}, indicating
+the width and height size hints in pixels, and the latter ignore
+winprop is a boolean.
 
 
 \subsection{Classes, roles and instances}
