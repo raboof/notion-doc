@@ -146,7 +146,14 @@ and
 may be used to override application-supplied size hints. The four
 first ones are tables with the fields \var{w} and \var{h}, indicating
 the width and height size hints in pixels, and the latter ignore
-winprop is a boolean.
+winprop is a boolean. 
+
+Finally, the boolean
+\code{userpos}\index{userpos@\var{userpos}} option may be used to
+override the \code{USPosition} flag of the size hints. Normally,
+when this flag is set, Ion tries to respect the supplied window
+position more than when it is not set. Obviously, this makes sense
+only for floating windows.
 
 
 \subsection{Classes, roles and instances}
