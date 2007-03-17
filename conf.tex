@@ -69,6 +69,9 @@ files:
     Settings to get some applications behave more nicely have been 
     collected here. See section \ref{sec:winprops}. \\
     %
+    \file{cfg\_layouts.lua} & 
+    Some workspace layouts are defined here. \\
+    %
     \file{cfg\_tiling.lua} 
     \file{cfg\_query.lua} 
     \file{cfg\_menu.lua} 
@@ -125,13 +128,23 @@ The first of these two settings enables opaque resize mode: in move/resize
 move frames and other objects mirror you actions immediately. If opaque
 resize is disabled, a XOR rubber band is shown during the mode instead.
 This will, unfortunately, cause Ion to also grab the X server and has some
-side effects.
+side effects. 
 
-Next we load the configuration for Ion's core, and some kludges:
+There are some other options as well; see the documentation
+for \fnref{ioncore.set} for details.
+
+As a next step, in the actual \file{cfg\_ion.lua} file, we load
+\file{cfg\_defaults.lua}. However, it is merely a conveniency file for
+doing exactly what we will going through below, and what is commented
+out in the actual file. If you do not want to load what 
+\file{cfg\_defaults.lua} loads, just comment out the corresponding 
+line, and uncomment the lines for the files that you want:
 
 \begin{verbatim}
+--dopath("cfg_defaults")
 dopath("cfg_ioncore")
 dopath("cfg_kludges")
+dopath("cfg_layouts")
 \end{verbatim}
 
 Most bindings and menus are defined in \file{cfg\_ioncore.lua}.
@@ -150,25 +163,20 @@ expression that is used to match against the title and the next is
 a rule to construct a new title of a match occurs. This particular
 rule is used to shorten e.g. 'Foo: barbaz<3>' to 'barba{\ldots}<3>'; for
 details see the function reference entry for \fnref{ioncore.defshortening}.
+Finally, \file{cfg\_layouts.lua} defines some workspace layouts, available
+through the \key{F9} workspace creation query.
 
 To actually be able to do something besides display windows in full screen
 mode, we must next load some modules:
 
 \begin{verbatim}
-dopath("cfg_modules")
---dopath("mod_query")
---dopath("mod_menu")
---dopath("mod_tiling")
---dopath("mod_statusbar")
+dopath("mod_query")
+dopath("mod_menu")
+dopath("mod_tiling")
+dopath("mod_statusbar")
 --dopath("mod_dock")
---dopath("mod_sp")
+dopath("mod_sp")
 \end{verbatim}
-
-We actually load there another file listing the default selection of
-modules. If you only want to load additional modules, just uncomment
-the corresponding line. If you want to disable loading some modules,
-comment out the the line loading \file{cfg\_modules}, and uncomment
-the lines for the modules you want, or add more.
 
 
 \input{conf-bindings.tex}
