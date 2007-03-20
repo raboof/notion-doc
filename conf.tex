@@ -91,19 +91,21 @@ file. Some basic 'feel' settings are usually configured there and
 the necessary modules and other configuration files configuring some 
 more specific aspects of Ion are loaded there. In this section we
 take a walk through the stock \file{cfg\_ion.lua}.
-Notice that most of the settings are commented-out (\code{--} is a 
+Notice that most of the settings are commented-out (\verb!--! is a 
 line comment in Lua) in the actual file, as they're the defaults
 nevertheless.
 
-The first thing one in the file is to set
+The first thing done in the file, is to set
 \begin{verbatim}
 META="Mod1+"
 ALTMETA=""
 \end{verbatim}
 These settings cause most of Ion's key bindings to use \key{Mod1} as the
-modifier key. If \code{ALTMETA} is set, it is used as modifier for the keys
-that don't normally use a modifier. for details on modifiers and key 
-binding setup in general see section \ref{sec:bindings}.
+modifier key. If \code{ALTMETA} is set, it is used as modifier for the
+keys that don't normally use a modifier. Note that these two are Lua 
+variables used in the configuration files only, and not Ion settings. 
+For details on modifiers and key binding setup in general, see section
+\ref{sec:bindings}.
 
 Next we do some basic feel configuration:
 
