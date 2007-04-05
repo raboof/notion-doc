@@ -1,0 +1,123 @@
+\section{The statusbar}
+\label{sec:statusbar}
+
+The \file{mod\_statusbar} module provides a statusbar that adapts to 
+layouts of tilings, using only the minimal space needed. Ion only 
+supports one adaptive ``status display'' object per screen, so this
+statusbar is mutually exclusive with the embedded mode of \file{mod\_dock} 
+docks. 
+
+The statusbar is configured in \file{cfg\_statusbar.lua}. Typically,
+the configuration consists of two steps: creating a statusbar with
+\fnref{mod\_statusbar.create}, and then launching the separate
+\file{ion-statusd} status daemon process with 
+\fnref{mod_statusbar.launch_statusd}. This latter phase is done
+automatically, if it was not done by the configuration file, but
+the configuration file may pass extra parameters to \file{ion-statusd}
+monitors. (See Section \ref{sec:statusd} for more information on
+writing \file{ion-statusd} monitors.)
+
+A typical \file{cfg\_statusbar.lua} configuration might look as follows:
+
+
+\begin{verbatim}
+-- Create a statusbar
+mod_statusbar.create{
+    screen = 0,     -- First screen, 
+    pos = 'bl',     -- bottom left corner
+    systray = true, -- Swallow systray windows
+
+    -- The template
+    template = "[ %date || load:% %>load || mail:% %>mail_new/%>mail_total ]"
+               .. " %filler%systray",
+}
+
+-- Launch ion-statusd. 
+mod_statusbar.launch_statusd{
+    -- Date meter
+    date={
+        -- ISO-8601 date format with additional abbreviated day name
+        date_format='%a %Y-%m-%d %H:%M',
+    },      
+}
+\end{verbatim}
+
+
+\subsection{The template}
+
+The template specifies what is shown on the statusbar; for information
+on the other options to \fnref{mod_statusbar.create}, see the reference. 
+Strings of the form \verb!%spec! tokens specially interpreter by
+the statusbar; the rest appears verbatim. The \code{spec} typically
+consists of the name of the value/meter to display (beginning with a latin
+alphabet), but may be preceded by an alignment specifier and a number
+specifying the minimum width. The alignmenter specifiers are: \code{>}
+for right, \code{<} for left,  and \code{|} for centering. Additionally,
+space following \verb!%! (that is, the string \verb!"% "!), adds
+``stretchable space'' at that point. The special string \verb!%filler!
+may be used to flush the rest of the template to the right end of 
+the statusbar. 
+
+The stretchable space works as follows: \file{mod\_statusbar} remembers
+the widest string (in terms of graphical presentation) that it has
+seen for each meter, unless the width has been otherwise constrained.
+If there is stretchable space in the template, it tries to make the
+meter always take this much space, by stretching any space found in
+the direction indicated by the alignment specifier: the opposite
+direction for left or right alignment, and both for centering.
+
+\subsection{The systray}
+
+The special \verb!%systray! monitor indicates where to place system
+tray windows. There may be multiple of these. KDE-protocol system tray
+icons are placed there automatically unless disabled with the
+\var{systray} option. Otherwise the \var{statusbar} winprop may
+be used.
+
+\subsection{Monitors}
+
+The part before the first
+underscore of each monitor name, descripts the scripts/plugin/module
+that provides the meter, and any configuration should be passed
+in the a corresponding sub-table \fnref{mod_statusbar.launch_statusd}.
+Ion comes with date, load and mail (for plain old mbox) 
+\file{ion-statusd} monitor scripts. More may be obtained from 
+the scripts repository \cite{scripts}. These included scripts 
+provide the following monitors and their options
+
+\subsubsection{Date}
+
+Options: \var{date_format}: The date format in as seen above, 
+in the usual \code{strftime} format. \code{formats}: table of
+formats for additional date monitors, the key being the name
+of the monitor (without the \code{"date_"} prefix).
+
+Monitors: \code{date} and other user-specified ones with the
+\code{date_} prefix.
+
+
+\subsubsection{Load}
+
+Options: \var{update_interval}: Update interval in milliseconds
+(default 10s). \var{important_threshold}: Threshold above which 
+the load is marked as important (default 1.5), so that the 
+drawing engine may be suitably hinted. \var{critical_threshold}: 
+Threshold above which  the load is marked as critical (default 4.0).
+
+
+Monitors: \code{load} (for all three values), 
+\code{load_1min}, \code{load_5min} and \code{load_15min}.
+
+
+\subsubsection{Mail}
+
+Options: \var{update_interval}: Update interval in milliseconds
+(default 1min). \var{mbox}: mbox-format mailbox location
+(default \code{$MAIL}). 
+\var{files}: list of additional mailboxes, the key giving the 
+name of the monitor.
+
+Monitors: \code{mail_new}, \code{mail_unread},
+\code{mail_total}, and corresponding
+\code{mail_*_new}, \code{mail_*_unread}, and \code{mail_*_total}
+for the additional mailboxes (\code{*} varying).
