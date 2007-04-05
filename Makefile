@@ -124,7 +124,7 @@ mod_dock-fns.tex: $(TOPDIR)/mod_dock/*.c
 mod_sp-fns.tex: $(TOPDIR)/mod_sp/*.c
 	$(MKEXPORTS) -module mod_sp -mkdoc -o $@ $+
 
-mod_statusbar-fns.tex: $(TOPDIR)/mod_statusbar/*.c
+mod_statusbar-fns.tex: $(TOPDIR)/mod_statusbar/*.c $(TOPDIR)/mod_statusbar/mod_statusbar.lua
 	$(MKEXPORTS) -module mod_statusbar -mkdoc -o $@ $+
 
 de-fns.tex: $(TOPDIR)/de/*.c
