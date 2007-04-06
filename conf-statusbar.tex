@@ -68,11 +68,12 @@ direction for left or right alignment, and both for centering.
 
 \subsection{The systray}
 
-The special \verb!%systray! monitor indicates where to place system
-tray windows. There may be multiple of these. KDE-protocol system tray
-icons are placed there automatically unless disabled with the
-\var{systray} option. Otherwise the \var{statusbar} winprop may
-be used.
+The special \verb!%systray! and \verb!%systray_*! (\verb!*! varying
+monitors) indicate where to place system tray windows. 
+There may be multiple of these. KDE-protocol system tray
+icons are placed in \verb!%systray! automatically, unless disabled with
+the \var{systray} option. Otherwise the \var{statusbar} winprop may
+be used to place any window in any particular \verb!%systray_*!.
 
 \subsection{Monitors}
 
