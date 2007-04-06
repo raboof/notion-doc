@@ -15,9 +15,9 @@ L2H=latex2html -show_section_numbers -short_index -local_icons -noaddress \
 
 DOCS=ionconf ionnotes
 
-FNTEXES=ioncore-fns.tex mod_tiling-fns.tex \
-	mod_query-fns.tex de-fns.tex mod_menu-fns.tex \
-	mod_dock-fns.tex mod_sp-fns.tex mod_statusbar-fns.tex
+FNTEXES=ioncore.exports mod_tiling.exports \
+	mod_query.exports de.exports mod_menu.exports \
+	mod_dock.exports mod_sp.exports mod_statusbar.exports
 
 # Generic rules
 ######################################
@@ -106,29 +106,13 @@ realclean: clean
 # Function reference rules
 ######################################
 
-ioncore-fns.tex: $(TOPDIR)/ioncore/*.c $(TOPDIR)/ioncore/*.lua
-	$(MKEXPORTS) -module ioncore -mkdoc -o $@ $+
+include $(TOPDIR)/libmainloop/rx.mk
 
-mod_tiling-fns.tex: $(TOPDIR)/mod_tiling/*.c
-	$(MKEXPORTS) -module mod_tiling -mkdoc -o $@ $+
+$(TOPDIR)/%/exports.tex:
+	$(MAKE) -C $$(dirname $@) _exports_doc
 
-mod_query-fns.tex: $(TOPDIR)/mod_query/*.c $(TOPDIR)/mod_query/mod_query.lua
-	$(MKEXPORTS) -module mod_query -mkdoc -o $@ $+
-
-mod_menu-fns.tex: $(TOPDIR)/mod_menu/*.c $(TOPDIR)/mod_menu/mod_menu.lua
-	$(MKEXPORTS) -module mod_menu -mkdoc -o $@ $+
-
-mod_dock-fns.tex: $(TOPDIR)/mod_dock/*.c
-	$(MKEXPORTS) -module mod_dock -mkdoc -o $@ $+
-
-mod_sp-fns.tex: $(TOPDIR)/mod_sp/*.c
-	$(MKEXPORTS) -module mod_sp -mkdoc -o $@ $+
-
-mod_statusbar-fns.tex: $(TOPDIR)/mod_statusbar/*.c $(TOPDIR)/mod_statusbar/mod_statusbar.lua
-	$(MKEXPORTS) -module mod_statusbar -mkdoc -o $@ $+
-
-de-fns.tex: $(TOPDIR)/de/*.c
-	$(MKEXPORTS) -module de -mkdoc -o $@ $+
+%.exports: $(TOPDIR)/%/exports.tex
+	cp $< $@
 
 # Function list
 ######################################
