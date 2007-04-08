@@ -12,7 +12,7 @@
           \var{switchto} & bool & Do we want to switch to the client window. \\
           \var{jumpto} & bool & Do we want to jump to the client window. \\
           \var{userpos} & bool & Geometry set by user. \\
-          \var{dockapp} & bool & Client window is a dockapp. \\
+          \var{dockapp} & bool & Client window is a dock-app. \\
           \var{maprq} & bool & Map request (and not initialisation scan). \\
           \var{gravity} & number & Window gravity. \\
           \var{geom} & table & Requested geometry; \var{x}, \var{y}, \var{w}, \var{h}.\\
@@ -77,7 +77,7 @@ reg:attach(cwin)
           \var{reg} & WFrame & The frame in question \\
           \var{mode} & string & \var{"switchonly"}, \var{"reorder"},
                                 \var{"add"} or \var{"remove"} \\
-          \var{sw} & bool & Switch occured \\
+          \var{sw} & bool & Switch occurred \\
           \var{sub} & WRegion & The managed region (primarily) affected \\
       \end{tabularx}
     \end{funcdesc}
@@ -111,7 +111,7 @@ reg:attach(cwin)
     \hookparams{()}
     \begin{funcdesc}
       Called when Ion has done all initialisation and is almost ready to
-      enter the mainloop, except no windows are yet being managed.
+      enter the main-loop, except no windows are yet being managed.
     \end{funcdesc}
 \end{function}
 
@@ -141,7 +141,7 @@ reg:attach(cwin)
               the moment) to be placed \\
           \var{mp} & \type{table} & This table contains the same fields as
             the parameter of \fnref{clientwin_do_manage_alt} \\
-          \var{res_frame} & \type{WFrame} & A succesfull handler should 
+          \var{res_frame} & \type{WFrame} & A successful handler should 
             return the target frame here. \\
       \end{tabularx}
       This hook is just for placing within a given workspace after the
@@ -196,12 +196,12 @@ reg:attach(cwin)
           \code{unset_manager} & The region no longer has a manager. \\
           \code{set_manager} & The region now has a manager. \\
           \code{tag} & Tagging state has changed. \\
-          \code{pseudoactivated} & The region has become pseudoactive
+          \code{pseudoactivated} & The region has become pseudo-active
                       (see below). \\
-          \code{pseudoinactivated} & The region is no longer pseudoactive. \\
+          \code{pseudoinactivated} & The region is no longer pseudo-active. \\
       \end{tabularx}
 
-      A region is pseudoactive, when a) it is itself not active (does
+      A region is pseudo-active, when a) it is itself not active (does
       not not have the focus, and may not even have a window that could
       have it), but b) some region managed by it is active.
     \end{funcdesc}

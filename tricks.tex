@@ -4,7 +4,7 @@
 
 This chapter documents some additional features of the Ion configuration
 and scripting interface that can be used for more advanced scripting than
-the basic configuration exlained in chapter \ref{chap:config}.
+the basic configuration explained in chapter \ref{chap:config}.
 
 \section{Hooks}
 \label{sec:hooks}
@@ -12,12 +12,12 @@ the basic configuration exlained in chapter \ref{chap:config}.
 Hooks are lists of functions to be called when a certain event occurs.
 There are two types of them; normal and ''alternative'' hooks. Normal
 hooks do not return anything, but alt-hooks should return a boolean
-indicating whether it handled its assigned task succesfully. In the case
+indicating whether it handled its assigned task successfully. In the case
 that \var{true} is returned, remaining handlers are not called.
 
 Hook handlers are registered by first finding the hook
 with \fnref{ioncore.get_hook} and then calling \fnref{WHook.add}
-on the (succesfull) result with the handler as parameter. Similarly
+on the (successful) result with the handler as parameter. Similarly
 handlers are unregistered with \fnref{WHook.remove}. For example:
 
 \begin{verbatim}
@@ -39,7 +39,7 @@ documentation when this is final.
 
 \subsection{Direct object references}
 
-All Ion objects are passed to Lua scriptss as 'userdatas', and you may
+All Ion objects are passed to Lua scripts as 'userdatas', and you may
 safely store such object references for future use. The C-side object
 may be destroyed while Lua still refers to the object. All exported
 functions gracefully fail in such a case, but if you need to explicitly

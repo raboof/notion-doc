@@ -10,12 +10,12 @@ docks.
 The statusbar is configured in \file{cfg\_statusbar.lua}. Typically,
 the configuration consists of two steps: creating a statusbar with
 \fnref{mod\_statusbar.create}, and then launching the separate
-\file{ion-statusd} status daemon process with 
+\command{ion-statusd} status daemon process with 
 \fnref{mod_statusbar.launch_statusd}. This latter phase is done
 automatically, if it was not done by the configuration file, but
-the configuration file may pass extra parameters to \file{ion-statusd}
+the configuration file may pass extra parameters to \command{ion-statusd}
 monitors. (See Section \ref{sec:statusd} for more information on
-writing \file{ion-statusd} monitors.)
+writing \command{ion-statusd} monitors.)
 
 A typical \file{cfg\_statusbar.lua} configuration might look as follows:
 
@@ -51,8 +51,8 @@ Strings of the form \verb!%spec! tokens specially interpreter by
 the statusbar; the rest appears verbatim. The \code{spec} typically
 consists of the name of the value/meter to display (beginning with a latin
 alphabet), but may be preceded by an alignment specifier and a number
-specifying the minimum width. The alignmenter specifiers are: \code{>}
-for right, \code{<} for left,  and \code{|} for centering. Additionally,
+specifying the minimum width. The alignment specifiers are: \code{>}
+for right, \code{<} for left,  and \code{|} for centring. Additionally,
 space following \verb!%! (that is, the string \verb!"% "!), adds
 ``stretchable space'' at that point. The special string \verb!%filler!
 may be used to flush the rest of the template to the right end of 
@@ -64,7 +64,7 @@ seen for each meter, unless the width has been otherwise constrained.
 If there is stretchable space in the template, it tries to make the
 meter always take this much space, by stretching any space found in
 the direction indicated by the alignment specifier: the opposite
-direction for left or right alignment, and both for centering.
+direction for left or right alignment, and both for centring.
 
 \subsection{The systray}
 
@@ -78,11 +78,11 @@ be used to place any window in any particular \verb!%systray_*!.
 \subsection{Monitors}
 
 The part before the first
-underscore of each monitor name, descripts the scripts/plugin/module
+underscore of each monitor name, describes the script/plugin/module
 that provides the meter, and any configuration should be passed
 in the a corresponding sub-table \fnref{mod_statusbar.launch_statusd}.
 Ion comes with date, load and mail (for plain old mbox) 
-\file{ion-statusd} monitor scripts. More may be obtained from 
+\command{ion-statusd} monitor scripts. More may be obtained from 
 the scripts repository \cite{scripts}. These included scripts 
 provide the following monitors and their options
 
