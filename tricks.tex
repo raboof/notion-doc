@@ -10,7 +10,7 @@ the basic configuration explained in chapter \ref{chap:config}.
 \label{sec:hooks}
 
 Hooks are lists of functions to be called when a certain event occurs.
-There are two types of them; normal and ''alternative'' hooks. Normal
+There are two types of them; normal and ``alternative'' hooks. Normal
 hooks do not return anything, but alt-hooks should return a boolean
 indicating whether it handled its assigned task successfully. In the case
 that \var{true} is returned, remaining handlers are not called.
@@ -31,7 +31,7 @@ handlers do. The types of parameters for each hook are listed in
 the hook reference, section \ref{sec:hookref}.
 
 
-Note that many of the hooks are called in ''protected mode'' and can not 
+Note that many of the hooks are called in ``protected mode'' and can not 
 use any functions that modify Ion's internal state. TODO: More detailed 
 documentation when this is final.
 

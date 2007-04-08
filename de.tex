@@ -13,7 +13,7 @@ for the default drawing engine.
 
 Ion's drawing routines are abstracted into so-called drawing engine
 modules that can, again depending on the system, be dynamically
-loaded as needed. The drawing engine modules provide ''brushes''
+loaded as needed. The drawing engine modules provide ``brushes''
 that objects can use to draw some high-level primitives such
 as borders and text boxes (in addition to simple text and rectangle
 drawing) on their windows and configure e.g. the shape and 
@@ -153,7 +153,7 @@ end
 
 The \fnref{gr.select_engine} function sees if the engine
 given as argument is registered (the default drawing engine is
-simply called ''de''). If the engine could not be found, it
+simply called ``de''). If the engine could not be found, it
 tries to load a module of the same name. If the engine still
 is not registered, \fnref{gr.select_engine} returns \code{false}
 and in this case we also exit the style setup script.
@@ -230,16 +230,16 @@ in \file{/usr/X11R6/lib/X11/rgb.txt} (exact path varying).
 \begin{tabularx}{\linewidth}{lX}
 \tabhead{Field  & Description}
 \var{highlight_colour} &  
-	Colour for the ''highlight'' part of a border. \\
+	Colour for the ``highlight'' part of a border. \\
 \var{shadow_colour}    &  
-	Colour for the ''highlight'' part of a border. \\
+	Colour for the ``shadow'' part of a border. \\
 \var{foreground_colour} &  
 	Colour for the normal drawing operations, e.g. text. \\
 \var{background_colour} &  
 	Window background colour (unless transparency is enabled) and
 	background colour boxes. \\
 \var{padding_colour} &  
-	Colour for the ''padding'' part of a border border. Set to 
+	Colour for the ``padding'' part of a border border. Set to 
 	\var{background_colour} if unset. \\
 \end{tabularx}
 
@@ -295,7 +295,7 @@ indicating a number of pixels.
 \subsubsection{Substyles}
 
 As discussed in previous sections, styles may have substyles to e.g.
-indicate different states of the object being drawn. The ''de'' engine
+indicate different states of the object being drawn. The ``de'' engine
 limits what can be configured in substyles to the set of colours in the
 first table above, but also specifically interprets for the main style
 \code{tab-frame} the substyles \code{*-*-tagged} and \code{*-*-*-dragged}

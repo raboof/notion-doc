@@ -8,7 +8,7 @@ This, however, does not have to be so as long as the module has been
 loaded prior to defining any module-specific bindings.
 
 Bindings are defined by calling the function 
-\fnrefx{ioncore}{defbindings} with the ''context'' of the
+\fnrefx{ioncore}{defbindings} with the ``context'' of the
 bindings and the a table of new bindings to make. The context is simply
 string indicating one of the classes of regions (or modes such as
 \type{WMoveresMode}) introduced in section \ref{sec:objects}, and fully
@@ -23,7 +23,7 @@ defbindings("WFrame", {
 \end{verbatim}
 
 There has been some confusion among users about the need to define the
-''context'' for each binding, so let me try to explain this design
+``context'' for each binding, so let me try to explain this design
 decision here. The thing is that if there was a just a simple 'bind this 
 key to this action' method without knowledge of the context, some 
 limitations would have to be made on the available actions and writing 
@@ -34,7 +34,7 @@ classes being based on \type{WMPlex}, and in the stock configuration the
 switch to $n$:th workspaces is bound to \key{Mod1+n} while the switch to 
 $n$:th tab is bound to the sequence \key{Mod1+k n}.
 
-Currently known ''contexts'' include: 
+Currently known contexts include: 
 \code{WScreen},
 \code{WMPlex},
 \code{WMPlex.toplevel},
@@ -52,7 +52,7 @@ Currently known ''contexts'' include:
 \code{WStatusBar}.
 Most of these should be self-explanatory, corresponding to objects
 of class with the same name. The ones with \code{.toplevel} suffix
-refer to screens and ''toplevel''  frames, i.e. frames that are
+refer to screens and ``toplevel''  frames, i.e. frames that are
 not used for transient windows. Likewise \code{.transient} refers
 to frames in transient mode, and \code{.tiled} and \code{.floating}
 to frames in, respectively, tiled and floating modes. 
@@ -75,7 +75,7 @@ gets to handle the action.
 \subsection{Binding handlers and special variables}
 
 Unlike in Ion2, in Ion3 binding handlers are not normally passed as
-''anonymous functions'', although this is still possible. The preferred
+``anonymous functions'', although this is still possible. The preferred
 method now is to pass the code of the handler as a string. Two special 
 variables are available in this code. These are
 
@@ -106,7 +106,7 @@ handler should move the active window to the right, if possible:
 \subsection{Guards}
 
 To suppress error messages, each binding handler may also be accompanied
-by a ''guard'' expression that blocks the handler from being called when
+by a ``guard'' expression that blocks the handler from being called when
 the guard condition is not met. Currently the following guard expressions
 are supported (for both \code{_sub} and \code{_chld}):
 
@@ -145,7 +145,7 @@ and as explained in the reference, \fnref{kpress_wait} is simply
 modifiers to be released before processing any further actions.
 This is to stop one from accidentally calling e.g.
 \fnref{WRegion.rqclose} multiple times in a row. The \fnref{submap}
-function is used to define submaps or ''prefix maps''. The second
+function is used to define submaps or ``prefix maps''. The second
 argument to this function is table listing the key press actions
 (\fnref{kpress}) in the submap.
 
@@ -195,7 +195,7 @@ Most of the key names are quite intuitive while some are not. For example,
 the \key{Enter} key on the main part of the keyboard has the less common
 name \key{Return} while the one the numpad is called \key{KP\_Enter}.
 
-The \var{keyspec} string may optionally have multiple ''modifier'' names
+The \var{keyspec} string may optionally have multiple ``modifier'' names
 followed by a plus sign (\code{+}) as a prefix. X defines the following
 modifiers:
 \begin{quotation}
@@ -213,7 +213,7 @@ list of modifiers does not explicitly list keys such as
 \key{Alt}\index{Alt@\key{Alt}} that are common on modern keyboards, such
 keys are bound to one of the \key{ModN}. On systems running XFree86
 \key{Alt} is usually \key{Mod1}. On Suns \key{Mod1} is the diamond key
-and \key{Alt} something else. One of the ''flying window'' keys on so
+and \key{Alt} something else. One of the ``flying window'' keys on so
 called Windows-keyboards is probably mapped to \key{Mod3} if you have
 such a key. Use the program \file{xmodmap}\index{xmodmap@\file{xmodmap}}
 to find out what exactly is bound where. 

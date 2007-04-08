@@ -5,7 +5,7 @@
 While Ion does not not have a truly object-oriented design
 \footnote{the author doesn't like such artificial designs},
 things that appear on the computer screen are, however, quite
-naturally expressed as such ''objects''. Therefore Ion implements
+naturally expressed as such ``objects''. Therefore Ion implements
 a rather primitive OO system for these screen objects and some
 other things. 
 
@@ -73,7 +73,7 @@ The core classes:
     screen. Each object of type \type{WRegion} has a size and  position
     relative to the parent \type{WRegion}. While a big part of Ion 
     operates on these instead of more specialised classes, \type{WRegion}
-    is a ''virtual''  base class in that there are no objects of ''pure''
+    is a ``virtual''  base class in that there are no objects of ``pure''
     type \type{WRegion}; all concrete regions are objects of some class 
     that inherits \type{WRegion}.
 
@@ -87,13 +87,13 @@ The core classes:
     
   \item[\type{WRootWin}]\indextype{WRootWin} is the class for
     root windows\index{root window} of X screens\index{screen!X}.
-    Note that an ''X screen'' or root window is not necessarily a
+    Note that an ``X screen'' or root window is not necessarily a
     single  physical screen\index{screen!physical} as a root window
     may be split over multiple screens when hacks such as 
     Xinerama\index{Xinerama} are used. (Actually there can be only 
     one root window when Xinerama is used.)
     
-  \item[\type{WMPlex}] is a base class for all regions that''multiplex'' 
+  \item[\type{WMPlex}] is a base class for all regions that ``multiplex'' 
     other regions. This means that of the regions managed by the multiplexer,
     only one can be displayed at a time. Classes that inherit \type{WMPlex}
     include screens and frames.
@@ -130,16 +130,16 @@ Classes implemented by the \file{mod\_query} module:
 \begin{description}
   \item[\type{WInput}]\indextype{WInput} is a virtual base class for the
     two classes below.
-  \item[\type{WEdln}]\indextype{WEdln} is the class for the ''queries'',
+  \item[\type{WEdln}]\indextype{WEdln} is the class for the ``queries'',
     the text inputs that usually appear at bottoms of frames and sometimes
-    screens. Queries are the functional equivalent of ''mini buffers'' in
+    screens. Queries are the functional equivalent of ``mini buffers'' in
     many text editors.
   \item[\type{WMessage}]\indextype{WMessage} implements the boxes for 
     warning and other messages that Ion may wish to display to the user. 
     These also usually appear at bottoms of frames.
 \end{description}
 
-There are also some other ''proxy'' classes that do not refer
+There are also some other ``proxy'' classes that do not refer
 to objects on the screen. The only important one of these for
 basic configuration is \type{WMoveresMode} that is used for
 binding callbacks in the move and resize mode.

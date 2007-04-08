@@ -1,7 +1,7 @@
 \section{Winprops}
 \label{sec:winprops}
 
-The so-called ''winprops''\index{Winprops} can be used to change how
+The so-called ``winprops''\index{Winprops} can be used to change how
 specific windows are handled and to set up some kludges to deal with
 badly behaving applications. They are defined by calling the function
 \code{defwinprop} with a table containing the properties to set and the
@@ -209,9 +209,9 @@ windows have this property -- use the command \command{xprop WM_ROLE}.
 This method, however, will not work on transients. 
 
 \index{transient}
-So-called ''transient windows'' are usually short-lived dialogs (although
+So-called ``transient windows'' are usually short-lived dialogs (although
 some programs abuse this property) that have a parent window that they are
-''transient for''. On tiled workspaces Ion displays these windows 
+``transient for''. On tiled workspaces Ion displays these windows 
 simultaneously with the parent window at the bottom of the same frame.
 Unfortunately \command{xprop} is stupid and can't cope with this situation,
 returning the parent window's properties when the transient is clicked on.
@@ -221,7 +221,7 @@ fix this, but nothing seems to be happening with respect to including it in
 XFree86.}
 
 Finally, it should be mentioned that too many authors these days
-''forget'' to set this vital identification to anything meaningful:
+``forget'' to set this vital identification to anything meaningful:
 everything except name is the same for all of the program's 
 windows, for example.
 
