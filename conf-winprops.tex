@@ -159,14 +159,17 @@ only for floating windows.
 \subsection{Classes, roles and instances}
 \label{sec:classesrolesinstances}
 
-The identification information in the winprop specification is usually the
+The identification information supported include
 \var{class}\index{class@\var{class}!winprop},
 \var{role}\index{role@\var{role}!winprop},
-\var{instance}\index{instance@\var{instance}!winprop} and
-\var{name}
-of the window. The \var{name} field is a Lua-style regular expression
-matched against the window's title and the rest are strings that must
-exactly match the corresponding window information. It is not necessary
+\var{instance}\index{instance@\var{instance}!winprop},
+\var{name}\index{name@\var{name}!winprop} and
+\var{is_transient}\index{is-transient@\var{is_transient}!winprop}.
+The first three of these are strings, and must exactly match the
+corresponding information obtained from the window's properties.
+The \var{name} field is a Lua-style regular expression matched against
+the window's title. The \var{is_transient} field is a boolean that can
+be used to include or exclude transients only. It is not necessary 
 to specify all of these fields.
 
 Ion looks for a matching winprop in the order listed by the following
