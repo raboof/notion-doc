@@ -182,7 +182,7 @@ fields) is tried.
 
 \begin{center}
 \begin{tabular}{llll}
-  \tabhead{\var{class} & \var{role} & \var{instance} & \var{name}}
+  \tabhead{\var{class} & \var{role} & \var{instance} & other}
   E	       & E          & E              & E \\
   E	       & E          & E              & * \\
   E	       & E          & *              & E \\
@@ -194,8 +194,10 @@ fields) is tried.
 \end{tabular}
 \end{center}
 
-If there are multiple winprops with other identification information 
-the same but different \var{name}, the longest match is chosen.
+If there are multiple matching winprops with the same
+\var{class}, \var{role} and \var{instance}, but other information
+different, the most recently defined one is used.
+
 
 \subsection{Finding window identification}
 
@@ -226,7 +228,11 @@ XFree86.}
 Finally, it should be mentioned that too many authors these days
 ``forget'' to set this vital identification to anything meaningful:
 everything except name is the same for all of the program's 
-windows, for example.
+windows, for example. Some other programs only set this information
+after the window has been mapped, i.e. the window manager has been
+told to start managing it, which is obviously too late. 
+Gtk applications in particular are often guilty on both counts.
+
 
 \subsection{Some common examples}
 
