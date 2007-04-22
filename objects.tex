@@ -85,27 +85,26 @@ The core classes:
     internal objects having an X window associated to them
     (\type{WClientWins} also have X windows associated to them).
     
-  \item[\type{WRootWin}]\indextype{WRootWin} is the class for
-    root windows\index{root window} of X screens\index{screen!X}.
-    Note that an ``X screen'' or root window is not necessarily a
-    single  physical screen\index{screen!physical} as a root window
-    may be split over multiple screens when hacks such as 
-    Xinerama\index{Xinerama} are used. (Actually there can be only 
-    one root window when Xinerama is used.)
-    
   \item[\type{WMPlex}] is a base class for all regions that ``multiplex'' 
     other regions. This means that of the regions managed by the multiplexer,
-    only one can be displayed at a time. Classes that inherit \type{WMPlex}
-    include screens and frames.
+    only one can be displayed at a time. 
+  
+  \item[\type{WScreen}]\indextype{WScreen} is an instance of \type{WMPlex}
+    for screens.
     
-  \item[\type{WScreen}]\indextype{WScreen} is the class for objects
-    corresponding to physical screens. Screens may share a root
-    window when the Xinerama extension is used as explained above.
-
+  \item[\type{WRootWin}]\indextype{WRootWin} is the class for
+    root windows\index{root window} of X screens\index{screen!X}.
+    It is an instance of \type{WScreen}.
+    Note that an ``X screen'' or root window is not necessarily a
+    single physical screen\index{screen!physical} as a root window
+    may be split over multiple screens when ugly hacks such as 
+    Xinerama\index{Xinerama} are used. (Actually there can be only 
+    one root window when Xinerama is used.) 
+    
   \item[\type{WFrame}]\indextype{WFrame} is the class for frames.
-    While most Ion's objects have no graphical presentation, frames basically
-    add to \type{WMPlex}es the decorations around client windows 
-    (borders, tabs).
+    While most Ion's objects have no graphical presentation, frames 
+    basically add to \type{WMPlex}es the decorations around client 
+    windows (borders, tabs).
     
   \item[\type{WGroup}]\indextype{WGroup} is the base class for groups.
     Particular types of groups are workspaces 
