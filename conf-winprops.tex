@@ -94,9 +94,9 @@ usual method of identifying windows, and how to obtain this information.
 \begin{winprop}{statusbar}{string}
     \index{statusbar@\var{statusbar}}
     Put the window in the statusbar, in the named tray component,
-    (The default tray component is called simply \code{"systray"}, 
+    (The default tray component is called simply \codestr{systray}, 
     and others you give names to in your custom template, always 
-    prefixed by \code{"systray_"}.
+    prefixed by \codestr{systray\_}.
 \end{winprop}
 
 
@@ -116,10 +116,10 @@ usual method of identifying windows, and how to obtain this information.
         
 \begin{winprop}{transient_mode}{string}
     \index{transient-mode@\var{transient_mode}}
-    \code{"normal"}: No change in behaviour. \code{"current"}:
+    \codestr{normal}: No change in behaviour. \codestr{current}:
     The window should be thought of as a transient for the current
     active client window (if any) even if it is not marked as a
-    transient by the application. \code{"off"}: The window should 
+    transient by the application. \codestr{off}: The window should 
     be handled as a normal window even if it is marked as a
     transient by the application. 
 \end{winprop}
@@ -288,7 +288,7 @@ defwinprop{
 \end{verbatim}
 
 For this example to work, we have to somehow create a frame named
-\code{sysmonframe}. One way to do this is to make the following
+\codestr{sysmonframe}. One way to do this is to make the following
 call in the \key{Mod1+F3} Lua code query:
 
 \begin{verbatim}
@@ -298,5 +298,5 @@ mod_query.query_renameframe(_)
 Recall that \code{_} points to the multiplexer (frame or screen) in which 
 the query was opened. Running this code should open a new query prefilled
 with the current name of the frame. In our example we would change the 
-name to \code{sysmonframe}, but we could just as well have used the 
+name to \codestr{sysmonframe}, but we could just as well have used the 
 default name formed from the frame's class name and an instance number.

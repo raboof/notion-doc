@@ -47,14 +47,14 @@ mod_statusbar.launch_statusd{
 
 The template specifies what is shown on the statusbar; for information
 on the other options to \fnref{mod_statusbar.create}, see the reference. 
-Strings of the form \verb!%spec! tokens specially interpreter by
+Strings of the form \codestr{\%spec} tokens specially interpreter by
 the statusbar; the rest appears verbatim. The \code{spec} typically
 consists of the name of the value/meter to display (beginning with a latin
 alphabet), but may be preceded by an alignment specifier and a number
-specifying the minimum width. The alignment specifiers are: \code{>}
-for right, \code{<} for left,  and \code{|} for centring. Additionally,
-space following \verb!%! (that is, the string \verb!"% "!), adds
-``stretchable space'' at that point. The special string \verb!%filler!
+specifying the minimum width. The alignment specifiers are: \codestr{>}
+for right, \codestr{<} for left,  and \codestr{|} for centring. Additionally,
+space following \codestr{\%} (that is, the string \codestr{\% }), adds
+``stretchable space'' at that point. The special string \codestr{\%filler}
 may be used to flush the rest of the template to the right end of 
 the statusbar. 
 
@@ -68,12 +68,12 @@ direction for left or right alignment, and both for centring.
 
 \subsection{The systray}
 
-The special \verb!%systray! and \verb!%systray_*! (\verb!*! varying
-monitors) indicate where to place system tray windows. 
-There may be multiple of these. KDE-protocol system tray
-icons are placed in \verb!%systray! automatically, unless disabled with
-the \var{systray} option. Otherwise the \var{statusbar} winprop may
-be used to place any window in any particular \verb!%systray_*!.
+The special \codestr{\%systray} and \codestr{\%systray\_*}
+(\codestr{*} varying) monitors indicate where to place system tray 
+windows.  There may be multiple of these. KDE-protocol system tray
+icons are placed in \codestr{\%systray} automatically, unless disabled 
+with the \var{systray} option. Otherwise the \var{statusbar} winprop may
+be used to place any window in any particular \codestr{\%systray\_*}.
 
 \subsection{Monitors}
 
@@ -91,10 +91,10 @@ provide the following monitors and their options
 Options: \var{date_format}: The date format in as seen above, 
 in the usual \code{strftime} format. \code{formats}: table of
 formats for additional date monitors, the key being the name
-of the monitor (without the \code{"date_"} prefix).
+of the monitor (without the \codestr{date\_} prefix).
 
-Monitors: \code{date} and other user-specified ones with the
-\code{date_} prefix.
+Monitors: \codestr{date} and other user-specified ones with the
+\codestr{date\_} prefix.
 
 
 \subsubsection{Load}
@@ -106,8 +106,8 @@ drawing engine may be suitably hinted. \var{critical_threshold}:
 Threshold above which  the load is marked as critical (default 4.0).
 
 
-Monitors: \code{load} (for all three values), 
-\code{load_1min}, \code{load_5min} and \code{load_15min}.
+Monitors: \codestr{load} (for all three values), 
+\codestr{load\_1min}, \codestr{load\_5min} and \codestr{load\_15min}.
 
 
 \subsubsection{Mail}
@@ -118,7 +118,7 @@ Options: \var{update_interval}: Update interval in milliseconds
 \var{files}: list of additional mailboxes, the key giving the 
 name of the monitor.
 
-Monitors: \code{mail_new}, \code{mail_unread},
-\code{mail_total}, and corresponding
-\code{mail_*_new}, \code{mail_*_unread}, and \code{mail_*_total}
-for the additional mailboxes (\code{*} varying).
+Monitors: \codestr{mail\_new}, \codestr{mail\_unread},
+\codestr{mail\_total}, and corresponding
+\codestr{mail\_*\_new}, \codestr{mail\_*\_unread}, and \codestr{mail\_*\_total}
+for the additional mailboxes (\codestr{*} varying).

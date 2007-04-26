@@ -5,11 +5,11 @@
 All statusbar meters that do not monitor the internal state of Ion should
 go in the separate \command{ion-statusd} program. 
 
-Whenever the user requests a meter \code{\%foo} or \code{\%foo_bar} to be 
-inserted in a statusbar, \file{mod\_statusbar} asks \command{ion-statusd} to
-load \fnref{statusd_foo.lua} on its search path (same as that for Ion-side 
+Whenever the user requests a meter \codestr{\%foo} or \codestr{\%foo\_bar} to 
+be  inserted in a statusbar, \file{mod\_statusbar} asks \command{ion-statusd} 
+to load \fnref{statusd_foo.lua} on its search path (same as that for Ion-side 
 scripts). This script should then supply all meters with the initial part
-'\code{foo}'.
+\codestr{foo}.
 
 To provide this value, the script should simply call \code{statusd.inform}
 with the name of the meter and the value as a string.
@@ -17,8 +17,8 @@ Additionally the script should provide a 'template' for the meter to
 facilitate expected width calculation by \file{mod\_statusbar}, and
 may provide a 'hint' for colour-coding the value. The interpretation
 of hints depends on the graphical style in use, and currently the
-stock styles support the \code{normal}, \code{important} and 
-\code{critical} hints.
+stock styles support the \codestr{normal}, \codestr{important} and 
+\codestr{critical} hints.
 
 
 In our example of the 'foo monitor', at script initialisation we might broadcast

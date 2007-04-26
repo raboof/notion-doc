@@ -35,26 +35,26 @@ switch to $n$:th workspaces is bound to \key{Mod1+n} while the switch to
 $n$:th tab is bound to the sequence \key{Mod1+k n}.
 
 Currently known contexts include: 
-\code{WScreen},
-\code{WMPlex},
-\code{WMPlex.toplevel},
-\code{WFrame},
-\code{WFrame.toplevel},
-\code{WFrame.floating},
-\code{WFrame.tiled},
-\code{WFrame.transient},
-\code{WMoveresMode},
-\code{WGroup},
-\code{WGroupCW},
-\code{WGroupWS},
-\code{WClientWin},
-\code{WTiling}, and
-\code{WStatusBar}.
+\codestr{WScreen},
+\codestr{WMPlex},
+\codestr{WMPlex.toplevel},
+\codestr{WFrame},
+\codestr{WFrame.toplevel},
+\codestr{WFrame.floating},
+\codestr{WFrame.tiled},
+\codestr{WFrame.transient},
+\codestr{WMoveresMode},
+\codestr{WGroup},
+\codestr{WGroupCW},
+\codestr{WGroupWS},
+\codestr{WClientWin},
+\codestr{WTiling}, and
+\codestr{WStatusBar}.
 Most of these should be self-explanatory, corresponding to objects
-of class with the same name. The ones with \code{.toplevel} suffix
+of class with the same name. The ones with \codestr{.toplevel} suffix
 refer to screens and ``toplevel''  frames, i.e. frames that are
-not used for transient windows. Likewise \code{.transient} refers
-to frames in transient mode, and \code{.tiled} and \code{.floating}
+not used for transient windows. Likewise \codestr{.transient} refers
+to frames in transient mode, and \codestr{.tiled} and \codestr{.floating}
 to frames in, respectively, tiled and floating modes. 
 
                                                         
@@ -96,8 +96,9 @@ variables are available in this code. These are
        object referred to by \code{_}.
 \end{tabularx}
 
-For example, supposing '\code{_}' is a \type{WFrame}, the following
-handler should move the active window to the right, if possible:
+For example, supposing \code{_} (underscore) is a \type{WFrame}, the 
+following handler should move the active window to the right, if 
+possible:
 
 \begin{verbatim}
 "_:inc_index(_sub)"
@@ -112,8 +113,8 @@ are supported (for both \code{_sub} and \code{_chld}):
 
 \begin{tabularx}{\linewidth}{lX}
     \tabhead{Guard & Description}
-    \code{"_sub:non-nil"} & The \code{_sub} parameter must be set. \\
-    \code{"_sub:SomeClass"} & The \code{_sub} parameter must be member
+    \codestr{\_sub:non-nil} & The \code{_sub} parameter must be set. \\
+    \codestr{\_sub:SomeClass} & The \code{_sub} parameter must be member
       of class \type{SomeClass}. \\
 \end{tabularx}
 
@@ -240,8 +241,8 @@ and one of the button names \key{Button1} to
 specification may end with an optional area name following an @-sign.
 Only frames currently support areas, and the supported values in this
 case are
-\code{"border"}, \code{"tab"}, \code{"empty_tab"}, \code{"client"} and
-\code{nil} (for the whole frame).
+\codestr{border}, \codestr{tab}, \codestr{empty\_tab}, \codestr{client} 
+and \code{nil} (for the whole frame).
 
 For example, the following code binds dragging a tab with the first 
 button pressed to initiate tab drag\&drop handling:
@@ -257,7 +258,7 @@ defbindings("WFrame", {
 
 The default binding configuration contains references to the variables
 \code{META} and \code{ALTMETA} instead of directly using the default
-values of \code{"Mod1+"} and \code{""} (nothing). As explained in
+values of \codestr{Mod1+} and \codestr{} (nothing). As explained in
 section \ref{sec:walkthrough}, the definitions of these variables
 appear in \file{cfg\_ion.lua}. This way you can easily change the the
 modifiers used by all bindings in the default configuration without 

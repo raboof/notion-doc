@@ -44,19 +44,19 @@ just like the menus defined as above.
 
 \begin{tabularx}{\linewidth}{lX}
     \tabhead{Menu name & Description}
-    \code{windowlist} & 
+    \codestr{windowlist} & 
     List of all client windows. Activating an entry jumps to that window. \\
-    \code{workspacelist} & 
+    \codestr{workspacelist} & 
     List of all workspaces. Activating an entry jumps to that workspaces. \\
-    \code{focuslist} & 
+    \codestr{focuslist} & 
     List of client windows with recent activity in them, followed by 
     previously focused client windows. \\
-    \code{focuslist_} & 
+    \codestr{focuslist\_} & 
     List of previously focused client windows. \\
-    \code{stylemenu} &
+    \codestr{stylemenu} &
     List of available \file{look\_*.lua} style files. Activating an entry
     loads that style and ask to save the selection. \\
-    \code{ctxmenu} &
+    \codestr{ctxmenu} &
     Context menu for given object. \\
 \end{tabularx}
 
@@ -82,8 +82,8 @@ defctxmenu("WFrame", {
 \end{verbatim}
 
 Some of the same ``modes'' as were available for some bindings
-may also be used: \code{WFrame.tiled}, \code{WFrame.floating},
-and \code{WFrame.transient}.
+may also be used: \codestr{WFrame.tiled}, \codestr{WFrame.floating},
+and \codestr{WFrame.transient}.
 
 
 \subsection{Displaying menus}
