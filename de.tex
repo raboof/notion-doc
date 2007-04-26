@@ -5,7 +5,9 @@
 This chapter first gives in section \ref{sec:engines} a general outline 
 of how drawing engines are used, of style specifications and then
 in section \ref{sec:defaultde} describes how to specify styles
-for the default drawing engine.
+for the default drawing engine. Some additional settings and
+user attributes are explained in Sections \ref{sec:grmisc}.
+
 
 \section{Drawing engines, style specifications and sub-styles}
 \label{sec:engines}
@@ -28,16 +30,16 @@ are strings of the form
 element1-element2-...-elementn
 \end{verbatim}
 
-An example of such a style specification is \code{tab-frame};
+An example of such a style specification is \codestr{tab-frame};
 see the table in subsection \ref{sec:styles} for more styles.
 
 When an object asks for a brush of certain style, the selected
 drawing engine will attempt to find the closest match to this
 specification. The styles/brushes defined by the drawing engines 
-may have asterisks (\verb!*!) as some of the elements indicating
+may have asterisks (\codestr{*}) as some of the elements indicating
 a match to anything. Exact matches are preferred to asterisk
 matches and longer matches to shorter. For example, let a brush
-for style \code{foo-bar-baz} be queried, then the following
+for style \codestr{foo-bar-baz} be queried, then the following
 brushes are in order of preference:
 
 \begin{verbatim}
@@ -70,19 +72,19 @@ tag and drag states.)
 
 \begin{tabularx}{\linewidth}{lX}
 \tabhead{Style name & Description}
-\code{frame} & Style for frames. 
-	Substyle attributes: \code{active}/\code{inactive} 
+\codestr{frame} & Style for frames. 
+	Substyle attributes: \codestr{active}/\codestr{inactive} 
 	(mutually exclusive) and
-	\code{quasiactive}\nobreak/\code{not_quasiactive}. 
+	\codestr{quasiactive}/\codestr{not\_quasiactive}. 
 	A frame is ``quasiactive'' when an active region
 	has a back-link to it, such as a detached window. \\
-\code{frame-tiled} & A more specific style for tiled frames.
-        Substyle attributes as for \code{frame}. \\
-\code{frame-tiled-alt} & An alternative style for tiled frames.
+\codestr{frame-tiled} & A more specific style for tiled frames.
+        Substyle attributes as for \codestr{frame}. \\
+\codestr{frame-tiled-alt} & An alternative style for tiled frames.
         Often used to disable the tab-bar. \\
-\code{frame-floating} & A more specific style for floating
+\codestr{frame-floating} & A more specific style for floating
         frames. \\
-\code{frame-transient} & A more specific style for frames
+\codestr{frame-transient} & A more specific style for frames
         containing transient windows. \\
 \end{tabularx}
 
@@ -90,25 +92,25 @@ tag and drag states.)
 
 \begin{tabularx}{\linewidth}{lX}
 \tabhead{Style name & Description}
-\code{tab} & Style for frames' tabs and menu entries. 
+\codestr{tab} & Style for frames' tabs and menu entries. 
 	Substyle attributes:
-	\code{active}\nobreak/\code{inactive} and
-	\code{selected}\nobreak/\code{unselected} \\
-\code{tab-frame} & A more specific style for frames' tabs.
+	\codestr{active}/\codestr{inactive} and
+	\codestr{selected}/\codestr{unselected} \\
+\codestr{tab-frame} & A more specific style for frames' tabs.
         Additional substyle attributes include:
-      	\code{tagged}\nobreak/\code{not_tagged},
-	\code{dragged}\nobreak/\code{not_dragged},
-	\code{activity}\nobreak/\code{no_activity} and
-	\code{quasiactive}\nobreak/\code{not_quasiactive}. \\
-\code{tab-frame-tiled}, & \\
-\code{tab-frame-tiled-alt}, & \\
-\code{tab-frame-floating}, & \\
-\code{tab-frame-transient} & More specific styles for frames in the
+      	\codestr{tagged}/\codestr{not\_tagged},
+	\codestr{dragged}/\codestr{not\_dragged},
+	\codestr{activity}/\codestr{no\_activity},
+	\codestr{quasiactive}/\codestr{not\_quasiactive}. \\
+\codestr{tab-frame-tiled}, & \\
+\codestr{tab-frame-tiled-alt}, & \\
+\codestr{tab-frame-floating}, & \\
+\codestr{tab-frame-transient} & More specific styles for frames in the
         different modes. \\
-\code{tab-menuentry} & A more specific style for entries in \type{WMenu}s. 
-        Additional substyle attributes include \code{submenu} and
-        occasionally also \code{activity} is used.\\
-\code{tab-menuentry-bigmenu} & 
+\codestr{tab-menuentry} & A more specific style for entries in \type{WMenu}s. 
+        Additional substyle attributes include \codestr{submenu} and
+        occasionally also \codestr{activity} is used.\\
+\codestr{tab-menuentry-bigmenu} & 
         An alternate style for entries in \type{WMenu}s. \\
 \end{tabularx}
 
@@ -116,16 +118,21 @@ tag and drag states.)
 
 \begin{tabularx}{\linewidth}{lX}
 \tabhead{Style name & Description}
-\code{input} & A style for \type{WInput}s. \\
-\code{input-edln} & A more specific style for \type{WEdln}s. 
-	Substyle attributes: \code{selection} for selected text and
-	\code{cursor} for the cursor indicating current editing point. \\
-\code{input-message} & A more specific style for \type{WMessage}s. \\
-\code{input-menu} & A more specific style for \type{WMenu}s. \\
-\code{input-menu-bigmenu} & An alternate style for \type{WMenu}s. \\
-\code{moveres_display} & The box displaying position/size when
+\codestr{input} & A style for \type{WInput}s. \\
+\codestr{input-edln} & A more specific style for \type{WEdln}s. 
+	Substyle attributes: \codestr{selection} for selected text and
+	\codestr{cursor} for the cursor indicating current editing point. \\
+\codestr{input-message} & A more specific style for \type{WMessage}s. \\
+\codestr{input-menu} & A more specific style for \type{WMenu}s. \\
+\codestr{input-menu-bigmenu} & An alternate style for \type{WMenu}s. \\
+\codestr{moveres\_display} & The box displaying position/size when
 	moving or resizing frames. \\
-\code{dock} & The dock. \\	
+\codestr{stdisp} & Any status display. \\
+\codestr{stdisp-dock} & The dock. \\
+\codestr{stdisp-statusbar} & The statusbar. Substyles include:
+    the name of any monitor/meter (such as \codestr{date}), and 
+    the supplied hint. Typical hints are: \codestr{important} 
+    and \codestr{critical}. \\
 \end{tabularx}
 
 
@@ -155,11 +162,11 @@ The \fnref{gr.select_engine} function sees if the engine
 given as argument is registered (the default drawing engine is
 simply called ``de''). If the engine could not be found, it
 tries to load a module of the same name. If the engine still
-is not registered, \fnref{gr.select_engine} returns \code{false}
+is not registered, \fnref{gr.select_engine} returns \codestr{false}
 and in this case we also exit the style setup script.
 If the engine was found, \fnref{gr.select_engine} sees that
 further requests for brushes are forwarded to that engine
-and returns \code{true}.
+and returns \codestr{true}.
 
 Before defining new styles it may be a good idea to clear old
 styles from memory so if the old configuration defines more
@@ -252,12 +259,12 @@ indicating a number of pixels.
 \begin{tabularx}{\linewidth}{lX}
 \tabhead{Field  & Description}
 \var{border_style} & A string indicating the style of border; one of
-		     elevated/inlaid/ridge/groove as seen in the
-		     above sketch. \\
+		     \codestr{elevated}/\codestr{inlaid}/\codestr{ridge}/\codestr{groove}
+		     as seen in the above sketch. \\
 \var{border_sides} & A string indicating which sides of the border
-                     to draw: all/tb/lr for all, top and bottom, and
-                     left and right. To control between left/right
-                     and top/bottom, use the pixel options below. \\
+                     to draw: \codestr{all}/\codestr{tb}/\codestr{lr} for all, 
+                     top and bottom, and left and right. To control between
+                     left/right and top/bottom, use the pixel options below. \\
 \var{highlight_pixels} &  
 	Width of the highlight part of the border in pixels. \\
 \var{shadow_pixels}    &  
@@ -276,7 +283,7 @@ indicating a number of pixels.
 \var{font} & Font to be used in text-drawing operations; standard X font
 	     name. \\
 \var{text_align} & How text is to be aligned in text boxes/tabs; one of
-		   the strings left\nobreak/right\nobreak/center. \\
+		   the strings \codestr{left}/\codestr{right}/\codestr{center}. \\
 \end{tabularx}
 
 
@@ -298,10 +305,10 @@ As discussed in previous sections, styles may have substyles to e.g.
 indicate different states of the object being drawn. The ``de'' engine
 limits what can be configured in substyles to the set of colours in the
 first table above, but also specifically interprets for the main style
-\code{tab-frame} the substyles \code{*-*-tagged} and \code{*-*-*-dragged}
+\codestr{tab-frame} the substyles \codestr{*-*-tagged} and \codestr{*-*-*-dragged}
 by, respectively, drawing a right angle shape at the top right corner 
 of a tab and by shading the tab with a stipple pattern. Also for
-menus the substyles \code{*-*-submenu} are handled as a special case.
+menus the substyles \codestr{*-*-submenu} are handled as a special case.
 
 Substyles are defined with the function \fnref{de.substyle} within the
 table defining the main style. The parameters to this function are 
@@ -359,18 +366,32 @@ de.defstyle("tab-frame", {
 
 
 \section{Miscellaneous settings}
+\label{sec:grmisc}
+
+
+\subsection{Frame user attributes}
+
+The function \fnref{WFrame.set_grattr} may be used to give frames
+(and their tabs) arbitrary extra attributes to be passed to the
+drawing engine. Hence, by configuring such substyles in the style
+configuration files, and turning on the attribute when needed, 
+scripts may display visual cues related to the frame. There is
+also one extra attribute specially interpreted by the default
+drawing engine: the \codestr{numbered} attribute, which causes 
+numbers to be displayed on the tabs.
+
+
+\subsection{Extra fields for style \codestr{frame}}
 
 The following style fields are independent of the drawing engine used,
 but are related to objects' styles and therefore configured in the drawing
 engine configuration file.
 
-\subsection{Extra fields for style \code{frame}}
-
 \begin{tabularx}{\linewidth}{lX}
 \tabhead{Field  & Description}
 \code{bar} & Controls the style of the tab-bar. Possible values
-        are the strings \code{"none"}, \code{"inside"}, \code{"outside"}
-        and \code{"shaped"}, with the last providing the PWM-style
+        are the strings \codestr{none}, \codestr{inside}, \codestr{outside}
+        and \codestr{shaped}, with the last providing the PWM-style
         tab-bars for floating frames. \\
 \code{floatframe_tab_min_w} & Minimum tab width in pixels for
         the shaped style, given that this number times number of tabs
@@ -380,15 +401,17 @@ engine configuration file.
 	interval $(0, 1]$.
 \end{tabularx}
 
-\subsection{Extra fields for style \code{dock}}
+
+
+\subsection{Extra fields for style \codestr{dock}}
 
 \begin{tabularx}{\linewidth}{lX}
 \tabhead{Field  & Description}
 \code{outline_style} & How borders are drawn:
-			\code{"none"} -- no border,
-			\code{"all"} -- border around whole dock,
-			\code{"each"} -- border around each dockapp. \\
-\code{tile_size} & A table with entries \code{width} and \code{height},
+			\codestr{none} -- no border,
+			\codestr{all} -- border around whole dock,
+			\codestr{each} -- border around each dockapp. \\
+\code{tile_size} & A table with entries \codestr{width} and \codestr{height},
 	indicating the width and height of tiles in pixels.
 \end{tabularx}
 
