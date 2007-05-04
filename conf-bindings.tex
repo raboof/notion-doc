@@ -76,8 +76,8 @@ gets to handle the action.
 
 Unlike in Ion2, in Ion3 binding handlers are not normally passed as
 ``anonymous functions'', although this is still possible. The preferred
-method now is to pass the code of the handler as a string. Two special 
-variables are available in this code. These are
+method now is to pass the code of the handler as a string. Two following
+special variables are available in this code.
 
 \begin{tabularx}{\linewidth}{lX}
     \tabhead{Variable & Description}
@@ -93,7 +93,7 @@ variables are available in this code. These are
       the binding. \\
     \code{_chld} &
       Object corresponding to the currently active child window of the
-       object referred to by \code{_}.
+       object referred to by \code{_}. This should seldom be needed.
 \end{tabularx}
 
 For example, supposing \code{_} (underscore) is a \type{WFrame}, the 
@@ -128,30 +128,33 @@ functions.
 
 Key presses:
 \begin{itemize}
-    \item \fnref{kpress}\code{(keyspec, handler [, guard])},
-    \item \fnref{kpress_wait}\code{(keyspec, handler [, guard])} and
-    \item \fnref{submap}\code{(keyspec, \{ ... more key bindings ... \})}, and
-    \item \fnref{submap_enter}\code{(handler [, guard])}.
+    \item \fnrefx{ioncore}{kpress}, and
+          \fnrefx{ioncore}{kpress_wait}\code{(keyspec, handler [, guard])}.
+    \item \fnrefx{ioncore}{submap}\code{(keyspec, \{ ... more key bindings ... \})}.
+    \item \fnrefx{ioncore}{submap_enter}, and
+          \fnrefx{ioncore}{submap_wait}\code{(handler [, guard])}.
 \end{itemize}
 Mouse actions:
 \begin{itemize}
-    \item \fnref{mclick}\code{(buttonspec, handler [, guard])},
-    \item \fnref{mdblclick}\code{(buttonspec, handler [, guard])}, 
-    \item \fnref{mpress}\code{(buttonspec, handler [, guard])} and
-    \item \fnref{mdrag}\code{(buttonspec, handler [, guard])}.
+    \item \fnrefx{ioncore}{mclick},
+          \fnrefx{ioncore}{mdblclick},
+          \fnrefx{ioncore}{mpress}, and
+          \fnrefx{ioncore}{mdrag}\code{(buttonspec, handler [, guard])}.
 \end{itemize}
 
 The actions that most of these functions correspond to should be clear
-and as explained in the reference, \fnref{kpress_wait} is simply
-\fnref{kpress} with a flag set instructing Ioncore wait for all
-modifiers to be released before processing any further actions.
+and as explained in the reference, \fnrefx{ioncore}{kpress_wait} is simply
+\fnrefx{ioncore}{kpress} with a flag set instructing Ioncore wait for
+all modifiers to be released before processing any further actions.
 This is to stop one from accidentally calling e.g.
-\fnref{WRegion.rqclose} multiple times in a row. The \fnref{submap}
-function is used to define submaps or ``prefix maps''. The second
-argument to this function is table listing the key press actions
-(\fnref{kpress}) in the submap. The \fnref{submap_enter} handler
-is called when the submap is entered, i.e. when the key for the
-submap is pressed.
+\fnref{WRegion.rqclose} multiple times in a row. The 
+\fnrefx{ioncore}{submap} function is used to define submaps or
+``prefix maps''. The second argument to this function is table listing
+the key press actions (\fnrefx{ioncore}{kpress}) in the submap. 
+The \fnrefx{ioncore}{submap_enter} handler is called when the submap
+is entered, in which this handler is defined. Likewise, the
+\fnrefx{ioncore}{submap_wait} handler is  called when all modifiers
+have been released while waiting for further key presses in the submap.
 
 The parameters \var{keyspec} and \var{buttonspec} are explained below
 in detail. The parameter \var{handler} is the handler for the binding,
