@@ -252,28 +252,6 @@ defwinprop{
 }
 \end{verbatim}
 
-\subsubsection{Fixing a Mozilla Firebird transient}
-
-Mozilla Firebird (0.7) incorrectly does not set the \code{WM_TRANSIENT_FOR} 
-property for the dialog that is used to ask the action to take for a file.
-It, however, sets the the property point to the main window for the save
-dialog. This can be annoying and confusing, as the first dialog is not 
-closed before the second is displayed.
-
-We'd like the first dialog to be transient to the main window. The closest
-we can get to that is to consider it transient to the current window (if
-there's one). Unfortunately Firebird does not set any meaningful classes, 
-instances or roles for the windows, so we'll have to rely on an ugly title
-match.
-
-\begin{verbatim}
-defwinprop{
-    class = "MozillaFirebird-bin",
-    name = "Opening .*",
-    transient_mode = "current",
-}
-\end{verbatim}
-
 \subsubsection{Forcing newly created windows in named frames}
 
 The following winprop should place xterm started with command-line parameter
