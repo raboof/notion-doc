@@ -38,9 +38,6 @@ should be loaded. Currently Ion provides the following modules:
     \item[\file{mod\_sp}] This module implements a scratchpad frame that can
       be toggled on/off everywhere. Think of the 'console' in some 
       first-person shooters.
-    \item[\file{mod\_mgmtmode}] Support module for implementing ``management
-      modes'' with a XOR-frame similar to move/resize mode around selected
-      region.
     \item[\file{mod\_sm}] Session management support module.
       \emph{Loaded automatically when needed!}
 \end{description}
@@ -49,7 +46,7 @@ So-called drawing engines are also implemented as a modules,
 but they are not discussed here; see chapter \ref{chap:gr}.
 
 The stock configuration for the \file{ion3} executable loads all of the 
-modules mentioned above except \file{mod\_dock} and file{mod\_mgmtmode}.
+modules mentioned above except \file{mod\_dock}.
 The stock configuration for the \file{pwm3} executable (which differs
 from the \file{ion3} executable in a few configuration details)
 loads another set of modules.
