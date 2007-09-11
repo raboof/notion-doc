@@ -11,7 +11,7 @@ before continuing with this chapter.
 Section \ref{sec:conffiles} is an overview of the multiple configuration
 files Ion uses and as a perhaps more understandable introduction to the
 general layout of the configuration files, a walk-through of the main 
-configuration file \file{ion.lua} is provided in section 
+configuration file \file{cfg\_ion.lua} is provided in section 
 \ref{sec:walkthrough}.
 How keys and mouse action are bound to functions is described in detail
 in \ref{sec:bindings} and in section \ref{sec:winprops} winprops are
@@ -40,14 +40,20 @@ configuration file directory for files. Therefore, if you want to change
 some setting, it is advised against that you modify the stock configuration
 files in-place as subsequent installs of Ion will restore the stock
 configuration files. Instead you should always make a copy of the stock
-file in \file{\~{}/.ion3/} and modify this file. When searching
-for a file, if no extension or path component is given, compiled \file{.lc} 
-files are attempted before \file{.lua} files.
+file in \file{\~{}/.ion3/} and modify this file. For sake of maintainability
+of your customised configuration, it is recommended against copying all of
+the files there. Only copy those files you actually need to modify. Most 
+simple customisations, such as changes in a few bindings, are best done 
+entirely within \file{cfg\_ion.lua}.
 
 All the configuration files are named \file{cfg\_*.lua} with the ``\file{*}''
 part varying. The configuration file for each module \file{mod\_modname} is
 \file{cfg\_modname.lua}, with \file{modname} varying by the module in
-question. The following table summarises these and other configuration
+question. Configuration files can also be compiled into \file{.lc} files,
+and these are attempted by the configuration file search routines before
+\file{.lua} files.
+
+The following table summarises these and other configuration
 files:
 
 \begin{tabularx}{\linewidth}{
