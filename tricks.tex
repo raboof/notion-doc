@@ -86,12 +86,15 @@ region, use \fnref{WRegion.set_name}.
 It is possible to write more complex winprop selection routines than
 those described in section \ref{sec:winprops}. To match a particular
 winprop using whatever way you want to, just set the \var{match}
-field of the winprop to a function that receives the client window
-as its sole parameter, and that returns \code{true} if the winprop
-matches, and \code{false} otherwise.
+field of the winprop to a function that receives the as its parameters
+the triple \var{(prop, cwin, id)}, where \var{prop} is the table for 
+the winprop itself, \code{cwin} is the client window object,
+and  \var{id} is the \fnref{WClientWin.get_ident} result.
+The function should return \var{true} if the winprop matches, 
+and \code{false} otherwise. Note that the \var{match} function
+is only called after matching against class/role/instance.
 
-The class, instance and role properties can be obtained with
-\fnref{WClientWin.get_ident}, and the title with \fnref{WRegion.name}.
+The title of a client window can be obtained with \fnref{WRegion.name}.
 If you want to match against (almost) arbitrary window properties,
 have a look at the documentation for the following functions, and
 their standard Xlib counterparts: \fnref{ioncore.x_intern_atom}
