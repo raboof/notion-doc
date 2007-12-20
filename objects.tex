@@ -46,16 +46,16 @@ implement.
      |    |-->WWindow
      |    |    |-->WMPlex
      |    |    |    |-->WFrame
-     |    |    |    |-->WScreen
-     |    |    |         |-->WRootWin
-     |    |    |-->WInput (mod_query)
+     |    |    |    `-->WScreen
+     |    |    |         `-->WRootWin
+     |    |    `-->WInput (mod_query)
      |    |         |-->WEdln (mod_query)
-     |    |         |-->WMessage (mod_query)
+     |    |         `-->WMessage (mod_query)
      |    |-->WGroup
      |    |    |-->WGroupWS
-     |    |    |-->WGroupCW
-     |    |-->WTiling (mod_tiling)
-     |-->WSplit (mod_tiling)
+     |    |    `-->WGroupCW
+     |    `-->WTiling (mod_tiling)
+     `-->WSplit (mod_tiling)
 \end{verbatim}
 \caption{Partial Ioncore, \file{mod\_tiling} and \file{mod\_query} 
     class hierarchy.}
@@ -162,15 +162,14 @@ Figure \ref{fig:parentship}.
 \end{htmlonly}
 \begin{verbatim}
     WRootWins
-     |-->WScreens
-          |-->WGroupWSs
-          |-->WTilings
-          |-->WClientWins in full screen mode
-          |-->WFrames
-               |-->WGroupCWs
-               |-->WClientWins
-               |-->WFrames for transients
-               |-->a possible WEdln or WMessage
+     |-->WGroupWSs
+     |-->WTilings
+     |-->WClientWins in full screen mode
+     `-->WFrames
+          |-->WGroupCWs
+          |-->WClientWins
+          |-->WFrames for transients
+          `-->a possible WEdln or WMessage
 \end{verbatim}
 \caption{Most common parent--child relations}
 \label{fig:parentship}
@@ -183,9 +182,8 @@ focusing and displaying of the managed regions. Indeed the manager---managed
 relationship gives a better picture of the logical ordering of objects on
 the screen. Again, there are generally few limits, but the most common
 hierarchy is given in Figure \ref{fig:managership}. Note that sometimes
-the parent and manager are the same object and not all objects may have
-a manager (e.g. the dock in the dock module at the time of writing this)
-but all have a parent--a screen if not anything else.
+the parent and manager are the same object and not all regions may have
+a manager, but all have a parent--a screen if not anything else.
 
 \subsubsection{Manager--managed relations}
 
@@ -195,20 +193,19 @@ but all have a parent--a screen if not anything else.
 \end{htmlonly}
 \begin{verbatim}
     WRootWins
-     |-->WScreens
-          |-->WGroupCWs for full screen WClientWins
-          |    |-->WClientWins
-          |    |-->WFrames for transients (dialogs)
-          |         |--> WClientWin
-          |-->WGroupWSs for workspaces
-          |    |-->WTiling
-          |    |    |-->WFrames
-          |    |    |    |-->WGroupCWs (with contents as above)
-          |    |    |-->possibly a WStatusBar or WDock
-          |    |-->WFrames for floating content
-          |    |-->possibly a WEdln, WMessage or WMenu
-          |    |-->possibly a WStatusBar or WDock (if no tiling)
-          |-->WFrames for sticky stuff, such as the scratchpad
+     |-->WGroupCWs for full screen WClientWins
+     |    |-->WClientWins
+     |    `-->WFrames for transients (dialogs)
+     |         `--> WClientWin
+     |-->WGroupWSs for workspaces
+     |    |-->WTiling
+     |    |    |-->WFrames
+     |    |    |    `-->WGroupCWs (with contents as above)
+     |    |    `-->possibly a WStatusBar or WDock
+     |    |-->WFrames for floating content
+     |    |-->possibly a WEdln, WMessage or WMenu
+     |    `-->possibly a WStatusBar or WDock (if no tiling)
+     `-->WFrames for sticky stuff, such as the scratchpad
 \end{verbatim}
 \caption{Most common manager--managed relations}
 \label{fig:managership}

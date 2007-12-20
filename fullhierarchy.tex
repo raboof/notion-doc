@@ -16,24 +16,24 @@
      |    |-->WWindow
      |    |    |-->WMPlex
      |    |    |    |-->WFrame
-     |    |    |    |-->WScreen
-     |    |    |         |->WRootWin
+     |    |    |    `-->WScreen
+     |    |    |         `->WRootWin
      |    |    |-->WInfoWin
-     |    |    |    |-->WStatusBar (mod_statusbar)
+     |    |    |    `-->WStatusBar (mod_statusbar)
      |    |    |-->WMenu (mod_menu)
-     |    |    |-->WInput (mod_query)
+     |    |    `-->WInput (mod_query)
      |    |         |-->WEdln (mod_query)
-     |    |         |-->WMessage (mod_query)
+     |    |         `-->WMessage (mod_query)
      |    |-->WGroup
      |    |    |-->WGroupWS
-     |    |    |-->WGroupCW
-     |    |-->WTiling (mod_tiling)
-     |-->WSplit (mod_tiling)
+     |    |    `-->WGroupCW
+     |    `-->WTiling (mod_tiling)
+     `-->WSplit (mod_tiling)
           |-->WSplitInner (mod_tiling)
-          |    |-->WSplitSplit (mod_tiling)
-          |         |-->WSplitFloat (mod_tiling)
-          |-->WSplitRegion (mod_tiling)
-               |-->WSplitST (mod_tiling)
+          |    `-->WSplitSplit (mod_tiling)
+          |         `-->WSplitFloat (mod_tiling)
+          `-->WSplitRegion (mod_tiling)
+               `-->WSplitST (mod_tiling)
 \end{verbatim}
 }
 %\caption{Full Ioncore and most common modules' class hierarchy
