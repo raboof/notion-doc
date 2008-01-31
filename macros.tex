@@ -1,18 +1,26 @@
 \usepackage{babel}
 \usepackage[latin1]{inputenc}
-\usepackage[dvipdfm]{hyperref}
-\usepackage{ae}
+\usepackage[T1]{fontenc}
+\usepackage{palatino}
+%\usepackage{ae}
 \usepackage{url}
 \usepackage{html}
 %\usepackage{graphicx}
 %\usepackage{color}
 \usepackage{makeidx}
 \usepackage{tabularx}
-\usepackage{textcomp}
+%\usepackage{textcomp}
 \usepackage[nottoc]{tocbibind}
 \usepackage{enumerate} % GNU FDL needs this
-\usepackage[a4paper]{geometry}
 \usepackage{calc}
+\usepackage{ifpdf}
+\usepackage[a4paper,margin=3cm]{geometry}
+
+\ifpdf
+\usepackage[pdftex]{hyperref}
+\else
+\usepackage[hypertex]{hyperref}
+\fi
 
 % URL settings
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
