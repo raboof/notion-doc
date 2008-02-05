@@ -19,20 +19,26 @@ FNTEXES=ioncore.exports mod_tiling.exports \
 	mod_query.exports de.exports mod_menu.exports \
 	mod_dock.exports mod_sp.exports mod_statusbar.exports
 
+RUBBER_DVI=rubber
+RUBBER_PS=rubber -p
+RUBBER_PDF=rubber -d
+
+TARGETS = ionconf ionnotes
+
 # Generic rules
 ######################################
 
 nothing:
 	@ echo "Please read the README first."
 
-%.ps: %.dvi
-	dvips $<
+%-dvi:
+	$(RUBBER_DVI) $*
+	
+%-ps:
+	$(RUBBER_PS) $*
 
-%.pdf: %.dvi
-	dvipdfm -p a4 $<
-
-%.dvi: %.tex
-	latex $<
+%-pdf:
+	$(RUBBER_PDF) $*
 
 # Install
 ######################################
@@ -51,43 +57,34 @@ install:
 
 # ionconf rules
 ######################################
-ionconf-dvi-full:
-	latex ionconf
-	latex ionconf
-	latex ionconf
-	makeindex ionconf.idx
-	latex ionconf
 
-ionconf-html: 
+ionconf-dvi: fnlist.tex
+ionconf-ps: fnlist.tex
+ionconf-pdf: fnlist.tex
+
+ionconf-html: $(FNTEXES)
 	$(L2H) -split 3 ionconf
-
-fntexes: $(FNTEXES)
-
-ionconf-all: fntexes fnlist.tex ionconf-dvi-full ionconf-html
 
 # ionnotes rules
 ######################################
 
-ionnotes-dvi-full:
-	latex ionnotes
-	latex ionnotes
-	latex ionnotes
-	makeindex ionnotes.idx
-	latex ionnotes
-
 ionnotes-html: 
 	$(L2H) -split 4 ionnotes
-
-ionnotes-all: ionnotes-dvi-full ionnotes-html
 
 # More generic rules
 ######################################
 
-all: ionconf-all ionnotes-all
+.PHONY: all all-dvi all-ps all-pdf all-html
 
-all-ps: ionconf.ps ionnotes.ps
+all: all-dvi all-ps all-pdf all-html
 
-all-pdf: ionconf.pdf ionnotes.pdf
+all-dvi: $(patsubst %,%-dvi,$(TARGETS))
+
+all-ps: $(patsubst %, %-ps, $(TARGETS))
+
+all-pdf: $(patsubst %, %-pdf, $(TARGETS))
+
+all-html: $(patsubst %, %-html, $(TARGETS))
 
 
 # Clean

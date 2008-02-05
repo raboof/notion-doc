@@ -7,17 +7,13 @@ Tuomo Valkonen <tuomov at iki.fi>
 This package contains some (advanced user and module writer)
 documentation for the Ion window manager.
 
-You will need to install latex2html to build the HTML documents.
-
 How to build:
 
- 1. Modify TOPDIR in Makefile point to your top-level Ion source
+ 1. Get rubber <http://www.pps.jussieu.fr/~beffara/soft/rubber/>.
+    Get Latex2HTML if you want HTML versions of the documents.
+
+ 2. Modify TOPDIR in Makefile point to your top-level Ion source
     directory, containing a working system.mk (or system-ac.mk).
 
- 3. After the above has been done, you may run 'make all' to build the
-    (hyperlinked) DVI and HTML versions of the documents. You may have
-    increase TeX pool size.
-
- 4. If you want Postcript versions of the documents, run 'make all-ps'.
-    For PDF you need to have dvipdfm installed. The PDF:s are obviously
-    built with 'make all-pdf'.
+ 3. After the above has been done, you may run 'make all' to build all
+    versions of the documents. You may have increase TeX pool size.
