@@ -2,7 +2,7 @@
 \section{Class and object hierarchies}
 \label{sec:objects}
 
-While Ion does not not have a truly object-oriented design
+While Ion does not have a truly object-oriented design
 \footnote{the author doesn't like such artificial designs},
 things that appear on the computer screen are, however, quite
 naturally expressed as such ``objects''. Therefore Ion implements
@@ -143,6 +143,36 @@ to objects on the screen. The only important one of these for
 basic configuration is \type{WMoveresMode} that is used for
 binding callbacks in the move and resize mode.
 
+\subsubsection{Run-time access to types}
+
+Even though it often indicates a design mistake, sometimes it can be useful to
+have run-time access to the types of objects.
+
+For example, to check wether a given object is of type WMPlex, the following C
+construction can be used:
+
+\begin{verbatim}
+    if(obj_is((Obj*)cwin, &CLASSDESCR(WMPlex)))
+        ....
+\end{verbatim}
+
+Its lua counterpart is:
+
+\begin{verbatim}
+    if(obj_is(cwin, "WMPlex"))
+        ....
+\end{verbatim}
+
+While there's also an 'obj\_cast' method available, C structs can be freely 
+cast to their 'superclass' using a regular C cast, for example:
+
+\begin{verbatim}
+bool input_fitrep(WInput *input, WWindow *par, const WFitParams *fp)
+{
+    if(par!=NULL && !region_same_rootwin((WRegion*)input, (WRegion*)par))
+        return FALSE;
+    ...
+\end{verbatim}
 
 \subsection{Object hierarchies: \type{WRegion} parents and managers}
 
