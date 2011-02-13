@@ -1,6 +1,6 @@
 \section{Miscellaneous design notes}
 
-\subsection{Destroying \type{WObj}:s}
+\subsection{Destroying \type{WObj}'s}
 
 To keep Ion's code as simple as possible yet safe, there are restrictions
 when the \type{WObj}
@@ -41,7 +41,7 @@ parameters to functions.
 \begin{tabularx}{\linewidth}{lXX}
     \tabhead{Type & Return value & Parameter}
     \code{const char*} & The string is owned by the called function
-       and the caller is only quaranteed short-term read access to the
+       and the caller is only guaranteed short-term read access to the
        string. &
        The called function may only read the string during its execution.
        For further reference a copy must be made. \\

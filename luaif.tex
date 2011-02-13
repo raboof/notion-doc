@@ -58,9 +58,8 @@ the case that Ion was written in C++ this would be so unless extra bloat
 adding pointer-like objects were used everywhere instead of pointers.)
 It may be sometimes necessary check in Lua code that a value known to
 be an Ion \type{WObj} is of certain type. This can be accomplished with
-\code{obj_is(obj, "typename")}. \code{obj_typename(obj)} returns type
-name for a \type{WObj}.
-
+\code{obj_is(obj, "typename")}. To find the type name for a \type{WObj},
+use \code{obj_typename(obj)}.
 
 \subsection{Exporting functions}
 \label{sec:exporting}

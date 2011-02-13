@@ -2,8 +2,8 @@
 \section{Class and object hierarchies}
 \label{sec:objects}
 
-While Ion does not have a truly object-oriented design
-\footnote{the author doesn't like such artificial designs},
+While Ion does not have a truly object-oriented design\footnote{the author 
+doesn't like such artificial designs},
 things that appear on the computer screen are, however, quite
 naturally expressed as such ``objects''. Therefore Ion implements
 a rather primitive OO system for these screen objects and some
@@ -243,7 +243,7 @@ anything else.
 \end{figure}
 
 Note that a workspace can manage another workspace. This can be
-achieved with the \fnref{attach_new} function, and allows you to nest
+achieved with the \code{WGroup.attach_new} function, and allows you to nest
 workspaces as deep as you want.
 
 %Note how the \type{WClientWin}s managed by \type{WFloatFrame}s don't have
