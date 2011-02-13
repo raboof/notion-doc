@@ -4,7 +4,7 @@
 This section finally describes the implementation details and how modules
 should us the Lua interface. First, in section \ref{sec:supptypes}
 we look at types supported by the interface, how objects are passed to Lua
-code and how Lua tables should be accessed from Ion and modules. In section
+code and how Lua tables should be accessed from Notion and modules. In section
 \ref{sec:exporting} the methods for exporting functions and how they
 are called from Lua are explained and in section \ref{sec:calling} the
 method for calling Lua functions is explained.
@@ -13,7 +13,7 @@ method for calling Lua functions is explained.
 \label{sec:supptypes}
 
 The following types are supported in passing parameters between the
-C side of Ion and Lua:
+C side of Notion and Lua:
 
 \begin{tabular}{rll}
 \hline
@@ -53,11 +53,11 @@ return the equivalent of NULL.
 them so the objects can be safely deleted although Lua code might still be
 referencing them. (This is why SWIG or tolua would not have helped in
 creating the interface: extra wrappers for each function would still
-have been needed to nicely integrate into Ion's object system. Even in
-the case that Ion was written in C++ this would be so unless extra bloat
+have been needed to nicely integrate into Notion's object system. Even in
+the case that Notion was written in C++ this would be so unless extra bloat
 adding pointer-like objects were used everywhere instead of pointers.)
 It may be sometimes necessary check in Lua code that a value known to
-be an Ion \type{WObj} is of certain type. This can be accomplished with
+be an Notion \type{WObj} is of certain type. This can be accomplished with
 \code{obj_is(obj, "typename")}. To find the type name for a \type{WObj},
 use \code{obj_typename(obj)}.
 
@@ -124,7 +124,7 @@ The return value of all these functions tells if the call and parameter
 passing succeeded or not.
 
 Sometimes it is necessary to block calls to all but a limited set of
-Ion functions. This can be accomplished with
+Notion functions. This can be accomplished with
 \code{extl_set_safelist}\index{extl-set-safelist@\code{extl_set_safelist}}.
 The parameter to this function is a NULL-terminated array of strings
 and the return value is a similar old safelist.

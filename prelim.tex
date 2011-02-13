@@ -5,13 +5,13 @@
 The purpose of this chapter to explain some of key concepts and
 relations you need to understand before reading the following
 chapters. These include modules explained in section \ref{sec:modules}
-and the Ion class and object hierarchies, section \ref{sec:objects}.
+and the Notion class and object hierarchies, section \ref{sec:objects}.
 
 
 \section{Modules}
 \label{sec:modules}
 
-Ion has been designed so that the 'ion' executable only implements some
+Notion has been designed so that the 'notion' executable only implements some
 basic services on top of which very different kinds of window managers
 could be build by loading the appropriate 'modules'. On modern system
 these modules are simply dynamically loaded \file{.so} libraries. On 
@@ -24,7 +24,7 @@ Currently Ion provides the following modules:
 
 \begin{description}
     \item[\file{mod\_tiling}] Tilings for workspaces of the original tiled
-       Ion kind.
+       Notion kind.
     \item[\file{mod\_query}] Queries (for starting programs and so on)
       and message boxes.
     \item[\file{mod\_menu}] Support for menus, both pull-down and
@@ -43,10 +43,10 @@ Currently Ion provides the following modules:
 So-called drawing engines are also implemented as a modules,
 but they are not discussed here; see chapter \ref{chap:gr}.
 
-The stock configuration for the \file{ion3} executable loads all of the 
+The stock configuration for the \file{notion} executable loads all of the 
 modules mentioned above except \file{mod\_dock}.
 The stock configuration for the \file{pwm3} executable (which differs
-from the \file{ion3} executable in a few configuration details)
+from the \file{notion} executable in a few configuration details)
 loads another set of modules.
 
 

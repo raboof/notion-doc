@@ -36,7 +36,7 @@ usual method of identifying windows, and how to obtain this information.
     Set this to \code{true} for Acrobat Reader. It has an annoying
     habit of trying to manage its dialogs instead of setting them as
     transients and letting the window manager do its job, causing
-    Ion and acrobat go a window-switching loop when a dialog is
+    Notion and acrobat go a window-switching loop when a dialog is
     opened. 
 \end{winprop}
 
@@ -159,7 +159,7 @@ winprop is a boolean.
 Finally, the boolean
 \code{userpos}\index{userpos@\var{userpos}} option may be used to
 override the \code{USPosition} flag of the size hints. Normally,
-when this flag is set, Ion tries to respect the supplied window
+when this flag is set, Notion tries to respect the supplied window
 position more than when it is not set. Obviously, this makes sense
 only for floating windows.
 
@@ -180,11 +180,11 @@ corresponding information obtained from the window's properties.
 The \var{name} field is a Lua-style regular expression matched against
 the window's title. The \var{is_transient} field is a boolean that can
 be used to include or exclude transients only, while the \var{is_dockapp}
-field is set by Ion for the dock windows of Window Maker dockapp protocol
+field is set by Notion for the dock windows of Window Maker dockapp protocol
 dockapps. Usually this is the only information available for these 
 \emph{icon} windows. 
 
-Ion looks for a matching winprop in the order listed by the following
+Notion looks for a matching winprop in the order listed by the following
 table. An 'E' indicates that the field must be set in the winprop
 and it must match the window's corresponding property exactly or, in
 case of \var{name}, the regular expression must match the window
@@ -228,7 +228,7 @@ This method, however, will not work on transients.
 \index{transient}
 So-called ``transient windows'' are usually short-lived dialogs (although
 some programs abuse this property) that have a parent window that they are
-``transient for''. On tiled workspaces Ion displays these windows 
+``transient for''. On tiled workspaces Notion displays these windows 
 simultaneously with the parent window at the bottom of the same frame.
 Unfortunately \command{xprop} is stupid and can't cope with this situation,
 returning the parent window's properties when the transient is clicked on.

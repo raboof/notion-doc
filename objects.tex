@@ -2,10 +2,10 @@
 \section{Class and object hierarchies}
 \label{sec:objects}
 
-While Ion does not have a truly object-oriented design\footnote{the author 
-doesn't like such artificial designs},
+While Notion does not have a truly object-oriented design\footnote{the 
+author doesn't like such artificial designs},
 things that appear on the computer screen are, however, quite
-naturally expressed as such ``objects''. Therefore Ion implements
+naturally expressed as such ``objects''. Therefore Notion implements
 a rather primitive OO system for these screen objects and some
 other things. 
 
@@ -20,7 +20,7 @@ read the summary at the end of it, so that you understand the very
 basic relations.
 
 For simplicity we consider only the essential-for-basic-configuration
-Ioncore, \file{mod\_tiling} and \file{mod\_query} classes. 
+Notioncore, \file{mod\_tiling} and \file{mod\_query} classes. 
 See Appendix \ref{app:fullhierarchy} for the full class hierarchy visible
 to Lua side.
 
@@ -31,8 +31,8 @@ is inheritance; roughly how classes (objects are instances of classes)
 extend on others' features. Inheritance gives rise to class hierarchy.
 In the case of single-inheritance this hierarchy can be expressed as a
 tree where the class at the root is inherited by all others below it
-and so on. Figure \ref{fig:classhierarchy} lists out the Ion class 
-hierarchy and below we explain what features of Ion the classes 
+and so on. Figure \ref{fig:classhierarchy} lists out the Notion class 
+hierarchy and below we explain what features of Notion the classes 
 implement.
 
 \begin{figure}
@@ -57,7 +57,7 @@ implement.
      |    `-->WTiling (mod_tiling)
      `-->WSplit (mod_tiling)
 \end{verbatim}
-\caption{Partial Ioncore, \file{mod\_tiling} and \file{mod\_query} 
+\caption{Partial Notioncore, \file{mod\_tiling} and \file{mod\_query} 
     class hierarchy.}
 \label{fig:classhierarchy}
 \end{figure}
@@ -66,12 +66,12 @@ The core classes:
 
 \begin{description}
   \item[\type{Obj}]\indextype{Obj}
-    Is the base of Ion's object system.
+    Is the base of Notion's object system.
 
   \item[\type{WRegion}]\indextype{WRegion}
     is the base class for everything corresponding to something on the
     screen. Each object of type \type{WRegion} has a size and  position
-    relative to the parent \type{WRegion}. While a big part of Ion 
+    relative to the parent \type{WRegion}. While a big part of Notion 
     operates on these instead of more specialised classes, \type{WRegion}
     is a ``virtual''  base class in that there are no objects of ``pure''
     type \type{WRegion}; all concrete regions are objects of some class 
@@ -102,7 +102,7 @@ The core classes:
     one root window when Xinerama is used.) 
     
   \item[\type{WFrame}]\indextype{WFrame} is the class for frames.
-    While most Ion's objects have no graphical presentation, frames 
+    While most Notion's objects have no graphical presentation, frames 
     basically add to \type{WMPlex}es the decorations around client 
     windows (borders, tabs).
     
@@ -134,7 +134,7 @@ Classes implemented by the \file{mod\_query} module:
     screens. Queries are the functional equivalent of ``mini buffers'' in
     many text editors.
   \item[\type{WMessage}]\indextype{WMessage} implements the boxes for 
-    warning and other messages that Ion may wish to display to the user. 
+    warning and other messages that Notion may wish to display to the user. 
     These also usually appear at bottoms of frames.
 \end{description}
 

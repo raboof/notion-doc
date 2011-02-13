@@ -12,6 +12,9 @@ How to build:
  1. Get rubber <http://www.pps.jussieu.fr/~beffara/soft/rubber/>.
     Get Latex2HTML if you want HTML versions of the documents.
 
+ 2. Install various latex styles. On Debian, the following packages
+    are needed: latex2html, ...
+
  2. Modify TOPDIR in Makefile point to your top-level Ion source
     directory, containing a working system.mk (or system-ac.mk).
 

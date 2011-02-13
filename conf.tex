@@ -2,16 +2,16 @@
 \chapter{Basic configuration}
 \label{chap:config}
 
-This chapter should help your configure Ion to your liking. As  the your
-probably already know, Ion uses Lua as a configuration and extension 
+This chapter should help your configure Notion to your liking. As you
+probably already know, Notion uses Lua as a configuration and extension 
 language. If you're new to it, you might first want to read some Lua 
 documentation as already suggested and pointed to in the Introduction
 before continuing with this chapter.
 
 Section \ref{sec:conffiles} is an overview of the multiple configuration
-files Ion uses and as a perhaps more understandable introduction to the
+files Notion uses and as a perhaps more understandable introduction to the
 general layout of the configuration files, a walk-through of the main 
-configuration file \file{cfg\_ion.lua} is provided in section 
+configuration file \file{cfg\_notion.lua} is provided in section 
 \ref{sec:walkthrough}.
 How keys and mouse action are bound to functions is described in detail
 in \ref{sec:bindings} and in section \ref{sec:winprops} winprops are
@@ -21,30 +21,30 @@ For a reference on exported functions, see section \ref{sec:exports}.
 \section{The configuration files}
 \label{sec:conffiles}
 
-Ion3, to which document applies, stores its stock configuration files in
-\file{/usr/local/etc/ion3/} unless you, the OS package maintainer or 
+Notion stores its stock configuration files in
+\file{/usr/local/etc/notion/} unless you, the OS package maintainer or 
 whoever  installed the package on the system has modified the variables
 \code{PREFIX}\index{PREFIX@\code{PREFIX}} or
 \code{ETCDIR}\index{ETCDIR@\code{ETCDIR}} in
-\file{system.mk}\index{system.mk@\file{system.mk}} before compiling Ion.
+\file{system.mk}\index{system.mk@\file{system.mk}} before compiling Notion.
 In the first case you probably know where to find the files and in 
 the other case the system administrator or the OS package maintainer
 should  have provided documentation to point to the correct location. 
 If these instructions are no help in locating the correct directory, 
-the command \code{locate cfg_ion.lua} might help provided \code{updatedb} 
+the command \code{locate cfg_notion.lua} might help provided \code{updatedb} 
 has been run recently. 
 
-User configuration files go in \file{\~{}/.ion3/}. 
-Ion always searches the user configuration file directory before the stock
+User configuration files go in \file{\~{}/.notion/}. 
+Notion always searches the user configuration file directory before the stock
 configuration file directory for files. Therefore, if you want to change
 some setting, it is advised against that you modify the stock configuration
-files in-place as subsequent installs of Ion will restore the stock
+files in-place as subsequent installs of Notion will restore the stock
 configuration files. Instead you should always make a copy of the stock
-file in \file{\~{}/.ion3/} and modify this file. For sake of maintainability
+file in \file{\~{}/.notion/} and modify this file. For sake of maintainability
 of your customised configuration, it is recommended against copying all of
 the files there. Only copy those files you actually need to modify. Most 
 simple customisations, such as changes in a few bindings, are best done 
-entirely within \file{cfg\_ion.lua}.
+entirely within \file{cfg\_notion.lua}.
 
 All the configuration files are named \file{cfg\_*.lua} with the ``\file{*}''
 part varying. The configuration file for each module \file{mod\_modname} is
@@ -62,11 +62,11 @@ files:
     \hline
     File & Description \\
     \hline
-    \file{cfg\_ion.lua} & 
+    \file{cfg\_notion.lua} & 
     The main configuration file \\
     %
-    \file{cfg\_ioncore.lua} & 
-    Configuration file for Ion's core library.
+    \file{cfg\_notioncore.lua} & 
+    Configuration file for Notion's core library.
     Most of the bindings and menus are configured here. Bindings that are
     specific to some module are configured in the module's configuration
     file. For details, see section \ref{sec:bindings}. \\
@@ -89,14 +89,14 @@ files:
 Additionally, there's the file \file{look.lua} that configures the 
 drawing engine, but it is covered in chapter \ref{chap:gr}.
 
-\section{A walk through \file{cfg\_ion.lua}}
+\section{A walk through \file{cfg\_notion.lua}}
 \label{sec:walkthrough}
 
-As already mentioned \file{cfg\_ion.lua} is Ion's main configuration
+As already mentioned \file{cfg\_notion.lua} is Notion's main configuration
 file. Some basic 'feel' settings are usually configured there and
 the necessary modules and other configuration files configuring some 
-more specific aspects of Ion are loaded there. In this section we
-take a walk through the stock \file{cfg\_ion.lua}.
+more specific aspects of Notion are loaded there. In this section we
+take a walk through the stock \file{cfg\_notion.lua}.
 Notice that most of the settings are commented-out (\verb!--! is a 
 line comment in Lua) in the actual file, as they're the defaults
 nevertheless.
@@ -106,10 +106,10 @@ The first thing done in the file, is to set
 META="Mod1+"
 ALTMETA=""
 \end{verbatim}
-These settings cause most of Ion's key bindings to use \key{Mod1} as the
+These settings cause most of Notion's key bindings to use \key{Mod1} as the
 modifier key. If \code{ALTMETA} is set, it is used as modifier for the
 keys that don't normally use a modifier. Note that these two are Lua 
-variables used in the configuration files only, and not Ion settings. 
+variables used in the configuration files only, and not Notion settings. 
 For details on modifiers and key binding setup in general, see section
 \ref{sec:bindings}.
 
@@ -135,13 +135,13 @@ ioncore.set{
 The first of these two settings enables opaque resize mode: in move/resize
 move frames and other objects mirror you actions immediately. If opaque
 resize is disabled, a XOR rubber band is shown during the mode instead.
-This will, unfortunately, cause Ion to also grab the X server and has some
+This will, unfortunately, cause Notion to also grab the X server and has some
 side effects. 
 
 There are some other options as well; see the documentation
 for \fnref{ioncore.set} for details.
 
-As a next step, in the actual \file{cfg\_ion.lua} file, we load
+As a next step, in the actual \file{cfg\_notion.lua} file, we load
 \file{cfg\_defaults.lua}. However, it is merely a convenience file for
 doing exactly what we will going through below, and what is commented
 out in the actual file. If you do not want to load what 
@@ -150,7 +150,7 @@ line, and uncomment the lines for the files that you want:
 
 \begin{verbatim}
 --dopath("cfg_defaults")
-dopath("cfg_ioncore")
+dopath("cfg_notioncore")
 dopath("cfg_kludges")
 dopath("cfg_layouts")
 \end{verbatim}
@@ -159,13 +159,13 @@ Most bindings and menus are defined in \file{cfg\_ioncore.lua}.
 Details on making such definitions follow in sections \ref{sec:bindings} 
 and \ref{sec:menus}, respectively. 
 some kludges or ``winprops'' to make some applications behave better
-under Ion are collected in \file{cfg\_kludges.lua}; see section
+under Notion are collected in \file{cfg\_kludges.lua}; see section
 \ref{sec:winprops} for details. In addition to these, this file
 lists quite a few statements of the form
 \begin{verbatim}
 ioncore.defshortening("[^:]+: (.*)(<[0-9]+>)", "$1$2$|$1$<...$2")
 \end{verbatim}
-These are used to configure how Ion attempts to shorten window titles
+These are used to configure how Notion attempts to shorten window titles
 when they do not fit in a Tab. The first argument is a POSIX regular
 expression that is used to match against the title and the next is
 a rule to construct a new title of a match occurs. This particular

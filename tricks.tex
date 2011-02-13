@@ -2,7 +2,7 @@
 \chapter{Scripting}
 \label{chap:tricks}
 
-This chapter documents some additional features of the Ion configuration
+This chapter documents some additional features of the Notion configuration
 and scripting interface that can be used for more advanced scripting than
 the basic configuration explained in chapter \ref{chap:config}.
 
@@ -31,14 +31,14 @@ handlers do. The types of parameters for each hook are listed in
 the hook reference, section \ref{sec:hookref}.
 
 Note that many of the hooks are called in ``protected mode'' and can not 
-use any functions that modify Ion's internal state. 
+use any functions that modify Notion's internal state. 
 
 
 \section{Referring to regions}
 
 \subsection{Direct object references}
 
-All Ion objects are passed to Lua scripts as 'userdatas', and you may
+All Notion objects are passed to Lua scripts as 'userdatas', and you may
 safely store such object references for future use. The C-side object
 may be destroyed while Lua still refers to the object. All exported
 functions gracefully fail in such a case, but if you need to explicitly

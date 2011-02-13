@@ -13,7 +13,7 @@ user attributes are explained in Sections \ref{sec:grmisc}.
 \label{sec:engines}
 \index{style}\index{drawing engine}
 
-Ion's drawing routines are abstracted into so-called drawing engine
+Notion's drawing routines are abstracted into so-called drawing engine
 modules that can, again depending on the system, be dynamically
 loaded as needed. The drawing engine modules provide ``brushes''
 that objects can use to draw some high-level primitives such
@@ -144,7 +144,7 @@ tag and drag states.)
 
 Drawing engine style files are usually named
 \file{look\_foo.lua} where \file{foo} is the name of the
-style. The file that Ion loads on startup or when
+style. The file that Notion loads on startup or when
 \fnref{gr.read_config} is called, however, is \file{look.lua}
 and should usually be symlinked to or a copy of of some
 \file{look\_foo.lua}.
@@ -420,5 +420,5 @@ engine configuration file.
 
 
 Hopefully that's enough to get you started in writing new style
-configuration files for Ion. When in doubt, study the existing
+configuration files for Notion. When in doubt, study the existing
 style configuration files.

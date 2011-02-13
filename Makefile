@@ -1,19 +1,19 @@
 # Settings
 ######################################
 
-TOPDIR=../ion-3
+TOPDIR=../notion
 
 include $(TOPDIR)/build/system-inc.mk
 
 L2H=latex2html -show_section_numbers -short_index -local_icons -noaddress \
-    -up_url http://iki.fi/tuomov/ion/ -up_title "Ion homepage" -nofootnode\
+    -up_url http://notion.sourceforge.net -up_title "Notion homepage" -nofootnode\
 ##    -style greyviolet.css
 
 
 # Function documentation to build
 ######################################
 
-DOCS=ionconf ionnotes
+DOCS=notionconf notionnotes
 
 FNTEXES=ioncore.exports mod_tiling.exports \
 	mod_query.exports de.exports mod_menu.exports \
@@ -23,7 +23,7 @@ RUBBER_DVI=rubber
 RUBBER_PS=rubber -p
 RUBBER_PDF=rubber -d
 
-TARGETS = ionconf ionnotes
+TARGETS = notionconf notionnotes
 
 # Generic rules
 ######################################
@@ -55,21 +55,21 @@ install:
 	    done; \
         done
 
-# ionconf rules
+# notionconf rules
 ######################################
 
-ionconf-dvi: fnlist.tex
-ionconf-ps: fnlist.tex
-ionconf-pdf: fnlist.tex
+notionconf-dvi: fnlist.tex
+notionconf-ps: fnlist.tex
+notionconf-pdf: fnlist.tex
 
-ionconf-html: $(FNTEXES)
-	$(L2H) -split 3 ionconf
+notionconf-html: $(FNTEXES)
+	$(L2H) -split 3 notionconf
 
-# ionnotes rules
+# notionnotes rules
 ######################################
 
-ionnotes-html: 
-	$(L2H) -split 4 ionnotes
+notionnotes-html: 
+	$(L2H) -split 4 notionnotes
 
 # More generic rules
 ######################################

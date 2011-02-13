@@ -2,10 +2,10 @@
 \chapter{Introduction}
 
 This document is an ``advanced user'' manual for the X11 window manager
-Ion, version 3. It is an attempt at documenting things that go into Ion's
+Notion. It is an attempt at documenting things that go into Notion's
 configuration files, how to configure Ion by simple modifications 
 to these files and how to write more complex extensions in Lua, the 
-lightweight configuration and scripting language used by Ion. 
+lightweight configuration and scripting language used by Notion. 
 
 Readers unfamiliar with Lua might first want to first glance at some 
 Lua documentation at
@@ -21,29 +21,29 @@ programming languages.
 
 Back in this document, first in chapter \ref{chap:prelim} some key
 concepts and relations are explained. These include the module system,
-and Ion's object (or ``region'') and class hierarchies. While it may
+and Notion's object (or ``region'') and class hierarchies. While it may
 not be necessary to study the latter for basic copy-paste modifications
 of configuration files -- for that you should not really need this
 manual either -- it is, however, essential to for more extensive
 customisation, due to the semi-object-oriented nature of most of
-Ion's scripting interface. Knowing the different object types also
+Notion's scripting interface. Knowing the different object types also
 helps dealing with the different binding ``contexts'' (see
 Section \ref{sec:bindings}) that to some extent mirror these classes.
 
 The new user, fed up with the default key bindings and eager to 
-just quickly configure Ion to his liking, may therefore just want
+just quickly configure Notion to his liking, may therefore just want
 to skip to Chapter \ref{chap:config}, and attempt to work from therefore.
-That chapter provides the very basic Ion configuration know-how
+That chapter provides the very basic Notion configuration know-how
 is provided: all the different configuration files and their locations
 are explained, instructions are given to allow the reader to
 configure bindings and so-called ``winprops'', and the statusbar
 templates are also explained. 
 
 Next, Chapter \ref{chap:gr} explains the notion of drawing engines
-and graphical styles and how to write new looks for Ion. More advanced
-aspects of Ion's scripting interface are documented in Chapter 
+and graphical styles and how to write new looks for Notion. More advanced
+aspects of Notion's scripting interface are documented in Chapter 
 \ref{chap:tricks}. 
-Finally, most of the functions provided by Ion's scripting interface
+Finally, most of the functions provided by Notion's scripting interface
 are listed and documented in the Function reference in Chapter
 \ref{sec:exports}. At the end of the document an alphabetical
 listing of all these functions may be found.

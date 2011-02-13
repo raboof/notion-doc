@@ -2,14 +2,14 @@
 
 \subsection{Destroying \type{WObj}'s}
 
-To keep Ion's code as simple as possible yet safe, there are restrictions
+To keep Notion's code as simple as possible yet safe, there are restrictions
 when the \type{WObj}
 \code{destroy_obj}\index{destroy-obj@\code{destroy_obj}}
 function that calls watches, the deinit routine and frees memory may
 be called directly. In all other cases the \code{mainloop_defer_destroy}%
 \index{mainloop-defer-destroy@\code{mainloop_defer_destroy}}
 function should be used to defer the call of \code{destroy_obj} until
-Ioncore returns to its main event loop. 
+Notioncore returns to its main event loop. 
 
 Calling the \code{destroy_obj} function directly is allowed in the
 following cases:
@@ -23,7 +23,7 @@ following cases:
     \item In a deferred action handler set with \code{mainloop_defer_action}%
       \index{mainloop-defer-action@\code{mainloop_defer_action}}.
       Like deferred destroys, other deferred actions are called when
-      Ioncore has returned to the main loop.
+      Notioncore has returned to the main loop.
     \item You are absolute sure that C code outside your code has no
       references to the object.
 \end{itemize}
