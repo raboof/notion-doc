@@ -396,6 +396,14 @@ engine configuration file.
         are the strings \codestr{none}, \codestr{inside}, \codestr{outside}
         and \codestr{shaped}, with the last providing the PWM-style
         tab-bars for floating frames. \\
+\code{frame_tab_width_alg} & Algorithm used to determine tab sizes for 
+        non-shaped frames. \codestr{equal} is the default. \codestr{elastic}
+        wants equal sized tabs, with long titles longer. \codestr{proportional}
+        wants distribute free space equally among the tabs. \\
+\code{frame_tab_min_w} & Minimum size of a tab. This size is maintained as 
+        long as no other tab has to be truncated in the case of the 
+        \codestr{proportional} or \codestr{elastic} algorithm. Also minimum 
+        size of a tab in shaped frame (for all algorithms). \\
 \code{floatframe_tab_min_w} & Minimum tab width in pixels for
         the shaped style, given that this number times number of tabs
         doesn't exceed frame width. \\
