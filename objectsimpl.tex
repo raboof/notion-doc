@@ -18,3 +18,36 @@ objects that might be destroyed during the time the specific pointer is
 needed. When an object is destroyed, its list of watches is processed,
 setting the pointers in the watches to NULL and the watch handlers for
 each watch are called. 
+
+\subsection{Dynamic dispatch}
+
+To override a method means to reimplement it specifically for a given subtype.
+This is used in Notion to allow subclasses to override of their superclasses' 
+methods.
+
+Overridable methods are specified as \code{DYNFUN}, for example 
+\fnref{region_fitrep} in \file{ioncore/region.h}:
+
+\begin{verbatim}
+DYNFUN bool region_fitrep(WRegion *reg, WWindow *par, const WFitParams *fp);
+\end{verbatim}
+
+Dynamic functions can be called with \code{CALL_DYN} or \code{CALL_DYN_RET}.
+When a subclass desires to override a dynamic function, it does so by 
+specifying a \type{DynFunTab}\indextype{DynFunTab}. For example, the function
+table for \type{WGroup} overrides \fnref{region_fitrep} with 
+\fnref{group_fitrep}:
+
+\begin{verbatim}
+static DynFunTab group_dynfuntab[]={
+    {(DynFun*)region_fitrep,
+     (DynFun*)group_fitrep},
+    ...
+    END_DYNFUNTAB
+};
+EXTL_EXPORT
+IMPLCLASS(WGroup, WRegion, group_deinit, group_dynfuntab);
+\end{verbatim}
+
+Whenever \fnref{region_fitrep} is called on a region that is actually a 
+\type{WGroup}, \fnref{group_fitrep} is called instead.
