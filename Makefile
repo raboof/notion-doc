@@ -7,7 +7,7 @@ include $(TOPDIR)/build/system-inc.mk
 
 L2H=latex2html -show_section_numbers -short_index -local_icons -noaddress \
     -up_url http://notion.sourceforge.net -up_title "Notion homepage" -nofootnode\
-##    -style greyviolet.css
+    -style notion.css
 
 
 # Function documentation to build
@@ -64,12 +64,14 @@ notionconf-pdf: fnlist.tex
 
 notionconf-html: $(FNTEXES)
 	$(L2H) -split 3 notionconf
+	cp notion.css notionconf
 
 # notionnotes rules
 ######################################
 
 notionnotes-html: 
 	$(L2H) -split 4 notionnotes
+	cp notion.css notionnotes
 
 # More generic rules
 ######################################
