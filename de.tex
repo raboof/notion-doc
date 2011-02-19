@@ -404,12 +404,18 @@ engine configuration file.
         long as no other tab has to be truncated in the case of the 
         \codestr{proportional} or \codestr{elastic} algorithm. Also minimum 
         size of a tab in shaped frame (for all algorithms). \\
-\code{floatframe_tab_min_w} & Minimum tab width in pixels for
-        the shaped style, given that this number times number of tabs
-        doesn't exceed frame width. \\
+\code{floatframe_tab_min_w} & Alias for \code{frame_tab_min_w}.
+	This is an old name of the variable from times when the only algorithm
+	was \codestr{equal}. \\
+\code{frame_propor_tab_min_w} & Absolute minimum size of an elastic or
+	proportional tab, \codestr{elastic} and \codestr{proportional}
+        algorithms truncate other tabs rather than shortening a short
+	tab below this size. \\
 \code{floatframe_bar_max_w_q} & Maximum tab-bar width quotient of
 	frame width for the shaped styles. A number in the 
-	interval $(0, 1]$.
+	interval $(0, 1]$. This quotient is maintained even if
+	the tabs have to be smaller than \code{frame_tab_min_w}
+	or \code{frame_propor_tab_min_w} to fit.
 \end{tabularx}
 
 
