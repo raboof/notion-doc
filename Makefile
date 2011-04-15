@@ -7,7 +7,7 @@ include $(TOPDIR)/build/system-inc.mk
 
 L2H=latex2html -show_section_numbers -short_index -local_icons -noaddress \
     -up_url http://notion.sourceforge.net -up_title "Notion homepage" -nofootnode\
-    -style notion.css
+    -style notion.css -html_version 4.0,math,table
 
 
 # Function documentation to build
