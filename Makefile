@@ -66,6 +66,10 @@ notionconf-html: $(FNTEXES)
 	$(L2H) -split 3 notionconf
 	cp notion.css notionconf
 
+notionconf-html-onepage: $(FNTEXES)
+	$(L2H) -split 0 -dir notionconf-onepage notionconf
+	cp notion.css notionconf-onepage
+
 # notionnotes rules
 ######################################
 
@@ -73,12 +77,16 @@ notionnotes-html:
 	$(L2H) -split 4 notionnotes
 	cp notion.css notionnotes
 
+notionnotes-html-onepage: 
+	$(L2H) -split 0 -dir notionnotes-onepage notionnotes
+	cp notion.css notionnotes-onepage
+
 # More generic rules
 ######################################
 
 .PHONY: all all-dvi all-ps all-pdf all-html
 
-all: all-dvi all-ps all-pdf all-html
+all: all-dvi all-ps all-pdf all-html all-html-onepage
 
 all-dvi: $(patsubst %,%-dvi,$(TARGETS))
 
@@ -88,6 +96,7 @@ all-pdf: $(patsubst %, %-pdf, $(TARGETS))
 
 all-html: $(patsubst %, %-html, $(TARGETS))
 
+all-html-onepage: $(patsubst %, %-html-onepage, $(TARGETS))
 
 # Clean
 ######################################
