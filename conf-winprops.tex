@@ -74,6 +74,16 @@ usual method of identifying windows, and how to obtain this information.
 \end{winprop}
 
 
+\begin{winprop}{lazy_resize}{boolean}
+    \index{lazy-resize@\var{lazy_resize}}
+    Do not resize a region when it is currently hidden,
+    resize it when the user switches to it instead. Useful for
+    applications that raise themselves on resize (like VirtualBox)
+    or when many (hidden) frames with resource-intensive resize
+    routines cause performance issues.
+\end{winprop}
+
+
 \begin{winprop}{new_group}{string}
     \index{new-group@\var{new_group}}
     If the region specified by \code{target} winprop does not exist
