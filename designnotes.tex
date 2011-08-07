@@ -48,7 +48,16 @@ parameters to functions.
     \code{char*} & The string is the caller's responsibility and it
        \emph{must} free it when no longer needed. &
        The called function may modify the string but the ``owner'' of
-       the string is case-dependant. \\
+       the string is case-dependent. \\
 \end{tabularx}
+
+\subsubsection{Encoding}
+
+Unless otherwise specified, character strings are encoded in the current 
+locale's encoding. Convenience booleans \code{ioncore_g.enc_sb}, 
+\code{ioncore_g.use_mb} and \code{ioncore_g.enc_utf8} may be used to determine
+whether the current locale's encoding is 8-bit, whether to use multi-byte 
+routines and whether the multi-byte encoding is UTF-8.
+
 
 
