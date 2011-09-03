@@ -124,7 +124,7 @@ realclean: clean
 
 include $(TOPDIR)/libmainloop/rx.mk
 
-$(TOPDIR)/%/exports.tex:
+$(TOPDIR)/%/exports.tex: $(TOPDIR)/%/*.c
 	$(MAKE) -C $$(dirname $@) _exports_doc
 
 %.exports: $(TOPDIR)/%/exports.tex
