@@ -1,6 +1,8 @@
 # Settings
 ######################################
 
+# Requires at least GNU Make 3.81
+
 TOPDIR=../notion
 
 include $(TOPDIR)/build/system-inc.mk
@@ -124,10 +126,14 @@ realclean: clean
 
 include $(TOPDIR)/libmainloop/rx.mk
 
-# Adding $(TOPDIR)/%/*.c would be an improvement but causes trouble with GNU Make 3.82
+# GNU Make 3.82 only supports glob expressions in pattern dependency lines
+# on second expansion, so we force that :(
 # See also http://savannah.gnu.org/bugs/?31248
-#$(TOPDIR)/%/exports.tex: $(TOPDIR)/%/*.c
-$(TOPDIR)/%/exports.tex:
+.SECONDEXPANSION:
+TRIGGER=$$(TRIGGER_SECOND_EXPANSION)
+
+# glob expressions in pattern dependency lines requires at least GNU Make 3.81
+$(TOPDIR)/%/exports.tex: $(TOPDIR)/%/*.c $(TRIGGER)
 	$(MAKE) -C $$(dirname $@) _exports_doc
 
 %.exports: $(TOPDIR)/%/exports.tex
