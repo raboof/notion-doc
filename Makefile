@@ -124,7 +124,10 @@ realclean: clean
 
 include $(TOPDIR)/libmainloop/rx.mk
 
-$(TOPDIR)/%/exports.tex: $(TOPDIR)/%/*.c
+# Adding $(TOPDIR)/%/*.c would be an improvement but causes trouble with GNU Make 3.82
+# See also http://savannah.gnu.org/bugs/?31248
+#$(TOPDIR)/%/exports.tex: $(TOPDIR)/%/*.c
+$(TOPDIR)/%/exports.tex:
 	$(MAKE) -C $$(dirname $@) _exports_doc
 
 %.exports: $(TOPDIR)/%/exports.tex
