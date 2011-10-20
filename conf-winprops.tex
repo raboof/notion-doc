@@ -9,6 +9,10 @@ necessary information to identify a window. The currently supported
 winprops are listed below, and the subsequent subsections explain the
 usual method of identifying windows, and how to obtain this information.
 
+\subsection{Properties to set}
+
+These properties can be used to tell Notion how to treat the matched windows:
+
 %\begin{table}
 %\begin{htmlonly}
 %\docode % latex2html kludge
@@ -149,7 +153,7 @@ usual method of identifying windows, and how to obtain this information.
 \end{winprop}
 
 
-\subsection{Sizehint winprops}
+\subsubsection{Sizehint winprops}
 
 Additionally, the winprops 
 \code{max_size}\index{max-size@\var{max_size}},
@@ -173,20 +177,48 @@ when this flag is set, Notion tries to respect the supplied window
 position more than when it is not set. Obviously, this makes sense
 only for floating windows.
 
+\subsection{Identifying windows}
 
-\subsection{Classes, roles and instances}
+The primary identification information supported is the
+\var{class}\index{class@\var{class}!winprop},
+\var{role}\index{role@\var{role}!winprop} and
+\var{instance}\index{instance@\var{instance}!winprop} of the window.
+
+Secondary filters are the
+\var{name}\index{name@\var{name}!winprop},
+\var{is_transient}\index{is-transient@\var{is_transient}!winprop} and
+\var{is_dockapp}\index{is-dockapp@\var{is_dockapp}!winprop} fields, or a
+custom matching algorithm.
+
+Notion first filters the winprops based on the primary identification fields.
+Of those winprops that match the primary identification fields, the most 
+recently defined winprop that also matches the secondary filters is used.
+
+\subsubsection{Classes, roles and instances}
 \label{sec:classesrolesinstances}
 
-The identification information supported are
-\var{class}\index{class@\var{class}!winprop},
-\var{role}\index{role@\var{role}!winprop},
-\var{instance}\index{instance@\var{instance}!winprop},
-\var{name}\index{name@\var{name}!winprop},
-\var{is_transient}\index{is-transient@\var{is_transient}!winprop}, and
-\var{is_dockapp}\index{is-dockapp@\var{is_dockapp}!winprop}.
-It is not necessary to specify all of these fields.
-The first three are strings, and must exactly match the
+The primary identification fields are strings, and must exactly match the
 corresponding information obtained from the window's properties.
+
+Notion looks for a winprop in the order listed by the following
+table. An 'E' indicates that the field must be set in the winprop
+and it must match the window's corresponding property exactly. An asterisk '*'
+indicates that a winprop where the field is not specified (or is itself an 
+asterisk in case of the first three fields) is tried.
+
+\begin{center}
+\begin{tabular}{lll}
+  \tabhead{\var{class} & \var{role} & \var{instance}}
+  E	       & E          & E \\
+  E	       & E          & * \\
+  E	       & *          & E \\
+  E	       & *          & * \\
+  \vdots       & \vdots     & etc. \\
+\end{tabular}
+\end{center}
+
+\subsubsection{Secondary filters}
+
 The \var{name} field is a Lua-style regular expression matched against
 the window's title. The \var{is_transient} field is a boolean that can
 be used to include or exclude transients only, while the \var{is_dockapp}
@@ -194,31 +226,22 @@ field is set by Notion for the dock windows of Window Maker dockapp protocol
 dockapps. Usually this is the only information available for these 
 \emph{icon} windows. 
 
-Notion looks for a matching winprop in the order listed by the following
-table. An 'E' indicates that the field must be set in the winprop
-and it must match the window's corresponding property exactly or, in
-case of \var{name}, the regular expression must match the window
-title. An asterisk '*' indicates that a winprop where the field is
-not specified (or is itself an asterisk in case of the first three
-fields) is tried.
+\subsubsection{Custom matching algorithms}
 
-\begin{center}
-\begin{tabular}{llll}
-  \tabhead{\var{class} & \var{role} & \var{instance} & other}
-  E	       & E          & E              & E \\
-  E	       & E          & E              & * \\
-  E	       & E          & *              & E \\
-  E	       & E          & *              & * \\
-  E	       & *          & E              & E \\
-  E	       & *          & E              & * \\
-  E	       & *          & *              & E \\
-  \vdots       & \vdots     & \vdots         & etc. \\
-\end{tabular}
-\end{center}
+If a custom matching algorithm is used, the secondary filters are ignored.
 
-If there are multiple matching winprops with the same
-\var{class}, \var{role} and \var{instance}, but other information
-different, the most recently defined one is used.
+A custom matching algorithm can be specified by simple adding a lua function
+named \var{match} to the winprop table. This function will be passed 3 
+parameters: the winprop itself, the client window against which the winprop
+must be matched, and the identification information of this client window. 
+
+The identification information of the client window is a table containing the
+\var{class}\index{class@\var{class}!winprop},
+\var{role}\index{role@\var{role}!winprop}, 
+\var{instance}\index{instance@\var{instance}!winprop},
+\var{is_transient}\index{is-transient@\var{is_transient}!winprop} and
+\var{is_dockapp}\index{is-dockapp@\var{is_dockapp}!winprop} fields of the 
+window.
 
 
 \subsection{Finding window identification}
