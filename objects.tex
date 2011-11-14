@@ -205,6 +205,8 @@ Figure \ref{fig:parentship}.
 \label{fig:parentship}
 \end{figure}
 
+\subsubsection{Manager--managed relations}
+
 \type{WRegion}s have very little control over their children as a parent.
 The manager\index{manager} \type{WRegion} has much more control over its
 managed \type{WRegion}s. Managers, for example, handle resize requests,
@@ -215,8 +217,6 @@ hierarchy is given in Figure \ref{fig:managership}. Note that sometimes
 the parent and manager are the same object and not all regions may have
 a manager, but all non-screen regions have a parent---a screen if not 
 anything else.
-
-\subsubsection{Manager--managed relations}
 
 \begin{figure}
 \begin{htmlonly}
@@ -250,6 +250,9 @@ workspaces as deep as you want.
 %transients managed by them. This is because WFloatWSs choose to handle
 %transients differently (transients are put in separate frames like normal
 %windows).
+
+In the presense of Xinerama\index{Xinerama} there may be \type{WScreen} 
+objects at the top of the manager--managed tree instead of \type{WRootWin}.
 
 \subsection{Summary}
 
