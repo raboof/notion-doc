@@ -32,7 +32,9 @@ If there are no serious side effects from deferring destroying the
 object or you're unsure whether it is safe to destroy the object
 immediately, use \code{mainloop_defer_destroy}.
 
-\subsection{The types \code{char*} and \code{const char*} as function
+\subsection{Method signatures}
+
+\subsubsection{The types \code{char*} and \code{const char*} as function
   parameters and return values}
 
 The following rules should apply to using strings as return values and
@@ -48,7 +50,23 @@ parameters to functions.
     \code{char*} & The string is the caller's responsibility and it
        \emph{must} free it when no longer needed. &
        The called function may modify the string but the ``owner'' of
-       the string is case-dependant. \\
+       the string is case-dependent. \\
 \end{tabularx}
+
+\subsubsection{Use of pointers}
+
+When a method has a pointer as a parameter, and there may be confusion 
+over whether parameter may be \code{NULL}, it is encouraged to add
+\url{http://www.splint.org}-style annotations such as \code{/*@notnull@*/}
+and \code{/*@null@*/}.
+
+\subsection{Encoding}
+
+Unless otherwise specified, character strings are encoded in the current 
+locale's encoding. Convenience booleans \code{ioncore_g.enc_sb}, 
+\code{ioncore_g.use_mb} and \code{ioncore_g.enc_utf8} may be used to determine
+whether the current locale's encoding is 8-bit, whether to use multi-byte 
+routines and whether the multi-byte encoding is UTF-8.
+
 
 

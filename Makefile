@@ -1,6 +1,8 @@
 # Settings
 ######################################
 
+# Requires at least GNU Make 3.81
+
 TOPDIR=../notion
 
 include $(TOPDIR)/build/system-inc.mk
@@ -19,6 +21,12 @@ FNTEXES=ioncore.exports mod_tiling.exports \
 	mod_query.exports de.exports mod_menu.exports \
 	mod_dock.exports mod_sp.exports mod_statusbar.exports
 
+TEXSOURCES=conf-bindings.tex confintro.tex conf-menus.tex \
+	conf-statusbar.tex conf.tex conf-winprops.tex cstyle.tex designnotes.tex \
+	de.tex fdl.tex fnref.tex fullhierarchy.tex hookref.tex luaif.tex \
+	macros.tex miscref.tex notionconf.tex notionnotes.tex objectsimpl.tex objects.tex \
+	prelim.tex statusd.tex tricks.tex
+
 RUBBER_DVI=rubber
 RUBBER_PS=rubber -p
 RUBBER_PDF=rubber -d
@@ -31,14 +39,17 @@ TARGETS = notionconf notionnotes
 nothing:
 	@ echo "Please read the README first."
 
-%-dvi:
+%-dvi: $(TEXSOURCES)
 	$(RUBBER_DVI) $*
-	
-%-ps:
-	$(RUBBER_PS) $*
+	touch $@
 
-%-pdf:
+%-ps: $(TEXSOURCES)
+	$(RUBBER_PS) $*
+	touch $@
+
+%-pdf: $(TEXSOURCES)
 	$(RUBBER_PDF) $*
+	touch $@
 
 # Install
 ######################################
@@ -48,23 +59,30 @@ install:
 	for d in $(DOCS); do \
 	    for e in ps pdf dvi; do \
 	      test -f $$d.$$e && $(INSTALL) -m $(DATA_MODE) $$d.$$e $(DOCDIR); \
-            done; \
-	    $(INSTALLDIR) $(DOCDIR)/$$d; \
-            for i in $$d/*; do \
-                $(INSTALL) -m $(DATA_MODE) $$i $(DOCDIR)/$$i; \
 	    done; \
-        done
+	    $(INSTALLDIR) $(DOCDIR)/$$d; \
+	    for i in $$d/*; do \
+	        $(INSTALL) -m $(DATA_MODE) $$i $(DOCDIR)/$$i; \
+	    done; \
+	    rm -f $(DOCDIR)/$$d/*.log; \
+	    rm -f $(DOCDIR)/$$d/WARNINGS; \
+	    rm -f $(DOCDIR)/$$d/*.aux; \
+	    rm -f $(DOCDIR)/$$d/*.idx; \
+	    rm -f $(DOCDIR)/$$d/*.tex; \
+	    rm -f $(DOCDIR)/$$d/*.pl; \
+	done
 
 # notionconf rules
 ######################################
 
-notionconf-dvi: fnlist.tex
-notionconf-ps: fnlist.tex
-notionconf-pdf: fnlist.tex
+notionconf-dvi: fnlist.tex $(TEXSOURCES)
+notionconf-ps: fnlist.tex $(TEXSOURCES)
+notionconf-pdf: fnlist.tex $(TEXSOURCES)
 
-notionconf-html: $(FNTEXES)
+notionconf-html: $(FNTEXES) $(TEXSOURCES)
 	$(L2H) -split 3 notionconf
 	cp notion.css notionconf
+	touch $@
 
 notionconf-html-onepage: $(FNTEXES)
 	$(L2H) -split 0 -dir notionconf-onepage notionconf
@@ -73,9 +91,10 @@ notionconf-html-onepage: $(FNTEXES)
 # notionnotes rules
 ######################################
 
-notionnotes-html: 
+notionnotes-html: $(TEXSOURCES)
 	$(L2H) -split 4 notionnotes
 	cp notion.css notionnotes
+	touch $@
 
 notionnotes-html-onepage: 
 	$(L2H) -split 0 -dir notionnotes-onepage notionnotes
@@ -103,7 +122,7 @@ all-html-onepage: $(patsubst %, %-html-onepage, $(TARGETS))
 
 clean:
 	rm -f $(FNTEXES) fnlist.tex
-	rm -f *.aux *.toc *.log
+	rm -f *.aux *.toc *.log *.out
 	rm -f *.idx *.ild *.ilg *.ind
         
 realclean: clean
@@ -116,7 +135,14 @@ realclean: clean
 
 include $(TOPDIR)/libmainloop/rx.mk
 
-$(TOPDIR)/%/exports.tex:
+# GNU Make 3.82 only supports glob expressions in pattern dependency lines
+# on second expansion, so we force that :(
+# See also http://savannah.gnu.org/bugs/?31248
+.SECONDEXPANSION:
+TRIGGER=$$(TRIGGER_SECOND_EXPANSION)
+
+# glob expressions in pattern dependency lines requires at least GNU Make 3.81
+$(TOPDIR)/%/exports.tex: $(TOPDIR)/%/*.c $(TRIGGER)
 	$(MAKE) -C $$(dirname $@) _exports_doc
 
 %.exports: $(TOPDIR)/%/exports.tex

@@ -10,6 +10,17 @@ a list of so called ``watches''. The \type{WObjDescr} structure simply
 lists the class name, a table of dynamic functions and a pointer to
 deinitialisation function (or ``destructor'').
 
+\subsection{Object creation}
+
+Object instances are created using the \code{CREATEOBJ_IMPL} macro, but
+by convention for each class \code{WFoo} a construction method 
+\code{create_foo} is provided.
+
+\subsection{Safe references}
+
+NOTE: This subsection appears out-of-date, it seems the WWatch infrastructure
+was removed from Ion3.
+
 Notion does not do any reference counting, garbage collecting or other
 fancy things related to automatic safe freeing of objects with its
 simplistic object system. Instead special watches (the \type{WWatch}
