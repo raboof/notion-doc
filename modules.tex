@@ -1,0 +1,20 @@
+\section{Modules}
+
+\subsection{Anatomy}
+
+A Notion module usually consists of a 'mod\_mymodule' directory with a 
+'mymodule.c' and a 'mod\_mymodule.lua'. It is common for configuration
+to go into a 'cfg\_modulename.lua' file in the configuration directory.
+
+\subsubsection{The lua part}
+
+The lua part of the module is defined in the Makefile of the module as the
+MODULE\_STUB. When no MODULE\_STUB is defined, an automatically generated
+stub is created:
+
+\begin{verbatim}
+ioncore.load_module('mod_mymodule')
+
+-- Mark ourselves loaded. 
+package.loaded['mod_mymodule']=true
+\end{verbatim}
