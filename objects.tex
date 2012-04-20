@@ -44,10 +44,10 @@ implement.
      |-->WRegion
      |    |-->WClientWin
      |    |-->WWindow
+     |    |    |-->WRootWin
      |    |    |-->WMPlex
      |    |    |    |-->WFrame
      |    |    |    `-->WScreen
-     |    |    |         `-->WRootWin
      |    |    `-->WInput (mod_query)
      |    |         |-->WEdln (mod_query)
      |    |         `-->WMessage (mod_query)
@@ -94,7 +94,6 @@ The core classes:
     
   \item[\type{WRootWin}]\indextype{WRootWin} is the class for
     root windows\index{root window} of X screens\index{screen!X}.
-    It is an instance of \type{WScreen}.
     Note that an ``X screen'' or root window is not necessarily a
     single physical screen\index{screen!physical} as a root window
     may be split over multiple screens when techniques such as 
