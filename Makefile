@@ -85,6 +85,7 @@ notionconf-html: $(FNTEXES) $(TEXSOURCES)
 	touch $@
 
 notionconf-html-onepage: $(FNTEXES)
+	@mkdir notionconf-onepage
 	$(L2H) -split 0 -dir notionconf-onepage notionconf
 	cp notion.css notionconf-onepage
 
@@ -97,6 +98,7 @@ notionnotes-html: $(TEXSOURCES)
 	touch $@
 
 notionnotes-html-onepage: 
+	@mkdir notionnotes-onepage
 	$(L2H) -split 0 -dir notionnotes-onepage notionnotes
 	cp notion.css notionnotes-onepage
 
