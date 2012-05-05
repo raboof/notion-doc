@@ -15,7 +15,7 @@ L2H=latex2html -show_section_numbers -short_index -local_icons -noaddress \
 # Function documentation to build
 ######################################
 
-DOCS=notionconf notionnotes
+DOCS=notionconf notionnotes notionconf-onepage notionnotes-onepage
 
 FNTEXES=ioncore.exports mod_tiling.exports \
 	mod_query.exports de.exports mod_menu.exports \
