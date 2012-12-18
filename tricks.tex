@@ -6,6 +6,42 @@ This chapter documents some additional features of the Notion configuration
 and scripting interface that can be used for more advanced scripting than
 the basic configuration explained in chapter \ref{chap:config}.
 
+
+\section{Protected mode and (un-)safe functions}
+
+Some of Notion's functions call other functions in so-called ``protected mode''.  
+In particular this is true for all the iterator functions mentioned in 
+\ref{sec:exports}. If a function \var{fn} is called in protected mode, the call
+will only succeed if \var{fn} is considered ``safe'', and will otherwise fail 
+with the message ``Ignoring call to unsafe function \var{fn} in restricted 
+mode.''.
+
+Let us try to explain the rationale behind this behavior and the heuristic for 
+deciding when a function can be considered safe through an example. The function 
+\fnref{WMPlex.managed_i} iterates over all regions managed by an \var{mplex} and 
+calls \var{iterfn} on each of these regions. If \var{iterfn} was able to alter 
+the list of regions managed by \var{mplex}, say by adding additional regions, 
+this iteration could easily turn into an infinite loop or lead to inconsistent 
+behavior.
+
+To avoid situations like this, in order to be considered safe, a function must
+not alter any of the internal data structures of Notion.
+
+If you ever need to use an unsafe function in combination with an iterator, 
+there is a simple workaround. In the example above, instead of writing 
+\code{WMPlex.managed_i(mplex, iterfn)}, which fails if \var{iterfn} is 
+unsafe, you can use the following code snippet to achieve the same result:
+\begin{verbatim}
+managed_regions={}
+mplex:managed_i(function(reg)
+    table.insert(managed_regions, reg) return true
+end)
+for _,reg in ipairs(managed_regions) do
+    iterfn(reg)
+end
+\end{verbatim}
+
+
 \section{Hooks}
 \label{sec:hooks}
 
