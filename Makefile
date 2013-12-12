@@ -84,7 +84,7 @@ notionconf-html: $(FNTEXES) $(TEXSOURCES)
 	cp notion.css notionconf
 	touch $@
 
-notionconf-html-onepage: $(FNTEXES)
+notionconf-html-onepage: $(FNTEXES) $(TEXSOURCES)
 	@mkdir notionconf-onepage
 	$(L2H) -split 0 -dir notionconf-onepage notionconf
 	cp notion.css notionconf-onepage
@@ -92,12 +92,12 @@ notionconf-html-onepage: $(FNTEXES)
 # notionnotes rules
 ######################################
 
-notionnotes-html: $(TEXSOURCES)
+notionnotes-html: $(FNTEXES) $(TEXSOURCES)
 	$(L2H) -split 4 notionnotes
 	cp notion.css notionnotes
 	touch $@
 
-notionnotes-html-onepage: 
+notionnotes-html-onepage: $(FNTEXES) $(TEXSOURCES)
 	@mkdir notionnotes-onepage
 	$(L2H) -split 0 -dir notionnotes-onepage notionnotes
 	cp notion.css notionnotes-onepage
@@ -105,7 +105,7 @@ notionnotes-html-onepage:
 # More generic rules
 ######################################
 
-.PHONY: all all-dvi all-ps all-pdf all-html
+.PHONY: all all-dvi all-ps all-pdf all-html all-html-onepage
 
 all: all-dvi all-ps all-pdf all-html all-html-onepage
 
@@ -126,6 +126,7 @@ clean:
 	rm -f $(FNTEXES) fnlist.tex
 	rm -f *.aux *.toc *.log *.out
 	rm -f *.idx *.ild *.ilg *.ind
+	rm -rf notionnotes notionnotes-onepage notionconf notionconf-onepage
         
 realclean: clean
 	rm -f *.ps *.pdf *.dvi
