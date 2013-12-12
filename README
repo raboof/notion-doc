@@ -6,7 +6,7 @@ Tuomo Valkonen <tuomov at iki.fi>
 
 
 This package contains some (advanced user and module writer)
-documentation for the Ion window manager.
+documentation for the Notion window manager.
 
 How to build:
 
@@ -16,7 +16,7 @@ How to build:
  2. Install various latex styles. On Debian, the following packages
     are needed: latex2html, ...
 
- 2. Modify TOPDIR in Makefile point to your top-level Ion source
+ 2. Modify TOPDIR in Makefile point to your top-level Notion source
     directory, containing a working system.mk (or system-ac.mk).
 
  3. After the above has been done, you may run 'make all' to build all
