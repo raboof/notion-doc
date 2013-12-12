@@ -31,14 +31,12 @@ is inheritance; roughly how classes (objects are instances of classes)
 extend on others' features. Inheritance gives rise to class hierarchy.
 In the case of single-inheritance this hierarchy can be expressed as a
 tree where the class at the root is inherited by all others below it
-and so on. Figure \ref{fig:classhierarchy} lists out the Notion class 
-hierarchy and below we explain what features of Notion the classes 
-implement.
+and so on. The tree below lists out the Notion class hierarchy and below 
+we explain what features of Notion the classes implement.
 
-\begin{figure}
-\begin{htmlonly}
-\docode % latex2html kludge
-\end{htmlonly}
+\subsubsection{Partial Notioncore, \file{mod\_tiling} and \file{mod\_query} class hierarchy}
+\label{subsub:classhierarchy}
+
 \begin{verbatim}
     Obj
      |-->WRegion
@@ -57,12 +55,8 @@ implement.
      |    `-->WTiling (mod_tiling)
      `-->WSplit (mod_tiling)
 \end{verbatim}
-\caption{Partial Notioncore, \file{mod\_tiling} and \file{mod\_query} 
-    class hierarchy.}
-\label{fig:classhierarchy}
-\end{figure}
 
-The core classes:
+\subsubsection{The core classes}
 
 \begin{description}
   \item[\type{Obj}]\indextype{Obj}
@@ -183,12 +177,11 @@ associated to it. The parent\index{parent} for an object is always a
 the X windows. For other \type{WRegion}s the relation is not as clear.
 There is generally very few restrictions other than the above on the
 parent---child relation but the most common is as described in
-Figure \ref{fig:parentship}.
+paragraph \ref{par:parentship}.
 
-\begin{figure}
-\begin{htmlonly}
-\docode % latex2html kludge
-\end{htmlonly}
+\paragraph{Most common parent--child relations}
+\label{par:parentship}
+
 \begin{verbatim}
     WRootWins
      |-->WGroupWSs
@@ -200,9 +193,6 @@ Figure \ref{fig:parentship}.
           |-->WFrames for transients
           `-->a possible WEdln or WMessage
 \end{verbatim}
-\caption{Most common parent--child relations}
-\label{fig:parentship}
-\end{figure}
 
 \subsubsection{Manager--managed relations}
 
@@ -217,10 +207,8 @@ the parent and manager are the same object and not all regions may have
 a manager, but all non-screen regions have a parent---a screen if not 
 anything else.
 
-\begin{figure}
-\begin{htmlonly}
-\docode % latex2html kludge
-\end{htmlonly}
+\paragraph{Most common manager--managed relations}
+\label{par:managership}
 \begin{verbatim}
     WRootWins
      |-->WGroupCWs for full screen WClientWins
@@ -237,9 +225,6 @@ anything else.
      |    `-->possibly a WStatusBar or WDock (if no tiling)
      `-->WFrames for sticky stuff, such as the scratchpad
 \end{verbatim}
-\caption{Most common manager--managed relations}
-\label{fig:managership}
-\end{figure}
 
 Note that a workspace can manage another workspace. This can be
 achieved with the \code{WGroup.attach_new} function, and allows you to nest
