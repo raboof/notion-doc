@@ -22,7 +22,7 @@ FNTEXES=ioncore.exports mod_tiling.exports \
 	mod_dock.exports mod_sp.exports mod_statusbar.exports
 
 TEXSOURCES=conf-bindings.tex confintro.tex conf-menus.tex \
-	conf-statusbar.tex conf.tex conf-winprops.tex cstyle.tex designnotes.tex \
+	conf-stdisp.tex conf-dock.tex conf-statusbar.tex conf.tex conf-winprops.tex cstyle.tex designnotes.tex \
 	de.tex fdl.tex fnref.tex fullhierarchy.tex hookref.tex luaif.tex \
 	macros.tex miscref.tex notionconf.tex notionnotes.tex objectsimpl.tex objects.tex \
 	prelim.tex statusd.tex tricks.tex

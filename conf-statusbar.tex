@@ -1,11 +1,11 @@
-\section{The statusbar}
+\subsection{The statusbar}
 \label{sec:statusbar}
 
+Given the high quality of 3rd-party panels, \file{mod\_statusbar} is mostly
+a legacy part of Notion.
+
 The \file{mod\_statusbar} module provides a statusbar that adapts to 
-layouts of tilings, using only the minimal space needed. Notion only 
-supports one adaptive ``status display'' object per screen, so this
-statusbar is mutually exclusive with the embedded mode of \file{mod\_dock} 
-docks. 
+layouts of tilings, using only the minimal space needed. 
 
 The statusbar is configured in \file{cfg\_statusbar.lua}. Typically,
 the configuration consists of two steps: creating a statusbar with
@@ -43,7 +43,7 @@ mod_statusbar.launch_statusd{
 \end{verbatim}
 
 
-\subsection{The template}
+\subsubsection{The template}
 
 The template specifies what is shown on the statusbar; for information
 on the other options to \fnref{mod_statusbar.create}, see the reference. 
@@ -66,7 +66,7 @@ meter always take this much space, by stretching any space found in
 the direction indicated by the alignment specifier: the opposite
 direction for left or right alignment, and both for centring.
 
-\subsection{The systray}
+\subsubsection{The systray}
 
 The special \codestr{\%systray} and \codestr{\%systray\_*}
 (\codestr{*} varying) monitors indicate where to place system tray 
@@ -75,7 +75,7 @@ icons are placed in \codestr{\%systray} automatically, unless disabled
 with the \var{systray} option. Otherwise the \var{statusbar} winprop may
 be used to place any window in any particular \codestr{\%systray\_*}.
 
-\subsection{Monitors}
+\subsubsection{Monitors}
 
 The part before the first
 underscore of each monitor name, describes the script/plugin/module
@@ -86,7 +86,7 @@ Notion comes with date, load and mail (for plain old mbox)
 the scripts repository \cite{scripts}. These included scripts 
 provide the following monitors and their options
 
-\subsubsection{Date}
+\paragraph{Date}
 
 Options: \var{date_format}: The date format in as seen above, 
 in the usual \code{strftime} format. \code{formats}: table of
@@ -97,7 +97,7 @@ Monitors: \codestr{date} and other user-specified ones with the
 \codestr{date\_} prefix.
 
 
-\subsubsection{Load}
+\paragraph{Load}
 
 Options: \var{update_interval}: Update interval in milliseconds
 (default 10s). \var{important_threshold}: Threshold above which 
@@ -110,7 +110,7 @@ Monitors: \codestr{load} (for all three values),
 \codestr{load\_1min}, \codestr{load\_5min} and \codestr{load\_15min}.
 
 
-\subsubsection{Mail}
+\paragraph{Mail}
 
 Options: \var{update_interval}: Update interval in milliseconds
 (default 1min). \var{mbox}: mbox-format mailbox location
