@@ -41,15 +41,12 @@ nothing:
 
 %-dvi: $(TEXSOURCES)
 	$(RUBBER_DVI) $*
-	touch $@
 
 %-ps: $(TEXSOURCES)
 	$(RUBBER_PS) $*
-	touch $@
 
 %-pdf: $(TEXSOURCES)
 	$(RUBBER_PDF) $*
-	touch $@
 
 # Install
 ######################################
@@ -83,7 +80,6 @@ notionconf-pdf: fnlist.tex $(TEXSOURCES)
 notionconf-html: $(FNTEXES) $(TEXSOURCES)
 	$(L2H) -split 3 notionconf
 	cp notion.css notionconf
-	touch $@
 
 notionconf-html-onepage: $(FNTEXES) $(TEXSOURCES)
 	@mkdir notionconf-onepage
@@ -96,7 +92,6 @@ notionconf-html-onepage: $(FNTEXES) $(TEXSOURCES)
 notionnotes-html: $(FNTEXES) $(TEXSOURCES)
 	$(L2H) -split 4 notionnotes
 	cp notion.css notionnotes
-	touch $@
 
 notionnotes-html-onepage: $(FNTEXES) $(TEXSOURCES)
 	@mkdir notionnotes-onepage
