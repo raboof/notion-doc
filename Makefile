@@ -57,7 +57,8 @@ nothing:
 install:
 	$(INSTALLDIR) $(DOCDIR); \
 	for d in $(DOCS); do \
-	    for e in ps pdf dvi; do \
+	    # Skipping dvi and ps because of #2
+	    for e in pdf; do \
 	      test -f $$d.$$e && $(INSTALL) -m $(DATA_MODE) $$d.$$e $(DOCDIR); \
 	    done; \
 	    $(INSTALLDIR) $(DOCDIR)/$$d; \
@@ -107,7 +108,7 @@ notionnotes-html-onepage: $(FNTEXES) $(TEXSOURCES)
 
 .PHONY: all all-dvi all-ps all-pdf all-html all-html-onepage
 
-all: all-dvi all-ps all-pdf all-html all-html-onepage
+all: all-pdf all-html all-html-onepage
 
 all-dvi: $(patsubst %,%-dvi,$(TARGETS))
 
