@@ -128,6 +128,8 @@ clean:
 	rm -f *.aux *.toc *.log *.out
 	rm -f *.idx *.ild *.ilg *.ind
 	rm -rf notionnotes notionnotes-onepage notionconf notionconf-onepage
+	@echo ""
+	@echo "Successfully cleaned intermediate files. To also remove deliverables, use 'make realclean'"
         
 realclean: clean
 	rm -f *.ps *.pdf *.dvi
