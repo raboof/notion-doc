@@ -40,15 +40,15 @@ nothing:
 	@ echo "Please read the README first."
 
 %-dvi: $(TEXSOURCES)
-	rm -r $*
+	rm -rf $*
 	$(RUBBER_DVI) $*
 
 %-ps: $(TEXSOURCES)
-	rm -r $*
+	rm -rf $*
 	$(RUBBER_PS) $*
 
 %-pdf: $(TEXSOURCES)
-	rm -r $*
+	rm -rf $*
 	$(RUBBER_PDF) $*
 
 # Install
@@ -85,7 +85,7 @@ notionconf-html: $(FNTEXES) $(TEXSOURCES)
 	cp notion.css notionconf
 
 notionconf-html-onepage: $(FNTEXES) $(TEXSOURCES)
-	rm -r notionconf-onepage
+	rm -rf notionconf-onepage
 	mkdir notionconf-onepage
 	$(L2H) -split 0 -dir notionconf-onepage notionconf
 	cp notion.css notionconf-onepage
@@ -98,7 +98,7 @@ notionnotes-html: $(FNTEXES) $(TEXSOURCES)
 	cp notion.css notionnotes
 
 notionnotes-html-onepage: $(FNTEXES) $(TEXSOURCES)
-	rm -r notionnotes-onepage
+	rm -rf notionnotes-onepage
 	mkdir notionnotes-onepage
 	$(L2H) -split 0 -dir notionnotes-onepage notionnotes
 	cp notion.css notionnotes-onepage

@@ -1,8 +1,10 @@
-
 Notion-doc
+==========
 
-The Notion Team http://notion.sourceforge.net
-Tuomo Valkonen <tuomov at iki.fi>
+The Notion team 2010-2019.
+Tuomo Valkonen 1999-2009.
+
+http://notionwm.net
 
 
 This package contains some (advanced user and module writer)
@@ -10,11 +12,12 @@ documentation for the Notion window manager.
 
 How to build:
 
- 1. Get rubber <http://www.pps.jussieu.fr/~beffara/soft/rubber/>.
+ 1. Get rubber <https://launchpad.net/rubber>.
     Get Latex2HTML if you want HTML versions of the documents.
+    On Debian, the following packages are available:
+    rubber, latex2html
 
- 2. Install various latex styles. On Debian, the following packages
-    are needed: latex2html, ...
+ 2. (Optional) Install various latex styles. 
 
  2. Modify TOPDIR in Makefile point to your top-level Notion source
     directory, containing a working system.mk (or system-ac.mk).
