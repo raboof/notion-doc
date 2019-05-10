@@ -4,7 +4,9 @@ Notion-doc
 The Notion team 2010-2019.
 Tuomo Valkonen 1999-2009.
 
-http://notionwm.net
+https://notionwm.net
+
+Issues are tracked at https://github.com/raboof/notion/issues?q=is%3Aissue+label%3Adocs
 
 
 This package contains some (advanced user and module writer)
