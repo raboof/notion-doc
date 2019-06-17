@@ -273,3 +273,33 @@ to use the Windows keys as modifiers because many applications already
 use \key{Alt}. Nevertheless, \key{Mod1} is the default as a key bound 
 to it is available virtually everywhere.
 
+\subsection{Disabling Caps Lock}
+
+Caps Lock is rarely used for its original purpose. For this reason, you
+might want to put it to different use, and bind it to some window management
+feature. However, if you would simply bind \code{Caps_Lock} to some
+functionality, each time you would access it it would switch case.
+
+You can use the X Keyboard Extension to disable the 'Lock' feature of
+Caps Lock, without disabling or swapping the key wholesale. To this end,
+create a \file{/usr/share/X11/xkb/symbols/misc} file with the following
+contents:
+
+\begin{verbatim}
+partial modifier_keys
+xkb_symbols "capsoff" {
+    key <CAPS> {
+        type[Group1] = "ONE_LEVEL",
+        symbols[Group1] = [ Caps_Lock ],
+        actions[Group1] = [ NoAction() ]
+    };
+};
+\end{verbatim}
+
+Then load it with:
+
+\begin{verbatim}
+$ setxkbmap -symbols 'pc+us+misc(capsoff)'
+\end{verbatim}
+
+To make this change persistent, put it in your startup script.
