@@ -131,8 +131,6 @@ Key presses:
     \item \fnrefx{ioncore}{kpress}, and
           \fnrefx{ioncore}{kpress_wait}\code{(keyspec, handler [, guard])}.
     \item \fnrefx{ioncore}{submap}\code{(keyspec, \{ ... more key bindings ... \})}.
-    \item \fnrefx{ioncore}{submap_enter}, and
-          \fnrefx{ioncore}{submap_wait}\code{(handler [, guard])}.
 \end{itemize}
 Mouse actions:
 \begin{itemize}
@@ -151,10 +149,6 @@ This is to stop one from accidentally calling e.g.
 \fnrefx{ioncore}{submap} function is used to define submaps or
 ``prefix maps''. The second argument to this function is table listing
 the key press actions (\fnrefx{ioncore}{kpress}) in the submap. 
-The \fnrefx{ioncore}{submap_enter} handler is called when the submap
-is entered, in which this handler is defined. Likewise, the
-\fnrefx{ioncore}{submap_wait} handler is  called when all modifiers
-have been released while waiting for further key presses in the submap.
 
 The parameters \var{keyspec} and \var{buttonspec} are explained below
 in detail. The parameter \var{handler} is the handler for the binding,
