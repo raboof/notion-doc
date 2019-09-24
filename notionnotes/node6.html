@@ -91,9 +91,9 @@ original version by:  Nikos Drakos, CBLU, University of Leeds
 <P>
 To keep Notion's code as simple as possible yet safe, there are restrictions
 when the WObj
-<TT>destroy_obj</TT><A NAME="751"></A>
+<TT>destroy_obj</TT><A NAME="759"></A>
 function that calls watches, the deinit routine and frees memory may
-be called directly. In all other cases the <TT>mainloop_defer_destroy</TT><A NAME="752"></A>
+be called directly. In all other cases the <TT>mainloop_defer_destroy</TT><A NAME="760"></A>
 function should be used to defer the call of <TT>destroy_obj</TT> until
 Notioncore returns to its main event loop. 
 
@@ -110,7 +110,7 @@ following cases:
       when the function created a frame to manage some other object but for
       some reason failed to reparent the object to this frame.
 </LI>
-<LI>In a deferred action handler set with <TT>mainloop_defer_action</TT><A NAME="753"></A>.
+<LI>In a deferred action handler set with <TT>mainloop_defer_action</TT><A NAME="761"></A>.
       Like deferred destroys, other deferred actions are called when
       Notioncore has returned to the main loop.
 </LI>

@@ -115,10 +115,10 @@ C side of Notion and Lua:
 <TR><TD VALIGN=BASELINE ALIGN=RIGHT NOWRAP> 
 	b </TD><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> bool </TD><TD></TD></TR>
 <TR><TD VALIGN=BASELINE ALIGN=RIGHT NOWRAP> 
-	t </TD><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> ExtlTab<A NAME="626"></A> </TD><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP>
+	t </TD><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> ExtlTab<A NAME="634"></A> </TD><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP>
 			Reference to Lua table</TD></TR>
 <TR><TD VALIGN=BASELINE ALIGN=RIGHT NOWRAP> 
-	f </TD><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> ExtlFn<A NAME="627"></A> </TD><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP>
+	f </TD><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> ExtlFn<A NAME="635"></A> </TD><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP>
 			Reference to Lua function.</TD></TR>
 <TR><TD VALIGN=BASELINE ALIGN=RIGHT NOWRAP> 
 	o </TD><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> Any WObj* </TD><TD></TD></TR>
@@ -181,7 +181,7 @@ initialisation and deinitialisation code.
 
 <P>
 You've seen the terms level 1 and 2 call handler mentioned above. 
-<A NAME="596"></A>
+<A NAME="604"></A>
 The Lua support code uses two so called call handlers to convert and check
 the types of parameters passed from Lua to C and back to Lua. The first
 one of these call handlers is the same for all exported functions and
@@ -216,10 +216,10 @@ supported by the generated L2 call handlers).
 
 <P>
 The functions
-<TT>extl_call</TT><A NAME="620"></A>,
-<TT>extl_call_named</TT><A NAME="621"></A>,
-<TT>extl_dofile</TT><A NAME="622"></A> and
-<TT>extl_dostring</TT><A NAME="623"></A>
+<TT>extl_call</TT><A NAME="628"></A>,
+<TT>extl_call_named</TT><A NAME="629"></A>,
+<TT>extl_dofile</TT><A NAME="630"></A> and
+<TT>extl_dostring</TT><A NAME="631"></A>
 call a referenced function (ExtlFn), named function, execute a
 string and a file, respectively. The rest of the parameters for all these
 functions are similar. The 'spec' argument is a string of identifier
@@ -235,7 +235,7 @@ passing succeeded or not.
 <P>
 Sometimes it is necessary to block calls to all but a limited set of
 Notion functions. This can be accomplished with
-<TT>extl_set_safelist</TT><A NAME="624"></A>.
+<TT>extl_set_safelist</TT><A NAME="632"></A>.
 The parameter to this function is a NULL-terminated array of strings
 and the return value is a similar old safelist.
 The call <TT>extl_set_safelist(NULL)</TT> removes any safelist and allows
@@ -249,7 +249,7 @@ calls to all exported functions.
 
 <P>
 Configuration files should be read as before with the function
-<TT>read_config_for</TT><A NAME="625"></A>
+<TT>read_config_for</TT><A NAME="633"></A>
 except that the list of known options is no longer present.
 
 <P>

@@ -177,13 +177,13 @@ we explain what features of Notion the classes implement.
 <P>
 <DL>
 <DT><STRONG>Obj</STRONG></DT>
-<DD><A NAME="348"></A>
+<DD><A NAME="351"></A>
     Is the base of Notion's object system.
 
 <P>
 </DD>
 <DT><STRONG>WRegion</STRONG></DT>
-<DD><A NAME="349"></A>
+<DD><A NAME="352"></A>
     is the base class for everything corresponding to something on the
     screen. Each object of type WRegion has a size and  position
     relative to the parent WRegion. While a big part of Notion 
@@ -195,14 +195,14 @@ we explain what features of Notion the classes implement.
 <P>
 </DD>
 <DT><STRONG>WClientWin</STRONG></DT>
-<DD><A NAME="350"></A> is a class for
+<DD><A NAME="353"></A> is a class for
     client window objects, the objects that window managers are
     supposed to manage.
 
 <P>
 </DD>
 <DT><STRONG>WWindow</STRONG></DT>
-<DD><A NAME="351"></A> is the base class for all
+<DD><A NAME="354"></A> is the base class for all
     internal objects having an X window associated to them
     (WClientWins also have X windows associated to them).
 
@@ -216,13 +216,13 @@ we explain what features of Notion the classes implement.
 <P>
 </DD>
 <DT><STRONG>WScreen</STRONG></DT>
-<DD><A NAME="352"></A> is an instance of WMPlex
+<DD><A NAME="355"></A> is an instance of WMPlex
     for screens.
 
 <P>
 </DD>
 <DT><STRONG>WRootWin</STRONG></DT>
-<DD><A NAME="353"></A> is the class for
+<DD><A NAME="356"></A> is the class for
     root windows<A NAME="263"></A> of X screens<A NAME="264"></A>.
     Note that an ``X screen'' or root window is not necessarily a
     single physical screen<A NAME="265"></A> as a root window
@@ -233,7 +233,7 @@ we explain what features of Notion the classes implement.
 <P>
 </DD>
 <DT><STRONG>WFrame</STRONG></DT>
-<DD><A NAME="354"></A> is the class for frames.
+<DD><A NAME="357"></A> is the class for frames.
     While most Notion's objects have no graphical presentation, frames 
     basically add to WMPlexes the decorations around client 
     windows (borders, tabs).
@@ -241,11 +241,11 @@ we explain what features of Notion the classes implement.
 <P>
 </DD>
 <DT><STRONG>WGroup</STRONG></DT>
-<DD><A NAME="355"></A> is the base class for groups.
+<DD><A NAME="358"></A> is the base class for groups.
     Particular types of groups are workspaces 
-    (WGroupWS<A NAME="356"></A>)
+    (WGroupWS<A NAME="359"></A>)
     and groups of client windows
-    (WGroupCW<A NAME="357"></A>).
+    (WGroupCW<A NAME="360"></A>).
 </DD>
 </DL>
 
@@ -255,12 +255,12 @@ Classes implemented by the <SPAN  CLASS="textit">mod_tiling</SPAN> module:
 <P>
 <DL>
 <DT><STRONG>WTiling</STRONG></DT>
-<DD><A NAME="359"></A> is the class for tilings
+<DD><A NAME="362"></A> is the class for tilings
     of frames.
   
 </DD>
 <DT><STRONG>WSplit</STRONG></DT>
-<DD><A NAME="360"></A> (or, more specifically, classes
+<DD><A NAME="363"></A> (or, more specifically, classes
     that inherit it) encode the WTiling tree structure.
 </DD>
 </DL>
@@ -271,19 +271,19 @@ Classes implemented by the <SPAN  CLASS="textit">mod_query</SPAN> module:
 <P>
 <DL>
 <DT><STRONG>WInput</STRONG></DT>
-<DD><A NAME="362"></A> is a virtual base class for the
+<DD><A NAME="365"></A> is a virtual base class for the
     two classes below.
   
 </DD>
 <DT><STRONG>WEdln</STRONG></DT>
-<DD><A NAME="363"></A> is the class for the ``queries'',
+<DD><A NAME="366"></A> is the class for the ``queries'',
     the text inputs that usually appear at bottoms of frames and sometimes
     screens. Queries are the functional equivalent of ``mini buffers'' in
     many text editors.
   
 </DD>
 <DT><STRONG>WMessage</STRONG></DT>
-<DD><A NAME="364"></A> implements the boxes for 
+<DD><A NAME="367"></A> implements the boxes for 
     warning and other messages that Notion may wish to display to the user. 
     These also usually appear at bottoms of frames.
 </DD>
@@ -338,6 +338,18 @@ bool input_fitrep(WInput *input, WWindow *par, const WFitParams *fp)
 </PRE>
 
 <P>
+To get the object type as a string, for example for diagnostic logging, you can use <TT>OBJ_TYPESTR</TT>:
+
+<P>
+<PRE>
+#include &lt;libtu/objp.h&gt;
+
+...
+
+  warn(TR("Unable to reparent this %s."), OBJ_TYPESTR(reg));
+</PRE>
+
+<P>
 
 <H2><A NAME="SECTION00022000000000000000">
 <SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">2</SPAN> Object hierarchies: WRegion parents and managers</A>
@@ -349,7 +361,7 @@ bool input_fitrep(WInput *input, WWindow *par, const WFitParams *fp)
 <SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">1</SPAN> Parent-child relations</A>
 </H3>
 Each object of type WRegion has a parent and possibly a manager
-associated to it. The parent<A NAME="306"></A> for an object is always a 
+associated to it. The parent<A NAME="309"></A> for an object is always a 
 WWindow and for WRegion with an X window (WClientWin,
 WWindow) the parent WWindow is given by the same relation of
 the X windows. For other WRegions the relation is not as clear.
@@ -386,7 +398,7 @@ paragraph <A HREF="#par:parentship"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SR
 
 <P>
 WRegions have very little control over their children as a parent.
-The manager<A NAME="320"></A> WRegion has much more control over its
+The manager<A NAME="323"></A> WRegion has much more control over its
 managed WRegions. Managers, for example, handle resize requests,
 focusing and displaying of the managed regions. Indeed the manager--managed
 relationship gives a better picture of the logical ordering of objects on
@@ -426,7 +438,7 @@ achieved with the <TT>WGroup.attach_new</TT> function, and allows you to nest
 workspaces as deep as you want.
 
 <P>
-In the presense of Xinerama<A NAME="329"></A> there may be WScreen 
+In the presense of Xinerama<A NAME="332"></A> there may be WScreen 
 objects at the top of the manager-managed tree instead of WRootWin.
 
 <P>
