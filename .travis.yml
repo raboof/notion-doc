@@ -3,4 +3,16 @@ before_install:
 
 script:
   - git clone https://github.com/raboof/notion ../notion
+  - make -C ../notion/libextl libextl-mkexports
   - make notionconf-html notionnotes-html
+  - mkdir target
+  - mv notionconf target
+  - mv notionnotes target
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+  keep_history: true
+  on:
+    branch: master
