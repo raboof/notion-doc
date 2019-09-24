@@ -1,0 +1,197 @@
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>2 Object system implementation</TITLE>
+<META NAME="description" CONTENT="2 Object system implementation">
+<META NAME="keywords" CONTENT="notionnotes">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="notion.css">
+
+<LINK REL="next" HREF="node4.html">
+<LINK REL="previous" HREF="node2.html">
+<LINK REL="up" HREF="notionnotes.html">
+<LINK REL="next" HREF="node4.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html130"
+  HREF="node4.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html124"
+  HREF="notionnotes.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html118"
+  HREF="node2.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html126"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html128"
+  HREF="node10.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html131"
+  HREF="node4.html">3 The Lua interface</A>
+<B> Up:</B> <A NAME="tex2html125"
+  HREF="notionnotes.html">Notion: Notes for the</A>
+<B> Previous:</B> <A NAME="tex2html119"
+  HREF="node2.html">1 Class and object</A>
+ &nbsp; <B>  <A NAME="tex2html127"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html129"
+  HREF="node10.html">Index</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL CLASS="ChildLinks">
+<LI><A NAME="tex2html132"
+  HREF="node3.html#SECTION00031000000000000000"><SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">1</SPAN> Object creation</A>
+<LI><A NAME="tex2html133"
+  HREF="node3.html#SECTION00032000000000000000"><SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN> Safe references</A>
+<LI><A NAME="tex2html134"
+  HREF="node3.html#SECTION00033000000000000000"><SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">3</SPAN> Dynamic dispatch</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00030000000000000000">
+<SPAN CLASS="arabic">2</SPAN> Object system implementation</A>
+</H1>
+
+<P>
+First, to get things clear, what are considered objects here are C
+structures containing a properly initialised <A NAME="488"></A>
+structure defined in <SPAN  CLASS="textit">ioncore/obj.h</SPAN> as the first element (or the
+first element of the structure which is the first element and so on which
+gives rise to inheritance). The WObj structure contains a pointer
+to a WObjDescr<A NAME="490"></A> class type info structure and
+a list of so called ``watches''. The WObjDescr structure simply
+lists the class name, a table of dynamic functions and a pointer to
+deinitialisation function (or ``destructor'').
+
+<P>
+
+<H2><A NAME="SECTION00031000000000000000">
+<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">1</SPAN> Object creation</A>
+</H2>
+
+<P>
+Object instances are created using the <TT>CREATEOBJ_IMPL</TT> macro, but
+by convention for each class <TT>WFoo</TT> a construction method 
+<TT>create_foo</TT> is provided.
+
+<P>
+
+<H2><A NAME="SECTION00032000000000000000">
+<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN> Safe references</A>
+</H2>
+
+<P>
+NOTE: This subsection appears out-of-date, it seems the WWatch infrastructure
+was removed from Ion3.
+
+<P>
+Notion does not do any reference counting, garbage collecting or other
+fancy things related to automatic safe freeing of objects with its
+simplistic object system. Instead special watches (the WWatch
+<A NAME="494"></A> structure) may be used to create safe references to
+objects that might be destroyed during the time the specific pointer is
+needed. When an object is destroyed, its list of watches is processed,
+setting the pointers in the watches to NULL and the watch handlers for
+each watch are called. 
+
+<P>
+
+<H2><A NAME="SECTION00033000000000000000">
+<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">3</SPAN> Dynamic dispatch</A>
+</H2>
+
+<P>
+To override a method means to reimplement it specifically for a given subtype.
+This is used in Notion to allow subclasses to override of their superclasses' 
+methods.
+
+<P>
+Overridable methods are specified as <TT>DYNFUN</TT>, for example 
+<A HREF="#fn:region_fitrep"><TT>region_fitrep</TT></A> in <SPAN  CLASS="textit">ioncore/region.h</SPAN>:
+
+<P>
+<PRE>
+DYNFUN bool region_fitrep(WRegion *reg, WWindow *par, const WFitParams *fp);
+</PRE>
+
+<P>
+Dynamic functions can be called with <TT>CALL_DYN</TT> or <TT>CALL_DYN_RET</TT>.
+When a subclass desires to override a dynamic function, it does so by 
+specifying a DynFunTab<A NAME="502"></A>. For example, the function
+table for WGroup overrides <A HREF="#fn:region_fitrep"><TT>region_fitrep</TT></A> with 
+<A HREF="#fn:group_fitrep"><TT>group_fitrep</TT></A>:
+
+<P>
+<PRE>
+static DynFunTab group_dynfuntab[]={
+    {(DynFun*)region_fitrep,
+     (DynFun*)group_fitrep},
+    ...
+    END_DYNFUNTAB
+};
+EXTL_EXPORT
+IMPLCLASS(WGroup, WRegion, group_deinit, group_dynfuntab);
+</PRE>
+
+<P>
+Whenever <A HREF="#fn:region_fitrep"><TT>region_fitrep</TT></A> is called on a region that is actually a 
+WGroup, <A HREF="#fn:group_fitrep"><TT>group_fitrep</TT></A> is called instead.
+
+<P>
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html130"
+  HREF="node4.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html124"
+  HREF="notionnotes.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html118"
+  HREF="node2.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html126"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html128"
+  HREF="node10.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html131"
+  HREF="node4.html">3 The Lua interface</A>
+<B> Up:</B> <A NAME="tex2html125"
+  HREF="notionnotes.html">Notion: Notes for the</A>
+<B> Previous:</B> <A NAME="tex2html119"
+  HREF="node2.html">1 Class and object</A>
+ &nbsp; <B>  <A NAME="tex2html127"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html129"
+  HREF="node10.html">Index</A></B> </DIV>
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

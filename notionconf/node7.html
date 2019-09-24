@@ -1,0 +1,6506 @@
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>6. Function reference</TITLE>
+<META NAME="description" CONTENT="6. Function reference">
+<META NAME="keywords" CONTENT="notionconf">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="notion.css">
+
+<LINK REL="next" HREF="node8.html">
+<LINK REL="previous" HREF="node6.html">
+<LINK REL="up" HREF="notionconf.html">
+<LINK REL="next" HREF="node8.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html402"
+  HREF="node8.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html396"
+  HREF="notionconf.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html390"
+  HREF="node6.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html398"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html400"
+  HREF="node11.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html403"
+  HREF="node8.html">A. GNU Free Documentation</A>
+<B> Up:</B> <A NAME="tex2html397"
+  HREF="notionconf.html">Configuring and extending Notion</A>
+<B> Previous:</B> <A NAME="tex2html391"
+  HREF="node6.html">5. Scripting</A>
+ &nbsp; <B>  <A NAME="tex2html399"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html401"
+  HREF="node11.html">Index</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL CLASS="ChildLinks">
+<LI><A NAME="tex2html404"
+  HREF="node7.html#SECTION00710000000000000000"><SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">1</SPAN> Functions defined in <SPAN  CLASS="textit">ioncore</SPAN></A>
+<UL>
+<LI><A NAME="tex2html405"
+  HREF="node7.html#SECTION00711000000000000000"><SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">1</SPAN> WClientWin functions</A>
+<LI><A NAME="tex2html406"
+  HREF="node7.html#SECTION00712000000000000000"><SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">2</SPAN> WFrame functions</A>
+<LI><A NAME="tex2html407"
+  HREF="node7.html#SECTION00713000000000000000"><SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">3</SPAN> WGroup functions</A>
+<LI><A NAME="tex2html408"
+  HREF="node7.html#SECTION00714000000000000000"><SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">4</SPAN> WGroupCW functions</A>
+<LI><A NAME="tex2html409"
+  HREF="node7.html#SECTION00715000000000000000"><SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">5</SPAN> WGroupWS functions</A>
+<LI><A NAME="tex2html410"
+  HREF="node7.html#SECTION00716000000000000000"><SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">6</SPAN> WHook functions</A>
+<LI><A NAME="tex2html411"
+  HREF="node7.html#SECTION00717000000000000000"><SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">7</SPAN> WInfoWin functions</A>
+<LI><A NAME="tex2html412"
+  HREF="node7.html#SECTION00718000000000000000"><SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">8</SPAN> WMPlex functions</A>
+<LI><A NAME="tex2html413"
+  HREF="node7.html#SECTION00719000000000000000"><SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">9</SPAN> WMoveresMode functions</A>
+<LI><A NAME="tex2html414"
+  HREF="node7.html#SECTION007110000000000000000"><SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">10</SPAN> WRegion functions</A>
+<LI><A NAME="tex2html415"
+  HREF="node7.html#SECTION007111000000000000000"><SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">11</SPAN> WRootWin functions</A>
+<LI><A NAME="tex2html416"
+  HREF="node7.html#SECTION007112000000000000000"><SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">12</SPAN> WScreen functions</A>
+<LI><A NAME="tex2html417"
+  HREF="node7.html#SECTION007113000000000000000"><SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">13</SPAN> WTimer functions</A>
+<LI><A NAME="tex2html418"
+  HREF="node7.html#SECTION007114000000000000000"><SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">14</SPAN> WWindow functions</A>
+<LI><A NAME="tex2html419"
+  HREF="node7.html#SECTION007115000000000000000"><SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">15</SPAN> global functions</A>
+<LI><A NAME="tex2html420"
+  HREF="node7.html#SECTION007116000000000000000"><SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">16</SPAN> gr functions</A>
+<LI><A NAME="tex2html421"
+  HREF="node7.html#SECTION007117000000000000000"><SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">17</SPAN> string functions</A>
+<LI><A NAME="tex2html422"
+  HREF="node7.html#SECTION007118000000000000000"><SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">18</SPAN> table functions</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html423"
+  HREF="node7.html#SECTION00720000000000000000"><SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">2</SPAN> Functions defined in <SPAN  CLASS="textit">mod_tiling</SPAN></A>
+<UL>
+<LI><A NAME="tex2html424"
+  HREF="node7.html#SECTION00721000000000000000"><SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">1</SPAN> WSplit functions</A>
+<LI><A NAME="tex2html425"
+  HREF="node7.html#SECTION00722000000000000000"><SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN> WSplitInner functions</A>
+<LI><A NAME="tex2html426"
+  HREF="node7.html#SECTION00723000000000000000"><SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">3</SPAN> WSplitRegion functions</A>
+<LI><A NAME="tex2html427"
+  HREF="node7.html#SECTION00724000000000000000"><SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">4</SPAN> WSplitSplit functions</A>
+<LI><A NAME="tex2html428"
+  HREF="node7.html#SECTION00725000000000000000"><SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">5</SPAN> WTiling functions</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html429"
+  HREF="node7.html#SECTION00730000000000000000"><SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">3</SPAN> Functions defined in <SPAN  CLASS="textit">mod_query</SPAN></A>
+<UL>
+<LI><A NAME="tex2html430"
+  HREF="node7.html#SECTION00731000000000000000"><SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">1</SPAN> WComplProxy functions</A>
+<LI><A NAME="tex2html431"
+  HREF="node7.html#SECTION00732000000000000000"><SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">2</SPAN> WEdln functions</A>
+<LI><A NAME="tex2html432"
+  HREF="node7.html#SECTION00733000000000000000"><SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">3</SPAN> WInput functions</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html433"
+  HREF="node7.html#SECTION00740000000000000000"><SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">4</SPAN> Functions defined in <SPAN  CLASS="textit">mod_menu</SPAN></A>
+<UL>
+<LI><A NAME="tex2html434"
+  HREF="node7.html#SECTION00741000000000000000"><SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">1</SPAN> WMenu functions</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html435"
+  HREF="node7.html#SECTION00750000000000000000"><SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">5</SPAN> Functions defined in <SPAN  CLASS="textit">mod_dock</SPAN></A>
+<UL>
+<LI><A NAME="tex2html436"
+  HREF="node7.html#SECTION00751000000000000000"><SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">5</SPAN>.<SPAN CLASS="arabic">1</SPAN> WDock functions</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html437"
+  HREF="node7.html#SECTION00760000000000000000"><SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">6</SPAN> Functions defined in <SPAN  CLASS="textit">mod_sp</SPAN></A>
+<LI><A NAME="tex2html438"
+  HREF="node7.html#SECTION00770000000000000000"><SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">7</SPAN> Functions defined in <SPAN  CLASS="textit">mod_statusbar</SPAN></A>
+<UL>
+<LI><A NAME="tex2html439"
+  HREF="node7.html#SECTION00771000000000000000"><SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">1</SPAN> WStatusBar functions</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html440"
+  HREF="node7.html#SECTION00780000000000000000"><SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">8</SPAN> Functions defined in <SPAN  CLASS="textit">de</SPAN></A>
+<LI><A NAME="tex2html441"
+  HREF="node7.html#SECTION00790000000000000000"><SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">9</SPAN> Hooks</A>
+<LI><A NAME="tex2html442"
+  HREF="node7.html#SECTION007100000000000000000"><SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">10</SPAN> Miscellaneous</A>
+<UL>
+<LI><A NAME="tex2html443"
+  HREF="node7.html#SECTION007101000000000000000"><SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">10</SPAN>.<SPAN CLASS="arabic">1</SPAN> Size policies</A>
+</UL></UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00700000000000000000"></A>
+<A NAME="sec:exports"></A>
+<BR>
+<SPAN CLASS="arabic">6</SPAN>. Function reference
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION00710000000000000000"></A>
+<A NAME="sec:ioncoreref"></A>
+<BR>
+<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">1</SPAN> Functions defined in <SPAN  CLASS="textit">ioncore</SPAN>
+</H2>
+
+  <DL>
+<DD><A NAME="fn:ioncore.TR"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>ioncore.TR(s, ...)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>gettext+string.format
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.bdoc"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>ioncore.bdoc(text, label)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Used to enter documentation among bindings.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.chdir_for"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>ioncore.chdir_for(reg, dir)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Change default working directory for new programs started in <TT>reg</TT>.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.compile_cmd"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>ioncore.compile_cmd(cmd, guard)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Compile string <TT>cmd</TT> into a bindable function. Within <TT>cmd</TT>, the
+ variable ''<TT>_</TT>'' (underscore) can be used to refer to the object
+ that was selecting for the bound action and chosen to handle it.
+ The  variable ''<TT>_sub</TT>'' refers to a ''currently active'' sub-object
+ of <TT>_</TT>, or a sub-object where the action loading to the binding
+ being called actually occured.
+
+<P>
+The string <TT>guard</TT>  maybe set to pose limits on <TT>_sub</TT>. Currently
+ supported guards are <TT>_sub:non-nil</TT> and <TT>_sub:WFoobar</TT>, where
+ WFoobar is a class.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.create_timer"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>WTimer ioncore.create_timer()</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Create a new timer.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.create_ws"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>ioncore.create_ws(scr, tmpl, layout)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Create new workspace on screen <TT>scr</TT>. The table <TT>tmpl</TT>
+ may be used to override parts of the layout named with <TT>layout</TT>.
+ If no <TT>layout</TT> is given, "default" is used.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.defbindings"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>ioncore.defbindings(context, bindings)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Define bindings for context <TT>context</TT>. Here <TT>binding</TT> is
+ a table composed of entries created with <A HREF="#fn:ioncore.kpress"><TT>ioncore.kpress</TT></A>,
+ etc.; see section <A HREF="node4.html#sec:bindings"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for details.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.defctxmenu"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>ioncore.defctxmenu(ctx, ...)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Define context menu for context <TT>ctx</TT>, <TT>tab</TT> being a table
+ of menu entries.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.deflayout"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>ioncore.deflayout(name, tab)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Define a new workspace layout with name <TT>name</TT>, and
+ attach/creation parameters given in <TT>tab</TT>. The layout
+ "empty" may not be defined.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.defmenu"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>ioncore.defmenu(name, tab)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Define a new menu with <TT>name</TT> being the menu's name and <TT>tab</TT>
+ being a table of menu entries. If <TT>tab.append</TT> is set, the entries
+ are appended to previously-defined ones, if possible.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.defwinprop"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>ioncore.defwinprop(list)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Define a winprop. For more information, see section <A HREF="node4.html#sec:winprops"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.exec_on"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>ioncore.exec_on(reg, cmd, merr_internal)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Run <TT>cmd</TT> with the environment variable DISPLAY set to point to the
+ root window of the X screen <TT>reg</TT> is on. If <TT>cmd</TT> is prefixed
+ by a colon (<TT>:</TT>), the following command is executed in an xterm
+ (or other terminal emulator) with the help of the <TT>ion-runinxterm</TT>
+ script. If the command is prefixed by two colons, <TT>ion-runinxterm</TT>
+ will ask you to press enter after the command is finished, even if it
+ returns succesfully.
+
+<P>
+For GUI commands, you might prefer to use mod_query.exec_on_merr(), which
+ monitors the process's <TT>stderr</TT> and shows any output as warnings on
+ the screen instead of in notions own output.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.read_savefile"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>table ioncore.read_savefile(string basename)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Read a savefile.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.get_savefile"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>string ioncore.get_savefile(string basename)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Get a file name to save (session) data in. The string <TT>basename</TT>
+ should contain no path or extension components.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.lookup_script"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>string ioncore.lookup_script(string file, string sp)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Lookup script <TT>file</TT>. If <TT>try_in_dir</TT> is set, it is tried
+ before the standard search path.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.write_savefile"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool ioncore.write_savefile(string basename, table tab)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Write <TT>tab</TT> in file with basename <TT>basename</TT> in the
+ session directory.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.find_manager"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>ioncore.find_manager(obj, t)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Find an object with type name <TT>t</TT> managing <TT>obj</TT> or one of
+ its managers.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.get_dir_for"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>ioncore.get_dir_for(reg)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Get default working directory for new programs started in <TT>reg</TT>.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.getbindings"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>ioncore.getbindings(maybe_context)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Get a table of all bindings.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.getctxmenu"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>ioncore.getctxmenu(name)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Returns a context menu defined with <A HREF="#fn:ioncore.defctxmenu"><TT>ioncore.defctxmenu</TT></A>.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.getlayout"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>ioncore.getlayout(name, all)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Get named layout (or all of the latter parameter is set,
+ but this is for internal use only).
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.getmenu"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>ioncore.getmenu(name)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Returns a menu defined with <A HREF="#fn:ioncore.defmenu"><TT>ioncore.defmenu</TT></A>.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.getwinprop"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>ioncore.getwinprop(cwin)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Find winprop table for <TT>cwin</TT>.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.goto_previous_workspace"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>ioncore.goto_previous_workspace()</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Go to and return to a previously active workspace (if any).
+
+<P>
+Note that this function is asynchronous; the region will not
+ actually have received the focus when this function returns.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.aboutmsg"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>string ioncore.aboutmsg()</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Returns an about message (version, author, copyright notice).
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.activity_first"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>WRegion ioncore.activity_first()</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Return first regio non activity list.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.activity_i"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool ioncore.activity_i(function iterfn)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Iterate over activity list until <TT>iterfn</TT> returns <TT>false</TT>.
+ The function itself returns <TT>true</TT> if it reaches the end of list
+ without this happening.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.clientwin_i"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool ioncore.clientwin_i(function fn)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Iterate over client windows until <TT>iterfn</TT> returns <TT>false</TT>.
+ The function itself returns <TT>true</TT> if it reaches the end of list
+ without this happening.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.current"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>WRegion ioncore.current()</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Returns the currently focused region, if any.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.defshortening"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool ioncore.defshortening(string rx, string rule, bool always)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Add a rule describing how too long titles should be shortened to fit in tabs.
+ The regular expression <TT>rx</TT> (POSIX, not Lua!) is used to match titles
+ and when <TT>rx</TT> matches, <TT>rule</TT> is attempted to use as a replacement
+ for title. If <TT>always</TT> is set, the rule is used even if no shortening
+ is necessary.
+
+<P>
+Similarly to sed's 's' command, <TT>rule</TT> may contain characters that are
+ inserted in the resulting string and specials as follows:
+
+<P>
+<TABLE COLS=1 BORDER FRAME=ABOVE RULES=GROUPS width=>
+<COL ALIGN=LEFT>
+<TBODY>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> Special </TD></TR>
+</TBODY><TBODY>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP>$0 </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+  $1 to $9 </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+  $| </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+  $&lt; </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+  $&gt; </TD></TR>
+</TBODY>
+</TABLE>
+
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.detach"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool ioncore.detach(WRegion reg, string how)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Detach or reattach <TT>reg</TT>, depending on whether <TT>how</TT>
+ is 'set'/'unset'/'toggle'. (Detaching means making <TT>reg</TT>
+ managed by its nearest ancestor WGroup, framed if <TT>reg</TT> is
+ not itself WFrame. Reattaching means making it managed where
+ it used to be managed, if a return-placeholder exists.)
+ If <TT>reg</TT> is the 'bottom' of some group, the whole group is
+ detached. If <TT>reg</TT> is a WWindow, it is put into a
+ frame.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.exec"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>integer ioncore.exec(string cmd)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Run <TT>cmd</TT> with the environment variable DISPLAY set to point to the
+ X display the WM is running on. No specific screen is set unlike with
+ <A HREF="#fn:WRootWin.exec_on"><TT>WRootWin.exec_on</TT></A>. The PID of the (shell executing the) new
+ process is returned.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.find_screen_id"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>WScreen ioncore.find_screen_id(integer id)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Find the screen with numerical id <TT>id</TT>.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.focushistory_i"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool ioncore.focushistory_i(function iterfn)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Iterate over focus history until <TT>iterfn</TT> returns <TT>false</TT>.
+ The function itself returns <TT>true</TT> if it reaches the end of list
+ without this happening.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.get"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>table ioncore.get()</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Get ioncore basic settings. For details see <A HREF="#fn:ioncore.set"><TT>ioncore.set</TT></A>.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.get_paths"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>table ioncore.get_paths(table tab)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Get important directories (userdir, sessiondir, searchpath).
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.goto_activity"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool ioncore.goto_activity()</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Go to first region on activity list.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.goto_first"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>WRegion ioncore.goto_first(WRegion reg, string dirstr, table param)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Go to first region within <TT>reg</TT> in direction <TT>dirstr</TT>
+ (up/down/left/right/beg/end/any). For information on <TT>param</TT>,
+ see <A HREF="#fn:ioncore.navi_next"><TT>ioncore.navi_next</TT></A>. Additionally this function supports
+ the boolean <TT>nofront</TT> field, for not bringing the object to
+ front.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.goto_next"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>WRegion ioncore.goto_next(WRegion reg, string dirstr, table param)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Go to region next from <TT>reg</TT> in direction <TT>dirstr</TT>
+ (up/down/left/right/next/prev/any). For information on <TT>param</TT>,
+ see <A HREF="#fn:ioncore.navi_next"><TT>ioncore.navi_next</TT></A>. Additionally this function supports
+ the boolean <TT>nofront</TT> field, for not bringing the object to
+ front.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.goto_next_screen"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>WScreen ioncore.goto_next_screen()</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Switch focus to the next screen and return it.
+
+<P>
+Note that this function is asynchronous; the screen will not
+ actually have received the focus when this function returns.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.goto_nth_screen"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>WScreen ioncore.goto_nth_screen(integer id)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Switch focus to the screen with id <TT>id</TT> and return it.
+
+<P>
+Note that this function is asynchronous; the screen will not
+ actually have received the focus when this function returns.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.goto_prev_screen"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>WScreen ioncore.goto_prev_screen()</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Switch focus to the previous screen and return it.
+
+<P>
+Note that this function is asynchronous; the screen will not
+ actually have received the focus when this function returns.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.goto_previous"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>WRegion ioncore.goto_previous()</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Go to and return to a previously active region (if any).
+
+<P>
+Note that this function is asynchronous; the region will not
+ actually have received the focus when this function returns.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.is_i18n"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool ioncore.is_i18n()</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Is Notion supporting locale-specifically multibyte-encoded strings?
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.load_module"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool ioncore.load_module(string modname)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Attempt to load a C-side module.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.lookup_clientwin"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>WClientWin ioncore.lookup_clientwin(string name)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Attempt to find a client window with name <TT>name</TT>.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.lookup_region"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>WRegion ioncore.lookup_region(string name, string typenam)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Attempt to find a non-client window region with name <TT>name</TT> and type
+ inheriting <TT>typenam</TT>.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.navi_first"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>WRegion ioncore.navi_first(WRegion reg, string dirstr, table param)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Find first region within <TT>reg</TT> in direction <TT>dirstr</TT>
+ (up/down/left/right/beg/end/any). For information on <TT>param</TT>,
+ see <A HREF="#fn:ioncore.navi_next"><TT>ioncore.navi_next</TT></A>.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.navi_next"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>WRegion ioncore.navi_next(WRegion reg, string dirstr, table param)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Find region next from <TT>reg</TT> in direction <TT>dirstr</TT>
+ (up/down/left/right/next/prev/any). The table <TT>param</TT> may
+ contain the boolean field <TT>nowrap</TT>, instructing not to wrap
+ around, and the WRegions <TT>no_ascend</TT> and <TT>no_descend</TT>,
+ and boolean functions <TT>ascend_filter</TT> and <TT>descend_filter</TT>
+ on <TT>WRegion</TT> pairs (<TT>to</TT>, <TT>from</TT>), are used to decide when
+ to descend or ascend into another region.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.popen_bgread"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>integer ioncore.popen_bgread(string cmd, function h, function errh)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Run <TT>cmd</TT> with a read pipe connected to its stdout.
+ When data is received through the pipe, <TT>handler</TT> is called
+ with that data.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.profiling_start"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void ioncore.profiling_start(string filename)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Start profiling (if enabled at compile-time)
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.profiling_stop"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void ioncore.profiling_stop()</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Stop profiling (if enabled at compile-time)
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.progname"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>string ioncore.progname()</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Returns the name of program using Ioncore.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.region_i"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool ioncore.region_i(function fn, string typenam)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Iterate over all non-client window regions with (inherited) class
+ <TT>typenam</TT> until <TT>iterfn</TT> returns <TT>false</TT>.
+ The function itself returns <TT>true</TT> if it reaches the end of list
+ without this happening.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.request_selection"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void ioncore.request_selection(function fn)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Request (string) selection. The function <TT>fn</TT> will be called
+ with the selection when and if it is received.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.resign"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void ioncore.resign()</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Causes the window manager to simply exit without saving
+ state/session.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.restart"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void ioncore.restart()</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Restart, saving session first.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.restart_other"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void ioncore.restart_other(string cmd)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Attempt to restart another window manager <TT>cmd</TT>.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.rootwin"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>WRootWin ioncore.rootwin()</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Returns the first WRootWin
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.screens_updated"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void ioncore.screens_updated(WRootWin rw)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>refresh _NET_WM_VIRTUAL_ROOTS
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.set"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void ioncore.set(table tab)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Set ioncore basic settings. The table <TT>tab</TT> may contain the
+ following fields.
+
+<P>
+<TABLE COLS=1 BORDER FRAME=ABOVE RULES=GROUPS width=>
+<COL ALIGN=LEFT>
+<TBODY>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> Field </TD></TR>
+</TBODY><TBODY>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP><TT>opaque_resize</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+  <TT>warp</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+  <TT>warp_margin</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+  <TT>warp_factor</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+  <TT>switchto</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+  <TT>screen_notify</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+  <TT>frame_default_index</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+  <TT>dblclick_delay</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+  <TT>kbresize_delay</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+  <TT>kbresize_t_max</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+  <TT>kbresize_t_min</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+  <TT>kbresize_step</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+  <TT>kbresize_maxacc</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+  <TT>framed_transients</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+  <TT>float_placement_method</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+  <TT>unsqueeze</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+  <TT>window_dialog_float</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+  <TT>autoraise</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+  <TT>autosave_layout</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+  <TT>window_stacking_request</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+  <TT>focuslist_insert_delay</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+  <TT>activity_notification_on_all_screens</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+  <TT>workspace_indicator_timeout</TT> </TD></TR>
+</TBODY>
+</TABLE>
+
+<P>
+When a keyboard resize function is called, and at most <TT>kbresize_t_max</TT>
+ milliseconds has passed from a previous call, acceleration factor is reset
+ to 1.0. Otherwise, if at least <TT>kbresize_t_min</TT> milliseconds have
+ passed from the from previous acceleration update or reset the squere root
+ of the acceleration factor is incremented by <TT>kbresize_step</TT>. The
+ maximum acceleration factor (pixels/call modulo size hints) is given by
+ <TT>kbresize_maxacc</TT>. The default values are (200, 50, 30, 100).
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.set_paths"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool ioncore.set_paths(table tab)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Set important directories (sessiondir, searchpath).
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.set_selection"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void ioncore.set_selection(string p)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Set primary selection and cutbuffer0 to <TT>p</TT>.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.shutdown"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void ioncore.shutdown()</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>End session saving it first.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.snapshot"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void ioncore.snapshot()</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Save session.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.tagged_clear"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void ioncore.tagged_clear()</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Untag all regions.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.tagged_first"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>WRegion ioncore.tagged_first(bool untag)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Returns first tagged object, untagging it as well if <TT>untag</TT>is set.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.tagged_i"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool ioncore.tagged_i(function iterfn)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Iterate over tagged regions until <TT>iterfn</TT> returns <TT>false</TT>.
+ The function itself returns <TT>true</TT> if it reaches the end of list
+ without this happening.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.tempdir"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>string ioncore.tempdir()</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Returns the global temporary directory for this notion instance with a
+ trailing slash. The directory is created in case it does not exist.
+ The directory will be non-recursively deleted on teardown, therefore no
+ subdirectories should be created.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.unsqueeze"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void ioncore.unsqueeze(WRegion reg, bool override)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Try to detach <TT>reg</TT> if it fits poorly in its
+ current location. This function does not do anything,
+ unless <TT>override</TT> is set or the <TT>unsqueeze</TT> option
+ of <A HREF="#fn:ioncore.set"><TT>ioncore.set</TT></A> is set.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.update_net_state"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void ioncore.update_net_state(WClientWin cwin)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>refresh _NET_WM_STATE markers for this window
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.version"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>string ioncore.version()</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Returns Ioncore version string.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.warn"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void ioncore.warn(string str)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Issue a warning. How the message is displayed depends on the current
+ warning handler.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.warn_traced"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void ioncore.warn_traced(string str)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Similar to <A HREF="#fn:ioncore.warn"><TT>ioncore.warn</TT></A>, but also print Lua stack trace.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.x_change_property"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void ioncore.x_change_property(integer win, integer atom, integer atom_type, integer format, string mode, table tab)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Modify a window property. The <TT>mode</TT> is one of
+ <TT>"replace"</TT>, <TT>"prepend"</TT> or <TT>"append"</TT>, and format
+ is either 8, 16 or 32. Also see <A HREF="#fn:ioncore.x_get_window_property"><TT>ioncore.x_get_window_property</TT></A>
+ and the <TT>XChangeProperty</TT>(3) manual page.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.x_delete_property"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void ioncore.x_delete_property(integer win, integer atom)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Delete a window property.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.x_get_atom_name"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>string ioncore.x_get_atom_name(integer atom)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Get the name of an atom. See <TT>XGetAtomName</TT>(3) manual page for
+ details.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.x_get_text_property"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>table ioncore.x_get_text_property(integer win, integer atom)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Get a text property for a window (<TT>STRING</TT>, <TT>COMPOUND_TEXT</TT>,
+ or <TT>UTF8_STRING</TT> property converted). The fields in the returned
+ table (starting from 1) are the null-separated parts of the property.
+ See the <TT>XGetTextProperty</TT>(3) manual page for more information.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.x_get_window_property"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>table ioncore.x_get_window_property(integer win, integer atom, integer atom_type, integer n32expected, bool more)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Get a property <TT>atom</TT> of type <TT>atom_type</TT> for window <TT>win</TT>.
+ The <TT>n32expected</TT> parameter indicates the expected number of 32bit
+ words, and <TT>more</TT> indicates whether all or just this amount of data
+ should be fetched. Each 8, 16 or 32bit element of the property, as
+ deciphered from <TT>atom_type</TT> is a field in the returned table.
+ See <TT>XGetWindowProperty</TT>(3) manual page for more information.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.x_intern_atom"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>integer ioncore.x_intern_atom(string name, bool only_if_exists)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Create a new atom. See <TT>XInternAtom</TT>(3) manual page for details.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.x_set_text_property"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void ioncore.x_set_text_property(integer win, integer atom, table tab)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Set a text property for a window. The fields of <TT>tab</TT> starting from
+ 1 should be the different null-separated parts of the property.
+ See the <TT>XSetTextProperty</TT>(3) manual page for more information.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.x_set_utf8_property"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void ioncore.x_set_utf8_property(integer win, integer atom, table tab)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Set a <TT>UTF8_STRING</TT> property for a window. The fields of <TT>tab</TT> starting
+ from 1 should be the different null-separated parts of the property.
+ See the <TT>XSetTextProperty</TT>(3) manual page for more information.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.kpress"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>ioncore.kpress(keyspec, cmd, guard)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Creates a binding description table for the action of pressing a key given
+ by <TT>keyspec</TT> (with possible modifiers) to the function <TT>func</TT>.
+ For more information on bindings, see section <A HREF="node4.html#sec:bindings"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.kpress_wait"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>ioncore.kpress_wait(keyspec, cmd, guard)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>This is similar to <A HREF="#fn:kpress"><TT>kpress</TT></A> but after calling <TT>cmd</TT>,
+ Ioncore waits for all modifiers to be released before processing
+ any further actions.
+ For more information on bindings, see section <A HREF="node4.html#sec:bindings"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.defer"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool ioncore.defer(function fn)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Defer execution of <TT>fn</TT> until the main loop.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.get_hook"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>WHook ioncore.get_hook(string name)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Find named hook <TT>name</TT>.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.match_winprop_dflt"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>ioncore.match_winprop_dflt(prop, cwin, id)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>The basic name-based winprop matching criteria.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.mclick"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>ioncore.mclick(buttonspec, cmd, guard)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Creates a binding description table for the action of clicking a mouse
+ button while possible modifier keys are pressed,
+ both given by <TT>buttonspec</TT>, to the function <TT>func</TT>.
+ For more information, see section <A HREF="node4.html#sec:bindings"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.mdblclick"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>ioncore.mdblclick(buttonspec, cmd, guard)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Similar to <A HREF="#fn:mclick"><TT>mclick</TT></A> but for double-click.
+ Also see section <A HREF="node4.html#sec:bindings"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.mdrag"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>ioncore.mdrag(buttonspec, cmd, guard)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Creates a binding description table for the action of moving the mouse
+ (or other pointing device) while the button given by <TT>buttonspec</TT>
+ is held pressed and the modifiers given by <TT>buttonspec</TT> were pressed
+ when the button was initially pressed.
+ Also see section <A HREF="node4.html#sec:bindings"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.menuentry"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>ioncore.menuentry(name, cmd, guard_or_opts)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Use this function to define normal menu entries. The string <TT>name</TT>
+ is the string shown in the visual representation of menu. The
+ parameter <TT>cmd</TT> and <TT>guard_or_opts</TT> (when string) are similar
+ to those of <A HREF="#fn:ioncore.defbindings"><TT>ioncore.defbindings</TT></A>.  If <TT>guard_or_opts</TT> is
+ a table, it may contains the <TT>guard</TT> field, and the <TT>priority</TT>
+ field, for controlling positioning of entries in context menus.
+ (The default priority is 1 for most entries, and -1 for auto-generated
+ submenus.)
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.mpress"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>ioncore.mpress(buttonspec, cmd, guard)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Similar to <A HREF="#fn:mclick"><TT>mclick</TT></A> but for just pressing the mouse button.
+ Also see section <A HREF="node4.html#sec:bindings"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.refresh_stylelist"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>ioncore.refresh_stylelist()</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Refresh list of known style files.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.submap"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>ioncore.submap(kcb_, list)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Returns a function that creates a submap binding description table.
+ When the key press action <TT>keyspec</TT> occurs, Ioncore will wait for
+ a further key presse and act according to the submap.
+ For details, see section <A HREF="node4.html#sec:bindings"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.submenu"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>ioncore.submenu(name, sub_or_name, options)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Use this function to define menu entries for submenus. The parameter
+ <A HREF="#fn:sub_or_name"><TT>sub_or_name</TT></A> is either a table of menu entries or the name
+ of an already defined menu. The initial menu entry to highlight can be
+ specified by <TT>options.initial</TT> as either an integer starting from 1,
+ or a  function that returns such a number. Another option supported is
+ <TT>options.noautoexpand</TT> that will cause <A HREF="#fn:mod_query.query_menu"><TT>mod_query.query_menu</TT></A>
+ to not automatically expand this submenu.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:ioncore.tagged_attach"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>ioncore.tagged_attach(reg, param)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Attach tagged regions to <TT>reg</TT>. The method of attach
+ depends on the types of attached regions and whether <TT>reg</TT>
+ implements <TT>attach_framed</TT> and <TT>attach</TT>. If <TT>param</TT>
+ is not set, the default of <code>{switchto=true}</code> is used.
+  
+</DD>
+</DL>
+
+<P>
+
+<H3><A NAME="SECTION00711000000000000000">
+<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">1</SPAN> WClientWin functions</A>
+</H3>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WClientWin.get_ident"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>table WClientWin.get_ident(WClientWin cwin)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Returns a table containing the properties <TT>WM_CLASS</TT> (table entries
+ <TT>instance</TT> and <TT>class</TT>) and  <TT>WM_WINDOW_ROLE</TT> (<TT>role</TT>)
+ properties for <TT>cwin</TT>. If a property is not set, the corresponding
+ field(s) are unset in the  table.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WClientWin.kill"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WClientWin.kill(WClientWin cwin)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Attempt to kill (with XKillWindow) the client that owns the X
+ window correspoding to <TT>cwin</TT>.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WClientWin.nudge"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WClientWin.nudge(WClientWin cwin)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Attempts to fix window size problems with non-ICCCM compliant
+ programs.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WClientWin.quote_next"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WClientWin.quote_next(WClientWin cwin)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Send next key press directly to <TT>cwin</TT>.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WClientWin.xid"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>double WClientWin.xid(WClientWin cwin)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Return the X window id for the client window.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+<H3><A NAME="SECTION00712000000000000000">
+<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">2</SPAN> WFrame functions</A>
+</H3>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WFrame.is_shaded"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool WFrame.is_shaded(WFrame frame)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Is <TT>frame</TT> shaded?
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WFrame.maximize_horiz"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WFrame.maximize_horiz(WFrame frame)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Attempt to toggle horizontal maximisation of <TT>frame</TT>.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WFrame.maximize_vert"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WFrame.maximize_vert(WFrame frame)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Attempt to toggle vertical maximisation of <TT>frame</TT>.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WFrame.mode"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>string WFrame.mode(WFrame frame)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Get frame mode.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WFrame.p_switch_tab"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WFrame.p_switch_tab(WFrame frame)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Display the region corresponding to the tab that the user pressed on.
+ This function should only be used by binding it to a mouse action.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WFrame.p_tabdrag"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WFrame.p_tabdrag(WFrame frame)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Start dragging the tab that the user pressed on with the pointing device.
+ This function should only be used by binding it to <SPAN  CLASS="textit">mpress</SPAN> or
+ <SPAN  CLASS="textit">mdrag</SPAN> action with area ''tab''.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WFrame.set_grattr"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool WFrame.set_grattr(WFrame frame, string attr, string how)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Set (unset/toggle) extra drawing engine attributes for the frame.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WFrame.set_mode"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool WFrame.set_mode(WFrame frame, string modestr)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Set frame mode.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WFrame.set_numbers"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool WFrame.set_numbers(WFrame frame, string how)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Control whether tabs show numbers (set/unset/toggle).
+ When showing numbers 'during_grab', the numbers are shown
+ until the next keyboard event comes in.
+ The resulting state is returned, which may not be what was
+ requested.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WFrame.set_shaded"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool WFrame.set_shaded(WFrame frame, string how)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Set shading state according to the parameter <TT>how</TT>
+ (set/unset/toggle). Resulting state is returned, which may not be
+ what was requested.
+  
+</DD>
+</DL>
+
+<P>
+
+<H3><A NAME="SECTION00713000000000000000">
+<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">3</SPAN> WGroup functions</A>
+</H3>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WGroup.attach"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>WRegion WGroup.attach(WGroup ws, WRegion reg, table param)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Attach and reparent existing region <TT>reg</TT> to <TT>ws</TT>.
+ The table <TT>param</TT> may contain the fields <TT>index</TT> and
+ <TT>switchto</TT> that are interpreted as for <A HREF="#fn:WMPlex.attach_new"><TT>WMPlex.attach_new</TT></A>.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WGroup.attach_new"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>WRegion WGroup.attach_new(WGroup ws, table param)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Create a new region to be managed by <TT>ws</TT>. At least the following
+ fields in <TT>param</TT> are understood:
+
+<P>
+<TABLE COLS=1 BORDER FRAME=ABOVE RULES=GROUPS width=>
+<COL ALIGN=LEFT>
+<TBODY>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> Field </TD></TR>
+</TBODY><TBODY>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP><TT>type</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+  <TT>name</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+  <TT>switchto</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+  <TT>level</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+  <TT>modal</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+  <TT>sizepolicy</TT> </TD></TR>
+</TBODY>
+</TABLE>
+
+<P>
+In addition parameters to the region to be created are passed in this
+ same table.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WGroup.bottom"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>WRegion WGroup.bottom(WGroup ws)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Returns the 'bottom' of <TT>ws</TT>.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WGroup.is_fullscreen"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool WGroup.is_fullscreen(WGroup grp)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Is <TT>reg</TT> in full screen mode?
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WGroup.managed_i"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool WGroup.managed_i(WGroup ws, function iterfn)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Iterate over managed regions of <TT>ws</TT> until <TT>iterfn</TT> returns
+ <TT>false</TT>.
+ The function itself returns <TT>true</TT> if it reaches the end of list
+ without this happening.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WGroup.set_bottom"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool WGroup.set_bottom(WGroup ws, WRegion reg)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Sets the 'bottom' of <TT>ws</TT>. The region <TT>reg</TT> must already
+ be managed by <TT>ws</TT>, unless <TT>nil</TT>.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WGroup.set_fullscreen"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool WGroup.set_fullscreen(WGroup grp, string how)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Set client window <TT>reg</TT> full screen state according to the
+ parameter <TT>how</TT> (set/unset/toggle). Resulting state is returned,
+ which may not be what was requested.
+  
+</DD>
+</DL>
+
+<P>
+
+<H3><A NAME="SECTION00714000000000000000">
+<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">4</SPAN> WGroupCW functions</A>
+</H3>
+
+<P>
+
+<H3><A NAME="SECTION00715000000000000000">
+<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">5</SPAN> WGroupWS functions</A>
+</H3>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WGroupWS.attach_framed"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool WGroupWS.attach_framed(WGroupWS ws, WRegion reg, table t)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Attach region <TT>reg</TT> on <TT>ws</TT>.
+ At least the following fields in <TT>t</TT> are supported:
+
+<P>
+<TABLE COLS=1 BORDER FRAME=ABOVE RULES=GROUPS width=>
+<COL ALIGN=LEFT>
+<TBODY>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> Field </TD></TR>
+</TBODY><TBODY>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP><TT>switchto</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+  <TT>geom</TT> </TD></TR>
+</TBODY>
+</TABLE>
+
+</DD>
+</DL>
+
+<P>
+
+<H3><A NAME="SECTION00716000000000000000">
+<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">6</SPAN> WHook functions</A>
+</H3>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WHook.add"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool WHook.add(WHook hk, function efn)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Add <TT>efn</TT> to the list of functions to be called when the
+ hook <TT>hk</TT> is triggered.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WHook.listed"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool WHook.listed(WHook hk, function efn)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Is <TT>fn</TT> hooked to hook <TT>hk</TT>?
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WHook.remove"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool WHook.remove(WHook hk, function efn)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Remove <TT>efn</TT> from the list of functions to be called when the
+ hook <TT>hk</TT> is triggered.
+  
+</DD>
+</DL>
+
+<P>
+
+<H3><A NAME="SECTION00717000000000000000">
+<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">7</SPAN> WInfoWin functions</A>
+</H3>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WInfoWin.set_text"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WInfoWin.set_text(WInfoWin p, string str, integer maxw)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Set contents of the info window.
+  
+</DD>
+</DL>
+
+<P>
+
+<H3><A NAME="SECTION00718000000000000000">
+<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">8</SPAN> WMPlex functions</A>
+</H3>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WMPlex.attach"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>WRegion WMPlex.attach(WMPlex mplex, WRegion reg, table param)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Attach and reparent existing region <TT>reg</TT> to <TT>mplex</TT>.
+ The table <TT>param</TT> may contain the fields <TT>index</TT> and
+ <TT>switchto</TT> that are interpreted as for <A HREF="#fn:WMPlex.attach_new"><TT>WMPlex.attach_new</TT></A>.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WMPlex.attach_new"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>WRegion WMPlex.attach_new(WMPlex mplex, table param)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Create a new region to be managed by <TT>mplex</TT>. At least the following
+ fields in <TT>param</TT> are understood (all but <TT>type</TT> are optional).
+
+<P>
+<TABLE COLS=1 BORDER FRAME=ABOVE RULES=GROUPS width=>
+<COL ALIGN=LEFT>
+<TBODY>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> Field </TD></TR>
+</TBODY><TBODY>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP><TT>type</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+  <TT>name</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+  <TT>switchto</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+  <TT>unnumbered</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+  <TT>index</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+  <TT>level</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+  <TT>modal</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+  <TT>hidden</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+  <TT>sizepolicy</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+  <TT>geom</TT> </TD></TR>
+</TBODY>
+</TABLE>
+
+<P>
+In addition parameters to the region to be created are passed in this
+ same table.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WMPlex.dec_index"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WMPlex.dec_index(WMPlex mplex, WRegion r)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Move <TT>r</TT> ''right'' within objects managed by <TT>mplex</TT> on list 1.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WMPlex.get_index"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>integer WMPlex.get_index(WMPlex mplex, WRegion reg)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Get index of <TT>reg</TT> on the mutually exclusive list of <TT>mplex</TT>.
+ The indices begin from zero.. If <TT>reg</TT> is not on the list,
+ -1 is returned.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WMPlex.get_stdisp"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>table WMPlex.get_stdisp(WMPlex mplex)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Get status display information. See <A HREF="#fn:WMPlex.get_stdisp"><TT>WMPlex.get_stdisp</TT></A> for
+ information on the fields.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WMPlex.inc_index"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WMPlex.inc_index(WMPlex mplex, WRegion r)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Move <TT>r</TT> ''right'' within objects managed by <TT>mplex</TT> on list 1.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WMPlex.is_hidden"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool WMPlex.is_hidden(WMPlex mplex, WRegion reg)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Is <TT>reg</TT> on within <TT>mplex</TT> and hidden?
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WMPlex.managed_i"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool WMPlex.managed_i(WMPlex mplex, function iterfn)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Iterate over managed regions of <TT>mplex</TT> until <TT>iterfn</TT> returns
+ <TT>false</TT>.
+ The function itself returns <TT>true</TT> if it reaches the end of list
+ without this happening.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WMPlex.mx_count"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>integer WMPlex.mx_count(WMPlex mplex)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Returns the number of objects on the mutually exclusive list of <TT>mplex</TT>.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WMPlex.mx_current"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>WRegion WMPlex.mx_current(WMPlex mplex)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Returns the managed object currently active within the mutually exclusive
+ list of <TT>mplex</TT>.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WMPlex.mx_i"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool WMPlex.mx_i(WMPlex mplex, function iterfn)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Iterate over numbered/mutually exclusive region list of <TT>mplex</TT>
+ until <TT>iterfn</TT> returns <TT>false</TT>.
+ The function itself returns <TT>true</TT> if it reaches the end of list
+ without this happening.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WMPlex.mx_nth"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>WRegion WMPlex.mx_nth(WMPlex mplex, integer n)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Returns the <TT>n</TT>:th object managed by <TT>mplex</TT> on the
+ <TT>l</TT>:th layer.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WMPlex.set_hidden"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool WMPlex.set_hidden(WMPlex mplex, WRegion reg, string how)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Set the visibility of the region <TT>reg</TT> on <TT>mplex</TT>
+ as specified with the parameter <TT>how</TT> (set/unset/toggle).
+ The resulting state is returned.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WMPlex.set_index"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WMPlex.set_index(WMPlex mplex, WRegion reg, integer index)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Set index of <TT>reg</TT> to <TT>index</TT> within the mutually exclusive
+ list of <TT>mplex</TT>. Special values for <TT>index</TT> are:
+ <TABLE COLS=1 RULES=GROUPS width=>
+<COL ALIGN=LEFT>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP>
+   <SPAN CLASS="MATH">-1</SPAN> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+   <SPAN CLASS="MATH">-2</SPAN> </TD></TR>
+</TABLE>
+
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WMPlex.set_stdisp"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>WRegion WMPlex.set_stdisp(WMPlex mplex, table t)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Set/create status display for <TT>mplex</TT>. Table is a standard
+ description of the object to be created (as passed to e.g.
+ <A HREF="#fn:WMPlex.attach_new"><TT>WMPlex.attach_new</TT></A>). In addition, the following fields are
+ recognised:
+
+<P>
+<TABLE COLS=1 BORDER FRAME=ABOVE RULES=GROUPS width=>
+<COL ALIGN=LEFT>
+<TBODY>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> Field </TD></TR>
+</TBODY><TBODY>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP><TT>pos</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+   <TT>action</TT> </TD></TR>
+</TBODY>
+</TABLE>
+
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WMPlex.switch_next"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WMPlex.switch_next(WMPlex mplex)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Have <TT>mplex</TT> display next (wrt. currently selected) object managed
+ by it.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WMPlex.switch_nth"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WMPlex.switch_nth(WMPlex mplex, integer n)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Have <TT>mplex</TT> display the <TT>n</TT>:th object managed by it.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WMPlex.switch_prev"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WMPlex.switch_prev(WMPlex mplex)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Have <TT>mplex</TT> display previous (wrt. currently selected) object
+ managed by it.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WMPlex.switch_to"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WMPlex.switch_to(WMPlex mplex, WRegion reg)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Have <TT>mplex</TT> display the given child window already added to the mplex
+  
+</DD>
+</DL>
+
+<P>
+
+<H3><A NAME="SECTION00719000000000000000">
+<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">9</SPAN> WMoveresMode functions</A>
+</H3>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WMoveresMode.cancel"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WMoveresMode.cancel(WMoveresMode mode)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Return from move/resize cancelling changes if opaque
+ move/resize has not been enabled.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WMoveresMode.finish"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WMoveresMode.finish(WMoveresMode mode)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Return from move/resize mode and apply changes unless opaque
+ move/resize is enabled.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WMoveresMode.geom"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>table WMoveresMode.geom(WMoveresMode mode)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Returns current geometry.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WMoveresMode.move"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WMoveresMode.move(WMoveresMode mode, integer horizmul, integer vertmul)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Move resize mode target one step:
+
+<P>
+<TABLE COLS=2 BORDER FRAME=ABOVE RULES=GROUPS>
+<COL ALIGN=RIGHT><COL ALIGN=LEFT>
+<TBODY>
+<TR><TD VALIGN=BASELINE ALIGN=RIGHT NOWRAP>
+ <TT>horizmul</TT>/<TT>vertmul</TT> </TD><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> effect </TD></TR>
+</TBODY><TBODY>
+<TR><TD VALIGN=BASELINE ALIGN=RIGHT NOWRAP>-1 </TD><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> Move left/up </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=RIGHT NOWRAP> 
+ 0 </TD><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> No effect </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=RIGHT NOWRAP> 
+ 1 </TD><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> Move right/down </TD></TR>
+</TBODY>
+</TABLE>
+
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WMoveresMode.resize"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WMoveresMode.resize(WMoveresMode mode, integer left, integer right, integer top, integer bottom)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Shrink or grow resize mode target one step in each direction.
+ Acceptable values for the parameters <TT>left</TT>, <TT>right</TT>, <TT>top</TT>
+ and <TT>bottom</TT> are as follows: -1: shrink along,
+ 0: do not change, 1: grow along corresponding border.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WMoveresMode.rqgeom"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>table WMoveresMode.rqgeom(WMoveresMode mode, table g)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Request exact geometry in move/resize mode. For details on parameters,
+ see <A HREF="#fn:WRegion.rqgeom"><TT>WRegion.rqgeom</TT></A>.
+  
+</DD>
+</DL>
+
+<P>
+
+<H3><A NAME="SECTION007110000000000000000">
+<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">10</SPAN> WRegion functions</A>
+</H3>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WRegion.begin_kbresize"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>WMoveresMode WRegion.begin_kbresize(WRegion reg)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Enter move/resize mode for <TT>reg</TT>. The bindings set with
+ <A HREF="#fn:ioncore.set_bindings"><TT>ioncore.set_bindings</TT></A> for WMoveresMode are used in
+ this mode. Of the functions exported by the Ion C core, only
+ <A HREF="#fn:WMoveresMode.resize"><TT>WMoveresMode.resize</TT></A>, <A HREF="#fn:WMoveresMode.move"><TT>WMoveresMode.move</TT></A>,
+ <A HREF="#fn:WMoveresMode.cancel"><TT>WMoveresMode.cancel</TT></A> and <A HREF="#fn:WMoveresMode.end"><TT>WMoveresMode.end</TT></A> are
+ allowed to be called while in this mode.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WRegion.current"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>WRegion WRegion.current(WRegion mgr)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Return the object, if any, that is considered ''currently active''
+ within the objects managed by <TT>mplex</TT>.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WRegion.geom"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>table WRegion.geom(WRegion reg)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Returns the geometry of <TT>reg</TT> within its parent; a table with fields
+ <TT>x</TT>, <TT>y</TT>, <TT>w</TT> and <TT>h</TT>.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WRegion.get_configuration"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>table WRegion.get_configuration(WRegion reg, bool clientwins)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Get configuration tree. If <TT>clientwins</TT> is unset, client windows
+ are filtered out.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WRegion.goto"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool WRegion.goto(WRegion reg)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Deprecated in favour of <A HREF="#fn:WRegion.goto_focus"><TT>WRegion.goto_focus</TT></A> because 'goto' is a
+ keyword since Lua 5.2.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WRegion.goto_focus"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool WRegion.goto_focus(WRegion reg)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Attempt to display <TT>reg</TT>, save region activity status and then
+ warp to (or simply set focus to if warping is disabled) <TT>reg</TT>.
+
+<P>
+Note that this function is asynchronous; the region will not
+ actually have received the focus when this function returns.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WRegion.groupleader_of"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>WRegion WRegion.groupleader_of(WRegion reg)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Returns the group of <TT>reg</TT>, if <TT>reg</TT> is its bottom,
+ and <TT>reg</TT> itself otherwise.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WRegion.is_active"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool WRegion.is_active(WRegion reg)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Is <TT>reg</TT> active/does it or one of it's children of focus?
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WRegion.is_activity"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool WRegion.is_activity(WRegion reg)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Is activity notification set on <TT>reg</TT>.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WRegion.is_mapped"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool WRegion.is_mapped(WRegion reg)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Is <TT>reg</TT> visible/is it and all it's ancestors mapped?
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WRegion.is_tagged"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool WRegion.is_tagged(WRegion reg)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Is <TT>reg</TT> tagged?
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WRegion.manager"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>WRegion WRegion.manager(WRegion reg)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Returns the region that manages <TT>reg</TT>.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WRegion.name"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>string WRegion.name(WRegion reg)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Returns the name for <TT>reg</TT>.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WRegion.parent"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>WWindow WRegion.parent(WRegion reg)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Returns the parent region of <TT>reg</TT>.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WRegion.rootwin_of"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>WRootWin WRegion.rootwin_of(WRegion reg)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Returns the root window <TT>reg</TT> is on.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WRegion.rqclose"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WRegion.rqclose(WRegion reg, bool relocate)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Attempt to close/destroy <TT>reg</TT>. Whether this operation works
+ depends on whether the particular type of region in question has
+ implemented the feature and, in case of client windows, whether
+ the client supports the <TT>WM_DELETE</TT> protocol (see also
+ <A HREF="#fn:WClientWin.kill"><TT>WClientWin.kill</TT></A>). The region will not be destroyed when
+ this function returns. To find out if and when it is destroyed,
+ use the "deinit" notification. If <TT>relocate</TT> is not set, and
+ <TT>reg</TT> manages other regions, it will not be closed. Otherwise
+ the managed regions will be attempted to be relocated.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WRegion.rqclose_propagate"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>WRegion WRegion.rqclose_propagate(WRegion reg, WRegion maybe_sub)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Recursively attempt to close a region or one of the regions managed by
+ it. If <TT>sub</TT> is set, it will be used as the managed region, otherwise
+ <A HREF="#fn:WRegion.current"><TT>WRegion.current</TT></A><TT>(reg)</TT>. The object to be closed is
+ returned, or NULL if nothing can be closed. For further details, see
+ notes for <A HREF="#fn:WRegion.rqclose"><TT>WRegion.rqclose</TT></A>.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WRegion.rqgeom"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>table WRegion.rqgeom(WRegion reg, table g)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Attempt to resize and/or move <TT>reg</TT>. The table <TT>g</TT> is a usual
+ geometry specification (fields <TT>x</TT>, <TT>y</TT>, <TT>w</TT> and <TT>h</TT>),
+ but may contain missing fields, in which case, <TT>reg</TT>'s manager may
+ attempt to leave that attribute unchanged.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WRegion.rqorder"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool WRegion.rqorder(WRegion reg, string ord)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Request ordering. Currently supported values for <TT>ord</TT>
+ are 'front' and 'back'.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WRegion.screen_of"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>WScreen WRegion.screen_of(WRegion reg)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Returns the screen <TT>reg</TT> is on.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WRegion.set_activity"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool WRegion.set_activity(WRegion reg, string how)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Set activity flag of <TT>reg</TT>. The <TT>how</TT> parameter most be
+ one of (set/unset/toggle).
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WRegion.set_name"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool WRegion.set_name(WRegion reg, string p)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Set the name of <TT>reg</TT> to <TT>p</TT>. If the name is already in use,
+ an instance number suffix <TT>&lt;n&gt;</TT> will be attempted. If <TT>p</TT> has
+ such a suffix, it will be modified, otherwise such a suffix will be
+ added. Setting <TT>p</TT> to nil will cause current name to be removed.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WRegion.set_name_exact"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool WRegion.set_name_exact(WRegion reg, string p)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Similar to <A HREF="#fn:WRegion.set_name"><TT>WRegion.set_name</TT></A> except if the name is already in use,
+ other instance numbers will not be attempted. The string <TT>p</TT> should
+ not contain a <TT>&lt;n&gt;</TT> suffix or this function will fail.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WRegion.set_tagged"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool WRegion.set_tagged(WRegion reg, string how)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Change tagging state of <TT>reg</TT> as defined by <TT>how</TT>
+ (set/unset/toggle). Resulting state is returned.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WRegion.size_hints"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>table WRegion.size_hints(WRegion reg)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Returns size hints for <TT>reg</TT>. The returned table always contains the
+ fields <TT>min_?</TT>, <TT>base_?</TT> and sometimes the fields <TT>max_?</TT>,
+ <TT>base_?</TT> and <TT>inc_?</TT>, where <TT>?</TT>=<TT>w</TT>, <TT>h</TT>.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+<H3><A NAME="SECTION007111000000000000000">
+<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">11</SPAN> WRootWin functions</A>
+</H3>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WRootWin.current_scr"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>WScreen WRootWin.current_scr(WRootWin rootwin)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Returns previously active screen on root window <TT>rootwin</TT>.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WRootWin.warp_pointer"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WRootWin.warp_pointer(WRootWin root, integer x, integer y)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Warp the cursor pointer to this location
+
+<P>
+I'm not *entirely* sure what 'safe' means, but this doesn't change internal
+ notion state, so I guess it's 'safe'...
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+<H3><A NAME="SECTION007112000000000000000">
+<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">12</SPAN> WScreen functions</A>
+</H3>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WScreen.id"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>integer WScreen.id(WScreen scr)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Return the numerical id for screen <TT>scr</TT>.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WScreen.set_managed_offset"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool WScreen.set_managed_offset(WScreen scr, table offset)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Set offset of objects managed by the screen from actual screen geometry.
+ The table <TT>offset</TT> should contain the entries <TT>x</TT>, <TT>y</TT>,
+ <TT>w</TT> and <TT>h</TT> indicating offsets of that component of screen
+ geometry.
+  
+</DD>
+</DL>
+
+<P>
+
+<H3><A NAME="SECTION007113000000000000000">
+<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">13</SPAN> WTimer functions</A>
+</H3>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WTimer.is_set"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool WTimer.is_set(WTimer timer)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Is timer set?
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WTimer.reset"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WTimer.reset(WTimer timer)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Reset timer.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WTimer.set"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WTimer.set(WTimer timer, integer msecs, function fn)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Set <TT>timer</TT> to call <TT>fn</TT> in <TT>msecs</TT> milliseconds.
+  
+</DD>
+</DL>
+
+<P>
+
+<H3><A NAME="SECTION007114000000000000000">
+<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">14</SPAN> WWindow functions</A>
+</H3>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WWindow.p_move"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WWindow.p_move(WWindow wwin)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Start moving <TT>wwin</TT> with the mouse or other pointing device.
+ This function should only be used by binding it to <SPAN  CLASS="textit">mpress</SPAN> or
+ <SPAN  CLASS="textit">mdrag</SPAN> action.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WWindow.p_resize"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WWindow.p_resize(WWindow wwin)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Start resizing <TT>wwin</TT> with the mouse or other pointing device.
+ This function should only be used by binding it to <SPAN  CLASS="textit">mpress</SPAN> or
+ <SPAN  CLASS="textit">mdrag</SPAN> action.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WWindow.xid"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>double WWindow.xid(WWindow wwin)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Return the X window id for <TT>wwin</TT>.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+<H3><A NAME="SECTION007115000000000000000">
+<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">15</SPAN> global functions</A>
+</H3>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:export"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>export(lib, ...)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Export a list of functions from <TT>lib</TT> into global namespace.
+  
+</DD>
+</DL>
+
+<P>
+
+<H3><A NAME="SECTION007116000000000000000">
+<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">16</SPAN> gr functions</A>
+</H3>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:gr.read_config"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void gr.read_config()</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Read drawing engine configuration file <SPAN  CLASS="textit">draw.lua</SPAN>.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:gr.refresh"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void gr.refresh()</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Refresh objects' brushes to update them to use newly loaded style.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:gr.select_engine"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool gr.select_engine(string engine)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Future requests for ''brushes'' are to be forwarded to the drawing engine
+ <TT>engine</TT>. If no engine of such name is known, a module with that name
+ is attempted to be loaded. This function is only intended to be called from
+ colour scheme etc. configuration files and can not be used to change the
+ look of existing objects; for that use <A HREF="#fn:gr.read_config"><TT>gr.read_config</TT></A>.
+  
+</DD>
+</DL>
+
+<P>
+
+<H3><A NAME="SECTION007117000000000000000">
+<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">17</SPAN> string functions</A>
+</H3>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:string.shell_safe"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>string.shell_safe(str)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Make <TT>str</TT> shell-safe.
+  
+</DD>
+</DL>
+
+<P>
+
+<H3><A NAME="SECTION007118000000000000000">
+<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">18</SPAN> table functions</A>
+</H3>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:table.append"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>table.append(t1, t2)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Add entries that do not exist in <TT>t1</TT> from <TT>t2</TT> to <TT>t1</TT>.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:table.copy"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>table.copy(t, deep)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Make copy of <TT>table</TT>. If <TT>deep</TT> is unset, shallow one-level
+ copy is made, otherwise a deep copy is made.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:table.icat"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>table.icat(t1, t2)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Insert all positive integer entries from t2 into t1.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:table.join"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>table.join(t1, t2)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Create a table containing all entries from <TT>t1</TT> and those from
+ <TT>t2</TT> that are missing from <TT>t1</TT>.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:table.map"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>table.map(f, t)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Map all entries of <TT>t</TT> by <TT>f</TT>.
+  
+</DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION00720000000000000000"></A>
+<A NAME="sec:tilingref"></A>
+<BR>
+<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">2</SPAN> Functions defined in <SPAN  CLASS="textit">mod_tiling</SPAN>
+</H2>
+
+  <DL>
+<DD><A NAME="fn:mod_tiling.get"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>table mod_tiling.get()</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Get parameters. For details see <A HREF="#fn:mod_tiling.set"><TT>mod_tiling.set</TT></A>.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:mod_tiling.mkbottom"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool mod_tiling.mkbottom(WRegion reg)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Create a new WTiling 'bottom' for the group of <TT>reg</TT>,
+ consisting of <TT>reg</TT>.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:mod_tiling.set"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void mod_tiling.set(table tab)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Set parameters. Currently only <TT>raise_delay</TT> (in milliseconds)
+ is supported.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:mod_tiling.untile"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool mod_tiling.untile(WTiling tiling)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>If <TT>tiling</TT> is managed by some group, float the frames in
+ the tiling in that group, and dispose of <TT>tiling</TT>.
+  
+</DD>
+</DL>
+
+<P>
+
+<H3><A NAME="SECTION00721000000000000000">
+<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">1</SPAN> WSplit functions</A>
+</H3>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WSplit.geom"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>table WSplit.geom(WSplit split)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Returns the area of workspace used by the regions under <TT>split</TT>.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WSplit.parent"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>WSplitInner WSplit.parent(WSplit split)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Return parent split for <TT>split</TT>.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WSplit.rqgeom"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>table WSplit.rqgeom(WSplit node, table g)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Attempt to resize and/or move the split tree starting at <TT>node</TT>.
+ Behaviour and the <TT>g</TT> parameter are as for <A HREF="#fn:WRegion.rqgeom"><TT>WRegion.rqgeom</TT></A>
+ operating on <TT>node</TT> (if it were a WRegion).
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WSplit.transpose"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WSplit.transpose(WSplit node)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Transpose contents of <TT>node</TT>.
+  
+</DD>
+</DL>
+
+<P>
+
+<H3><A NAME="SECTION00722000000000000000">
+<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN> WSplitInner functions</A>
+</H3>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WSplitInner.current"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>WSplit WSplitInner.current(WSplitInner node)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Returns the most previously active child node of <TT>split</TT>.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+<H3><A NAME="SECTION00723000000000000000">
+<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">3</SPAN> WSplitRegion functions</A>
+</H3>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WSplitRegion.reg"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>WRegion WSplitRegion.reg(WSplitRegion node)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Returns the region contained in <TT>node</TT>.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+<H3><A NAME="SECTION00724000000000000000">
+<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">4</SPAN> WSplitSplit functions</A>
+</H3>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WSplitSplit.br"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>WSplit WSplitSplit.br(WSplitSplit split)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Returns the bottom or right child node of <TT>split</TT> depending
+ on the direction of the split.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WSplitSplit.dir"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>string WSplitSplit.dir(WSplitSplit split)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Returns the direction of <TT>split</TT>; either ''vertical'' or
+ ''horizontal''.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WSplitSplit.flip"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WSplitSplit.flip(WSplitSplit split)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Flip contents of <TT>node</TT>.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WSplitSplit.tl"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>WSplit WSplitSplit.tl(WSplitSplit split)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Returns the top or left child node of <TT>split</TT> depending
+ on the direction of the split.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+<H3><A NAME="SECTION00725000000000000000">
+<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">5</SPAN> WTiling functions</A>
+</H3>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WTiling.flip_at"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool WTiling.flip_at(WTiling ws, WRegion reg)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Flip <TT>ws</TT> at <TT>reg</TT> or root if nil.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WTiling.transpose_at"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool WTiling.transpose_at(WTiling ws, WRegion reg)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Transpose <TT>ws</TT> at <TT>reg</TT> or root if nil.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WTiling.farthest"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>WRegion WTiling.farthest(WTiling ws, string dirstr, bool any)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Return the most previously active region on <TT>ws</TT> with no
+ other regions next to it in  direction <TT>dirstr</TT>
+ (left/right/up/down). If <TT>any</TT> is not set, the status
+ display is not considered.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WTiling.managed_i"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool WTiling.managed_i(WTiling ws, function iterfn)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Iterate over managed regions of <TT>ws</TT> until <TT>iterfn</TT> returns
+ <TT>false</TT>.
+ The function itself returns <TT>true</TT> if it reaches the end of list
+ without this happening.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WTiling.nextto"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>WRegion WTiling.nextto(WTiling ws, WRegion reg, string dirstr, bool any)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Return the most previously active region next to <TT>reg</TT> in
+ direction <TT>dirstr</TT> (left/right/up/down). The region <TT>reg</TT>
+ must be managed by <TT>ws</TT>. If <TT>any</TT> is not set, the status display
+ is not considered.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WTiling.node_of"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>WSplitRegion WTiling.node_of(WTiling ws, WRegion reg)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>For region <TT>reg</TT> managed by <TT>ws</TT> return the WSplit
+ a leaf of which <TT>reg</TT> is.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WTiling.set_floating_at"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool WTiling.set_floating_at(WTiling ws, WRegion reg, string how, string dirstr)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Toggle floating of the sides of a split containin <TT>reg</TT> as indicated
+ by the parameters <TT>how</TT> (set/unset/toggle) and <TT>dirstr</TT>
+ (left/right/up/down/any). The new status is returned (and <TT>false</TT>
+ also on error).
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WTiling.set_floating"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>WSplitSplit WTiling.set_floating(WTiling ws, WSplitSplit split, string how)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Toggle floating of a split's sides at <TT>split</TT> as indicated by the
+ parameter <TT>how</TT> (set/unset/toggle). A split of the appropriate is
+ returned, if there was a change.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WTiling.split"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>WFrame WTiling.split(WTiling ws, WSplit node, string dirstr)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Create a new frame on <TT>ws</TT> above/below/left of/right of
+ <TT>node</TT> as indicated by <TT>dirstr</TT>. If <TT>dirstr</TT> is
+ prefixed with ''floating:'' a floating split is created.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WTiling.split_at"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>WFrame WTiling.split_at(WTiling ws, WFrame frame, string dirstr, bool attach_current)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Split <TT>frame</TT> creating a new frame to direction <TT>dirstr</TT>
+ (one of ''left'', ''right'', ''top'' or ''bottom'') of <TT>frame</TT>.
+ If <TT>attach_current</TT> is set, the region currently displayed in
+ <TT>frame</TT>, if any, is moved to thenew frame.
+ If <TT>dirstr</TT> is prefixed with ''floating:'' a floating split is
+ created.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WTiling.split_top"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>WFrame WTiling.split_top(WTiling ws, string dirstr)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Same as <A HREF="#fn:WTiling.split"><TT>WTiling.split</TT></A> at the root of the split tree.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WTiling.split_tree"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>WSplit WTiling.split_tree(WTiling ws)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Returns the root of the split tree.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WTiling.unsplit_at"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WTiling.unsplit_at(WTiling ws, WRegion reg)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Try to relocate regions managed by <TT>reg</TT> to another frame
+ and, if possible, destroy it.
+  
+</DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION00730000000000000000"></A>
+<A NAME="sec:queryref"></A>
+<BR>
+<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">3</SPAN> Functions defined in <SPAN  CLASS="textit">mod_query</SPAN>
+</H2>
+
+  <DL>
+<DD><A NAME="fn:mod_query.defcmd"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>mod_query.defcmd(cmd, fn)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Define a command override for the <A HREF="#fn:mod_query.query_exec"><TT>query_exec</TT></A> query.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:mod_query.message"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>mod_query.message(mplex, str)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Display a message in <TT>mplex</TT>.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:mod_query.get"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>table mod_query.get()</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Get module configuration. For more information see
+ <A HREF="#fn:mod_query.set"><TT>mod_query.set</TT></A>.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:mod_query.history_clear"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void mod_query.history_clear()</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Clear line editor history.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:mod_query.history_get"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>string mod_query.history_get(integer n)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Get entry at index <TT>n</TT> in line editor history, 0 being the latest.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:mod_query.history_push"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool mod_query.history_push(string str)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Push an entry into line editor history.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:mod_query.history_search"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>integer mod_query.history_search(string s, integer from, bool bwd, bool exact)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Try to find matching history entry. Returns -1 if none was
+ found. The parameter <TT>from</TT> specifies where to start
+ searching from, and <TT>bwd</TT> causes backward search from
+ that point. If <TT>exact</TT> is not set, <TT>s</TT> only required
+ to be a prefix of the match.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:mod_query.history_table"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>table mod_query.history_table()</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Return table of history entries.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:mod_query.set"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void mod_query.set(table tab)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Set module configuration. The following are supported:
+
+<P>
+<TABLE COLS=1 BORDER FRAME=ABOVE RULES=GROUPS width=>
+<COL ALIGN=LEFT>
+<TBODY>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> Field </TD></TR>
+</TBODY><TBODY>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP><TT>autoshowcompl</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+  <TT>autoshowcompl_delay</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+  <TT>caseicompl</TT> </TD></TR>
+</TBODY>
+</TABLE>
+
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:mod_query.popen_completions"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>mod_query.popen_completions(cp, cmd, fn, reshnd)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>This function can be used to read completions from an external source.
+ The parameter <TT>cp</TT> is the completion proxy to be used,
+ and the string <TT>cmd</TT> the shell command to be executed. To its stdout,
+ the command should on the first line write the <TT>common_beg</TT>
+ parameter of <A HREF="#fn:WComplProxy.set_completions"><TT>WComplProxy.set_completions</TT></A> (which <TT>fn</TT> maybe used
+ to override) and a single actual completion on each of the successive lines.
+ The function <TT>reshnd</TT> may be used to override a result table
+ building routine.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:mod_query.query"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>mod_query.query(mplex, prompt, initvalue, handler, completor,
+                         context)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Low-level query routine. <TT>mplex</TT> is the WMPlex to display
+ the query in, <TT>prompt</TT> the prompt string, and <TT>initvalue</TT>
+ the initial contents of the query box. <TT>handler</TT> is a function
+ that receives (<TT>mplex</TT>, result string) as parameter when the
+ query has been succesfully completed, <TT>completor</TT> the completor
+ routine which receives a (<TT>cp</TT>, <TT>str</TT>, <TT>point</TT>) as parameters.
+ The parameter <TT>str</TT> is the string to be completed and <TT>point</TT>
+ cursor's location within it. Completions should be eventually,
+ possibly asynchronously, set with <A HREF="#fn:WComplProxy.set_completions"><TT>WComplProxy.set_completions</TT></A>
+ on <TT>cp</TT>.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:mod_query.query_attachclient"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>mod_query.query_attachclient(mplex)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>This query asks for the name of a client window and attaches
+ it to the frame the query was opened in. It uses the completion
+ function <A HREF="#fn:ioncore.complete_clientwin"><TT>ioncore.complete_clientwin</TT></A>.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:mod_query.query_binding"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>mod_query.query_binding(mplex, sub)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Find keybindings
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:mod_query.query_editfile"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>mod_query.query_editfile(mplex, script, prompt)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Asks for a file to be edited. This script uses
+ <TT>run-mailcap -mode=edit</TT> by default, but you may provide an
+ alternative script to use. The default prompt is "Edit file:" (translated).
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:mod_query.query_exec"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>mod_query.query_exec(mplex)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>This function asks for a command to execute with <SPAN  CLASS="textit">/bin/sh</SPAN>.
+ If the command is prefixed with a colon (':'), the command will
+ be run in an XTerm (or other terminal emulator) using the script
+ <SPAN  CLASS="textit">ion-runinxterm</SPAN>. Two colons ('::') will ask you to press
+ enter after the command has finished.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:mod_query.query_gotoclient"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>mod_query.query_gotoclient(mplex)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>This query asks for the name of a client window and switches
+ focus to the one entered. It uses the completion function
+ <A HREF="#fn:ioncore.complete_clientwin"><TT>ioncore.complete_clientwin</TT></A>.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:mod_query.query_lua"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>mod_query.query_lua(mplex)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>This query asks for Lua code to execute. It sets the variable '<TT>_</TT>'
+ in the local environment of the string to point to the mplex where the
+ query was created. It also sets the table <TT>arg</TT> in the local
+ environment to <TT>{_, _:current()}</TT>.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:mod_query.query_man"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>mod_query.query_man(mplex, prog)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>This query asks for a manual page to display. By default it runs the
+ <TT>man</TT> command in an <TT>xterm</TT> using <TT>ion-runinxterm</TT>,
+ but it is possible to pass another program as the <TT>prog</TT> argument.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:mod_query.query_menu"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>mod_query.query_menu(mplex, sub, themenu, prompt)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>This query can be used to create a query of a defined menu.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:mod_query.query_renameframe"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>mod_query.query_renameframe(frame)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>This function asks for a name new for the frame where the query
+ was created.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:mod_query.query_renameworkspace"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>mod_query.query_renameworkspace(mplex, ws)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>This function asks for a name new for the workspace <TT>ws</TT>,
+ or the one on which <TT>mplex</TT> resides, if it is not set.
+ If <TT>mplex</TT> is not set, one is looked for.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:mod_query.query_restart"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>mod_query.query_restart(mplex)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>This query asks whether the user wants restart Ioncore.
+ If the answer is 'y', 'Y' or 'yes', so will happen.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:mod_query.query_runfile"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>mod_query.query_runfile(mplex, script, prompt)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Asks for a file to be viewed. This script uses
+ <TT>run-mailcap -action=view</TT> by default, but you may provide an
+ alternative script to use. The default prompt is "View file:" (translated).
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:mod_query.query_shutdown"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>mod_query.query_shutdown(mplex)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>This query asks whether the user wants to exit Ion (no session manager)
+ or close the session (running under a session manager that supports such
+ requests). If the answer is 'y', 'Y' or 'yes', so will happen.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:mod_query.query_ssh"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>mod_query.query_ssh(mplex, ssh)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>This query asks for a host to connect to with SSH.
+ Hosts to tab-complete are read from <SPAN  CLASS="textit">~/.ssh/known_hosts</SPAN>.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:mod_query.query_workspace"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>mod_query.query_workspace(mplex)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>This query asks for the name of a workspace. If a workspace
+ (an object inheriting WGroupWS) with such a name exists,
+ it will be switched to. Otherwise a new workspace with the
+ entered name will be created and the user will be queried for
+ the type of the workspace.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:mod_query.query_yesno"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>mod_query.query_yesno(mplex, prompt, handler)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>This function query will display a query with prompt <TT>prompt</TT> in
+ <TT>mplex</TT> and if the user answers affirmately, call <TT>handler</TT>
+ with <TT>mplex</TT> as parameter.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:mod_query.show_about_ion"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>mod_query.show_about_ion(mplex)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Display an "About Ion" message in <TT>mplex</TT>.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:mod_query.show_tree"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>mod_query.show_tree(mplex, reg, max_depth)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Show information about a region tree
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:mod_query.warn"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>mod_query.warn(mplex, str)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Display an error message box in the multiplexer <TT>mplex</TT>.
+  
+</DD>
+</DL>
+
+<P>
+
+<H3><A NAME="SECTION00731000000000000000">
+<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">1</SPAN> WComplProxy functions</A>
+</H3>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WComplProxy.set_completions"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool WComplProxy.set_completions(WComplProxy proxy, table compls)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Set completion list of the WEdln that <TT>proxy</TT> refers to to
+ <TT>compls</TT>, if it is still waiting for this completion run. The
+ numerical indexes of <TT>compls</TT> list the found completions. If the
+ entry <TT>common_beg</TT> (<TT>common_end</TT>) exists, it gives an extra
+ common prefix (suffix) of all found completions.
+  
+</DD>
+</DL>
+
+<P>
+
+<H3><A NAME="SECTION00732000000000000000">
+<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">2</SPAN> WEdln functions</A>
+</H3>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WEdln.back"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WEdln.back(WEdln wedln)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Move backward one character.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WEdln.backspace"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WEdln.backspace(WEdln wedln)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Delete previous character.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WEdln.bkill_word"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WEdln.bkill_word(WEdln wedln)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Starting from the previous characters, delete possible whitespace and
+ preceding alphanumeric characters until previous non-alphanumeric character.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WEdln.bol"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WEdln.bol(WEdln wedln)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Go to the beginning of line.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WEdln.bskip_word"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WEdln.bskip_word(WEdln wedln)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Go to to beginning of current sequence of alphanumeric characters
+ followed by whitespace.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WEdln.clear_mark"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WEdln.clear_mark(WEdln wedln)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Clear <SPAN  CLASS="textit">mark</SPAN>.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WEdln.complete"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WEdln.complete(WEdln wedln, string cycle, string mode)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Call completion handler with the text between the beginning of line and
+ current cursor position, or select next/previous completion from list if in
+ auto-show-completions mode and <TT>cycle</TT> is set to ``next'' or ``prev'',
+ respectively. The <TT>mode</TT> may be ``history'' or ``normal''. If it is
+ not set, the previous mode is used. Normally next entry is not cycled to
+ despite the setting of <TT>cycle</TT> if mode switch occurs. To override
+ this, use ``next-always'' and ``prev-always'' for <TT>cycle</TT>.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WEdln.contents"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>string WEdln.contents(WEdln wedln)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Get line editor contents.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WEdln.context"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>string WEdln.context(WEdln wedln)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Get history context for <TT>wedln</TT>.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WEdln.copy"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WEdln.copy(WEdln wedln)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Copy text between <SPAN  CLASS="textit">mark</SPAN> and current cursor position to clipboard.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WEdln.cut"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WEdln.cut(WEdln wedln)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Copy text between <SPAN  CLASS="textit">mark</SPAN> and current cursor position to clipboard
+ and then delete that sequence.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WEdln.delete"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WEdln.delete(WEdln wedln)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Delete current character.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WEdln.eol"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WEdln.eol(WEdln wedln)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Go to the end of line.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WEdln.finish"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WEdln.finish(WEdln wedln)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Close <TT>wedln</TT> and call any handlers.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WEdln.forward"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WEdln.forward(WEdln wedln)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Move forward one character.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WEdln.history_next"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WEdln.history_next(WEdln wedln, bool match)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Replace line editor contents with next entry in history if one exists.
+ If <TT>match</TT> is <TT>true</TT>, the initial part of the history entry
+ must match the current line from beginning to point.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WEdln.history_prev"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WEdln.history_prev(WEdln wedln, bool match)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Replace line editor contents with previous in history if one exists.
+ If <TT>match</TT> is <TT>true</TT>, the initial part of the history entry
+ must match the current line from beginning to point.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WEdln.insstr"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WEdln.insstr(WEdln wedln, string str)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Input <TT>str</TT> in wedln at current editing point.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WEdln.is_histcompl"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool WEdln.is_histcompl(WEdln wedln)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Get history completion mode.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WEdln.kill_line"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WEdln.kill_line(WEdln wedln)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Delete the whole line.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WEdln.kill_to_bol"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WEdln.kill_to_bol(WEdln wedln)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Delete all characters from previous to beginning of line.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WEdln.kill_to_eol"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WEdln.kill_to_eol(WEdln wedln)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Delete all characters from current to end of line.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WEdln.kill_word"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WEdln.kill_word(WEdln wedln)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Starting from the current point, delete possible whitespace and
+ following alphanumeric characters until next non-alphanumeric character.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WEdln.mark"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>integer WEdln.mark(WEdln wedln)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Get current mark (start of selection) for <TT>wedln</TT>.
+ Return value of -1 indicates that there is no mark, and
+ 0 is the beginning of the line.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WEdln.next_completion"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool WEdln.next_completion(WEdln wedln)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Select next completion.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WEdln.paste"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WEdln.paste(WEdln wedln)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Request selection from application holding such.
+
+<P>
+Note that this function is asynchronous; the selection will not
+ actually be inserted before Ion receives it. This will be no
+ earlier than Ion return to its main loop.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WEdln.point"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>integer WEdln.point(WEdln wedln)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Get current editing point.
+ Beginning of the edited line is point 0.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WEdln.prev_completion"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool WEdln.prev_completion(WEdln wedln)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Select previous completion.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WEdln.set_context"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WEdln.set_context(WEdln wedln, string context)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Set history context for <TT>wedln</TT>.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WEdln.set_mark"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WEdln.set_mark(WEdln wedln)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Set <SPAN  CLASS="textit">mark</SPAN> to current cursor position.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WEdln.skip_word"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WEdln.skip_word(WEdln wedln)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Go to to end of current sequence of whitespace followed by alphanumeric
+ characters..
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WEdln.transpose_chars"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WEdln.transpose_chars(WEdln wedln)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Transpose characters.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WEdln.transpose_words"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WEdln.transpose_words(WEdln wedln)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Transpose words.
+  
+</DD>
+</DL>
+
+<P>
+
+<H3><A NAME="SECTION00733000000000000000">
+<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">3</SPAN> WInput functions</A>
+</H3>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WInput.cancel"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WInput.cancel(WInput input)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Close input not calling any possible finish handlers.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WInput.scrolldown"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WInput.scrolldown(WInput input)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Scroll input <TT>input</TT> text contents down.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WInput.scrollup"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WInput.scrollup(WInput input)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Scroll input <TT>input</TT> text contents up.
+  
+</DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION00740000000000000000"></A>
+<A NAME="sec:menuref"></A>
+<BR>
+<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">4</SPAN> Functions defined in <SPAN  CLASS="textit">mod_menu</SPAN>
+</H2>
+
+  <DL>
+<DD><A NAME="fn:mod_menu.grabmenu"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>mod_menu.grabmenu(mplex, sub, menu_or_name, param)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>This function is similar to <A HREF="#fn:mod_menu.menu"><TT>mod_menu.menu</TT></A>, but input
+ is grabbed and the key used to active the menu can be used to
+ cycle through menu entries.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:mod_menu.menu"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>mod_menu.menu(mplex, sub, menu_or_name, param)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Display a menu in the lower-left corner of <TT>mplex</TT>.
+ The variable <TT>menu_or_name</TT> is either the name of a menu
+ defined with <A HREF="#fn:mod_menu.defmenu"><TT>mod_menu.defmenu</TT></A> or directly a table similar
+ to ones passesd to this function. When this function is
+ called from a binding handler, <TT>sub</TT> should be set to
+ the second argument of to the binding handler (<TT>_sub</TT>)
+ so that the menu handler will get the same parameters as the
+ binding handler. Extra options can be passed in the table
+ <TT>param</TT>. The initial entry can be specified as the field
+ <TT>initial</TT> as an integer starting from 1. Menus can be made
+ to use a bigger style by setting the field <TT>big</TT> to <TT>true</TT>.
+ The position can be set using the field <TT>sizepolicy</TT>.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:mod_menu.get"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>table mod_menu.get()</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Get module basic settings. For details, see <A HREF="#fn:mod_menu.set"><TT>mod_menu.set</TT></A>.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:mod_menu.set"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void mod_menu.set(table tab)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Set module basic settings. The parameter table may contain the
+ following fields:
+
+<P>
+<TABLE COLS=1 BORDER FRAME=ABOVE RULES=GROUPS width=>
+<COL ALIGN=LEFT>
+<TBODY>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> Field </TD></TR>
+</TBODY><TBODY>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP><TT>scroll_amount</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+  <TT>scroll_delay</TT>  </TD></TR>
+</TBODY>
+</TABLE>
+
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:mod_menu.pmenu"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>mod_menu.pmenu(win, sub, menu_or_name)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>This function displays a drop-down menu and should only
+ be called from a mouse press handler. The parameters are
+ similar to those of <A HREF="#fn:mod_menu.menu"><TT>mod_menu.menu</TT></A>.
+  
+</DD>
+</DL>
+
+<P>
+
+<H3><A NAME="SECTION00741000000000000000">
+<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">1</SPAN> WMenu functions</A>
+</H3>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WMenu.cancel"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WMenu.cancel(WMenu menu)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Close <TT>menu</TT> not calling any possible finish handlers.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WMenu.finish"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WMenu.finish(WMenu menu)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>If selected entry is a submenu, display that.
+ Otherwise destroy the menu and call handler for selected entry.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WMenu.select_next"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WMenu.select_next(WMenu menu)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Select next entry in menu.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WMenu.select_nth"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WMenu.select_nth(WMenu menu, integer n)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Select <TT>n</TT>:th entry in menu.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WMenu.select_prev"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WMenu.select_prev(WMenu menu)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Select previous entry in menu.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WMenu.typeahead_clear"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WMenu.typeahead_clear(WMenu menu)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Clear typeahead buffer.
+  
+</DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION00750000000000000000"></A>
+<A NAME="sec:dockref"></A>
+<BR>
+<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">5</SPAN> Functions defined in <SPAN  CLASS="textit">mod_dock</SPAN>
+</H2>
+
+  <DL>
+<DD><A NAME="fn:mod_dock.set_floating_shown_on"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void mod_dock.set_floating_shown_on(WMPlex mplex, string how)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Toggle floating docks on <TT>mplex</TT>.
+  
+</DD>
+</DL>
+
+<P>
+
+<H3><A NAME="SECTION00751000000000000000">
+<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">5</SPAN>.<SPAN CLASS="arabic">1</SPAN> WDock functions</A>
+</H3>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WDock.attach"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool WDock.attach(WDock dock, WRegion reg)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Attach <TT>reg</TT> to <TT>dock</TT>.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WDock.get"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>table WDock.get(WDock dock)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Get <TT>dock</TT>'s configuration table. See <A HREF="#fn:WDock.set"><TT>WDock.set</TT></A> for a
+ description of the table.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WDock.resize"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WDock.resize(WDock dock)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Resizes and refreshes <TT>dock</TT>.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WDock.set"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WDock.set(WDock dock, table conftab)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Configure <TT>dock</TT>. <TT>conftab</TT> is a table of key/value pairs:
+
+<P>
+<TABLE COLS=2 BORDER FRAME=ABOVE RULES=GROUPS width=>
+<COL ALIGN=LEFT><COL ALIGN=LEFT>
+<TBODY>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> Key </TD><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> Values </TD></TR>
+</TBODY><TBODY>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP><TT>name</TT> </TD><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> string </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+  <TT>pos</TT> </TD><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> string in <!-- MATH
+ $\{t,m,b\}\times\{t,c,b\}$
+ -->
+<SPAN CLASS="MATH">{<I>t</I>, <I>m</I>, <I>b</I>}&#215;{<I>t</I>, <I>c</I>, <I>b</I>}</SPAN> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+  <TT>grow</TT> </TD><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> up/down/left/right </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+  <TT>is_auto</TT> </TD><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> bool </TD></TR>
+</TBODY>
+</TABLE>
+
+<P>
+Any parameters not explicitly set in <TT>conftab</TT> will be left unchanged.
+  
+</DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION00760000000000000000"></A>
+<A NAME="sec:spref"></A>
+<BR>
+<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">6</SPAN> Functions defined in <SPAN  CLASS="textit">mod_sp</SPAN>
+</H2>
+
+  <DL>
+<DD><A NAME="fn:mod_sp.create_scratchpad"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool mod_sp.create_scratchpad(WScreen scr)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Attempt to create a scratchpad on <TT>scr</TT>.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:mod_sp.is_scratchpad"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool mod_sp.is_scratchpad(WRegion reg)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Is <TT>reg</TT> a scratchpad?
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:mod_sp.set_shown"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool mod_sp.set_shown(WFrame sp, string how)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Toggle displayed status of <TT>sp</TT>.
+ The parameter <TT>how</TT> is one of (set/unset/toggle).
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:mod_sp.set_shown_on"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool mod_sp.set_shown_on(WMPlex mplex, string how)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Change displayed status of some scratchpad on <TT>mplex</TT> if one is
+ found. The parameter <TT>how</TT> is one of (set/unset/toggle).
+  
+</DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION00770000000000000000"></A>
+<A NAME="sec:statusbarref"></A>
+<BR>
+<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">7</SPAN> Functions defined in <SPAN  CLASS="textit">mod_statusbar</SPAN>
+</H2>
+
+  <DL>
+<DD><A NAME="fn:mod_statusbar.create"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>mod_statusbar.create(param)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Create a statusbar. The possible parameters in the
+ table <TT>param</TT> are:
+
+<P>
+<TABLE COLS=2 RULES=GROUPS width=>
+<COL ALIGN=LEFT><COL ALIGN=LEFT>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP>
+   Variable </TD><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> Type </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+   <TT>template</TT> </TD><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> string </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+   <TT>pos</TT> </TD><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> string </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+   <TT>screen</TT> </TD><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> integer </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+   <TT>fullsize</TT> </TD><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> boolean </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+   <TT>systray</TT> </TD><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> boolaen </TD></TR>
+</TABLE>
+
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:mod_statusbar.inform"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>mod_statusbar.inform(name, value)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Inform of a value.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:mod_statusbar.launch_statusd"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>mod_statusbar.launch_statusd(cfg)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Load modules and launch <SPAN  CLASS="textit">ion-statusd</SPAN> with configuration
+ table <TT>cfg</TT>. The options for each <SPAN  CLASS="textit">ion-statusd</SPAN> monitor
+ script should be contained in the corresponding sub-table of <TT>cfg</TT>.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:mod_statusbar.statusbars"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>table mod_statusbar.statusbars()</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Returns a list of all statusbars.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:mod_statusbar.terminate_statusd"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>mod_statusbar.terminate_statusd()</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Function to terminate <SPAN  CLASS="textit">ion-statusd</SPAN> on exit or reload. Should
+ be called from hook <TT>deinit</TT>.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:mod_statusbar.update"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>mod_statusbar.update(update_templates)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Update statusbar contents. To be called after series
+ of <A HREF="#fn:mod_statusbar.inform"><TT>mod_statusbar.inform</TT></A> calls.
+  
+</DD>
+</DL>
+
+<P>
+
+<H3><A NAME="SECTION00771000000000000000">
+<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">1</SPAN> WStatusBar functions</A>
+</H3>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WStatusBar.get_template_table"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>table WStatusBar.get_template_table(WStatusBar sb)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Get statusbar template as table.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WStatusBar.is_systray"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool WStatusBar.is_systray(WStatusBar sb)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Is <TT>sb</TT> used as a systray?
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WStatusBar.set_systray"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool WStatusBar.set_systray(WStatusBar sb, string how)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Enable or disable use of <TT>sb</TT> as systray.
+ The parameter <TT>how</TT> can be one of (set/unset/toggle).
+ Resulting state is returned.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WStatusBar.set_template"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WStatusBar.set_template(WStatusBar sb, string tmpl)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Set statusbar template.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WStatusBar.set_template_table"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WStatusBar.set_template_table(WStatusBar sb, table t)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Set statusbar template as table.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:WStatusBar.update"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void WStatusBar.update(WStatusBar sb, table t)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Set statusbar template.
+  
+</DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION00780000000000000000"></A>
+<A NAME="sec:deref"></A>
+<BR>
+<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">8</SPAN> Functions defined in <SPAN  CLASS="textit">de</SPAN>
+</H2>
+
+  <DL>
+<DD><A NAME="fn:de.defstyle"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool de.defstyle(string name, table tab)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Define a style.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:de.defstyle_rootwin"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>bool de.defstyle_rootwin(WRootWin rootwin, string name, table tab)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Define a style for the root window <TT>rootwin</TT>.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:de.reset"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>void de.reset()</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Clear all styles from drawing engine memory.
+  
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="fn:de.substyle"></A>  
+</DD>
+<DT><STRONG>Synopsis:</STRONG></DT>
+<DD><TT>table de.substyle(string pattern, table tab)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Define a substyle.
+ This function is considered safe.
+  
+</DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION00790000000000000000"></A>
+<A NAME="sec:hookref"></A>
+<BR>
+<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">9</SPAN> Hooks
+</H2>
+
+<P>
+
+  <DL>
+<DD><A NAME="8423"></A>
+    <A NAME="fn:clientwin_do_manage_alt"></A>    
+  
+</DD>
+<DT><STRONG>Hook name:</STRONG></DT>
+<DD><A NAME="clientwin_do_manage_alt"></A><TT>clientwin_do_manage_alt</TT>
+
+</DD>
+<DT><STRONG>Parameters:</STRONG></DT>
+<DD><TT>(WClientWin, table)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Called when we want to manage a new client window.
+      The table argument contains the following fields:
+
+<P>
+<TABLE COLS=2 BORDER FRAME=ABOVE RULES=GROUPS width=>
+<COL ALIGN=LEFT><COL ALIGN=LEFT>
+<TBODY>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> Field </TD><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> Type </TD></TR>
+</TBODY><TBODY>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP><TT>switchto</TT> </TD><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> bool </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+          <TT>jumpto</TT> </TD><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> bool </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+          <TT>userpos</TT> </TD><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> bool </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+          <TT>dockapp</TT> </TD><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> bool </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+          <TT>maprq</TT> </TD><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> bool </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+          <TT>gravity</TT> </TD><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> number </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+          <TT>geom</TT> </TD><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> table </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+          <TT>tfor</TT> </TD><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> WClientWin </TD></TR>
+</TBODY>
+</TABLE>
+
+<P>
+This hook is not called in protected mode and can be used for
+      arbitrary placement policies (deciding in which workspace a new
+      WClientWin should go). In this case, you can call
+<PRE>
+reg:attach(cwin)
+</PRE>
+      where <TT>reg</TT> is the region where the window should go, and
+      <TT>cwin</TT> is the first argument of the function added to the
+      hook.
+      
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="8424"></A>
+    <A NAME="fn:clientwin_mapped_hook"></A>    
+  
+</DD>
+<DT><STRONG>Hook name:</STRONG></DT>
+<DD><A NAME="clientwin_mapped_hook"></A><TT>clientwin_mapped_hook</TT>
+
+</DD>
+<DT><STRONG>Parameters:</STRONG></DT>
+<DD><TT>WClientWin</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Called when we have started to manage a client window.
+      
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="8425"></A>
+    <A NAME="fn:clientwin_property_change_hook"></A>    
+  
+</DD>
+<DT><STRONG>Hook name:</STRONG></DT>
+<DD><A NAME="clientwin_property_change_hook"></A><TT>clientwin_property_change_hook</TT>
+
+</DD>
+<DT><STRONG>Parameters:</STRONG></DT>
+<DD><TT>(WClientWin, integer)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Called when the property identified by the parameter atom id
+      (integer) has changed on a client window.
+      
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="8426"></A>
+    <A NAME="fn:clientwin_unmapped_hook"></A>    
+  
+</DD>
+<DT><STRONG>Hook name:</STRONG></DT>
+<DD><A NAME="clientwin_unmapped_hook"></A><TT>clientwin_unmapped_hook</TT>
+
+</DD>
+<DT><STRONG>Parameters:</STRONG></DT>
+<DD><TT>number</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Called when we no longer manage a client window. The parameter
+      is the X ID of the window; see <A HREF="#fn:WClientWin.xid"><TT>WClientWin.xid</TT></A>.
+      
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="8427"></A>
+    <A NAME="fn:frame_managed_changed_hook"></A>    
+  
+</DD>
+<DT><STRONG>Hook name:</STRONG></DT>
+<DD><A NAME="frame_managed_changed_hook"></A><TT>frame_managed_changed_hook</TT>
+
+</DD>
+<DT><STRONG>Parameters:</STRONG></DT>
+<DD><TT>table</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Called when there are changes in the objects managed by a frame
+      or their order. The table parameter has the following fields:
+
+<P>
+<TABLE COLS=2 BORDER FRAME=ABOVE RULES=GROUPS width=>
+<COL ALIGN=LEFT><COL ALIGN=LEFT>
+<TBODY>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> Field </TD><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> Type </TD></TR>
+</TBODY><TBODY>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP><TT>reg</TT> </TD><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> WFrame </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+          <TT>mode</TT> </TD><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> string </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+          <TT>sw</TT> </TD><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> bool </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+          <TT>sub</TT> </TD><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> WRegion </TD></TR>
+</TBODY>
+</TABLE>
+
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="8428"></A>
+    <A NAME="fn:ioncore_sigchld_hook"></A>    
+  
+</DD>
+<DT><STRONG>Hook name:</STRONG></DT>
+<DD><A NAME="ioncore_sigchld_hook"></A><TT>ioncore_sigchld_hook</TT>
+
+</DD>
+<DT><STRONG>Parameters:</STRONG></DT>
+<DD><TT>integer</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Called when a child process has exited. The parameter
+      is the PID of the process.
+      
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="8429"></A>
+    <A NAME="fn:ioncore_deinit_hook"></A>    
+  
+</DD>
+<DT><STRONG>Hook name:</STRONG></DT>
+<DD><A NAME="ioncore_deinit_hook"></A><TT>ioncore_deinit_hook</TT>
+
+</DD>
+<DT><STRONG>Parameters:</STRONG></DT>
+<DD><TT>()</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Called when Notion is deinitialising and about to quit.
+      
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="8430"></A>
+    <A NAME="fn:ioncore_post_layout_setup_hook"></A>    
+  
+</DD>
+<DT><STRONG>Hook name:</STRONG></DT>
+<DD><A NAME="ioncore_post_layout_setup_hook"></A><TT>ioncore_post_layout_setup_hook</TT>
+
+</DD>
+<DT><STRONG>Parameters:</STRONG></DT>
+<DD><TT>()</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Called when Notion has done all initialisation and is almost ready to
+      enter the main-loop, except no windows are yet being managed.
+      
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="8431"></A>
+    <A NAME="fn:ioncore_snapshot_hook"></A>    
+  
+</DD>
+<DT><STRONG>Hook name:</STRONG></DT>
+<DD><A NAME="ioncore_snapshot_hook"></A><TT>ioncore_snapshot_hook</TT>
+
+</DD>
+<DT><STRONG>Parameters:</STRONG></DT>
+<DD><TT>()</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Called to signal scripts and modules to save their state (if any).
+      
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="8432"></A>
+    <A NAME="fn:ioncore_submap_ungrab_hook"></A>    
+  
+</DD>
+<DT><STRONG>Hook name:</STRONG></DT>
+<DD><A NAME="ioncore_submap_ungrab_hook"></A><TT>ioncore_submap_ungrab_hook</TT>
+
+</DD>
+<DT><STRONG>Parameters:</STRONG></DT>
+<DD><TT>()</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>This hook is used to signal whenever Notion leaves the submap grab mode.
+      
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="8433"></A>
+    <A NAME="fn:tiling_placement_alt"></A>    
+  
+</DD>
+<DT><STRONG>Hook name:</STRONG></DT>
+<DD><A NAME="tiling_placement_alt"></A><TT>tiling_placement_alt</TT>
+
+</DD>
+<DT><STRONG>Parameters:</STRONG></DT>
+<DD><TT>table</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Called when a client window is about to be managed by a WTiling
+      to allow for alternative placement policies. The table has the
+      following fields:
+      <TABLE COLS=2 BORDER FRAME=ABOVE RULES=GROUPS width=>
+<COL ALIGN=LEFT><COL ALIGN=LEFT>
+<TBODY>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> Field </TD><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> Type </TD></TR>
+</TBODY><TBODY>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP><TT>tiling</TT> </TD><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> WTiling </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+          <TT>reg</TT> </TD><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> WRegion </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+          <TT>mp</TT> </TD><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> table </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+          <TT>res_frame</TT> </TD><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> WFrame </TD></TR>
+</TBODY>
+</TABLE>
+
+      This hook is just for placing within a given workspace after the
+      workspace has been decided by the default workspace selection
+      policy. It is called in protected mode. For arbitrary placement
+      policies, <A HREF="#fn:clientwin_do_manage_alt"><TT>clientwin_do_manage_alt</TT></A> should be used; it
+      isn't called in protected mode,
+      
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="8434"></A>
+    <A NAME="fn:region_do_warp_alt"></A>    
+  
+</DD>
+<DT><STRONG>Hook name:</STRONG></DT>
+<DD><A NAME="region_do_warp_alt"></A><TT>region_do_warp_alt</TT>
+
+</DD>
+<DT><STRONG>Parameters:</STRONG></DT>
+<DD><TT>WRegion</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>This alt-hook exist to allow for alternative pointer warping
+      implementations.
+      
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="8435"></A>
+    <A NAME="fn:screen_managed_changed_hook"></A>    
+  
+</DD>
+<DT><STRONG>Hook name:</STRONG></DT>
+<DD><A NAME="screen_managed_changed_hook"></A><TT>screen_managed_changed_hook</TT>
+
+</DD>
+<DT><STRONG>Parameters:</STRONG></DT>
+<DD><TT>table</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Called when there are changes in the objects managed by a screen
+      or their order. The table parameter is similar to that of
+      <A HREF="#fn:frame_managed_changed_hook"><TT>frame_managed_changed_hook</TT></A>.
+      
+</DD>
+</DL>
+
+<P>
+
+  <DL>
+<DD><A NAME="8436"></A>
+    <A NAME="fn:region_notify_hook"></A>    
+  
+</DD>
+<DT><STRONG>Hook name:</STRONG></DT>
+<DD><A NAME="region_notify_hook"></A><TT>region_notify_hook</TT>
+
+</DD>
+<DT><STRONG>Parameters:</STRONG></DT>
+<DD><TT>(WRegion, string)</TT>
+
+</DD>
+<DT><STRONG>Description:</STRONG></DT>
+<DD>Signalled when something (minor) has changed in relation to 
+      the first parameter region. The string argument gives the
+      change:
+
+<P>
+<TABLE COLS=1 BORDER FRAME=ABOVE RULES=GROUPS width=>
+<COL ALIGN=LEFT>
+<TBODY>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> String </TD></TR>
+</TBODY><TBODY>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP><TT>deinit</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+          <TT>activated</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+          <TT>inactivated</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+          <TT>activity</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+          <TT>sub_activity</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+          <TT>name</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+          <TT>unset_manager</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+          <TT>set_manager</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+          <TT>tag</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+          <TT>pseudoactivated</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+          <TT>pseudoinactivated</TT> </TD></TR>
+</TBODY>
+</TABLE>
+
+<P>
+A region is pseudo-active, when a) it is itself not active (does
+      not not have the focus, and may not even have a window that could
+      have it), but b) some region managed by it is active.
+      
+</DD>
+</DL>
+
+<P>
+
+<P>
+
+<H2><A NAME="SECTION007100000000000000000"></A>
+<A NAME="sec:miscref"></A>
+<BR>
+<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">10</SPAN> Miscellaneous
+</H2>
+
+<P>
+
+<H3><A NAME="SECTION007101000000000000000"></A>
+<A NAME="sec:sizepolicies"></A>
+<BR>
+<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">10</SPAN>.<SPAN CLASS="arabic">1</SPAN> Size policies
+</H3>
+
+<P>
+Some functions accept a <TT>sizepolicy</TT> parameter. The possible
+values are: 
+
+<P>
+<DIV ALIGN="LEFT">
+`<TT>default</TT>',
+`<TT>full</TT>',
+`<TT>full_bounds</TT>',
+`<TT>free</TT>',
+`<TT>free_glue</TT>',
+`<TT>northwest</TT>',
+`<TT>north</TT>',
+`<TT>northeast</TT>',
+`<TT>west</TT>',
+`<TT>center</TT>',
+`<TT>east</TT>',
+`<TT>southwest</TT>',
+`<TT>south</TT>',
+`<TT>southeast</TT>',
+`<TT>stretch_top</TT>',
+`<TT>stretch_bottom</TT>',
+`<TT>stretch_left</TT>',
+`<TT>stretch_right</TT>',
+`<TT>free_glue_northwest</TT>',
+`<TT>free_glue_north</TT>',
+`<TT>free_glue_northeast</TT>',
+`<TT>free_glue_west</TT>',
+`<TT>free_glue_center</TT>',
+`<TT>free_glue_east</TT>',
+`<TT>free_glue_southwest</TT>',
+`<TT>free_glue_south</TT>', and
+`<TT>free_glue_southeast</TT>'.
+
+</DIV>
+
+<P>
+The ``free'' policies allow the managed
+object to be moved around, whereas the other versions do not. 
+The ``glue'' policies glue the object to some border, while allowing
+it to be moved away from it by user action, but not automatically.
+The ``stretch'' policies stretch the object along the given border,
+while the coordinate-based policies simply place the object along 
+that border.
+
+<P>
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html402"
+  HREF="node8.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html396"
+  HREF="notionconf.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html390"
+  HREF="node6.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html398"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html400"
+  HREF="node11.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html403"
+  HREF="node8.html">A. GNU Free Documentation</A>
+<B> Up:</B> <A NAME="tex2html397"
+  HREF="notionconf.html">Configuring and extending Notion</A>
+<B> Previous:</B> <A NAME="tex2html391"
+  HREF="node6.html">5. Scripting</A>
+ &nbsp; <B>  <A NAME="tex2html399"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html401"
+  HREF="node11.html">Index</A></B> </DIV>
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

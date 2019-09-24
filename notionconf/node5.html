@@ -1,0 +1,682 @@
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>4. Graphical styles</TITLE>
+<META NAME="description" CONTENT="4. Graphical styles">
+<META NAME="keywords" CONTENT="notionconf">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="notion.css">
+
+<LINK REL="next" HREF="node6.html">
+<LINK REL="previous" HREF="node4.html">
+<LINK REL="up" HREF="notionconf.html">
+<LINK REL="next" HREF="node6.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html349"
+  HREF="node6.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html343"
+  HREF="notionconf.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html337"
+  HREF="node4.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html345"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html347"
+  HREF="node11.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html350"
+  HREF="node6.html">5. Scripting</A>
+<B> Up:</B> <A NAME="tex2html344"
+  HREF="notionconf.html">Configuring and extending Notion</A>
+<B> Previous:</B> <A NAME="tex2html338"
+  HREF="node4.html">3. Basic configuration</A>
+ &nbsp; <B>  <A NAME="tex2html346"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html348"
+  HREF="node11.html">Index</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL CLASS="ChildLinks">
+<LI><A NAME="tex2html351"
+  HREF="node5.html#SECTION00510000000000000000"><SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">1</SPAN> Drawing engines, style specifications and sub-styles</A>
+<UL>
+<LI><A NAME="tex2html352"
+  HREF="node5.html#SECTION00511000000000000000"><SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">1</SPAN> Known styles and substyles</A>
+<UL>
+<LI><A NAME="tex2html353"
+  HREF="node5.html#SECTION00511100000000000000"><SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">1</SPAN> Frames</A>
+<LI><A NAME="tex2html354"
+  HREF="node5.html#SECTION00511200000000000000"><SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">2</SPAN> Tabs and menu entries</A>
+<LI><A NAME="tex2html355"
+  HREF="node5.html#SECTION00511300000000000000"><SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">3</SPAN> The rest</A>
+</UL>
+</UL>
+<BR>
+<LI><A NAME="tex2html356"
+  HREF="node5.html#SECTION00520000000000000000"><SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">2</SPAN> Defining styles for the default drawing engine</A>
+<UL>
+<LI><A NAME="tex2html357"
+  HREF="node5.html#SECTION00521000000000000000"><SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">1</SPAN> The structure of the configuration files</A>
+<LI><A NAME="tex2html358"
+  HREF="node5.html#SECTION00522000000000000000"><SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN> Defining the styles</A>
+<UL>
+<LI><A NAME="tex2html359"
+  HREF="node5.html#SECTION00522100000000000000"><SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">1</SPAN> Colours</A>
+<LI><A NAME="tex2html360"
+  HREF="node5.html#SECTION00522200000000000000"><SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN> Borders and widths</A>
+<LI><A NAME="tex2html361"
+  HREF="node5.html#SECTION00522300000000000000"><SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">3</SPAN> Text</A>
+<LI><A NAME="tex2html362"
+  HREF="node5.html#SECTION00522400000000000000"><SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">4</SPAN> Miscellaneous</A>
+<LI><A NAME="tex2html363"
+  HREF="node5.html#SECTION00522500000000000000"><SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">5</SPAN> Substyles</A>
+</UL>
+<LI><A NAME="tex2html364"
+  HREF="node5.html#SECTION00523000000000000000"><SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">3</SPAN> An example</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html365"
+  HREF="node5.html#SECTION00530000000000000000"><SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">3</SPAN> Miscellaneous settings</A>
+<UL>
+<LI><A NAME="tex2html366"
+  HREF="node5.html#SECTION00531000000000000000"><SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">1</SPAN> Frame user attributes</A>
+<LI><A NAME="tex2html367"
+  HREF="node5.html#SECTION00532000000000000000"><SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">2</SPAN> Extra fields for style `<TT>frame</TT>'</A>
+<LI><A NAME="tex2html368"
+  HREF="node5.html#SECTION00533000000000000000"><SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">3</SPAN> Extra fields for style `<TT>dock</TT>'</A>
+</UL></UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00500000000000000000"></A>
+<A NAME="chap:gr"></A>
+<BR>
+<SPAN CLASS="arabic">4</SPAN>. Graphical styles
+</H1>
+
+<P>
+This chapter first gives in section <A HREF="#sec:engines"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> a general outline 
+of how drawing engines are used, of style specifications and then
+in section <A HREF="#sec:defaultde"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> describes how to specify styles
+for the default drawing engine. Some additional settings and
+user attributes are explained in Sections <A HREF="#sec:grmisc"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+
+<H2><A NAME="SECTION00510000000000000000"></A>
+<A NAME="sec:engines"></A><A NAME="1997"></A><A NAME="1998"></A>
+<BR>
+<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">1</SPAN> Drawing engines, style specifications and sub-styles
+</H2>
+
+<P>
+Notion's drawing routines are abstracted into so-called drawing engine
+modules that can, again depending on the system, be dynamically
+loaded as needed. The drawing engine modules provide ``brushes''
+that objects can use to draw some high-level primitives such
+as borders and text boxes (in addition to simple text and rectangle
+drawing) on their windows and configure e.g. the shape and 
+background of the window. While the drawing engines therefore
+do not directly implement looks for each possible object (that
+would hardly be maintainable), different brush styles can be
+used to give a distinctive look to different objects and engines
+could interpret some styles as special cases. Style specifications 
+are strings of the form
+
+<P>
+<PRE>
+element1-element2-...-elementn
+</PRE>
+
+<P>
+An example of such a style specification is `<TT>tab-frame</TT>';
+see the table in subsection <A HREF="#sec:styles"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for more styles.
+
+<P>
+When an object asks for a brush of certain style, the selected
+drawing engine will attempt to find the closest match to this
+specification. The styles/brushes defined by the drawing engines 
+may have asterisks (`<TT>*</TT>') as some of the elements indicating
+a match to anything. Exact matches are preferred to asterisk
+matches and longer matches to shorter. For example, let a brush
+for style `<TT>foo-bar-baz</TT>' be queried, then the following
+brushes are in order of preference:
+
+<P>
+<PRE>
+foo-bar-baz
+foo-*-baz
+foo-bar
+*
+</PRE>
+
+<P>
+Some of the drawing primitives allow extra attributes to be
+specified, also in the form
+<PRE>
+attr1-attr2-...-attrn
+</PRE>
+These extra attributes are called <SPAN  CLASS="textit">substyles</SPAN><A NAME="2010"></A>
+and allow, for example, the state of the object to be indicated 
+by  different colour sets while keeping the interface at an 
+abstract level and the drawing engine completely ignorant 
+of the semantics - only the writer of the drawing engine
+configuration file has to know them. However the drawing 
+engine can again interpret known substyles as special cases
+and the default engine indeed does so with frame tab 
+tag and drag states.)
+
+<P>
+
+<H3><A NAME="SECTION00511000000000000000"></A>
+<A NAME="sec:styles"></A>
+<BR>
+<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">1</SPAN> Known styles and substyles
+</H3>
+
+<P>
+
+<H4><A NAME="SECTION00511100000000000000">
+<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">1</SPAN> Frames</A>
+</H4>
+
+<P>
+<TABLE COLS=1 BORDER FRAME=ABOVE RULES=GROUPS width=>
+<COL ALIGN=LEFT>
+<TBODY>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> Style name </TD></TR>
+</TBODY><TBODY>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP>`<TT>frame</TT>' </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+`<TT>frame-tiled</TT>' </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+`<TT>frame-tiled-alt</TT>' </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+`<TT>frame-floating</TT>' </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+`<TT>frame-transient</TT>' </TD></TR>
+</TBODY>
+</TABLE>
+
+<P>
+
+<H4><A NAME="SECTION00511200000000000000">
+<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">2</SPAN> Tabs and menu entries</A>
+</H4>
+
+<P>
+<TABLE COLS=1 BORDER FRAME=ABOVE RULES=GROUPS width=>
+<COL ALIGN=LEFT>
+<TBODY>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> Style name </TD></TR>
+</TBODY><TBODY>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP>`<TT>tab</TT>' </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+`<TT>tab-frame</TT>' </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+`<TT>tab-frame-tiled</TT>', </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+`<TT>tab-frame-tiled-alt</TT>', </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+`<TT>tab-frame-floating</TT>', </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+`<TT>tab-frame-transient</TT>' </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+`<TT>tab-menuentry</TT>' </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+`<TT>tab-menuentry-bigmenu</TT>' </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+`<TT>tab-info</TT>' </TD></TR>
+</TBODY>
+</TABLE>
+
+<P>
+
+<H4><A NAME="SECTION00511300000000000000">
+<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">3</SPAN> The rest</A>
+</H4>
+
+<P>
+<TABLE COLS=1 BORDER FRAME=ABOVE RULES=GROUPS width=>
+<COL ALIGN=LEFT>
+<TBODY>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> Style name </TD></TR>
+</TBODY><TBODY>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP>`<TT>input</TT>' </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+`<TT>input-edln</TT>' </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+`<TT>input-message</TT>' </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+`<TT>input-menu</TT>' </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+`<TT>input-menu-bigmenu</TT>' </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+`<TT>moveres_display</TT>' </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+`<TT>actnotify</TT>' </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+`<TT>stdisp</TT>' </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+`<TT>stdisp-dock</TT>' </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+`<TT>stdisp-statusbar</TT>' </TD></TR>
+</TBODY>
+</TABLE>
+
+<P>
+
+<H2><A NAME="SECTION00520000000000000000"></A>
+<A NAME="sec:defaultde"></A>
+<BR>
+<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">2</SPAN> Defining styles for the default drawing engine
+</H2>
+
+<P>
+Drawing engine style files are usually named
+<SPAN  CLASS="textit">look_foo.lua</SPAN> where <SPAN  CLASS="textit">foo</SPAN> is the name of the
+style. The file that Notion loads on startup or when
+<A HREF="node7.html#fn:gr.read_config"><TT>gr.read_config</TT></A> is called, however, is <SPAN  CLASS="textit">look.lua</SPAN>
+and should usually be symlinked to or a copy of of some
+<SPAN  CLASS="textit">look_foo.lua</SPAN>.
+
+<P>
+
+<H3><A NAME="SECTION00521000000000000000">
+<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">1</SPAN> The structure of the configuration files</A>
+</H3>
+
+<P>
+The first thing to do in a style file is to choose the drawing
+engine, possibly loading the module as well. This is done
+with the following chunk of code.
+
+<P>
+<PRE>
+if not gr.select_engine("de") then 
+    return 
+end
+</PRE>
+
+<P>
+The <A HREF="node7.html#fn:gr.select_engine"><TT>gr.select_engine</TT></A> function sees if the engine
+given as argument is registered (the default drawing engine is
+simply called ``de''). If the engine could not be found, it
+tries to load a module of the same name. If the engine still
+is not registered, <A HREF="node7.html#fn:gr.select_engine"><TT>gr.select_engine</TT></A> returns `<TT>false</TT>'
+and in this case we also exit the style setup script.
+If the engine was found, <A HREF="node7.html#fn:gr.select_engine"><TT>gr.select_engine</TT></A> sees that
+further requests for brushes are forwarded to that engine
+and returns `<TT>true</TT>'.
+
+<P>
+Before defining new styles it may be a good idea to clear old
+styles from memory so if the old configuration defines more
+specific styles than the new, the old styles don't override 
+those specified by the new configuration. That can be done by
+calling
+
+<P>
+<PRE>
+de.reset()
+</PRE>
+
+<P>
+After this the new styles can be defined with <A HREF="node7.html#fn:de.defstyle"><TT>de.defstyle</TT></A>
+as explained in the next subsection. Finally, after the styles have
+been defined we must ask objects on the screen to look up new brushes
+to reflect the changes in configuration. This is done with
+
+<P>
+<PRE>
+gr.refresh()
+</PRE>
+
+<P>
+
+<H3><A NAME="SECTION00522000000000000000">
+<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN> Defining the styles</A>
+</H3>
+
+<P>
+Styles for the default drawing engine are defined with the
+function <A HREF="node7.html#fn:de.defstyle"><TT>de.defstyle</TT></A>. It has two arguments the first being
+a style specification as explained in previous sections and the second
+a table whose fields describe the style:
+
+<P>
+<PRE>
+de.defstyle("some-style", {
+    attribute = value,
+    ...
+})
+</PRE>
+
+<P>
+The supported attributes are described in tables below. The different
+border elements and styles referred to there are explained in the following
+sketch of different border styles and elements:
+
+<P>
+<PRE>
+Elevated:        Inlaid:         Ridge:            Groove:        
+  hhhhhhhhhhhs     ............	   hhhhhhhhhhhs      sssssssssssh
+  h..........s     .sssssssssh.	   h..........s      s..........h
+  h.        .s     .s        h.	   h.sssssssh.s      s.hhhhhhhs.h
+  h.        .s     .s        h.	   h.s      h.s      s.h      s.h
+  h.        .s     .s        h.	   h.shhhhhhh.s      s.hsssssss.h
+  h..........s     .shhhhhhhhh.	   h..........s      s..........h
+  hsssssssssss     ............	   hsssssssssss      shhhhhhhhhhh
+
+h = highlight, s = shadow, . = padding
+</PRE>
+
+<P>
+
+<H4><A NAME="SECTION00522100000000000000">
+<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">1</SPAN> Colours</A>
+</H4>
+
+<P>
+Each of these fields a string of the form that can be
+passed to <TT>XAllocNamedColor</TT>. Valid strings are e.g.
+hexadecimal RGB specifications of the form
+<TT>#RRGGBB</TT> and colour names as specified
+in <SPAN  CLASS="textit">/usr/X11R6/lib/X11/rgb.txt</SPAN> (exact path varying).
+
+<P>
+<TABLE COLS=1 BORDER FRAME=ABOVE RULES=GROUPS width=>
+<COL ALIGN=LEFT>
+<TBODY>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> Field  </TD></TR>
+</TBODY><TBODY>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP><TT>highlight_colour</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+<TT>shadow_colour</TT>    </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+<TT>foreground_colour</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+<TT>background_colour</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+<TT>padding_colour</TT> </TD></TR>
+</TBODY>
+</TABLE>
+
+<P>
+
+<H4><A NAME="SECTION00522200000000000000">
+<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN> Borders and widths</A>
+</H4>
+
+<P>
+All other fields below except <TT>border_style</TT> are non-negative integers
+indicating a number of pixels.
+
+<P>
+<TABLE COLS=1 BORDER FRAME=ABOVE RULES=GROUPS width=>
+<COL ALIGN=LEFT>
+<TBODY>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> Field  </TD></TR>
+</TBODY><TBODY>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP><TT>border_style</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+<TT>border_sides</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+<TT>highlight_pixels</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+<TT>shadow_pixels</TT>    </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+<TT>padding_pixels</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+<TT>spacing</TT> </TD></TR>
+</TBODY>
+</TABLE>
+
+<P>
+
+<H4><A NAME="SECTION00522300000000000000">
+<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">3</SPAN> Text</A>
+</H4>
+
+<P>
+<TABLE COLS=1 BORDER FRAME=ABOVE RULES=GROUPS width=>
+<COL ALIGN=LEFT>
+<TBODY>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> Field  </TD></TR>
+</TBODY><TBODY>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP><TT>font</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+<TT>text_align</TT> </TD></TR>
+</TBODY>
+</TABLE>
+
+<P>
+
+<H4><A NAME="SECTION00522400000000000000">
+<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">4</SPAN> Miscellaneous</A>
+</H4>
+
+<P>
+<TABLE COLS=1 BORDER FRAME=ABOVE RULES=GROUPS width=>
+<COL ALIGN=LEFT>
+<TBODY>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> Field  </TD></TR>
+</TBODY><TBODY>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP><TT>transparent_background</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+<TT>based_on</TT> </TD></TR>
+</TBODY>
+</TABLE>
+
+<P>
+
+<H4><A NAME="SECTION00522500000000000000">
+<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">5</SPAN> Substyles</A>
+</H4>
+
+<P>
+As discussed in previous sections, styles may have substyles to e.g.
+indicate different states of the object being drawn. The ``de'' engine
+limits what can be configured in substyles to the set of colours in the
+first table above, but also specifically interprets for the main style
+`<TT>tab-frame</TT>' the substyles `<TT>*-*-tagged</TT>' and `<TT>*-*-*-dragged</TT>'
+by, respectively, drawing a right angle shape at the top right corner 
+of a tab and by shading the tab with a stipple pattern. Also for
+menus the substyles `<TT>*-*-submenu</TT>' are handled as a special case.
+
+<P>
+Substyles are defined with the function <A HREF="node7.html#fn:de.substyle"><TT>de.substyle</TT></A> within the
+table defining the main style. The parameters to this function are 
+similar to those of <A HREF="node7.html#fn:de.defstyle"><TT>de.defstyle</TT></A>.
+
+<P>
+<PRE>
+de.defstyle("some-style", {
+   ...
+   de.substyle("some-substyle", {
+      ...
+   }),
+   ...
+})
+</PRE>
+
+<P>
+
+<H3><A NAME="SECTION00523000000000000000">
+<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">3</SPAN> An example</A>
+</H3>
+
+<P>
+The following shortened segment from <SPAN  CLASS="textit">look_cleanviolet.lua</SPAN>
+should help to clarify the matters discussed in the previous
+subsection.
+
+<P>
+<PRE>
+de.defstyle("*", {
+    -- Gray background
+    highlight_colour = "#eeeeee",
+    shadow_colour = "#eeeeee",
+    background_colour = "#aaaaaa",
+    foreground_colour = "#000000",
+    
+    shadow_pixels = 1,
+    highlight_pixels = 1,
+    padding_pixels = 1,
+    spacing = 0,
+    border_style = "elevated",
+    
+    font = "-*-helvetica-medium-r-normal-*-12-*-*-*-*-*-*-*",
+    text_align = "center",
+})
+
+de.defstyle("tab-frame", {
+    based_on = "*",
+    
+    de.substyle("active-selected", {
+        -- Violet tab
+        highlight_colour = "#aaaacc",
+        shadow_colour = "#aaaacc",
+        background_colour = "#666699",
+        foreground_colour = "#eeeeee",
+    }),
+
+    --  More substyles would follow ...
+})
+</PRE>
+
+<P>
+
+<H2><A NAME="SECTION00530000000000000000"></A>
+<A NAME="sec:grmisc"></A>
+<BR>
+<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">3</SPAN> Miscellaneous settings
+</H2>
+
+<P>
+
+<H3><A NAME="SECTION00531000000000000000">
+<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">1</SPAN> Frame user attributes</A>
+</H3>
+
+<P>
+The function <A HREF="node7.html#fn:WFrame.set_grattr"><TT>WFrame.set_grattr</TT></A> may be used to give frames
+(and their tabs) arbitrary extra attributes to be passed to the
+drawing engine. Hence, by configuring such substyles in the style
+configuration files, and turning on the attribute when needed, 
+scripts may display visual cues related to the frame. There is
+also one extra attribute specially interpreted by the default
+drawing engine: the `<TT>numbered</TT>' attribute, which causes 
+numbers to be displayed on the tabs.
+
+<P>
+
+<H3><A NAME="SECTION00532000000000000000">
+<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">2</SPAN> Extra fields for style `<TT>frame</TT>'</A>
+</H3>
+
+<P>
+The following style fields are independent of the drawing engine used,
+but are related to objects' styles and therefore configured in the drawing
+engine configuration file.
+
+<P>
+<TABLE COLS=1 BORDER FRAME=ABOVE RULES=GROUPS width=>
+<COL ALIGN=LEFT>
+<TBODY>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> Field  </TD></TR>
+</TBODY><TBODY>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP><TT>bar</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+<TT>frame_tab_width_alg</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+<TT>frame_tab_min_w</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+<TT>floatframe_tab_min_w</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+<TT>frame_propor_tab_min_w</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+<TT>floatframe_bar_max_w_q</TT> </TD></TR>
+</TBODY>
+</TABLE>
+
+<P>
+
+<H3><A NAME="SECTION00533000000000000000">
+<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">3</SPAN> Extra fields for style `<TT>dock</TT>'</A>
+</H3>
+
+<P>
+<TABLE COLS=1 BORDER FRAME=ABOVE RULES=GROUPS width=>
+<COL ALIGN=LEFT>
+<TBODY>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> Field  </TD></TR>
+</TBODY><TBODY>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP><TT>outline_style</TT> </TD></TR>
+<TR><TD VALIGN=BASELINE ALIGN=LEFT NOWRAP> 
+<TT>tile_size</TT> </TD></TR>
+</TBODY>
+</TABLE>
+
+<P>
+Hopefully that's enough to get you started in writing new style
+configuration files for Notion. When in doubt, study the existing
+style configuration files.
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html349"
+  HREF="node6.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html343"
+  HREF="notionconf.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html337"
+  HREF="node4.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html345"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html347"
+  HREF="node11.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html350"
+  HREF="node6.html">5. Scripting</A>
+<B> Up:</B> <A NAME="tex2html344"
+  HREF="notionconf.html">Configuring and extending Notion</A>
+<B> Previous:</B> <A NAME="tex2html338"
+  HREF="node4.html">3. Basic configuration</A>
+ &nbsp; <B>  <A NAME="tex2html346"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html348"
+  HREF="node11.html">Index</A></B> </DIV>
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

@@ -1,0 +1,595 @@
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>2. Preliminaries: Key concepts and relations</TITLE>
+<META NAME="description" CONTENT="2. Preliminaries: Key concepts and relations">
+<META NAME="keywords" CONTENT="notionconf">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="notion.css">
+
+<LINK REL="next" HREF="node4.html">
+<LINK REL="previous" HREF="node2.html">
+<LINK REL="up" HREF="notionconf.html">
+<LINK REL="next" HREF="node4.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html274"
+  HREF="node4.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html268"
+  HREF="notionconf.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html262"
+  HREF="node2.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html270"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html272"
+  HREF="node11.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html275"
+  HREF="node4.html">3. Basic configuration</A>
+<B> Up:</B> <A NAME="tex2html269"
+  HREF="notionconf.html">Configuring and extending Notion</A>
+<B> Previous:</B> <A NAME="tex2html263"
+  HREF="node2.html">1. Introduction</A>
+ &nbsp; <B>  <A NAME="tex2html271"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html273"
+  HREF="node11.html">Index</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL CLASS="ChildLinks">
+<LI><A NAME="tex2html276"
+  HREF="node3.html#SECTION00310000000000000000"><SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">1</SPAN> Modules</A>
+<LI><A NAME="tex2html277"
+  HREF="node3.html#SECTION00320000000000000000"><SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN> Class and object hierarchies</A>
+<UL>
+<LI><A NAME="tex2html278"
+  HREF="node3.html#SECTION00321000000000000000"><SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">1</SPAN> Class hierarchy</A>
+<UL>
+<LI><A NAME="tex2html279"
+  HREF="node3.html#SECTION00321100000000000000"><SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">1</SPAN> Partial Notioncore, <SPAN  CLASS="textit">mod_tiling</SPAN> and <SPAN  CLASS="textit">mod_query</SPAN> class hierarchy</A>
+<LI><A NAME="tex2html280"
+  HREF="node3.html#SECTION00321200000000000000"><SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">2</SPAN> The core classes</A>
+<LI><A NAME="tex2html281"
+  HREF="node3.html#SECTION00321300000000000000"><SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">3</SPAN> Run-time access to types</A>
+</UL>
+<LI><A NAME="tex2html282"
+  HREF="node3.html#SECTION00322000000000000000"><SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN> Object hierarchies: WRegion parents and managers</A>
+<UL>
+<LI><A NAME="tex2html283"
+  HREF="node3.html#SECTION00322100000000000000"><SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">1</SPAN> Parent-child relations</A>
+<UL>
+<LI><A NAME="tex2html284"
+  HREF="node3.html#SECTION00322110000000000000"><SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">1</SPAN> Most common parent-child relations</A>
+</UL>
+<LI><A NAME="tex2html285"
+  HREF="node3.html#SECTION00322200000000000000"><SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN> Manager-managed relations</A>
+<UL>
+<LI><A NAME="tex2html286"
+  HREF="node3.html#SECTION00322210000000000000"><SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">1</SPAN> Most common manager-managed relations</A>
+</UL>
+</UL>
+<LI><A NAME="tex2html287"
+  HREF="node3.html#SECTION00323000000000000000"><SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">3</SPAN> Summary</A>
+</UL></UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00300000000000000000"></A>
+<A NAME="chap:prelim"></A>
+<BR>
+<SPAN CLASS="arabic">2</SPAN>. Preliminaries: Key concepts and relations
+</H1>
+
+<P>
+The purpose of this chapter to explain some of key concepts and
+relations you need to understand before reading the following
+chapters. These include modules explained in section <A HREF="#sec:modules"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>
+and the Notion class and object hierarchies, section <A HREF="#sec:objects"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+
+<H2><A NAME="SECTION00310000000000000000"></A>
+<A NAME="sec:modules"></A>
+<BR>
+<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">1</SPAN> Modules
+</H2>
+
+<P>
+Notion has been designed so that the 'notion' executable only implements some
+basic services on top of which very different kinds of window managers
+could be build by loading the appropriate 'modules'. On modern system
+these modules are simply dynamically loaded <SPAN  CLASS="textit">.so</SPAN> libraries. On 
+more primitive systems, or if you want to squeeze total size of the 
+executable and libraries, the modules can optionally be statically 
+linked to the main binary, but must nevertheless be loaded with the
+<A HREF="#fn:dopath"><TT>dopath</TT></A> function. Modules may also include Lua code.
+
+<P>
+Currently Notion provides the following modules:
+
+<P>
+<DL>
+<DT><STRONG><SPAN  CLASS="textit">mod_tiling</SPAN></STRONG></DT>
+<DD>Tilings for workspaces of the original tiled
+       Notion kind.
+    
+</DD>
+<DT><STRONG><SPAN  CLASS="textit">mod_query</SPAN></STRONG></DT>
+<DD>Queries (for starting programs and so on)
+      and message boxes.
+    
+</DD>
+<DT><STRONG><SPAN  CLASS="textit">mod_menu</SPAN></STRONG></DT>
+<DD>Support for menus, both pull-down and
+      keyboard-operated in-frame menus.
+    
+</DD>
+<DT><STRONG><SPAN  CLASS="textit">mod_statusbar</SPAN></STRONG></DT>
+<DD>Module that implements a statusbar that
+      can be adaptively embedded in each workspace's layout.
+    
+</DD>
+<DT><STRONG><SPAN  CLASS="textit">mod_dock</SPAN></STRONG></DT>
+<DD>Module for docking Window Maker dock-apps.
+      The dock can both float and be embedded as the statusbar.
+    
+</DD>
+<DT><STRONG><SPAN  CLASS="textit">mod_sp</SPAN></STRONG></DT>
+<DD>This module implements a scratchpad frame that can
+      be toggled on/off everywhere. Think of the 'console' in some 
+      first-person shooters.
+    
+</DD>
+<DT><STRONG><SPAN  CLASS="textit">mod_sm</SPAN></STRONG></DT>
+<DD>Session management support module.
+      <SPAN  CLASS="textit">Loaded automatically when needed!</SPAN>
+</DD>
+</DL>
+
+<P>
+So-called drawing engines are also implemented as a modules,
+but they are not discussed here; see chapter <A HREF="node5.html#chap:gr"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+The stock configuration for the <SPAN  CLASS="textit">notion</SPAN> executable loads all of the 
+modules mentioned above except <SPAN  CLASS="textit">mod_dock</SPAN>.
+The stock configuration for the <SPAN  CLASS="textit">pwm3</SPAN> executable (which differs
+from the <SPAN  CLASS="textit">notion</SPAN> executable in a few configuration details)
+loads another set of modules.
+
+<P>
+
+<P>
+
+<H2><A NAME="SECTION00320000000000000000"></A>
+<A NAME="sec:objects"></A>
+<BR>
+<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN> Class and object hierarchies
+</H2>
+
+<P>
+While Notion does not have a truly object-oriented design<A NAME="tex2html7"
+  HREF="#foot317"><SUP><SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">1</SPAN></SUP></A>,
+things that appear on the computer screen are, however, quite
+naturally expressed as such ``objects''. Therefore Notion implements
+a rather primitive OO system for these screen objects and some
+other things. 
+
+<P>
+It is essential for the module writer to learn this object
+system, but also people who write their own binding configuration files
+necessarily come into contact with the class and object hierarchies
+- you need to know which binding setup routines apply where, 
+and what functions can be used as handlers in which bindings.
+It is the purpose of this section to attempt to explain these 
+hierarchies. If you do not wish the read the full section, at least
+read the summary at the end of it, so that you understand the very
+basic relations.
+
+<P>
+For simplicity we consider only the essential-for-basic-configuration
+Notioncore, <SPAN  CLASS="textit">mod_tiling</SPAN> and <SPAN  CLASS="textit">mod_query</SPAN> classes. 
+See Appendix <A HREF="node9.html#app:fullhierarchy"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for the full class hierarchy visible
+to Lua side.
+
+<P>
+
+<H3><A NAME="SECTION00321000000000000000">
+<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">1</SPAN> Class hierarchy</A>
+</H3>
+
+<P>
+One of the most important principles of object-oriented design methodology
+is inheritance; roughly how classes (objects are instances of classes)
+extend on others' features. Inheritance gives rise to class hierarchy.
+In the case of single-inheritance this hierarchy can be expressed as a
+tree where the class at the root is inherited by all others below it
+and so on. The tree below lists out the Notion class hierarchy and below 
+we explain what features of Notion the classes implement.
+
+<P>
+
+<H4><A NAME="SECTION00321100000000000000"></A>
+<A NAME="subsub:classhierarchy"></A>
+<BR>
+<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">1</SPAN> Partial Notioncore, <SPAN  CLASS="textit">mod_tiling</SPAN> and <SPAN  CLASS="textit">mod_query</SPAN> class hierarchy
+</H4>
+
+<P>
+<PRE>
+    Obj
+     |--&gt;WRegion
+     |    |--&gt;WClientWin
+     |    |--&gt;WWindow
+     |    |    |--&gt;WRootWin
+     |    |    |--&gt;WMPlex
+     |    |    |    |--&gt;WFrame
+     |    |    |    `--&gt;WScreen
+     |    |    `--&gt;WInput (mod_query)
+     |    |         |--&gt;WEdln (mod_query)
+     |    |         `--&gt;WMessage (mod_query)
+     |    |--&gt;WGroup
+     |    |    |--&gt;WGroupWS
+     |    |    `--&gt;WGroupCW
+     |    `--&gt;WTiling (mod_tiling)
+     `--&gt;WSplit (mod_tiling)
+</PRE>
+
+<P>
+
+<H4><A NAME="SECTION00321200000000000000">
+<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">2</SPAN> The core classes</A>
+</H4>
+
+<P>
+<DL>
+<DT><STRONG>Obj</STRONG></DT>
+<DD><A NAME="434"></A>
+    Is the base of Notion's object system.
+
+<P>
+</DD>
+<DT><STRONG>WRegion</STRONG></DT>
+<DD><A NAME="435"></A>
+    is the base class for everything corresponding to something on the
+    screen. Each object of type WRegion has a size and  position
+    relative to the parent WRegion. While a big part of Notion 
+    operates on these instead of more specialised classes, WRegion
+    is a ``virtual''  base class in that there are no objects of ``pure''
+    type WRegion; all concrete regions are objects of some class 
+    that inherits WRegion.
+
+<P>
+</DD>
+<DT><STRONG>WClientWin</STRONG></DT>
+<DD><A NAME="436"></A> is a class for
+    client window objects, the objects that window managers are
+    supposed to manage.
+
+<P>
+</DD>
+<DT><STRONG>WWindow</STRONG></DT>
+<DD><A NAME="437"></A> is the base class for all
+    internal objects having an X window associated to them
+    (WClientWins also have X windows associated to them).
+
+<P>
+</DD>
+<DT><STRONG>WMPlex</STRONG></DT>
+<DD>is a base class for all regions that ``multiplex'' 
+    other regions. This means that of the regions managed by the multiplexer,
+    only one can be displayed at a time. 
+
+<P>
+</DD>
+<DT><STRONG>WScreen</STRONG></DT>
+<DD><A NAME="438"></A> is an instance of WMPlex
+    for screens.
+
+<P>
+</DD>
+<DT><STRONG>WRootWin</STRONG></DT>
+<DD><A NAME="439"></A> is the class for
+    root windows<A NAME="349"></A> of X screens<A NAME="350"></A>.
+    Note that an ``X screen'' or root window is not necessarily a
+    single physical screen<A NAME="351"></A> as a root window
+    may be split over multiple screens when techniques such as 
+    Xinerama<A NAME="352"></A> are used. (Actually there can be only 
+    one root window when Xinerama is used.) 
+
+<P>
+</DD>
+<DT><STRONG>WFrame</STRONG></DT>
+<DD><A NAME="440"></A> is the class for frames.
+    While most Notion's objects have no graphical presentation, frames 
+    basically add to WMPlexes the decorations around client 
+    windows (borders, tabs).
+
+<P>
+</DD>
+<DT><STRONG>WGroup</STRONG></DT>
+<DD><A NAME="441"></A> is the base class for groups.
+    Particular types of groups are workspaces 
+    (WGroupWS<A NAME="442"></A>)
+    and groups of client windows
+    (WGroupCW<A NAME="443"></A>).
+</DD>
+</DL>
+
+<P>
+Classes implemented by the <SPAN  CLASS="textit">mod_tiling</SPAN> module:
+
+<P>
+<DL>
+<DT><STRONG>WTiling</STRONG></DT>
+<DD><A NAME="445"></A> is the class for tilings
+    of frames.
+  
+</DD>
+<DT><STRONG>WSplit</STRONG></DT>
+<DD><A NAME="446"></A> (or, more specifically, classes
+    that inherit it) encode the WTiling tree structure.
+</DD>
+</DL>
+
+<P>
+Classes implemented by the <SPAN  CLASS="textit">mod_query</SPAN> module:
+
+<P>
+<DL>
+<DT><STRONG>WInput</STRONG></DT>
+<DD><A NAME="448"></A> is a virtual base class for the
+    two classes below.
+  
+</DD>
+<DT><STRONG>WEdln</STRONG></DT>
+<DD><A NAME="449"></A> is the class for the ``queries'',
+    the text inputs that usually appear at bottoms of frames and sometimes
+    screens. Queries are the functional equivalent of ``mini buffers'' in
+    many text editors.
+  
+</DD>
+<DT><STRONG>WMessage</STRONG></DT>
+<DD><A NAME="450"></A> implements the boxes for 
+    warning and other messages that Notion may wish to display to the user. 
+    These also usually appear at bottoms of frames.
+</DD>
+</DL>
+
+<P>
+There are also some other ``proxy'' classes that do not refer
+to objects on the screen. The only important one of these for
+basic configuration is WMoveresMode that is used for
+binding callbacks in the move and resize mode.
+
+<P>
+
+<H4><A NAME="SECTION00321300000000000000">
+<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">3</SPAN> Run-time access to types</A>
+</H4>
+
+<P>
+Even though it often indicates a design mistake, sometimes it can be useful to
+have run-time access to the types of objects.
+
+<P>
+For example, to check wether a given object is of type WMPlex, the 
+following C code can be used:
+
+<P>
+<PRE>
+    if(obj_is((Obj*)cwin, &amp;CLASSDESCR(WMPlex)))
+        ....
+</PRE>
+
+<P>
+Its lua counterpart is:
+
+<P>
+<PRE>
+    if(obj_is(cwin, "WMPlex"))
+        ....
+</PRE>
+
+<P>
+While there's also an 'obj_cast' method available, C structs can be freely 
+cast to their 'superclass' using a regular C cast, for example:
+
+<P>
+<PRE>
+bool input_fitrep(WInput *input, WWindow *par, const WFitParams *fp)
+{
+    if(par!=NULL &amp;&amp; !region_same_rootwin((WRegion*)input, (WRegion*)par))
+        return FALSE;
+    ...
+</PRE>
+
+<P>
+
+<H3><A NAME="SECTION00322000000000000000">
+<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN> Object hierarchies: WRegion parents and managers</A>
+</H3>
+
+<P>
+
+<H4><A NAME="SECTION00322100000000000000">
+<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">1</SPAN> Parent-child relations</A>
+</H4>
+Each object of type WRegion has a parent and possibly a manager
+associated to it. The parent<A NAME="392"></A> for an object is always a 
+WWindow and for WRegion with an X window (WClientWin,
+WWindow) the parent WWindow is given by the same relation of
+the X windows. For other WRegions the relation is not as clear.
+There is generally very few restrictions other than the above on the
+parent--child relation but the most common is as described in
+paragraph <A HREF="#par:parentship"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+
+<H4><A NAME="SECTION00322110000000000000"></A>
+<A NAME="par:parentship"></A>
+<BR>
+<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">1</SPAN> Most common parent-child relations
+</H4>
+
+<P>
+<PRE>
+    WRootWins
+     |--&gt;WGroupWSs
+     |--&gt;WTilings
+     |--&gt;WClientWins in full screen mode
+     `--&gt;WFrames
+          |--&gt;WGroupCWs
+          |--&gt;WClientWins
+          |--&gt;WFrames for transients
+          `--&gt;a possible WEdln or WMessage
+</PRE>
+
+<P>
+
+<H4><A NAME="SECTION00322200000000000000">
+<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN> Manager-managed relations</A>
+</H4>
+
+<P>
+WRegions have very little control over their children as a parent.
+The manager<A NAME="406"></A> WRegion has much more control over its
+managed WRegions. Managers, for example, handle resize requests,
+focusing and displaying of the managed regions. Indeed the manager--managed
+relationship gives a better picture of the logical ordering of objects on
+the screen. Again, there are generally few limits, but the most common
+hierarchy is given in Figure <A HREF="#fig:managership"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>. Note that sometimes
+the parent and manager are the same object and not all regions may have
+a manager, but all non-screen regions have a parent--a screen if not 
+anything else.
+
+<P>
+
+<H4><A NAME="SECTION00322210000000000000"></A>
+<A NAME="par:managership"></A>
+<BR>
+<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">1</SPAN> Most common manager-managed relations
+</H4>
+<PRE>
+    WRootWins
+     |--&gt;WGroupCWs for full screen WClientWins
+     |    |--&gt;WClientWins
+     |    `--&gt;WFrames for transients (dialogs)
+     |         `--&gt; WClientWin
+     |--&gt;WGroupWSs for workspaces
+     |    |--&gt;WTiling
+     |    |    |--&gt;WFrames
+     |    |    |    `--&gt;WGroupCWs (with contents as above)
+     |    |    `--&gt;possibly a WStatusBar or WDock
+     |    |--&gt;WFrames for floating content
+     |    |--&gt;possibly a WEdln, WMessage or WMenu
+     |    `--&gt;possibly a WStatusBar or WDock (if no tiling)
+     `--&gt;WFrames for sticky stuff, such as the scratchpad
+</PRE>
+
+<P>
+Note that a workspace can manage another workspace. This can be
+achieved with the <TT>WGroup.attach_new</TT> function, and allows you to nest
+workspaces as deep as you want.
+
+<P>
+In the presense of Xinerama<A NAME="415"></A> there may be WScreen 
+objects at the top of the manager-managed tree instead of WRootWin.
+
+<P>
+
+<H3><A NAME="SECTION00323000000000000000">
+<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">3</SPAN> Summary</A>
+</H3>
+
+<P>
+In the standard setup, keeping queries, messages and menus out of
+consideration:
+
+<P>
+
+<UL>
+<LI>The top-level objects that matter are screens and they correspond
+    to physical screens. The class for screens is WScreen.
+</LI>
+<LI>Screens contain (multiplex) groups (WGroup) and other 
+    objects, such as WFrames. Some of these are mutually exclusive
+    to be viewed at a time.
+</LI>
+<LI>Groups of the specific kind WGroupWS often contain a
+    WTiling tiling for tiling frames (WFrame), but 
+    groups may also directly contain floating frames.
+</LI>
+<LI>Frames are the objects with decorations such as tabs and borders.
+    Frames contain (multiplex) among others (groups of) client windows, 
+    to each of which corresponds a tab in the frame's decoration. Only 
+    one client window (or other object) can be shown at a time in each 
+    frame. The class for client windows is WClientWin.
+</LI>
+</UL>
+
+<P>
+<BR><HR><H4>Footnotes</H4>
+<DL>
+<DT><A NAME="foot317">... design</A><A
+ HREF="node3.html#tex2html7"><SUP><SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">1</SPAN></SUP></A></DT>
+<DD>the 
+author doesn't like such artificial designs
+
+</DD>
+</DL>
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html274"
+  HREF="node4.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html268"
+  HREF="notionconf.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html262"
+  HREF="node2.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html270"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html272"
+  HREF="node11.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html275"
+  HREF="node4.html">3. Basic configuration</A>
+<B> Up:</B> <A NAME="tex2html269"
+  HREF="notionconf.html">Configuring and extending Notion</A>
+<B> Previous:</B> <A NAME="tex2html263"
+  HREF="node2.html">1. Introduction</A>
+ &nbsp; <B>  <A NAME="tex2html271"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html273"
+  HREF="node11.html">Index</A></B> </DIV>
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

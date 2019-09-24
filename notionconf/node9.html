@@ -1,0 +1,101 @@
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>B. Full class hierarchy visible to Lua-side</TITLE>
+<META NAME="description" CONTENT="B. Full class hierarchy visible to Lua-side">
+<META NAME="keywords" CONTENT="notionconf">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="notion.css">
+
+<LINK REL="next" HREF="node10.html">
+<LINK REL="previous" HREF="node8.html">
+<LINK REL="up" HREF="notionconf.html">
+<LINK REL="next" HREF="node10.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html470"
+  HREF="node10.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html464"
+  HREF="notionconf.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html458"
+  HREF="node8.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html466"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html468"
+  HREF="node11.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html471"
+  HREF="node10.html">List of functions</A>
+<B> Up:</B> <A NAME="tex2html465"
+  HREF="notionconf.html">Configuring and extending Notion</A>
+<B> Previous:</B> <A NAME="tex2html459"
+  HREF="node8.html">A. GNU Free Documentation</A>
+ &nbsp; <B>  <A NAME="tex2html467"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html469"
+  HREF="node11.html">Index</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00900000000000000000"></A>
+<A NAME="app:fullhierarchy"></A>
+<BR>
+B. Full class hierarchy visible to Lua-side
+</H1>
+
+<P>
+<PRE>
+    Obj
+     |--&gt;WHook
+     |--&gt;WTimer
+     |--&gt;WMoveresMode
+     |--&gt;WRegion
+     |    |--&gt;WClientWin
+     |    |--&gt;WWindow
+     |    |    |--&gt;WRootWin
+     |    |    |--&gt;WMPlex
+     |    |    |    |--&gt;WFrame
+     |    |    |    `--&gt;WScreen
+     |    |    |--&gt;WInfoWin
+     |    |    |    `--&gt;WStatusBar (mod_statusbar)
+     |    |    |--&gt;WMenu (mod_menu)
+     |    |    `--&gt;WInput (mod_query)
+     |    |         |--&gt;WEdln (mod_query)
+     |    |         `--&gt;WMessage (mod_query)
+     |    |--&gt;WGroup
+     |    |    |--&gt;WGroupWS
+     |    |    `--&gt;WGroupCW
+     |    `--&gt;WTiling (mod_tiling)
+     `--&gt;WSplit (mod_tiling)
+          |--&gt;WSplitInner (mod_tiling)
+          |    `--&gt;WSplitSplit (mod_tiling)
+          |         `--&gt;WSplitFloat (mod_tiling)
+          `--&gt;WSplitRegion (mod_tiling)
+               `--&gt;WSplitST (mod_tiling)
+</PRE>
+
+<P>
+<BR><HR>
+
+</BODY>
+</HTML>

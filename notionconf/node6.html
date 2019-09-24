@@ -1,0 +1,398 @@
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>5. Scripting</TITLE>
+<META NAME="description" CONTENT="5. Scripting">
+<META NAME="keywords" CONTENT="notionconf">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="notion.css">
+
+<LINK REL="next" HREF="node7.html">
+<LINK REL="previous" HREF="node5.html">
+<LINK REL="up" HREF="notionconf.html">
+<LINK REL="next" HREF="node7.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html381"
+  HREF="node7.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html375"
+  HREF="notionconf.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html369"
+  HREF="node5.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html377"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html379"
+  HREF="node11.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html382"
+  HREF="node7.html">6. Function reference</A>
+<B> Up:</B> <A NAME="tex2html376"
+  HREF="notionconf.html">Configuring and extending Notion</A>
+<B> Previous:</B> <A NAME="tex2html370"
+  HREF="node5.html">4. Graphical styles</A>
+ &nbsp; <B>  <A NAME="tex2html378"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html380"
+  HREF="node11.html">Index</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL CLASS="ChildLinks">
+<LI><A NAME="tex2html383"
+  HREF="node6.html#SECTION00610000000000000000"><SPAN CLASS="arabic">5</SPAN>.<SPAN CLASS="arabic">1</SPAN> Protected mode and (un-)safe functions</A>
+<LI><A NAME="tex2html384"
+  HREF="node6.html#SECTION00620000000000000000"><SPAN CLASS="arabic">5</SPAN>.<SPAN CLASS="arabic">2</SPAN> Hooks</A>
+<LI><A NAME="tex2html385"
+  HREF="node6.html#SECTION00630000000000000000"><SPAN CLASS="arabic">5</SPAN>.<SPAN CLASS="arabic">3</SPAN> Referring to regions</A>
+<UL>
+<LI><A NAME="tex2html386"
+  HREF="node6.html#SECTION00631000000000000000"><SPAN CLASS="arabic">5</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">1</SPAN> Direct object references</A>
+<LI><A NAME="tex2html387"
+  HREF="node6.html#SECTION00632000000000000000"><SPAN CLASS="arabic">5</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">2</SPAN> Name-based lookups</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html388"
+  HREF="node6.html#SECTION00640000000000000000"><SPAN CLASS="arabic">5</SPAN>.<SPAN CLASS="arabic">4</SPAN> Alternative winprop selection criteria</A>
+<LI><A NAME="tex2html389"
+  HREF="node6.html#SECTION00650000000000000000"><SPAN CLASS="arabic">5</SPAN>.<SPAN CLASS="arabic">5</SPAN> Writing <TT>ion-statusd</TT> monitors</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00600000000000000000"></A>
+<A NAME="chap:tricks"></A>
+<BR>
+<SPAN CLASS="arabic">5</SPAN>. Scripting
+</H1>
+
+<P>
+This chapter documents some additional features of the Notion configuration
+and scripting interface that can be used for more advanced scripting than
+the basic configuration explained in chapter <A HREF="node4.html#chap:config"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+
+<H2><A NAME="SECTION00610000000000000000">
+<SPAN CLASS="arabic">5</SPAN>.<SPAN CLASS="arabic">1</SPAN> Protected mode and (un-)safe functions</A>
+</H2>
+
+<P>
+Some of Notion's functions call other functions in so-called ``protected mode''.  
+In particular this is true for all the iterator functions mentioned in 
+<A HREF="node7.html#sec:exports"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>. If a function <TT>fn</TT> is called in protected mode, the call
+will only succeed if <TT>fn</TT> is considered ``safe'', and will otherwise fail 
+with the message ``Ignoring call to unsafe function <TT>fn</TT> in restricted 
+mode.''.
+
+<P>
+Let us try to explain the rationale behind this behavior and the heuristic for 
+deciding when a function can be considered safe through an example. The function 
+<A HREF="node7.html#fn:WMPlex.managed_i"><TT>WMPlex.managed_i</TT></A> iterates over all regions managed by an <TT>mplex</TT> and 
+calls <TT>iterfn</TT> on each of these regions. If <TT>iterfn</TT> was able to alter 
+the list of regions managed by <TT>mplex</TT>, say by adding additional regions, 
+this iteration could easily turn into an infinite loop or lead to inconsistent 
+behavior.
+
+<P>
+To avoid situations like this, in order to be considered safe, a function must
+not alter any of the internal data structures of Notion.
+
+<P>
+If you ever need to use an unsafe function in combination with an iterator, 
+there is a simple workaround. In the example above, instead of writing 
+<TT>WMPlex.managed_i(mplex, iterfn)</TT>, which fails if <TT>iterfn</TT> is 
+unsafe, you can use the following code snippet to achieve the same result:
+<PRE>
+managed_regions={}
+mplex:managed_i(function(reg)
+    table.insert(managed_regions, reg) return true
+end)
+for _,reg in ipairs(managed_regions) do
+    iterfn(reg)
+end
+</PRE>
+
+<P>
+
+<H2><A NAME="SECTION00620000000000000000"></A>
+<A NAME="sec:hooks"></A>
+<BR>
+<SPAN CLASS="arabic">5</SPAN>.<SPAN CLASS="arabic">2</SPAN> Hooks
+</H2>
+
+<P>
+Hooks are lists of functions to be called when a certain event occurs.
+There are two types of them; normal and ``alternative'' hooks. Normal
+hooks do not return anything, but alt-hooks should return a boolean
+indicating whether it handled its assigned task successfully. In the case
+that <TT>true</TT> is returned, remaining handlers are not called.
+
+<P>
+Hook handlers are registered by first finding the hook
+with <A HREF="node7.html#fn:ioncore.get_hook"><TT>ioncore.get_hook</TT></A> and then calling <A HREF="node7.html#fn:WHook.add"><TT>WHook.add</TT></A>
+on the (successful) result with the handler as parameter. Similarly
+handlers are unregistered with <A HREF="node7.html#fn:WHook.remove"><TT>WHook.remove</TT></A>. For example:
+
+<P>
+<PRE>
+ioncore.get_hook("ioncore_snapshot_hook"):add(
+    function() print("Snapshot hook called.") end
+)
+</PRE>
+
+<P>
+In this example the hook handler has no parameters, but many hook
+handlers do. The types of parameters for each hook are listed in
+the hook reference, section <A HREF="node7.html#sec:hookref"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+Note that many of the hooks are called in ``protected mode'' and can not 
+use any functions that modify Notion's internal state. 
+
+<P>
+
+<H2><A NAME="SECTION00630000000000000000">
+<SPAN CLASS="arabic">5</SPAN>.<SPAN CLASS="arabic">3</SPAN> Referring to regions</A>
+</H2>
+
+<P>
+
+<H3><A NAME="SECTION00631000000000000000">
+<SPAN CLASS="arabic">5</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">1</SPAN> Direct object references</A>
+</H3>
+
+<P>
+All Notion objects are passed to Lua scripts as 'userdatas', and you may
+safely store such object references for future use. The C-side object
+may be destroyed while Lua still refers to the object. All exported
+functions gracefully fail in such a case, but if you need to explicitly
+test that the C-side object still exists, use <A HREF="#fn:obj_exists"><TT>obj_exists</TT></A>.
+
+<P>
+As an example, the following short piece of code implements 
+bookmarking:
+
+<P>
+<PRE>
+local bookmarks={}
+
+-- Set bookmark bm point to the region reg
+function set_bookmark(bm, reg)
+    bookmarks[bm]=reg
+end
+
+-- Go to bookmark bm
+function goto_bookmark(bm)
+    if bookmarks[bm] then
+        -- We could check that bookmarks[bm] still exists, if we
+        -- wanted to avoid an error message.
+        bookmarks[bm]:goto()
+    end
+end
+</PRE>
+
+<P>
+
+<H3><A NAME="SECTION00632000000000000000">
+<SPAN CLASS="arabic">5</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">2</SPAN> Name-based lookups</A>
+</H3>
+
+<P>
+If you want to a single non-WClientWin region with an exact known 
+name, use <A HREF="node7.html#fn:ioncore.lookup_region"><TT>ioncore.lookup_region</TT></A>. If you want a list of all regions,
+use <A HREF="#fn:ioncore.region_list"><TT>ioncore.region_list</TT></A>. Both functions accept an optional argument
+that can be used to specify that the returned region(s) must be of a more 
+specific type. Client windows live in a different namespace and for them
+you should use the equivalent functions <A HREF="node7.html#fn:ioncore.lookup_clientwin"><TT>ioncore.lookup_clientwin</TT></A>
+and <A HREF="#fn:ioncore.clientwin_list"><TT>ioncore.clientwin_list</TT></A>.
+
+<P>
+To get the name of an object, use <A HREF="node7.html#fn:WRegion.name"><TT>WRegion.name</TT></A>. Please be
+aware, that the names of client windows reflect their titles and
+are subject to changes. To change the name of a non-client window
+region, use <A HREF="node7.html#fn:WRegion.set_name"><TT>WRegion.set_name</TT></A>.
+
+<P>
+
+<H2><A NAME="SECTION00640000000000000000">
+<SPAN CLASS="arabic">5</SPAN>.<SPAN CLASS="arabic">4</SPAN> Alternative winprop selection criteria</A>
+</H2>
+
+<P>
+It is possible to write more complex winprop selection routines than
+those described in section <A HREF="node4.html#sec:winprops"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>. To match a particular
+winprop using whatever way you want to, just set the <TT>match</TT>
+field of the winprop to a function that receives the as its parameters
+the triple <TT>(prop, cwin, id)</TT>, where <TT>prop</TT> is the table for 
+the winprop itself, <TT>cwin</TT> is the client window object,
+and  <TT>id</TT> is the <A HREF="node7.html#fn:WClientWin.get_ident"><TT>WClientWin.get_ident</TT></A> result.
+The function should return <TT>true</TT> if the winprop matches, 
+and <TT>false</TT> otherwise. Note that the <TT>match</TT> function
+is only called after matching against class/role/instance.
+
+<P>
+The title of a client window can be obtained with <A HREF="node7.html#fn:WRegion.name"><TT>WRegion.name</TT></A>.
+If you want to match against (almost) arbitrary window properties,
+have a look at the documentation for the following functions, and
+their standard Xlib counterparts: <A HREF="node7.html#fn:ioncore.x_intern_atom"><TT>ioncore.x_intern_atom</TT></A>
+(XInternAtom), <A HREF="node7.html#fn:ioncore.x_get_window_property"><TT>ioncore.x_get_window_property</TT></A> (XGetWindowProperty),
+and <A HREF="node7.html#fn:ioncore.x_get_text_property"><TT>ioncore.x_get_text_property</TT></A> (XGetTextProperty).
+
+<P>
+
+<P>
+
+<H2><A NAME="SECTION00650000000000000000"></A>
+<A NAME="sec:statusd"></A>
+<BR>
+<SPAN CLASS="arabic">5</SPAN>.<SPAN CLASS="arabic">5</SPAN> Writing <TT>ion-statusd</TT> monitors
+</H2>
+
+<P>
+All statusbar meters that do not monitor the internal state of Notion should
+go in the separate <TT>ion-statusd</TT> program. 
+
+<P>
+Whenever the user requests a meter `<TT>%foo</TT>' or `<TT>%foo_bar</TT>' to 
+be  inserted in a statusbar, <SPAN  CLASS="textit">mod_statusbar</SPAN> asks <TT>ion-statusd</TT> 
+to load <A HREF="#fn:statusd_foo.lua"><TT>statusd_foo.lua</TT></A> on its search path (same as that for Notion-side 
+scripts). This script should then supply all meters with the initial part
+`<TT>foo</TT>'.
+
+<P>
+To provide this value, the script should simply call <TT>statusd.inform</TT>
+with the name of the meter and the value as a string.
+Additionally the script should provide a 'template' for the meter to
+facilitate expected width calculation by <SPAN  CLASS="textit">mod_statusbar</SPAN>, and
+may provide a 'hint' for colour-coding the value. The interpretation
+of hints depends on the graphical style in use, and currently the
+stock styles support the `<TT>normal</TT>', `<TT>important</TT>' and 
+`<TT>critical</TT>' hints.
+
+<P>
+In our example of the 'foo monitor', at script initialisation we might broadcast
+the template as follows:
+
+<P>
+<PRE>
+statusd.inform("foo_template", "000")
+</PRE>
+
+<P>
+To inform <SPAN  CLASS="textit">mod_statusbar</SPAN> of the actual value of the meter and
+indicate that the value is critical if above 100, we might write the
+following function:
+
+<P>
+<PRE>
+local function inform_foo(foo)
+    statusd.inform("foo", tostring(foo))
+    if foo&gt;100 then
+        statusd.inform("foo_hint", "critical")
+    else
+        statusd.inform("foo_hint", "normal")
+    end
+end
+</PRE>
+
+<P>
+To periodically update the value of the meter, we must use timers.
+First we must create one:
+
+<P>
+<PRE>
+local foo_timer=statusd.create_timer()
+</PRE>
+
+<P>
+Then we write a function to be called whenever the timer expires.
+This function must also restart the timer.
+
+<P>
+<PRE>
+local function update_foo()
+    local foo= ... measure foo somehow ...
+    inform_foo(foo)
+    foo_timer:set(settings.update_interval, update_foo)
+end
+</PRE>
+
+<P>
+Finally, at the end of our script we want to do the initial
+measurement, and set up timer for further measurements:
+
+<P>
+<PRE>
+update_foo()
+</PRE>
+
+<P>
+If our scripts supports configurable parameters, the following code
+(at the beginning of the script) will allow them to be configured in
+<SPAN  CLASS="textit">cfg_statusbar.lua</SPAN> and passed to the status daemon and our script:
+
+<P>
+<PRE>
+local defaults={
+    update_interval=10*1000, -- 10 seconds
+}
+                
+local settings=table.join(statusd.get_config("foo"), defaults)
+</PRE>
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html381"
+  HREF="node7.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html375"
+  HREF="notionconf.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html369"
+  HREF="node5.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html377"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html379"
+  HREF="node11.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html382"
+  HREF="node7.html">6. Function reference</A>
+<B> Up:</B> <A NAME="tex2html376"
+  HREF="notionconf.html">Configuring and extending Notion</A>
+<B> Previous:</B> <A NAME="tex2html370"
+  HREF="node5.html">4. Graphical styles</A>
+ &nbsp; <B>  <A NAME="tex2html378"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html380"
+  HREF="node11.html">Index</A></B> </DIV>
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>
