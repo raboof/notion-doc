@@ -64,3 +64,5 @@ h3		{ font-size: 16px; color: #666; }
 .t_form { margin:20px; }
 .t_form th { background:#efefef; }
 .t_form td, .t_form th { padding:5px; border-bottom:1px solid #666; }
+
+.navigation img { display: inline-block; }
