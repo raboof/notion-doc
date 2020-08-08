@@ -2,14 +2,16 @@
 \chapter{Graphical styles}
 \label{chap:gr}
 
-This chapter first gives in section \ref{sec:engines} a general outline 
-of how drawing engines are used, of style specifications and then
-in section \ref{sec:defaultde} describes how to specify styles
-for the default drawing engine. Some additional settings and
-user attributes are explained in Sections \ref{sec:grmisc}.
+\section{Selecting a different look}
+\index{look}
 
+The default location of the style is \codestr{look.lua}. To select
+a different predefined look, select one of the \codestr{look\_*.lua}
+styles from \codestr{etc} and copy it to \codestr{~/.notion/look.lua}.
+This will override the default look on the next Notion restart, and
+can be a starting point for further more detailed customization.
 
-\section{Drawing engines, style specifications and sub-styles}
+\section{Customizing: drawing engines, style specifications and sub-styles}
 \label{sec:engines}
 \index{style}\index{drawing engine}
 
