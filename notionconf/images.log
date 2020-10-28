@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2020.8.8)  8 AUG 2020 15:00
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2020.10.28)  28 OCT 2020 09:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -352,7 +352,7 @@ l.389 \begin{center}\vbox{\input{fnlist}
  
 Here is how much of TeX's memory you used:
  6123 strings out of 495029
- 87909 string characters out of 6181524
+ 87909 string characters out of 6181522
  164307 words of memory out of 5000000
  9298 multiletter control sequences out of 15000+600000
  5640 words of font info for 17 fonts, out of 8000000 for 9000
