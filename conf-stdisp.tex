@@ -13,6 +13,10 @@ panel/dock applications, you can use \file{mod\_dock} with the ``embedded''
 mode.  Alternatively, you can use the built-in \file{mod\_statusbar}. Since a 
 Screen can only hold one stdisp, you can have either - not both.
 
+Notion 4+ loads \file{mod\_dock} by default via  ``cfg_defaults.lua``;
+previous versions loaded \file{mod\_statusbar}.
+To switch, simply adjust this line to load the other module instead.
+
 \input{conf-dock.tex}
 
 \input{conf-statusbar.tex}
